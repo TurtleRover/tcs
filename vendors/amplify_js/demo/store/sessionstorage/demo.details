@@ -1,0 +1,11 @@
+/*
+---
+name: amplify.store sessionStorage.
+description: amplify.store with sessionStorage.
+authors:
+  - The appendTo Team
+resources:
+  - http://cdnjs.cloudflare.com/ajax/libs/json2/20121008/json2.js
+  - http://github.com/appendto/amplify/raw/master/lib/amplify.store.js
+...
+*/
