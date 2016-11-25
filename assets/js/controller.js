@@ -4,6 +4,8 @@
  *	https://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript
 */
 
+const DEBUG = true;
+
 var controller = (function () {
 	/*
 	 * 																		PRIVATE area
@@ -18,8 +20,9 @@ var controller = (function () {
 	 * 																		CALLBACK functions
 	 */
 	function uiMessageCallback(message) {
-		console.log(message);
-	}
+		if (DEBUG) console.log("uiMessageCallback: " + message);
+		if (DEBUG) amplify.publish("all->utests", message);
+	};
 	
 	/*
 	 * 																		PUBLIC area
