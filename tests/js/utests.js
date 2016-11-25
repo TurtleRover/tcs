@@ -10,23 +10,23 @@ var utests = new function() {
 	this.messageArrived = false;
 	
 	/*
-	 * 																	SUBSCRIBE
-	 */
-	amplify.subscribe("all->utests", testMessageCallback);
-	
-	/*
-	 * 																	CALLBACKS
-	 */
-	function testMessageCallback(message) {
-		this.lastMessage = message;
-		this.messageArrived = true;
-	};
-	
-	/*
 	 * 																	RETURN functions
 	 */
 	this.getLastMessage = function () {
-		return this.lastMessage;
 		this.messageArrived = false;
+		return this.lastMessage;
 	};
+};
+
+/*
+ * 																		SUBSCRIBE
+ */
+amplify.subscribe("all->utests", testMessageCallback);
+
+/*
+ * 																		CALLBACKS
+ */
+function testMessageCallback(message) {
+	utests.lastMessage = message;
+	utests.messageArrived = true;
 };

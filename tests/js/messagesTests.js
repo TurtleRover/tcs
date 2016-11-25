@@ -2,7 +2,8 @@
  * Test messages send between different modules of the software
 */
 QUnit.test("ui->controller topic test", function(assert) {
-	assert.expect(1);
+	assert.expect(2);
+	var done = assert.async();
 	
 	var myButton = $("#myButton");
 	myButton.hide();
@@ -10,6 +11,11 @@ QUnit.test("ui->controller topic test", function(assert) {
 	myButton.on("click", function() {
 		assert.ok(true, "button was clicked!");
 	});
+	
+	setTimeout(function() {
+		assert.equal(utests.getLastMessage(), "dupa");
+		done();
+	}, 100);
 	
 	myButton.trigger("click");
 });
