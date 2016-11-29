@@ -2,16 +2,38 @@
 <html>
 	<head>
 		<title>Turtle</title>
+		
+		<link href="vendors/jquery_flagstrap/css/flags.css" rel="stylesheet">
+		<link href="vendors/bootstrap/css/bootstrap.css" rel="stylesheet">
 	<head>
 	<body>
-		<h1>Turtle</h1>
 		<div id=”page”>
 			<button type="button" id="myButton">Click Me!</button>
+			
+			<form>
+			    <div class="form-group">
+			        <div id="languageSelector"
+			             data-input-name="country"
+			             data-selected-country="US">
+			        </div>
+			    </div>
+			</form>
+			
 		</div>
+					
 															<!-- include all JavaScript files -->
 		
 		<!-- jQuery -->
 		<script src='vendors/jquery/jquery-3.1.1.js'></script>
+		
+		<!-- js-Cookie -->
+		<script src='vendors/js_cookie/js.cookie.js'></script>
+		
+		<!-- Bootstrap -->
+		<script src="vendors/bootstrap/bootstrap.js"></script>
+		
+		<!-- jQuery Flagstrap -->
+		<script src='vendors/jquery_flagstrap/jquery.flagstrap.js'></script>
 		
 		<!-- Amplify JS -->
 		<script src='vendors/amplify_js/src/core.js'></script>
@@ -22,5 +44,9 @@
 		<script src='assets/js/controller.js'></script>
 		<!-- user interface -->
 		<script src='assets/js/ui.js'></script>
+		
+		<!-- Initialize -->
+		<script src='assets/js/initialize.js'></script>
+		
 	</body>
 </html>

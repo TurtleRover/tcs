@@ -13,7 +13,7 @@ QUnit.test("ui->controller topic test", function(assert) {
 	});
 	
 	setTimeout(function() {
-		assert.equal(utests.getLastMessage(), "dupa");
+		assert.equal(utests.getLastMessage(), "myButton");
 		done();
 	}, 100);
 	
