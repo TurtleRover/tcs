@@ -8,6 +8,11 @@ var ui = (function () {
 	/*
 	 * 																		PRIVATE area
 	 */
+	
+	/*
+	 *																	MULTILANGUAGE
+	 */
+	
 	function languageChanged() {
 		var newLanguage = $("#languageSelector select option:selected").val();
 		console.log("new language: " + newLanguage);
@@ -44,10 +49,36 @@ var ui = (function () {
 	        scrollable: false,
 	        scrollableHeight: "350px"
 	    });
-		
-		console.log("interface language: " + $("#languageSelector select option:selected").val());
+		var lng = $("#languageSelector select option:selected").val();
+		console.log("interface language: " + lng);
+		return lng;
+	}
+
+	/*
+	 *	initialize i18next, load JSON translations and change displayed language
+	 */
+	function initializeMultilanguage() {
+		//	display selector and read last used language (from cookies)
+		var lng = String(displayLanguageSelector()).toLowerCase();
+
+		//	initialize i18next library
+		i18next.use(window.i18nextXHRBackend);
+		i18next.init({
+			"debug": false,
+			"lng": lng,
+			"fallbackLng": false,
+			"backend": {
+				"loadPath": "locales/{{lng}}.json"
+			}},(err, t) => {
+				// initialized and ready to go!
+				console.log(i18next.t('dupa'));
+			}
+		);
 	}
 	
+	/*
+	 *																	OTHER
+	 */
 	/*
 	 * send any type of data to the controller module
 	 */
@@ -63,8 +94,7 @@ var ui = (function () {
 	/*
 	 * 																		TEST functions
 	 */
-	$("#myButton").click(function(){
-		sendMessageToController("myButton");
+	$("#myButton").click(function(){sendMessageToController("myButton");
 	});
 	
 	/*
@@ -72,6 +102,6 @@ var ui = (function () {
 	 * Reveal public pointers to private functions and properties.
 	 */
 	return {
-		publicDisplayLanguageSelector: displayLanguageSelector
+		publicInitializeMultilanguage: initializeMultilanguage
 	};
 })();
