@@ -17,6 +17,8 @@ var ui = (function () {
 		var newLanguage = $("#languageSelector select option:selected").val();
 		console.log("new language: " + newLanguage);
 		
+		//	change displayed language
+		setLanguage($("#languageSelector select option:selected").val().toLowerCase());
 		//	set cookie for the next visit
 		Cookies.set("language", newLanguage);
 	}
@@ -55,13 +57,9 @@ var ui = (function () {
 	}
 
 	/*
-	 *	initialize i18next, load JSON translations and change displayed language
+	 *	set displayed language
 	 */
-	function initializeMultilanguage() {
-		//	display selector and read last used language (from cookies)
-		var lng = String(displayLanguageSelector()).toLowerCase();
-
-		//	initialize i18next library
+	function setLanguage(lng) {
 		i18next.use(window.i18nextXHRBackend);
 		i18next.init({
 			"debug": false,
@@ -71,9 +69,26 @@ var ui = (function () {
 				"loadPath": "locales/{{lng}}.json"
 			}},(err, t) => {
 				// initialized and ready to go!
-				console.log(i18next.t('dupa'));
+				console.log("Initialized: " + i18next.t('my-button'));
+
+				//	translate all elements with class 'localised'
+				$(".localised").each(function(index) {
+					console.log($(this).attr('id'));
+					var id = $(this).attr('id');
+					$(this).text(i18next.t(id));
+				});
 			}
 		);
+	}
+
+	/*
+	 *	initialize i18next, load JSON translations and change displayed language
+	 */
+	function initializeMultilanguage() {
+		//	display selector and read last used language (from cookies)
+		var lng = String(displayLanguageSelector()).toLowerCase();
+
+		setLanguage(lng);
 	}
 	
 	/*
@@ -94,7 +109,7 @@ var ui = (function () {
 	/*
 	 * 																		TEST functions
 	 */
-	$("#myButton").click(function(){sendMessageToController("myButton");
+	$("#my-button").click(function(){sendMessageToController("my-button");
 	});
 	
 	/*
