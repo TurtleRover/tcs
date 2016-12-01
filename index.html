@@ -2,12 +2,55 @@
 <html>
 	<head>
 		<title>Turtle</title>
+
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="themes/html5up-spectral/assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		
 		<link href="vendors/jquery_flagstrap/css/flags.css" rel="stylesheet">
-		<link href="vendors/bootstrap/css/bootstrap.css" rel="stylesheet">
+		<!-- <link href="vendors/bootstrap/css/bootstrap.css" rel="stylesheet"> -->
 	<head>
-	<body>
-		<div id=�page�>
+	<body class="landing">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			<header id="header" class="alt">
+				<h1><a href="index.html">Spectral</a></h1>
+				<nav id="nav">
+					<ul>
+						<li class="special">
+							<a href="#menu" class="menuToggle"><span>Menu</span></a>
+							<div id="menu">
+								<ul>
+									<li><a href="index.html">Home</a></li>
+									<li><a href="generic.html">Generic</a></li>
+									<li><a href="elements.html">Elements</a></li>
+									<li><a href="#">Sign Up</a></li>
+									<li><a href="#">Log In</a></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</nav>
+			</header>
+
+			<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<h2>Spectral</h2>
+					<p>Another fine responsive<br />
+					site template freebie<br />
+					crafted by <a href="http://html5up.net">HTML5 UP</a>.</p>
+					<ul class="actions">
+						<li><a href="#" class="button special">Activate</a></li>
+					</ul>
+				</div>
+				<a href="#one" class="more scrolly">Learn More</a>
+			</section>
+
 			<button type="button" id="my-button" class="localised"></button>
 			
 			<form>
@@ -23,8 +66,17 @@
 					
 															<!-- include all JavaScript files -->
 		
-		<!-- jQuery -->
-		<script src='vendors/jquery/jquery-3.1.1.js'></script>
+		<!-- jQuery (disabled due to conflict with theme) -->
+		<!-- <script src='vendors/jquery/jquery-3.1.1.js'></script> -->
+
+		<!-- theme related -->
+		<script src='themes/html5up-spectral/assets/js/jquery.min.js'></script>
+		<script src="themes/html5up-spectral/assets/js/jquery.scrollex.min.js"></script>
+		<script src="themes/html5up-spectral/assets/js/jquery.scrolly.min.js"></script>
+		<script src="themes/html5up-spectral/assets/js/skel.min.js"></script>
+		<script src="themes/html5up-spectral/assets/js/util.js"></script>
+		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+		<script src="themes/html5up-spectral/assets/js/main.js"></script>
 		
 		<!-- js-Cookie -->
 		<script src='vendors/js_cookie/js.cookie.js'></script>
