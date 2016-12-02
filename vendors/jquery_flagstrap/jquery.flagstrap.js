@@ -374,7 +374,7 @@
                     .on('click', function (e) {
                         $(htmlSelect).find('option').removeAttr('selected');
                         $(htmlSelect).find('option[value="' + $(this).data('val') + '"]').attr("selected", "selected");
-                        $(htmlSelect).trigger('change');
+                        $(htmlSelect).trigger('change', [$(this).data('val')]);
                         $('.flagstrap-selected-' + uniqueId).html($(this).html());
                         e.preventDefault();
                     });
