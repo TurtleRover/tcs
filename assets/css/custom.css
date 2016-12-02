@@ -72,3 +72,132 @@
          -o-animation: fadein 4s, spin 2s linear infinite; /* Opera < 12.1 */
             animation: fadein 4s, spin 2s linear infinite;
 }
+
+/*
+ *                                                  CAMERA VIDEO
+ */
+.camera-body {
+    overflow: hidden;
+}
+
+ #camera-video {
+     position: absolute;
+     margin: 0 0 0 0;
+     width: 100%;
+     height: 100%;
+     /* background-image: url("../img/marsyard-camera.jpg"); */
+     display: none;
+ }
+
+ #camera-video img {
+     max-width: 100%;
+     height: auto;
+     margin: 0 0 0 0;
+ }
+
+ /*
+ *                                                  TOOGLE BUTTON
+ */
+
+ .tgl {
+  display: none;
+}
+.tgl, .tgl:after, .tgl:before, .tgl *, .tgl *:after, .tgl *:before, .tgl + .tgl-btn {
+  box-sizing: border-box;
+}
+.tgl::-moz-selection, .tgl:after::-moz-selection, .tgl:before::-moz-selection, .tgl *::-moz-selection, .tgl *:after::-moz-selection, .tgl *:before::-moz-selection, .tgl + .tgl-btn::-moz-selection {
+  background: none;
+}
+.tgl::selection, .tgl:after::selection, .tgl:before::selection, .tgl *::selection, .tgl *:after::selection, .tgl *:before::selection, .tgl + .tgl-btn::selection {
+  background: none;
+}
+.tgl + .tgl-btn {
+    float: right;
+  outline: 0;
+  display: block;
+  width: 4em;
+  height: 2em;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.tgl + .tgl-btn:after, .tgl + .tgl-btn:before {
+  position: relative;
+  display: block;
+  content: "";
+  width: 50%;
+  height: 100%;
+}
+.tgl + .tgl-btn:after {
+  left: 0;
+}
+.tgl + .tgl-btn:before {
+  display: none;
+}
+.tgl:checked + .tgl-btn:after {
+  left: 50%;
+}
+
+.tgl-flat + .tgl-btn {
+  padding: 2px;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+  background: #fff;
+  border: 4px solid #f2f2f2;
+  border-radius: 2em;
+}
+.tgl-flat + .tgl-btn:after {
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+  background: #f2f2f2;
+  content: "";
+  border-radius: 1em;
+}
+.tgl-flat:checked + .tgl-btn {
+  border: 4px solid #7FC6A6;
+}
+.tgl-flat:checked + .tgl-btn:after {
+  left: 50%;
+  background: #7FC6A6;
+}
+
+ /*
+ *                                              BUTTONS LIST
+ */
+ .tg-list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 50px;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.tg-list-item {
+  margin: 0 2em;
+  width: 100%;
+}
+
+.tg-list-item .tg-list-description {
+    width: 70%;
+    float: left;
+}
+
+.tg-list-item .tg-list-button {
+    width: 30%;
+    float: right;
+    text-align: right;
+}
+
+/*
+ *                                              OTHER
+ */
+ h3.notification {
+     color: grey;
+ }

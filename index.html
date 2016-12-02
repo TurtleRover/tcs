@@ -16,7 +16,7 @@
 		<!-- mine CSS -->
 		<link href="assets/css/custom.css" rel="stylesheet">
 	<head>
-	<body onload="initialize()" class="landing">
+	<body onload="initialize()" class="landing camera-body">
 		<div id="page-wrapper">
 
 			<!-- Header -->
@@ -39,11 +39,29 @@
 							<a href="#menu" class="menuToggle"><span>Menu</span></a>
 							<div id="menu">
 								<ul>
-									<li><a href="index.html">Home</a></li>
-									<li><a href="generic.html">Generic</a></li>
-									<li><a href="elements.html">Elements</a></li>
-									<li><a href="#">Sign Up</a></li>
-									<li><a href="#">Log In</a></li>
+									<li><a href="index.html" class="localised" id="menu.home">Home</a></li>
+									<li><a href="#" onclick="ui.publicDisplayNotification('notifications.working-on')" class="localised" id="menu.help">Help</a></li>
+									<li><a href="#" onclick="ui.publicDisplayNotification('notifications.working-on')" class="localised" id="menu.advanced-settings">Advanced Settings</a></li>
+									<li><a href="#" onclick="ui.publicDisplayNotification('notifications.working-on')" class="localised" id="menu.console">Console</a></li>
+									<li><a href="#" onclick="ui.publicDisplayNotification('notifications.working-on')" class="localised" id="menu.statistics">Statistics</a></li>
+									<li><a href="#" onclick="ui.publicDisplayNotification('notifications.working-on')" class="localised" id="menu.about">About</a></li>
+									<li></li>
+									<li>
+										<ul class="tg-list">
+											<li class="tg-list-item">
+												<div class="tg-list-description"><p id="settings.some-setting" class="localised">Some Setting</p></div>
+												<div class="tg-list-button">
+													<input id="some-setting-button" type="checkbox" class="tgl tgl-flat"/>
+													<label for="some-setting-button" class="tgl-btn"></label>
+												</div>
+												<div class="tg-list-description"><p id="settings.another-setting" class="localised">Another Setting</p></div>
+												<div class="tg-list-button">
+													<input id="another-setting-button" type="checkbox" class="tgl tgl-flat"/>
+													<label for="another-setting-button" class="tgl-btn"></label>
+												</div>
+											</li>
+										</ul>
+									</li>
 								</ul>
 							</div>
 						</li>
@@ -59,7 +77,8 @@
 					<div id="loader"></div>
 				</div>
 
-				<div class="camera-video">
+				<div id="camera-video">
+					<img src="assets/img/marsyard-camera.jpg">
 				</div>
 			</section>
 
@@ -100,6 +119,9 @@
 		<!-- i18next -->
 		<script src='vendors/i18next/i18next.js'></script>
 		<script src='vendors/i18next/i18nextXHRBackend.js'></script>
+
+		<!-- noty -->
+		<script src="vendors/noty/packaged/jquery.noty.packaged.js"></script>
 
 		<!-- user interface -->
 		<script src='assets/js/ui.js'></script>

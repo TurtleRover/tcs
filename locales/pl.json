@@ -1,4 +1,19 @@
 {
     "my-button": "Kliknij mnie!",
-    "welcome-message":  "Twoja droga na marsa!"
+    "welcome-message":  "Twoja droga na marsa!",
+    "menu": {
+        "home": "strona główna",
+        "help": "pomoc",
+        "advanced-settings": "ustawienia zaawansowane",
+        "console": "terminal",
+        "statistics": "statystyki",
+        "about": "o aplikacji"
+    },
+    "settings": {
+        "some-setting": "jakieś ustawienia",
+        "another-setting": "inne ustawienia"
+    },
+    "notifications": {
+        "working-on": "we are currently working on this feature"
+    }
 }

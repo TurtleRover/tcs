@@ -110,6 +110,26 @@ var ui = (function () {
 	}
 
 	/*
+	 *	display notification for a user using noty library
+	 */
+	function displayNotification(id) {
+		message = i18next.t(id);
+		console.log(message);
+		noty({
+			layout: 'top',
+			theme: 'defaultTheme',
+			type: 'warning',
+			timeout: 2000,
+			closeWith: ['click'],
+			text: '<h3 class="notification">' + message + '</h3>'
+		});
+	}
+
+	function displayCameraVideo() {
+		$("#camera-video").fadeIn();
+	}
+
+	/*
 	 * 																		SUBSCRIBE to controller topic
 	 */
 	amplify.subscribe("controller->ui", controllerMessageCallback);
@@ -124,6 +144,9 @@ var ui = (function () {
 		switch(message) {
 			case "hide welcome screen":
 				hideWelcomeScreen();
+				break;
+			case "display camera video":
+				displayCameraVideo();
 				break;
 			default:
 				console.log("unknown command: " + message);
@@ -144,6 +167,7 @@ var ui = (function () {
 	 * Reveal public pointers to private functions and properties.
 	 */
 	return {
-		publicInitializeMultilanguage: initializeMultilanguage
+		publicInitializeMultilanguage: initializeMultilanguage,
+		publicDisplayNotification: displayNotification
 	};
 })();

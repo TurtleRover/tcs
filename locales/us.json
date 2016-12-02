@@ -1,4 +1,19 @@
 {
     "my-button": "Click Me!",
-    "welcome-message": "Your way to Mars!"
+    "welcome-message": "Your way to Mars!",
+    "menu": {
+        "home": "home",
+        "help": "help",
+        "advanced-settings": "advanced settings",
+        "console": "console",
+        "statistics": "statistics",
+        "about": "about"
+    },
+    "settings": {
+        "some-setting": "some setting",
+        "another-setting": "another setting"
+    },
+    "notifications": {
+        "working-on": "we are currently working on this feature"
+    }
 }
