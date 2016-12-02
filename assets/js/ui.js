@@ -101,7 +101,35 @@ var ui = (function () {
 	function sendMessageToController(message) {
 		amplify.publish("ui->controller", message);
 	}
+
+	/*
+	 *	hide welcome screen is called when page is already loaded
+	 */
+	function hideWelcomeScreen() {
+		$(".inner").fadeOut("slow")
+	}
+
+	/*
+	 * 																		SUBSCRIBE to controller topic
+	 */
+	amplify.subscribe("controller->ui", controllerMessageCallback);
 	
+	/*
+	 * 																		CALLBACK functions
+	 */
+	function controllerMessageCallback(message) {
+		if (DEBUG) console.log("controller->ui: " + message);
+		
+		//	choose action
+		switch(message) {
+			case "hide welcome screen":
+				hideWelcomeScreen();
+				break;
+			default:
+				console.log("unknown command: " + message);
+		}
+	};
+
 	/*
 	 * 																		EVENT functions
 	 */
@@ -110,8 +138,6 @@ var ui = (function () {
 	/*
 	 * 																		TEST functions
 	 */
-	$("#my-button").click(function(){sendMessageToController("my-button");
-	});
 	
 	/*
 	 * 																		PUBLIC area

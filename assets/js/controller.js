@@ -10,6 +10,14 @@ var controller = (function () {
 	/*
 	 * 																		PRIVATE area
 	 */
+
+	/*
+	 *	called when main page is loaded and camera video should be displayed
+	 */ 
+	function mainPageLoaded() {
+		amplify.publish("controller->ui", "hide welcome screen");
+		amplify.publish("controller->ui", "display camera video");
+	};
 	
 	/*
 	 * 																		SUBSCRIBE to all topics
@@ -28,4 +36,7 @@ var controller = (function () {
 	 * 																		PUBLIC area
 	 * Reveal public pointers to private functions and properties.
 	 */
+	return {
+		publicMainPageLoaded:	mainPageLoaded
+	};
 })();
