@@ -68,7 +68,7 @@ var ui = (function () {
 			"fallbackLng": false,
 			"backend": {
 				"loadPath": "locales/{{lng}}.json"
-			}},(err, t) => {
+			}}, function(err, t) {
 				// initialized and ready to go!
 				if(DEBUG) console.log("Initialized: " + i18next.t('my-button'));
 
