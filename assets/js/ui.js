@@ -32,7 +32,7 @@ var ui = (function () {
 		Cookies.set("language", newLanguage);
 
 		//	change displayed language
-		newLanguage.toLowerCase();
+		newLanguage = newLanguage.toLowerCase();
 		setLanguage(newLanguage);
 	}
 	
