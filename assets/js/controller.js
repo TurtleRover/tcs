@@ -16,6 +16,8 @@ var controller = (function () {
 	 */ 
 	function mainPageLoaded() {
 		amplify.publish("controller->ui", "hide welcome screen");
+		if (linux.getIsCameraAvailable) amplify.publish("controller->ui", "change image source to camera");
+		else amplify.publish("controller->ui", "change image source to default background");
 		amplify.publish("controller->ui", "display camera video");
 	};
 

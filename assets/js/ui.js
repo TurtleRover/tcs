@@ -103,6 +103,14 @@ var ui = (function () {
 	}
 
 	/*
+	 *	set the source of an image depending on connection status
+	 */
+	function setCameraBackground(camera) {
+		if (camera) $("#camera-video-img").attr("src", "http://192.168.10.1:8090/?action=stream");
+		else $("#camera-video-img").attr("src", "assets/img/marsyard-camera.jpg");
+	}
+
+	/*
 	 *	hide welcome screen is called when page is already loaded
 	 */
 	function hideWelcomeScreen() {
@@ -121,10 +129,7 @@ var ui = (function () {
     	var msie = ua.indexOf("MSIE ");
 		var trident = ua.indexOf('Trident/');
 
-		if (msie > 0 || trident > 0) {
-			$('.landing').toggleFullScreen();
-			console.log ("INTERNET EXPLORER PFUU");
-		}
+		if (msie > 0 || trident > 0) $('.landing').toggleFullScreen();
 		else $(document).toggleFullScreen();		
 	}
 
@@ -178,6 +183,9 @@ var ui = (function () {
 				break;
 			case "initialize multilanguage":
 				initializeMultilanguage();
+				break;
+			case "change image source to camera":
+				
 				break;
 			default:
 				console.log("unknown command: " + message);
