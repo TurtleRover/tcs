@@ -8,6 +8,17 @@ var ui = (function () {
 	/*
 	 * 																		PRIVATE area
 	 */
+
+	/*
+	 *	obvious stupid function
+	 */
+	function isInternetExplorer() {
+		var ua = window.navigator.userAgent;
+    	var msie = ua.indexOf("MSIE ");
+		var trident = ua.indexOf('Trident/');
+
+		return(msie > 0 || trident > 0);
+	}
 	
 	/*
 	 *																	MULTILANGUAGE
@@ -106,7 +117,13 @@ var ui = (function () {
 	 *	set the source of an image depending on connection status
 	 */
 	function setCameraBackground(camera) {
-		if (camera) $("#camera-video-img").attr("src", "http://192.168.10.1:8090/?action=stream");
+		if (camera && isInternetExplorer()) {
+			setInterval(function (){
+				time = new Date();
+				$("#camera-video-img").attr("src", "http://192.168.10.1:8090/?action=snapshot&time="+ time.getTime());
+			}, 100);
+		}
+		else if (camera) $("#camera-video-img").attr("src", "http://192.168.10.1:8090/?action=stream");
 		else $("#camera-video-img").attr("src", "assets/img/marsyard-camera.jpg");
 	}
 
@@ -125,11 +142,7 @@ var ui = (function () {
 	 */
 	function toggleFullScreen() {
 		//	for internet explorer use body as full screen, not the document
-		var ua = window.navigator.userAgent;
-    	var msie = ua.indexOf("MSIE ");
-		var trident = ua.indexOf('Trident/');
-
-		if (msie > 0 || trident > 0) $('.landing').toggleFullScreen();
+		if (isInternetExplorer()) $('.landing').toggleFullScreen();
 		else $(document).toggleFullScreen();		
 	}
 
