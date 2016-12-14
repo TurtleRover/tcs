@@ -185,7 +185,10 @@ var ui = (function () {
 				initializeMultilanguage();
 				break;
 			case "change image source to camera":
-				
+				setCameraBackground(true);
+				break;
+			case "change image source to default background":
+				setCameraBackground(false);
 				break;
 			default:
 				console.log("unknown command: " + message);
