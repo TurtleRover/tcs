@@ -15,15 +15,20 @@
 
 		<!-- mine CSS -->
 		<link href="assets/css/custom.css" rel="stylesheet">
-	<head>
+	</head>
 	<body class="landing camera-body">
 		<div id="page-wrapper">
 
 			<!-- Header -->
 			<header id="header" class="alt">
-				<h1><a href="index.html">Spectral</a></h1>
+				<div id="full-screen-button-div">
+					<span id="full-screen-button-centerer"></span>
+					<img id="full-screen-button-img" src="assets/img/navigation/fullscreen.png">
+				</div>
+
 				<nav id="nav">
-					<ul>
+
+					<ul>	
 						<li class="special">
 							<form>
 								<div class="form-group">
@@ -40,11 +45,11 @@
 							<div id="menu">
 								<ul>
 									<li><a href="index.html" class="localised" id="menu.home">Home</a></li>
-									<li><a href="#" onclick="ui.publicDisplayNotification('notifications.working-on')" class="localised" id="menu.help">Help</a></li>
-									<li><a href="#" onclick="ui.publicDisplayNotification('notifications.working-on')" class="localised" id="menu.advanced-settings">Advanced Settings</a></li>
-									<li><a href="#" onclick="ui.publicDisplayNotification('notifications.working-on')" class="localised" id="menu.console">Console</a></li>
-									<li><a href="#" onclick="ui.publicDisplayNotification('notifications.working-on')" class="localised" id="menu.statistics">Statistics</a></li>
-									<li><a href="#" onclick="ui.publicDisplayNotification('notifications.working-on')" class="localised" id="menu.about">About</a></li>
+									<li><a href="#" onclick="amplify.publish('all->ui', 'notifications.working-on')" class="localised" id="menu.help">Help</a></li>
+									<li><a href="#" onclick="amplify.publish('all->ui', 'notifications.working-on')" class="localised" id="menu.advanced-settings">Advanced Settings</a></li>
+									<li><a href="#" onclick="amplify.publish('all->ui', 'notifications.working-on')" class="localised" id="menu.console">Console</a></li>
+									<li><a href="#" onclick="amplify.publish('all->ui', 'notifications.working-on')" class="localised" id="menu.statistics">Statistics</a></li>
+									<li><a href="#" onclick="amplify.publish('all->ui', 'notifications.working-on')" class="localised" id="menu.about">About</a></li>
 									<li></li>
 									<li>
 										<ul class="tg-list">
@@ -71,6 +76,7 @@
 
 			<!-- Banner -->
 			<section id="banner">
+
 				<div class="inner">
 					<h2>turtle</h2>
 					<p class="localised" id="welcome-message">Your way to mars!</p>
@@ -78,7 +84,7 @@
 				</div>
 
 				<div id="camera-video" hidden>
-					<img src="assets/img/marsyard-camera.jpg">
+					<img src="assets/img/marsyard-camera.jpg" draggable="false" onmousedown="return false" style="user-drag: none">
 				</div>
 			</section>
 
@@ -116,6 +122,9 @@
 		<!-- controller -->
 		<script src='assets/js/controller.js'></script>
 
+		<!-- linux communication -->
+		<script src='assets/js/linux.js'></script>
+
 		<!-- i18next -->
 		<script src='vendors/i18next/i18next.js'></script>
 		<script src='vendors/i18next/i18nextXHRBackend.js'></script>
@@ -123,11 +132,14 @@
 		<!-- noty -->
 		<script src="vendors/noty/packaged/jquery.noty.packaged.js"></script>
 
+		<!-- canvas controller -->
+		<script src='assets/js/controlcanvas.js'></script>
+
+		<!-- fullscreen plugin -->
+		<script src='vendors/jquery_fullscreen/jquery.fullscreen.js'></script>
+
 		<!-- user interface -->
 		<script src='assets/js/ui.js'></script>
-		
-		<!-- Initialize -->
-		<script src='assets/js/initialize.js'></script>
 		
 	</body>
 </html>

@@ -108,6 +108,37 @@ var ui = (function () {
 	function hideWelcomeScreen() {
 		$(".inner").fadeOut("slow")
 	}
+	function displayCameraVideo() {
+		$("#camera-video").fadeIn();
+	}
+
+	/*
+	 *	switch to fullscreen mode
+	 */
+	function toggleFullScreen() {
+		//	for internet explorer use body as full screen, not the document
+		var ua = window.navigator.userAgent;
+    	var msie = ua.indexOf("MSIE ");
+		var trident = ua.indexOf('Trident/');
+
+		if (msie > 0 || trident > 0) {
+			$('.landing').toggleFullScreen();
+			console.log ("INTERNET EXPLORER PFUU");
+		}
+		else $(document).toggleFullScreen();		
+	}
+
+	/*
+	 *	full screen mode has been changed
+	 */ 
+	function changedFullScreen() {
+		if ($(document).fullScreen()) {
+			$("#full-screen-button-img").attr("src", "assets/img/navigation/fullscreen-exit.png");
+		}
+		else {
+			$("#full-screen-button-img").attr("src", "assets/img/navigation/fullscreen.png");
+		}
+	}
 
 	/*
 	 *	display notification for a user using noty library
@@ -125,14 +156,11 @@ var ui = (function () {
 		});
 	}
 
-	function displayCameraVideo() {
-		$("#camera-video").fadeIn();
-	}
-
 	/*
-	 * 																		SUBSCRIBE to controller topic
+	 * 																		SUBSCRIBE topics
 	 */
 	amplify.subscribe("controller->ui", controllerMessageCallback);
+	amplify.subscribe("all->ui", allMessageCallback);
 	
 	/*
 	 * 																		CALLBACK functions
@@ -148,6 +176,25 @@ var ui = (function () {
 			case "display camera video":
 				displayCameraVideo();
 				break;
+			case "initialize multilanguage":
+				initializeMultilanguage();
+				break;
+			default:
+				console.log("unknown command: " + message);
+		}
+	};
+
+	function allMessageCallback(message) {
+		if (DEBUG) console.log("all->ui: " + message);
+		
+		//	choose action
+		switch(message) {
+			case "notifications.working-on":
+				displayNotification(message);
+				break;
+			case "notifications.server-connection-error":
+				displayNotification(message);
+				break;
 			default:
 				console.log("unknown command: " + message);
 		}
@@ -157,17 +204,18 @@ var ui = (function () {
 	 * 																		EVENT functions
 	 */
 	$("#languageSelector").change(function(e, data) {languageChanged(data);});
+	$("#full-screen-button-img").click(function() {toggleFullScreen();});
+	$(document).bind("fullscreenchange", function() {changedFullScreen();});
 	
 	/*
-	 * 																		TEST functions
+	 * 																		SEND information to controller
 	 */
+	amplify.publish("ui->controller", "ui is ready for operation");
 	
 	/*
 	 * 																		PUBLIC area
 	 * Reveal public pointers to private functions and properties.
 	 */
 	return {
-		publicInitializeMultilanguage: initializeMultilanguage,
-		publicDisplayNotification: displayNotification
 	};
 })();

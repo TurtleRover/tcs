@@ -1,0 +1,110 @@
+#!/usr/bin/python3
+
+###############################################################################
+#
+# The MIT License (MIT)
+#
+# Copyright (c) Tavendo GmbH
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+#
+###############################################################################
+
+from autobahn.asyncio.websocket import WebSocketServerProtocol, \
+    WebSocketServerFactory
+
+#	Import Hardware Communication modules
+import sys
+import os
+import hexdump
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from Hardware_Communication.I2C import *
+from Hardware_Communication.CRC import *
+from Motor_Module.Motor_Module import *
+
+class MyServerProtocol(WebSocketServerProtocol):
+
+    def onConnect(self, request):
+        print("Client connecting: {0}".format(request.peer))
+
+    def onOpen(self):
+        print("WebSocket connection open.")
+
+	#	Messages received from JavaScript (client)
+    def onMessage(self, payload, isBinary):
+        if isBinary:
+            print("Binary message received from client: {0} bytes: ".format(len(payload)) + hexdump.dump(payload, sep=" "))
+            
+            try:
+				#	This has to be changed according to way of robot controlling
+                received = updateMotors(payload[0], payload[1], payload[2], payload[3])
+                print("Received from Motor Module: " + hexdump.dump(bytes(received), sep=" "))
+            except OSError:
+                received = None
+                print("Communication error has occured")
+            
+            #	Check CRC of received message
+            CRCOK = False
+            if received != None:
+                receivedWithCalculatedCRC = buildCommand(received[:len(received)-2])
+            
+                if receivedWithCalculatedCRC == received:
+                    CRCOK = True
+                else:
+                    CRCOK = False
+			
+            print("CRC: " + str(CRCOK))
+            print("\n")
+			
+        else:
+            print("Text message received: {0}".format(payload.decode('utf8')))
+        
+        # echo back message verbatim
+        if received != None:
+            self.sendMessage(bytes(received), CRCOK)
+        else:
+            self.sendMessage(bytes(0x00), False)
+
+    def onClose(self, wasClean, code, reason):
+        print("WebSocket connection closed: {0}".format(reason))
+
+
+if __name__ == '__main__':
+
+    try:
+        import asyncio
+    except ImportError:
+        # Trollius >= 0.3 was renamed
+        import trollius as asyncio
+	
+    print("Working")
+    factory = WebSocketServerFactory(u"ws://127.0.0.1:80")
+    factory.protocol = MyServerProtocol
+
+    loop = asyncio.get_event_loop()
+    coro = loop.create_server(factory, '0.0.0.0', 80)
+    server = loop.run_until_complete(coro)
+
+    try:
+        loop.run_forever()
+    except KeyboardInterrupt:
+        pass
+    finally:
+        server.close()
+        loop.close()
