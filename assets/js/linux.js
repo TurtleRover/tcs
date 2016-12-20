@@ -24,7 +24,7 @@ var linux = (function () {
             serverProcessPID = data[0];
             mjpegStreamPID = data[1];
             //  if the returned value is numeric (pid of the process) continue with camera
-            if ($.isNumeric(serverProcessPID)) {
+            if ($.isNumeric(serverProcessPID) || $.isNumeric(mjpegStreamPID)) {
                 isCameraAvailable = true; 
 
                 if (DEBUG) console.log("serverProcessPID: " + serverProcessPID);
@@ -47,7 +47,7 @@ var linux = (function () {
      *  stop python server when page is unloaded (controller.js -> closePage)
      */
     function stopPythonServer() {
-        $.get("assets/python/server/close_server.php?pid=" + serverProcessPID);
+        $.get("assets/python/server/close_server.php");
     };
 
     function retIsCameraAvailable() {return isCameraAvailable;};
