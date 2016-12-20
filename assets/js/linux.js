@@ -10,6 +10,7 @@ var linux = (function () {
 	 */
     var isCameraAvailable = false;
     var serverProcessPID = -1;
+    var mjpegStreamPID = -1;
 
     /*
      *  start python server
@@ -18,18 +19,23 @@ var linux = (function () {
     function startPythonServer() {
         $.get("assets/python/server/run_server.php", function(data) {
             if (DEBUG) console.log("AJAX connection established");
+            data = data.split("\r\n");
 
+            serverProcessPID = data[0];
+            mjpegStreamPID = data[1];
             //  if the returned value is numeric (pid of the process) continue with camera
-            if ($.isNumeric(data)) {
-                if (DEBUG) console.log("process PID: " + data);
+            if ($.isNumeric(serverProcessPID)) {
                 isCameraAvailable = true; 
-                serverProcessPID = data;
+
+                if (DEBUG) console.log("serverProcessPID: " + serverProcessPID);
+                if (DEBUG) console.log("mjpegStreamPID: " + mjpegStreamPID);
             }
             //  otherwise display a notice and work with static image
             else {
                 if (DEBUG) console.log("couldn't initialize python server");
                 isCameraAvailable = false;
                 serverProcessPID = -1;
+                mjpegStreamPID = -1;
                 amplify.publish("all->ui", "notifications.server-connection-error");
             }
 
