@@ -24,7 +24,7 @@ var controller = (function () {
 	/*
 	 * 																		EVENTS triggers
 	 */
-	$(window).unload(closePage());
+	$(window).bind('beforeunload', function(){closePage();});
 	
 	/*
 	 * 																		SUBSCRIBE to all topics
