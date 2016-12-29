@@ -286,9 +286,63 @@
  #hud-frame-img {
      position: absolute;
      left: 0px;
-     right: 0px;
+     top: 0px;
      width: 100%;
      height: auto;
      z-index: 5;
-     opacity: 0.25;
+     opacity: 0.1;
+ }
+
+  #turtle-top-view-div {
+     position: relative;
+     left: 10px;
+     top: 125px;
+     width: 250px;
+     height: 125px;
+     z-index: 6;
+ }
+
+ #turtle-top-view-img {
+     position: relative;
+     left: 0;
+     top: 0;
+     width: auto;
+     max-height: 100%;
+     opacity: 0.4;
+ }
+
+ #turtle-top-view-left-top-div {
+     position: absolute;
+     left: 10px;
+     top: 18px;
+     width: 50px;
+     z-index: 7;
+     opacity: 0.8;
+ }
+
+  #turtle-top-view-right-top-div {
+     position: absolute;
+     right: 10px;
+     top: 18px;
+     width: 50px;
+     z-index: 7;
+     opacity: 0.8;
+ }
+
+   #turtle-top-view-left-bottom-div {
+     position: absolute;
+     left: 10px;
+     top: 95px;
+     width: 50px;
+     z-index: 7;
+     opacity: 0.8;
+ }
+
+#turtle-top-view-right-bottom-div {
+     position: absolute;
+     right: 10px;
+     top: 95px;
+     width: 50px;
+     z-index: 7;
+     opacity: 0.8;
  }

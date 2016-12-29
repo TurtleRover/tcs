@@ -57,7 +57,15 @@ var controlCanvas = (function () {
         var rect = canvas.get(0).getBoundingClientRect();
         return {
             x: event.clientX - rect.left - (rect.right - rect.left) / 2,
-            y: rect.bottom - event.clientY - (rect.bottom - rect.top) / 2
+            y: rect.bottom - event.clientY - (rect.bottom - rect.top) / 2,
+        };
+    }
+
+    function getCanvasDimensions(canvas) {
+        var rect = canvas.get(0).getBoundingClientRect();
+        return {
+            width: rect.right - rect.left,
+            height: rect.bottom - rect.top
         };
     }
 
@@ -66,7 +74,46 @@ var controlCanvas = (function () {
 	 */
     canvas.mousemove(function(event) {
         mousePosition = getMousePosition(canvas, event);
-        console.log("x: " + mousePosition.x + " y: " + mousePosition.y);
+
+        /*
+        *  declare constants used to control rover
+        */
+        var canvasDimensions = getCanvasDimensions(canvas);
+        var circleRadius = canvasDimensions.height/2;
+        var emptyZoneRadius = canvasDimensions.height/12;
+        console.log("width: " + canvasDimensions.width + " height: " + canvasDimensions.height);
+
+        coordinates.x = mousePosition.x;
+        coordinates.y = mousePosition.y;
+        coordinates.module = Math.round(Math.sqrt(coordinates.x * coordinates.x + coordinates.y * coordinates.y));
+        coordinates.angle = Math.round(Math.asin(coordinates.y / coordinates.module) * 180 / Math.PI);
+        console.log("x: " + coordinates.x + " y: " + coordinates.y + " module: " + coordinates.module + " alpha: " + coordinates.angle);
+
+        var motors = {
+            mot1: 0,
+            mot2: 0,
+            mot3: 0,
+            mot4: 0
+        }
+
+        //  calculate motors values if the appropriate zone was clicked
+        if (coordinates.module > emptyZoneRadius && coordinates.module <= circleRadius) {
+            var a = coordinates.module / circleRadius * 100;
+            var b = coordinates.module * (Math.sin((2 * coordinates.angle - 90) * Math.PI / 180)) / circleRadius * 100;
+
+            var leftMotors = (coordinates.x >= 0) ? a : b;
+            var rightMotors = (coordinates.x >= 0) ? b : a;
+
+            motors.mot1 = Math.round(leftMotors);
+            motors.mot3 = Math.round(leftMotors);
+            motors.mot2 = Math.round(rightMotors);
+            motors.mot4 = Math.round(rightMotors);
+
+            $('#turtle-top-view-left-top-p').text(String(motors.mot1) + "%");
+            $('#turtle-top-view-right-top-p').text(String(motors.mot2) + "%");
+            $('#turtle-top-view-left-bottom-p').text(String(motors.mot3) + "%");
+            $('#turtle-top-view-right-bottom-p').text(String(motors.mot4) + "%");
+        }
     });
 
     /*
