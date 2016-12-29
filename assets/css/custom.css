@@ -95,17 +95,31 @@
 
  #navigation-ring-div {
      position: absolute;
-     bottom: 50px;
-     right: 25px;
+     bottom: 25px;
+     right: 15px;
      width: 250px;
      height: 250px;
      z-index: 10;
  }
 
  #navigation-ring-img {
+     position: absolute;
+     margin: auto;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
      height: 100%;
      width: auto;
  }
+
+#navigation-ring-canvas {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    height: 100%;
+    width: 100%;
+}
 
 #page-wrapper {
      cursor: url("../img/cursor.png") 12 12, url("assets/img/cursor.cur") 12 12, auto;
@@ -260,8 +274,21 @@
  }
 
  #camera-video-img {
+     position: absolute;
+     left: 0px;
+     right: 0px;
      min-width: 100%;
      min-height: 100%;
      width: auto;
      height: auto;
+ }
+
+ #hud-frame-img {
+     position: absolute;
+     left: 0px;
+     right: 0px;
+     width: 100%;
+     height: auto;
+     z-index: 5;
+     opacity: 0.25;
  }

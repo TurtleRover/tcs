@@ -26,7 +26,6 @@ var linux = (function () {
             //  if the returned value is numeric (pid of the process) continue with camera
             if ($.isNumeric(serverProcessPID) || $.isNumeric(mjpegStreamPID)) {
                 isCameraAvailable = true; 
-
                 if (DEBUG) console.log("serverProcessPID: " + serverProcessPID);
                 if (DEBUG) console.log("mjpegStreamPID: " + mjpegStreamPID);
             }
