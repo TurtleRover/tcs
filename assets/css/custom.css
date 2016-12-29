@@ -93,6 +93,20 @@
      z-index: 2;
  }
 
+ #navigation-ring-div {
+     position: absolute;
+     bottom: 50px;
+     right: 25px;
+     width: 250px;
+     height: 250px;
+     z-index: 10;
+ }
+
+ #navigation-ring-img {
+     height: 100%;
+     width: auto;
+ }
+
 #page-wrapper {
      cursor: url("../img/cursor.png") 12 12, url("assets/img/cursor.cur") 12 12, auto;
 }

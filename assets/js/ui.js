@@ -135,6 +135,7 @@ var ui = (function () {
 	}
 	function displayCameraVideo() {
 		$("#camera-video").fadeIn();
+		$("#navigation-ring-div").fadeIn();
 	}
 
 	/*
