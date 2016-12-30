@@ -81,12 +81,11 @@ var controlCanvas = (function () {
         var canvasDimensions = getCanvasDimensions(canvas);
         var circleRadius = canvasDimensions.height/2;
         var emptyZoneRadius = canvasDimensions.height/12;
-        console.log("width: " + canvasDimensions.width + " height: " + canvasDimensions.height);
 
         coordinates.x = mousePosition.x;
         coordinates.y = mousePosition.y;
-        coordinates.module = Math.round(Math.sqrt(coordinates.x * coordinates.x + coordinates.y * coordinates.y));
-        coordinates.angle = Math.round(Math.asin(coordinates.y / coordinates.module) * 180 / Math.PI);
+        coordinates.module = Math.sqrt(coordinates.x * coordinates.x + coordinates.y * coordinates.y);
+        coordinates.angle = Math.asin(coordinates.y / coordinates.module) * 180 / Math.PI;
         console.log("x: " + coordinates.x + " y: " + coordinates.y + " module: " + coordinates.module + " alpha: " + coordinates.angle);
 
         var motors = {
