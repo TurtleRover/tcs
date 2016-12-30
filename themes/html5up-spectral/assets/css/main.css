@@ -3160,7 +3160,8 @@
 		-ms-transition: -ms-transform 0.5s ease;
 		transition: transform 0.5s ease;
 		-webkit-overflow-scrolling: touch;
-		background: #21b2a6;
+		/* background: #21b2a6; */
+		background: #2E2E2E;
 		color: #ffffff;
 		height: 100%;
 		max-width: 80%;
@@ -3328,13 +3329,15 @@
 
 							#header nav > ul > li > a.menuToggle:after {
 								background-image: url("images/bars.svg");
-								background-position: right center;
+								background-position: center;
 								background-repeat: no-repeat;
+								background-size: 100px 50px;
 								content: '';
 								display: inline-block;
-								height: 3.75em;
+								height: 5.75em;
 								vertical-align: top;
-								width: 2em;
+								width: 5em;
+								opacity: 0.6;
 							}
 
 							@media screen and (max-width: 736px) {

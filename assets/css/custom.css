@@ -95,28 +95,27 @@
 
  #navigation-ring-div {
      position: absolute;
+     text-align: right;
      bottom: 25px;
      right: 15px;
-     width: 250px;
-     height: 250px;
+     height: 25vw;
+     width: 25vw;
      z-index: 10;
  }
 
  #navigation-ring-img {
      position: absolute;
-     margin: auto;
      top: 0;
-     left: 0;
      right: 0;
-     bottom: 0;
-     height: 100%;
+     max-height: 100%;
      width: auto;
  }
 
 #navigation-ring-canvas {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
+    position: relative;
+    top: 0;
+    right: 0;
+    margin: auto;
     height: 100%;
     width: 100%;
 }

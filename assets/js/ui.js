@@ -19,6 +19,19 @@ var ui = (function () {
 
 		return(msie > 0 || trident > 0);
 	}
+
+	/*
+	 *	this function enables jquery flagstrap form drop-down menu in #menu
+	 */
+	$(function() {
+		// Setup drop down menu
+		$('.dropdown-toggle').dropdown();
+		
+		// Fix input element click problem
+		$('.dropdown input, .dropdown label').click(function(e) {
+			e.stopPropagation();
+			});
+	});
 	
 	/*
 	 *																	MULTILANGUAGE
