@@ -120,6 +120,62 @@
     width: 100%;
 }
 
+#stats-view-div {
+    position: absolute;
+    left: 25px;
+    bottom: 10px;
+    height: 40%;
+    width: 50%;
+    z-index: 10;
+    opacity: 0.6;
+}
+
+#signal-strength-div {
+    text-align: left;
+    position: relative;
+    height: 30%;
+    width: 100%;
+}
+
+#signal-strength-img {
+    max-height: 100%;
+    top: 0;
+    left: 0;
+    width: auto;
+}
+
+#battery-level-div {
+    text-align: left;
+    position: relative;
+    top: 35px;
+    height: 30%;
+    width: 100%;
+}
+
+#battery-level-img {
+    max-height: 70%;
+    top: 0;
+    left: 0;
+    width: auto;
+}
+
+#turtle-logo-div {
+    position: absolute;
+    left: 25px;
+    top: 25px;
+    height: 100%;
+    width: 50%;
+    z-index: 10;
+    opacity: 0.6;
+}
+
+#turtle-logo-img {
+    max-height: 100%;
+    top: 0;
+    left: 0;
+    width: auto;
+}
+
 #page-wrapper {
      cursor: url("../img/cursor.png") 12 12, url("assets/img/cursor.cur") 12 12, auto;
 }
@@ -240,8 +296,8 @@
  #full-screen-button-div {
      z-index: 2;
      position: absolute;
-     top: 20px;
-     left: 20px;
+     top: 8px;
+     right: 120px;
      width: 64px;
      height: 64px;
      text-align: center;
