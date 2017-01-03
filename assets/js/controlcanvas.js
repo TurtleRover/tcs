@@ -132,6 +132,7 @@ var controlCanvas = (function () {
     };
 
     function stopMotors() {
+        amplify.publish("controlCanvas->port8080", "stop all motors");
         motorsSpeed.motor_1 = 0;
         motorsSpeed.motor_2 = 0;
         motorsSpeed.motor_3 = 0;

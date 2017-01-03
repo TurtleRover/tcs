@@ -54,6 +54,23 @@ var serverCommunication = (function () {
     function connect8080() {
         console.log("Location hostname: " + location.hostname);
 
+        /*
+         *  subscribe to canvas topic
+         */
+        amplify.subscribe("controlCanvas->port8080", canvasMessageCallback);
+        function canvasMessageCallback(message) {
+            if (DEBUG) console.log("canvasMessageCallback: " + message);
+            if (DEBUG) amplify.publish("all->utests", message);
+
+            switch (message) {
+                case "stop all motors":
+                    stopMotors();
+                    break;
+                default:
+                    console.log("unknown command: " + message);
+            }
+        };
+
         //  for 3G used service ngrok
         if (location.host == "bentos.eu.ngrok.io")
             var socket8080 = new socket(new WebSocket("ws://" + "bentossocket.eu.ngrok.io"), false, -1);
@@ -96,6 +113,7 @@ var serverCommunication = (function () {
         */
         function setMotors() {
             if (socket8080.isOpen) {
+                var motorsSpeed = controlCanvas.getMotorsSpeed();
                 var buf = new ArrayBuffer(4);
                 var arr = new Uint8Array(buf);
                 /*	Multiplying by this value should make possible to write directly to PWM
