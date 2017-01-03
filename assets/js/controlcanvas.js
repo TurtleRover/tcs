@@ -73,6 +73,27 @@ var controlCanvas = (function () {
 	 * 																		EVENTS area
 	 */
     canvas.mousemove(function(event) {
+        if (coordinates.clicked == true) {
+            updateMotors(event);
+        }
+    });
+
+    canvas.mousedown(function(event) {
+        coordinates.clicked = true;
+        updateMotors(event);
+    });
+
+    canvas.mouseout(function(event) {
+        coordinates.clicked = false;
+        stopMotors();
+    });
+
+    canvas.mouseup(function(event) {
+        coordinates.clicked = false;
+        stopMotors();
+    });
+
+    function updateMotors(event) {
         mousePosition = getMousePosition(canvas, event);
 
         /*
@@ -88,13 +109,6 @@ var controlCanvas = (function () {
         coordinates.angle = Math.asin(coordinates.y / coordinates.module) * 180 / Math.PI;
         console.log("x: " + coordinates.x + " y: " + coordinates.y + " module: " + coordinates.module + " alpha: " + coordinates.angle);
 
-        var motors = {
-            mot1: 0,
-            mot2: 0,
-            mot3: 0,
-            mot4: 0
-        }
-
         //  calculate motors values if the appropriate zone was clicked
         if (coordinates.module > emptyZoneRadius && coordinates.module <= circleRadius) {
             var a = coordinates.module / circleRadius * 100;
@@ -103,17 +117,36 @@ var controlCanvas = (function () {
             var leftMotors = (coordinates.x >= 0) ? a : b;
             var rightMotors = (coordinates.x >= 0) ? b : a;
 
-            motors.mot1 = Math.round(leftMotors);
-            motors.mot3 = Math.round(leftMotors);
-            motors.mot2 = Math.round(rightMotors);
-            motors.mot4 = Math.round(rightMotors);
-
-            $('#turtle-top-view-left-top-p').text(String(motors.mot1) + "%");
-            $('#turtle-top-view-right-top-p').text(String(motors.mot2) + "%");
-            $('#turtle-top-view-left-bottom-p').text(String(motors.mot3) + "%");
-            $('#turtle-top-view-right-bottom-p').text(String(motors.mot4) + "%");
+            motorsSpeed.motor_1 = Math.round(leftMotors);
+            motorsSpeed.motor_3 = Math.round(leftMotors);
+            motorsSpeed.motor_2 = Math.round(rightMotors);
+            motorsSpeed.motor_4 = Math.round(rightMotors);
         }
-    });
+        else {
+            motorsSpeed.motor_1 = 0;
+            motorsSpeed.motor_2 = 0;
+            motorsSpeed.motor_3 = 0;
+            motorsSpeed.motor_4 = 0;
+        }
+
+        updatePowerDisplay();
+    };
+
+    function stopMotors() {
+        motorsSpeed.motor_1 = 0;
+        motorsSpeed.motor_2 = 0;
+        motorsSpeed.motor_3 = 0;
+        motorsSpeed.motor_4 = 0;
+
+        updatePowerDisplay();
+    };
+
+    function updatePowerDisplay() {
+        $('#turtle-top-view-left-top-p').text(String(motorsSpeed.motor_1) + "%");
+        $('#turtle-top-view-right-top-p').text(String(motorsSpeed.motor_2) + "%");
+        $('#turtle-top-view-left-bottom-p').text(String(motorsSpeed.motor_3) + "%");
+        $('#turtle-top-view-right-bottom-p').text(String(motorsSpeed.motor_4) + "%");
+    };
 
     /*
 	 * 																		PUBLIC area
