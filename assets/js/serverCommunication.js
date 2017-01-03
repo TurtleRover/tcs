@@ -26,8 +26,8 @@ var serverCommunication = (function () {
 		if (DEBUG) amplify.publish("all->utests", message);
 
         switch (message) {
-            case "start communication on port 80":
-                connect80();
+            case "start communication on port 8080":
+                connect8080();
                 break;
             default:
                 console.log("unknown command: " + message);
@@ -49,29 +49,29 @@ var serverCommunication = (function () {
     };
 
     /*
-     *  connects with port 80
+     *  connects with port 8080
      */
-    function connect80() {
+    function connect8080() {
         console.log("Location hostname: " + location.hostname);
 
         //  for 3G used service ngrok
         if (location.host == "bentos.eu.ngrok.io")
-            var socket80 = new socket(new WebSocket("ws://" + "bentossocket.eu.ngrok.io"), false, -1);
+            var socket8080 = new socket(new WebSocket("ws://" + "bentossocket.eu.ngrok.io"), false, -1);
         else
-            var socket80 = new socket(new WebSocket("ws://" + location.hostname + ":80"), false, -1);
+            var socket8080 = new socket(new WebSocket("ws://" + location.hostname + ":8080"), false, -1);
 
-        socket80.socket.binaryType = "arraybuffer";
+        socket8080.socket.binaryType = "arraybuffer";
 
         /*
          *                                                              EVENT functions for socket
          */
 
-        socket80.socket.onopen = function() {
-            console.log("Connected with port 80");
-            socket80.isOpen = true;
+        socket8080.socket.onopen = function() {
+            console.log("Connected with port 8080");
+            socket8080.isOpen = true;
         };
 
-        socket80.socket.onmessage = function(e) {
+        socket8080.socket.onmessage = function(e) {
             if (typeof e.data == "string") {
                 //  string is only if CRC is NOK
                 console.log("Wrong CRC of received message: " + e.data);
@@ -85,17 +85,17 @@ var serverCommunication = (function () {
             }
         };
 
-        socket80.socket.onclose = function(e) {
+        socket8080.socket.onclose = function(e) {
             console.log("Connection closed. Log: " + e.data);
-            socket80.socket = null;
-            socket80.isOpen = null;
+            socket8080.socket = null;
+            socket8080.isOpen = null;
         };
 
         /*
         *  set all motors values
         */
         function setMotors() {
-            if (socket80.isOpen) {
+            if (socket8080.isOpen) {
                 var buf = new ArrayBuffer(4);
                 var arr = new Uint8Array(buf);
                 /*	Multiplying by this value should make possible to write directly to PWM
@@ -105,7 +105,7 @@ var serverCommunication = (function () {
                 arr[1] = Math.round(motorsSpeed.motor_2 * k);	//	Right front
                 arr[2] = Math.round(motorsSpeed.motor_3 * k);	//	Left rear
                 arr[3] = Math.round(motorsSpeed.motor_4 * k);	//	Right rear
-                socket80.socket.send(buf);
+                socket8080.socket.send(buf);
                 
                 // Convert to readable form
                 var hex = '';
@@ -122,14 +122,14 @@ var serverCommunication = (function () {
          *  stop all motors immediately
          */
         function stopMotors() {
-            if (socket80.isOpen) {
+            if (socket8080.isOpen) {
                 var buf = new ArrayBuffer(4);
                 var arr = new Uint8Array(buf);
                 arr[0] = 0;
                 arr[1] = 0;
                 arr[2] = 0;
                 arr[3] = 0;
-                socket80.socket.send(buf);
+                socket8080.socket.send(buf);
                 
                 // Convert to readable form
                 var hex = '';
@@ -147,7 +147,7 @@ var serverCommunication = (function () {
          *  take care to not overload CPU
          */
         setInterval(function () {
-            if(socket80.isOpen && controlCanvas.isCoordinatesClicked())
+            if(socket8080.isOpen && controlCanvas.isCoordinatesClicked())
                 setMotors();
         }, INTERVAL);
     };
