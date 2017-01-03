@@ -71,6 +71,9 @@ var controller = (function () {
 
 		//	start python server
 		amplify.publish("controller->linux", "start python server");
+
+		//	start socket communication
+		amplify.publish("controller->serverCommunication", "start communication on port 8080");
 	};
 
 	/*

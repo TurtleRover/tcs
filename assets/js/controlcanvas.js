@@ -101,21 +101,28 @@ var controlCanvas = (function () {
         */
         var canvasDimensions = getCanvasDimensions(canvas);
         var circleRadius = canvasDimensions.height/2;
-        var emptyZoneRadius = canvasDimensions.height/12;
+        var emptyZoneRadius = canvasDimensions.height/10;
+        var emptyZoneHeight = canvasDimensions.height/12;
 
         coordinates.x = mousePosition.x;
         coordinates.y = mousePosition.y;
         coordinates.module = Math.sqrt(coordinates.x * coordinates.x + coordinates.y * coordinates.y);
         coordinates.angle = Math.asin(coordinates.y / coordinates.module) * 180 / Math.PI;
-        console.log("x: " + coordinates.x + " y: " + coordinates.y + " module: " + coordinates.module + " alpha: " + coordinates.angle);
 
-        //  calculate motors values if the appropriate zone was clicked
-        if (coordinates.module > emptyZoneRadius && coordinates.module <= circleRadius) {
+        //  calculate motors values if the appropriate zone was 
+        
+        if (coordinates.module > emptyZoneRadius && coordinates.module <= circleRadius && Math.abs(coordinates.y) > emptyZoneHeight) {
             var a = coordinates.module / circleRadius * 100;
             var b = coordinates.module * (Math.sin((2 * coordinates.angle - 90) * Math.PI / 180)) / circleRadius * 100;
 
             var leftMotors = (coordinates.x >= 0) ? a : b;
             var rightMotors = (coordinates.x >= 0) ? b : a;
+
+            //  reverse if backward
+            if (coordinates.y < 0) {
+                leftMotors = -leftMotors;
+                rightMotors = -rightMotors;
+            }
 
             motorsSpeed.motor_1 = Math.round(leftMotors);
             motorsSpeed.motor_3 = Math.round(leftMotors);
@@ -133,6 +140,7 @@ var controlCanvas = (function () {
     };
 
     function stopMotors() {
+        amplify.publish("controlCanvas->port8080", "stop all motors");
         motorsSpeed.motor_1 = 0;
         motorsSpeed.motor_2 = 0;
         motorsSpeed.motor_3 = 0;
@@ -149,6 +157,22 @@ var controlCanvas = (function () {
     };
 
     /*
+	 * 																	REVEALED functions
+	 */
+
+    function isCoordinatesClickedPriv () {
+        return coordinates.clicked;
+    };
+
+    function getMotorsSpeedPriv () {
+        return motorsSpeed;
+    };
+
+    /*
 	 * 																		PUBLIC area
 	 */
+    return {
+        isCoordinatesClicked : isCoordinatesClickedPriv,
+        getMotorsSpeed : getMotorsSpeedPriv
+    };
 })();
