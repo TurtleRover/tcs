@@ -17,6 +17,24 @@ var serverCommunication = (function () {
 	 */
 
     /*
+	 * 																		SUBSCRIBE to all topics
+	 */
+    amplify.subscribe("controller->serverCommunication", controllerMessageCallback);
+
+    function controllerMessageCallback(message) {
+        if (DEBUG) console.log("controllerMessageCallback: " + message);
+		if (DEBUG) amplify.publish("all->utests", message);
+
+        switch (message) {
+            case "start communication on port 80":
+                connect80();
+                break;
+            default:
+                console.log("unknown command: " + message);
+        }
+    };
+
+    /*
      *  defines how often new information is sent
      */
     const INTERVAL = 100;
@@ -33,11 +51,11 @@ var serverCommunication = (function () {
     /*
      *  connects with port 80
      */
-    function connect80Priv() {
+    function connect80() {
         console.log("Location hostname: " + location.hostname);
 
         //  for 3G used service ngrok
-        if (locaion.host == "bentos.eu.ngrok.io")
+        if (location.host == "bentos.eu.ngrok.io")
             var socket80 = new socket(new WebSocket("ws://" + "bentossocket.eu.ngrok.io"), false, -1);
         else
             var socket80 = new socket(new WebSocket("ws://" + location.hostname + ":80"), false, -1);
