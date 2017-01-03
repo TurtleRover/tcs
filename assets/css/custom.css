@@ -147,7 +147,7 @@
 #battery-level-div {
     text-align: left;
     position: relative;
-    top: 35px;
+    top: 15px;
     height: 30%;
     width: 100%;
 }
@@ -157,6 +157,14 @@
     top: 0;
     left: 0;
     width: auto;
+}
+
+#session-time-div {
+    text-align: left;
+    position: relative;
+    top: 15px;
+    height: 30%;
+    width: 100%;
 }
 
 #turtle-logo-div {
