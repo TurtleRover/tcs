@@ -107,7 +107,6 @@ var controlCanvas = (function () {
         coordinates.y = mousePosition.y;
         coordinates.module = Math.sqrt(coordinates.x * coordinates.x + coordinates.y * coordinates.y);
         coordinates.angle = Math.asin(coordinates.y / coordinates.module) * 180 / Math.PI;
-        console.log("x: " + coordinates.x + " y: " + coordinates.y + " module: " + coordinates.module + " alpha: " + coordinates.angle);
 
         //  calculate motors values if the appropriate zone was clicked
         if (coordinates.module > emptyZoneRadius && coordinates.module <= circleRadius) {
@@ -149,6 +148,22 @@ var controlCanvas = (function () {
     };
 
     /*
+	 * 																	REVEALED functions
+	 */
+
+    function isCoordinatesClickedPriv () {
+        return coordinates.clicked;
+    };
+
+    function getMotorsSpeedPriv () {
+        return motorsSpeed;
+    };
+
+    /*
 	 * 																		PUBLIC area
 	 */
+    return {
+        isCoordinatesClicked : isCoordinatesClickedPriv,
+        getMotorsSpeed : getMotorsSpeedPriv
+    };
 })();
