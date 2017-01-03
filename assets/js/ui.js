@@ -32,6 +32,27 @@ var ui = (function () {
 			e.stopPropagation();
 			});
 	});
+
+	/*
+	 *	saves the date of loading the session - used for timer
+	 */
+	var startTime = new Date();
+	setInterval(function(){updateSessionTimer()}, 1000);
+
+	function updateSessionTimer() {
+		var time = new Date();
+		var diff = time - startTime;
+		diff = Math.round(diff/1000);	// change from milliseconds to seconds
+		var minutes = Math.floor(diff / 60);
+		var seconds = diff - minutes * 60;
+
+		//	add leading 0 to the string
+		function pad(n) {
+			return (n < 10) ? ("0" + n) : n;
+		}
+
+		$('#session-time-h1').text(pad(String(minutes)) + ":" + pad(String(seconds)));
+	};
 	
 	/*
 	 *																	MULTILANGUAGE
