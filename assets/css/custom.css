@@ -411,5 +411,6 @@
  }
 
  #shellinabox-iframe {
-     min-width: 640px;
+     min-width: 800px;
+     min-height: 500px;
  }
