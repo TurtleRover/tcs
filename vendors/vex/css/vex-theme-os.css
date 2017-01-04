@@ -258,9 +258,12 @@
     color: #444;
     padding: 1em;
     position: relative;
-    margin: 0 auto;
+    margin: 50%;
     max-width: 100%;
-    width: 450px;
+    min-width: 450px;
+    display:inline-block;
+    text-align: center;
+    margin: 0 auto;
     font-size: 1.1em;
     line-height: 1.5em; }
     .vex.vex-theme-os .vex-content h1, .vex.vex-theme-os .vex-content h2, .vex.vex-theme-os .vex-content h3, .vex.vex-theme-os .vex-content h4, .vex.vex-theme-os .vex-content h5, .vex.vex-theme-os .vex-content h6, .vex.vex-theme-os .vex-content p, .vex.vex-theme-os .vex-content ul, .vex.vex-theme-os .vex-content li {

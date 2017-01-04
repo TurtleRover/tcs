@@ -135,6 +135,7 @@
 
 .vex {
   position: fixed;
+  text-align: center;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   z-index: 1111;

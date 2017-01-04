@@ -56,8 +56,10 @@ var ui = (function () {
 	 *	run popup window with shellinabox
 	 */
 	function consoleButtonClicked() {
+		//	run shellbox
+		message = "<iframe src=http://" + location.hostname + "/shell id='shellinabox-iframe'></iframe>";
 		vex.dialog.alert({
-			unsafeMessage: '<b>Hello</b>'
+			unsafeMessage: message
 		})
 	};
 	
