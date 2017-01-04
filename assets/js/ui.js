@@ -58,6 +58,7 @@ var ui = (function () {
 	function consoleButtonClicked() {
 		//	run shellbox
 		message = "<iframe src=http://" + location.hostname + "/shell id='shellinabox-iframe'></iframe>";
+		$('#banner').trigger("click");
 		vex.dialog.alert({
 			unsafeMessage: message
 		})
