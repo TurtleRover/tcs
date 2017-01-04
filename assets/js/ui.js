@@ -21,19 +21,6 @@ var ui = (function () {
 	}
 
 	/*
-	 *	this function enables jquery flagstrap form drop-down menu in #menu
-	 */
-	$(function() {
-		// Setup drop down menu
-		$('.dropdown-toggle').dropdown();
-		
-		// Fix input element click problem
-		$('.dropdown input, .dropdown label').click(function(e) {
-			e.stopPropagation();
-			});
-	});
-
-	/*
 	 *	saves the date of loading the session - used for timer
 	 */
 	var startTime = new Date();
@@ -52,6 +39,17 @@ var ui = (function () {
 		}
 
 		$('#session-time-h1').text(pad(String(minutes)) + ":" + pad(String(seconds)));
+	};
+
+	function advancedInterfaceChanged() {
+		if($("#advanced-interface-button").prop('checked') == false) {
+			Cookies.set("advanced-interface", false);
+			$(".advanced-interface").fadeIn();
+		}
+		else {
+			Cookies.set("advanced-interface", true);
+			$(".advanced-interface").fadeOut();
+		}
 	};
 	
 	/*
@@ -170,6 +168,9 @@ var ui = (function () {
 	function displayCameraVideo() {
 		$("#camera-video").fadeIn();
 		$("#navigation-ring-div").fadeIn();
+
+		//	hide some elements if interface in advanced mode
+		if($("#advanced-interface-button").prop('checked') == true) $(".advanced-interface").hide();
 	}
 
 	/*
@@ -265,11 +266,45 @@ var ui = (function () {
 	$("#languageSelector").change(function(e, data) {languageChanged(data);});
 	$("#full-screen-button-img").click(function() {toggleFullScreen();});
 	$(document).bind("fullscreenchange", function() {changedFullScreen();});
+	$("#advanced-interface-button").change(function(e, data) {advancedInterfaceChanged();});
 	
 	/*
 	 * 																		SEND information to controller
 	 */
 	amplify.publish("ui->controller", "ui is ready for operation");
+
+	/*
+	 *																		LOADING area
+	 *	things to do while the page is loaded
+	 */
+	
+	/*
+	 *	this function enables jquery flagstrap form drop-down menu in #menu
+	 */
+	$(function() {
+		// Setup drop down menu
+		$('.dropdown-toggle').dropdown();
+		
+		// Fix input element click problem
+		$('.dropdown input, .dropdown label').click(function(e) {
+			e.stopPropagation();
+			});
+	});
+
+	/*
+	 *	read settings from last session
+	 */
+	$(function() {
+		var previousSessionSetting = Cookies.get("advanced-interface");
+		if (previousSessionSetting == undefined) previousSessionSetting = "false";
+
+		if (previousSessionSetting == "false") {
+			$("#advanced-interface-button").prop('checked', false);
+		}
+		else {
+			$("#advanced-interface-button").prop('checked', true);
+		}
+	});
 	
 	/*
 	 * 																		PUBLIC area
