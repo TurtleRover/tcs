@@ -51,6 +51,15 @@ var ui = (function () {
 			$(".advanced-interface").fadeOut();
 		}
 	};
+
+	/*
+	 *	run popup window with shellinabox
+	 */
+	function consoleButtonClicked() {
+		vex.dialog.alert({
+			unsafeMessage: '<b>Hello</b>'
+		})
+	};
 	
 	/*
 	 *																	MULTILANGUAGE
@@ -255,6 +264,9 @@ var ui = (function () {
 			case "notifications.server-connection-error":
 				displayNotification(message);
 				break;
+			case "console button clicked":
+				consoleButtonClicked();
+				break;
 			default:
 				console.log("unknown command: " + message);
 		}
@@ -305,6 +317,11 @@ var ui = (function () {
 			$("#advanced-interface-button").prop('checked', true);
 		}
 	});
+
+	/*
+	 *	configure vex dialogs
+	 */
+	vex.defaultOptions.className='vex-theme-os';
 	
 	/*
 	 * 																		PUBLIC area
