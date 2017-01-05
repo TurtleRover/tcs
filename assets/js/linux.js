@@ -28,6 +28,11 @@ var linux = (function () {
                 isCameraAvailable = true; 
                 if (DEBUG) console.log("serverProcessPID: " + serverProcessPID);
                 if (DEBUG) console.log("mjpegStreamPID: " + mjpegStreamPID);
+
+                //  start communication with webserver
+                setTimeout(function(){
+                    amplify.publish("linux->serverCommunication", "start communication on port 8080");
+                }, 500);
             }
             //  otherwise display a notice and work with static image
             else {

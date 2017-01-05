@@ -19,10 +19,10 @@ var serverCommunication = (function () {
     /*
 	 * 																		SUBSCRIBE to all topics
 	 */
-    amplify.subscribe("controller->serverCommunication", controllerMessageCallback);
+    amplify.subscribe("linux->serverCommunication", linuxMessageCallback);
 
-    function controllerMessageCallback(message) {
-        if (DEBUG) console.log("controllerMessageCallback: " + message);
+    function linuxMessageCallback(message) {
+        if (DEBUG) console.log("clinuxMessageCallback: " + message);
 		if (DEBUG) amplify.publish("all->utests", message);
 
         switch (message) {
