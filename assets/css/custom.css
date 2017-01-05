@@ -409,3 +409,8 @@
      z-index: 7;
      opacity: 0.8;
  }
+
+ #shellinabox-iframe {
+     min-width: 800px;
+     min-height: 39vw;
+ }
