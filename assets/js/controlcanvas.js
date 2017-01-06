@@ -96,6 +96,8 @@ var controlCanvas = (function () {
     function updateMotors(event) {
         mousePosition = getMousePosition(canvas, event);
 
+        var direction = -1;
+
         /*
         *  declare constants used to control rover
         */
@@ -103,6 +105,9 @@ var controlCanvas = (function () {
         var circleRadius = canvasDimensions.height/2;
         var emptyZoneRadius = canvasDimensions.height/10;
         var emptyZoneHeight = canvasDimensions.height/12;
+
+        //  alternative steering method
+        emptyZoneHeight = 0;
 
         coordinates.x = mousePosition.x;
         coordinates.y = mousePosition.y;
@@ -112,22 +117,38 @@ var controlCanvas = (function () {
         //  calculate motors values if the appropriate zone was 
         
         if (coordinates.module > emptyZoneRadius && coordinates.module <= circleRadius && Math.abs(coordinates.y) > emptyZoneHeight) {
-            var a = coordinates.module / circleRadius * 100;
-            var b = coordinates.module * (Math.sin((2 * coordinates.angle - 90) * Math.PI / 180)) / circleRadius * 100;
+            //  var a = coordinates.module / circleRadius * 100;
+            //  var b = coordinates.module * (Math.sin((2 * coordinates.angle - 90) * Math.PI / 180)) / circleRadius * 100;
 
-            var leftMotors = (coordinates.x >= 0) ? a : b;
-            var rightMotors = (coordinates.x >= 0) ? b : a;
-
-            //  reverse if backward
-            if (coordinates.y < 0) {
-                leftMotors = -leftMotors;
-                rightMotors = -rightMotors;
+            //  alternative steering method
+            var leftMotors;
+            var rightMotors;
+            //  FORWARD
+            if (Math.abs(coordinates.y) > Math.abs(coordinates.x)) {
+                var a = coordinates.y / circleRadius * 100;
+                leftMotors = a;
+                rightMotors = a;
+            }
+            //  TURN
+            else {
+                var a = coordinates.x / circleRadius * 100;
+                leftMotors = a;
+                rightMotors = -a;
             }
 
-            motorsSpeed.motor_1 = Math.round(leftMotors);
-            motorsSpeed.motor_3 = Math.round(leftMotors);
-            motorsSpeed.motor_2 = Math.round(rightMotors);
-            motorsSpeed.motor_4 = Math.round(rightMotors);
+            //  var leftMotors = (coordinates.x >= 0) ? a : b;
+            //  var rightMotors = (coordinates.x >= 0) ? b : a;
+
+            //  reverse if backward
+            /*if (coordinates.y < 0) {
+                leftMotors = -leftMotors;
+                rightMotors = -rightMotors;
+            }*/
+
+            motorsSpeed.motor_1 = Math.round(leftMotors) * direction;
+            motorsSpeed.motor_3 = Math.round(leftMotors) * direction;
+            motorsSpeed.motor_2 = Math.round(rightMotors) * direction;
+            motorsSpeed.motor_4 = Math.round(rightMotors) * direction;
         }
         else {
             motorsSpeed.motor_1 = 0;
