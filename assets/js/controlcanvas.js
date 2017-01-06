@@ -131,7 +131,7 @@ var controlCanvas = (function () {
             }
             //  TURN
             else {
-                var a = coordinates.x / circleRadius * 100;
+                var a = -coordinates.x / circleRadius * 100;
                 leftMotors = a;
                 rightMotors = -a;
             }
