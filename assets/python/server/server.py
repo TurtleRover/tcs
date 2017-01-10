@@ -52,8 +52,11 @@ class MyServerProtocol(WebSocketServerProtocol):
             print("Binary message received from client: {0} bytes: ".format(len(payload)) + hexdump.dump(payload, sep=" "))
             
             try:
-				#	This has to be changed according to way of robot controlling
-                received = updateMotors(payload[0], payload[1], payload[2], payload[3])
+                if payload[0] == 0x10:
+                    received = updateMotors(payload[1], payload[2], payload[3], payload[4])
+                elif payload[0] == 0x30:
+                    received = readBatteryVoltage()
+
                 print("Received from Motor Module: " + hexdump.dump(bytes(received), sep=" "))
             except OSError:
                 received = None

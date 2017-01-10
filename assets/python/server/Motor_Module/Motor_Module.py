@@ -19,3 +19,9 @@ def updateMotors (PWM1, PWM2, PWM3, PWM4):
 	sendI2C(command)
 	#	Read data from Arduino
 	return readI2C()
+
+#	Read battery voltage (actualy, not the voltage but ADC reading)
+def readBatteryVoltage():
+	command = [0x30]
+	sendI2C(command)
+	return readI2C()

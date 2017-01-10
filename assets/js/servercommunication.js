@@ -38,6 +38,7 @@ var serverCommunication = (function () {
      *  defines how often new information is sent
      */
     const INTERVAL = 100;
+    const BAT_INTERVAL = 2000;
 
     /*
      *  class for every new socket communication
@@ -114,15 +115,18 @@ var serverCommunication = (function () {
         function setMotors() {
             if (socket8080.isOpen) {
                 var motorsSpeed = controlCanvas.getMotorsSpeed();
-                var buf = new ArrayBuffer(4);
+                var buf = new ArrayBuffer(5);
                 var arr = new Uint8Array(buf);
+
+                //  command to send
+                arr[0] = 0x10;
                 /*	Multiplying by this value should make possible to write directly to PWM
                     Current range is -127 - 127	*/
                 var k = 1.27;
-                arr[0] = Math.round(motorsSpeed.motor_1 * k);	//	Left front
-                arr[1] = Math.round(motorsSpeed.motor_2 * k);	//	Right front
-                arr[2] = Math.round(motorsSpeed.motor_3 * k);	//	Left rear
-                arr[3] = Math.round(motorsSpeed.motor_4 * k);	//	Right rear
+                arr[1] = Math.round(motorsSpeed.motor_1 * k);	//	Left front
+                arr[2] = Math.round(motorsSpeed.motor_2 * k);	//	Right front
+                arr[3] = Math.round(motorsSpeed.motor_3 * k);	//	Left rear
+                arr[4] = Math.round(motorsSpeed.motor_4 * k);	//	Right rear
                 socket8080.socket.send(buf);
                 
                 // Convert to readable form
@@ -131,8 +135,9 @@ var serverCommunication = (function () {
                     hex += ('00' + arr[i].toString(16)).substr(-2);
                     
                 if(DEBUG) console.log("Binary message sent. " + hex);
-                } else {
-                    console.log("Connection not opened.");
+            }
+            else {
+                console.log("Connection not opened.");
             }
         };
 
@@ -140,6 +145,33 @@ var serverCommunication = (function () {
          *  stop all motors immediately
          */
         function stopMotors() {
+            if (socket8080.isOpen) {
+                var buf = new ArrayBuffer(5);
+                var arr = new Uint8Array(buf);
+
+                //  command to send
+                arr[0] = 0x10;
+
+                arr[1] = 0;
+                arr[2] = 0;
+                arr[3] = 0;
+                arr[4] = 0;
+                socket8080.socket.send(buf);
+                
+                // Convert to readable form
+                var hex = '';
+                for (var i = 0; i < arr.length; i++)
+                    hex += ('00' + arr[i].toString(16)).substr(-2);
+                    
+                if(DEBUG) console.log("Binary message sent. " + hex);
+            }
+            else console.log("Connection not opened.");
+        };
+
+        /*
+         *  get battery level
+         */
+        function getBatteryLevel() {
             if (socket8080.isOpen) {
                 var buf = new ArrayBuffer(4);
                 var arr = new Uint8Array(buf);
@@ -155,9 +187,8 @@ var serverCommunication = (function () {
                     hex += ('00' + arr[i].toString(16)).substr(-2);
                     
                 if(DEBUG) console.log("Binary message sent. " + hex);
-                } else {
-                    console.log("Connection not opened.");
             }
+            else console.log("Connection not opened.");
         };
 
         /*
@@ -168,6 +199,14 @@ var serverCommunication = (function () {
             if(socket8080.isOpen && controlCanvas.isCoordinatesClicked())
                 setMotors();
         }, INTERVAL);
+
+        /*
+         *  read battery value
+         */
+        /*setInterval(function () {
+            if(socket8080.isOpen)
+                getBatteryLevel();
+        }, BAT_INTERVAL);*/
     };
 
     /*
