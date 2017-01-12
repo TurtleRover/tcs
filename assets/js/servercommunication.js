@@ -99,7 +99,15 @@ var serverCommunication = (function () {
                 var hex = '';
                 for (var i = 0; i < arr.length; i++)
                     hex += ('00' + arr[i].toString(16)).substr(-2);
-                console.log("Binary message received from Arduino: " + hex);
+                if (DEBUG) console.log("Binary message received from Arduino: " + hex);
+
+                //  read battery voltage
+                if (arr[0] == 0x31) {
+                var voltage = (arr[1] << 8) + arr[2];
+                    voltage = voltage / 54.5 // voltage divider
+                    var str_voltage = voltage.toString();
+                    $("#battery-level-text").text(str_voltage.substr(0,4) + " V");
+                }
             }
         };
 
@@ -173,12 +181,9 @@ var serverCommunication = (function () {
          */
         function getBatteryLevel() {
             if (socket8080.isOpen) {
-                var buf = new ArrayBuffer(4);
+                var buf = new ArrayBuffer(1);
                 var arr = new Uint8Array(buf);
-                arr[0] = 0;
-                arr[1] = 0;
-                arr[2] = 0;
-                arr[3] = 0;
+                arr[0] = 0x30;
                 socket8080.socket.send(buf);
                 
                 // Convert to readable form
@@ -203,10 +208,10 @@ var serverCommunication = (function () {
         /*
          *  read battery value
          */
-        /*setInterval(function () {
+        setInterval(function () {
             if(socket8080.isOpen)
                 getBatteryLevel();
-        }, BAT_INTERVAL);*/
+        }, BAT_INTERVAL);
     };
 
     /*
