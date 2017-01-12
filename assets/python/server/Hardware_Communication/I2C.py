@@ -25,6 +25,6 @@ def sendI2C (message):
 	
 	return
 
-def readI2C ():
+def readI2C (readCommand, lenght):
 	#	Reads data from Arduino
-	return bus.read_i2c_block_data(address, 0x20, 0x06)
+	return bus.read_i2c_block_data(address, readCommand, lenght)
