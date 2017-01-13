@@ -69,26 +69,35 @@ var controlCanvas = (function () {
         };
     }
 
-    /*
-	 * 																		EVENTS area
-	 */
-    canvas.mousemove(function(event) {
+    function move(event) {
         if (coordinates.clicked == true) {
             updateMotors(event);
         }
-    });
+    }
 
-    canvas.mousedown(function(event) {
+    function start(event) {
         coordinates.clicked = true;
         updateMotors(event);
-    });
+    }
 
-    canvas.mouseout(function(event) {
+    function stop(event) {
         coordinates.clicked = false;
         stopMotors();
-    });
+    }
 
-    canvas.mouseup(function(event) {
+    /*
+	 * 																		EVENTS area
+	 */
+    canvas.mousemove(function(event) { move(event); });
+    canvas[0].addEventListener("touchmove", function(event) { move(event); });
+
+    canvas.mousedown(function(event) { start(event); });
+    canvas[0].addEventListener("touchstart", function(event) { start(event); });
+
+    canvas.mouseup(function(event) { stop(event); });
+    canvas[0].addEventListener("touchend", function(event) { stop(event); });
+
+    canvas.mouseout(function(event) {
         coordinates.clicked = false;
         stopMotors();
     });
