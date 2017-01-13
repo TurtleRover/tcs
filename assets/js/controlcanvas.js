@@ -89,10 +89,24 @@ var controlCanvas = (function () {
 	 * 																		EVENTS area
 	 */
     canvas.mousemove(function(event) { move(event); });
-    canvas[0].addEventListener("touchmove", function(event) { move(event); });
+    canvas[0].addEventListener("touchmove", function(event) {
+        var touch = event.touches[0];
+        var mouseEvent = new MouseEvent("mousedown", {
+            clientX: touch.clientX,
+            clientY: touch.clientY
+        });
+        canvas[0].dispatchEvent(mouseEvent);
+    });
 
     canvas.mousedown(function(event) { start(event); });
-    canvas[0].addEventListener("touchstart", function(event) { start(event); });
+    canvas[0].addEventListener("touchstart", function(event) { 
+        var touch = event.touches[0];
+        var mouseEvent = new MouseEvent("mousedown", {
+            clientX: touch.clientX,
+            clientY: touch.clientY
+        });
+        canvas[0].dispatchEvent(mouseEvent);
+    });
 
     canvas.mouseup(function(event) { stop(event); });
     canvas[0].addEventListener("touchend", function(event) { stop(event); });
@@ -104,6 +118,7 @@ var controlCanvas = (function () {
 
     function updateMotors(event) {
         mousePosition = getMousePosition(canvas, event);
+        console.log(mousePosition);
 
         var direction = -1;
 
