@@ -54,6 +54,7 @@
 		-moz-box-sizing: border-box;
 		-webkit-box-sizing: border-box;
 		box-sizing: border-box;
+		height: 100%;
 	}
 
 /* Grid */
@@ -3810,6 +3811,7 @@
 		background-position: center center;
 		background-repeat: no-repeat;
 		background-size: cover;
+		min-height: 100%;
 	}
 
 	body.is-mobile.landing #footer {
