@@ -48,6 +48,8 @@ class MyServerProtocol(WebSocketServerProtocol):
 
 	#	Messages received from JavaScript (client)
     def onMessage(self, payload, isBinary):
+       # received = None;
+
         if isBinary:
             print("Binary message received from client: {0} bytes: ".format(len(payload)) + hexdump.dump(payload, sep=" "))
             
@@ -56,6 +58,13 @@ class MyServerProtocol(WebSocketServerProtocol):
                     received = updateMotors(payload[1], payload[2], payload[3], payload[4])
                 elif payload[0] == 0x30:
                     received = readBatteryVoltage()
+                elif payload[0] == 0x40:
+                    f = os.popen('iwconfig wlan1 | grep -i signal | grep -ohP "Signal level=[0-9]*" | grep -ohP "[0-9]*"')
+                    signal = f.read()
+                    signal = signal[:len(signal)-1]
+                    result = [0x41, int(signal)]
+                    #   add CRC (no way to be wrong)
+                    received = buildCommand(result)
 
                 print("Received from Motor Module: " + hexdump.dump(bytes(received), sep=" "))
             except OSError:

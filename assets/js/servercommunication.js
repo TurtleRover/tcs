@@ -103,10 +103,15 @@ var serverCommunication = (function () {
 
                 //  read battery voltage
                 if (arr[0] == 0x31) {
-                var voltage = (arr[1] << 8) + arr[2];
+                    var voltage = (arr[1] << 8) + arr[2];
                     voltage = voltage / 54.5 // voltage divider
                     var str_voltage = voltage.toString();
                     $("#battery-level-text").text(str_voltage.substr(0,4) + " V");
+                }
+                //  read signal strength
+                else if (arr[0] == 0x41) {
+                    var signal = arr[1];
+                    $("#signal-strength-text").text(signal.toString() + " %");
                 }
             }
         };
@@ -197,6 +202,26 @@ var serverCommunication = (function () {
         };
 
         /*
+         *  get signal level
+         */
+        function getSignalLevel() {
+            if (socket8080.isOpen) {
+                var buf = new ArrayBuffer(1);
+                var arr = new Uint8Array(buf);
+                arr[0] = 0x40;
+                socket8080.socket.send(buf);
+                
+                // Convert to readable form
+                var hex = '';
+                for (var i = 0; i < arr.length; i++)
+                    hex += ('00' + arr[i].toString(16)).substr(-2);
+                    
+                if(DEBUG) console.log("Binary message sent. " + hex);
+            }
+            else console.log("Connection not opened.");
+        };
+
+        /*
          *  set interval to update motor values
          *  take care to not overload CPU
          */
@@ -209,8 +234,10 @@ var serverCommunication = (function () {
          *  read battery value
          */
         setInterval(function () {
-            if(socket8080.isOpen)
+            if(socket8080.isOpen) {
                 getBatteryLevel();
+                getSignalLevel();
+            }
         }, BAT_INTERVAL);
     };
 
