@@ -169,6 +169,19 @@ var ui = (function () {
 		}
 		else if (camera) $("#camera-video-img").attr("src", "http://192.168.10.1:8090/?action=stream");
 		else $("#camera-video-img").attr("src", "assets/img/marsyard-camera.jpg");
+
+		//	rotate camera
+		var deg = 180;
+		var rotate = 'rotate(' + deg + 'deg)';
+		$("#camera-video-img").each(function () {
+			$(this).css({
+				'-webkit-transform': rotate,
+				'-moz-transform': rotate,
+				'-o-transform': rotate,
+				'-ms-transform': rotate,
+				'transform': rotate 
+			});
+		});
 	}
 
 	/*
