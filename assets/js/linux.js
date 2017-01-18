@@ -17,7 +17,9 @@ var linux = (function () {
      *  python server is responsible for all communication on the server side
      */
     function startPythonServer() {
-        $.get("assets/python/server/run_server.php", function(data) {
+        $.get("assets/python/server/run_server.php",
+        { resolution: "1280x720" },
+        function(data) {
             if (DEBUG) console.log("AJAX connection established");
             data = data.split("\r\n");
 
