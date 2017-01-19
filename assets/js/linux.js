@@ -17,8 +17,24 @@ var linux = (function () {
      *  python server is responsible for all communication on the server side
      */
     function startPythonServer() {
+        /*
+         *  read screen resolution and choose video size from the following ones:
+         *  1280 x 720
+         *  1024 x 768
+         *  640 x 480
+         *  320 x 240
+         */
+        var size = Math.max(window.screen.height, window.screen.width);
+        var res = "0x0";
+        if (size > 1366) res = "1280x720";
+        else if (size > 1152) res = "1024x768";
+        else if (size > 800) res = "640x480";
+        else res = "320x240";
+
+        if (DEBUG) console.log("Image resolution: " + res);
+
         $.get("assets/python/server/run_server.php",
-        { resolution: "1280x720" },
+        { resolution: res },
         function(data) {
             if (DEBUG) console.log("AJAX connection established");
             data = data.split("\r\n");
