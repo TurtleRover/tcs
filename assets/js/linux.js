@@ -50,7 +50,7 @@ var linux = (function () {
                 //  start communication with webserver
                 setTimeout(function(){
                     amplify.publish("linux->serverCommunication", "start communication on port 8080");
-                }, 500);
+                }, 1500);
             }
             //  otherwise display a notice and work with static image
             else {

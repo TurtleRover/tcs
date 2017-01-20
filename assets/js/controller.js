@@ -15,10 +15,12 @@ var controller = (function () {
 	 *	called when main page is loaded and camera video should be displayed
 	 */ 
 	function mainPageLoaded() {
-		amplify.publish("controller->ui", "hide welcome screen");
-		if (linux.getIsCameraAvailable() == true) amplify.publish("controller->ui", "change image source to camera");
-		else amplify.publish("controller->ui", "change image source to default background");
-		amplify.publish("controller->ui", "display camera video");
+		setTimeout(function() { 
+			amplify.publish("controller->ui", "hide welcome screen");
+			if (linux.getIsCameraAvailable() == true) amplify.publish("controller->ui", "change image source to camera");
+			else amplify.publish("controller->ui", "change image source to default background");
+			amplify.publish("controller->ui", "display camera video");
+		}, 1000)
 	};
 
 	/*
