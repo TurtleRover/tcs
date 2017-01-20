@@ -90,6 +90,7 @@ var controlCanvas = (function () {
 	 */
     canvas.mousemove(function(event) { move(event); });
     canvas[0].addEventListener("touchmove", function(event) {
+        event.preventDefault();
         var touch = event.touches[0];
         var mouseEvent = new MouseEvent("mousedown", {
             clientX: touch.clientX,
@@ -100,6 +101,7 @@ var controlCanvas = (function () {
 
     canvas.mousedown(function(event) { start(event); });
     canvas[0].addEventListener("touchstart", function(event) { 
+        event.preventDefault();
         var touch = event.touches[0];
         var mouseEvent = new MouseEvent("mousedown", {
             clientX: touch.clientX,
@@ -109,7 +111,7 @@ var controlCanvas = (function () {
     });
 
     canvas.mouseup(function(event) { stop(event); });
-    canvas[0].addEventListener("touchend", function(event) { stop(event); });
+    canvas[0].addEventListener("touchend", function(event) { event.preventDefault(); stop(event); });
 
     canvas.mouseout(function(event) {
         coordinates.clicked = false;
