@@ -6,4 +6,4 @@
 #/usr/local/bin/mjpg_streamer -i "/usr/local/lib/mjpg-streamer/input_raspicam.so -fps 30 -x 1366 -y 768 -q 10" -o "/usr/local/lib/mjpg-streamer/output_http.so -p 8090 -w /usr/local/www" &
 
 #	CAMERA USB
-/usr/local/bin/mjpg_streamer -i "/usr/local/lib/input_uvc.so -n -f 1000 -r 1280x720" -o "/usr/local/lib/output_http.so -p 8090 -w /usr/local/www" &
+/usr/local/bin/mjpg_streamer -i "/usr/local/lib/input_uvc.so -n -f 1000 -r $1" -o "/usr/local/lib/output_http.so -p 8090 -w /usr/local/www" &
