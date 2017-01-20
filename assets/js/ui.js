@@ -170,7 +170,7 @@ var ui = (function () {
 		else if (camera) $("#camera-video-img").attr("src", "http://192.168.10.1:8090/?action=stream");
 		else $("#camera-video-img").attr("src", "assets/img/marsyard-camera.jpg");
 
-		if (camera) {
+		if (camera) {	
 			//	rotate camera
 			var deg = 180;
 			var rotate = 'rotate(' + deg + 'deg)';
