@@ -36,7 +36,7 @@ var linux = (function () {
         $.get("assets/python/server/run_server.php",
         { resolution: res },
         function(data) {
-            if (DEBUG) console.log("AJAX connection established");
+            if (DEBUG) console.log("AJAX request sent");
             data = data.split("\r\n");
 
             serverProcessPID = data[0];
@@ -50,7 +50,7 @@ var linux = (function () {
                 //  start communication with webserver
                 setTimeout(function(){
                     amplify.publish("linux->serverCommunication", "start communication on port 8080");
-                }, 1500);
+                }, 500);
             }
             //  otherwise display a notice and work with static image
             else {

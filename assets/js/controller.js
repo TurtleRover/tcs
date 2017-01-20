@@ -20,7 +20,7 @@ var controller = (function () {
 			if (linux.getIsCameraAvailable() == true) amplify.publish("controller->ui", "change image source to camera");
 			else amplify.publish("controller->ui", "change image source to default background");
 			amplify.publish("controller->ui", "display camera video");
-		}, 1000)
+		}, 500)
 	};
 
 	/*
@@ -72,7 +72,9 @@ var controller = (function () {
     	amplify.publish("controller->ui", "initialize multilanguage");
 
 		//	start python server
-		amplify.publish("controller->linux", "start python server");
+		setTimeout(function () {
+			amplify.publish("controller->linux", "start python server");
+		}, 1500);
 	};
 
 	/*
