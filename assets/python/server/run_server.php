@@ -4,6 +4,11 @@
     //  receive the parameters
     $resolution = $_GET['resolution'];
 
+    //  kill old processes
+    exec ("sudo killall python3");
+    exec ("sudo killall mjpeg_streamer");
+    sleep(0.5);
+
     $pidPythonServer = exec("sudo python3 server.py > /dev/null 2>&1 & echo $!");
     sleep(0.5);
 	$pidPythonServer = exec("pidof python3");
