@@ -81,7 +81,8 @@ var controller = (function () {
 	 *	called when page is unloaded
 	 */
 	function closePage() {
-		amplify.publish("controller->linux", "stop python server");	
+		if (linux.getIsCameraAvailable())
+			amplify.publish("controller->linux", "stop python server");	
 	};
 	
 	/*

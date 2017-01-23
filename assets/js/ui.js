@@ -282,6 +282,9 @@ var ui = (function () {
 			case "notifications.server-connection-error":
 				displayNotification(message);
 				break;
+			case "notifications.client-already-connected":
+				displayNotification(message);
+				break;
 			case "console button clicked":
 				consoleButtonClicked();
 				break;

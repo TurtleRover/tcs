@@ -15,6 +15,7 @@
     },
     "notifications": {
         "working-on": "jesteśmy w trakcie pracy nad wybraną funkcjonalnością",
-        "server-connection-error": "nie udało się połączyć z serwerem i uruchomić kamery"
+        "server-connection-error": "nie udało się połączyć z serwerem i uruchomić kamery",
+        "client-already-connected": "inny klient jest już połączony"
     }
 }

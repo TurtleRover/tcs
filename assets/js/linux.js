@@ -38,30 +38,46 @@ var linux = (function () {
         function(data) {
             if (DEBUG) console.log("AJAX request sent");
             data = data.split("\r\n");
+            
+            /*
+             *  data received from the run_server.php
+             *  0   -   amount of connected clients (only 1 at a time is allowed)
+             *  1   -   python process pid
+             *  2   -   mjpeg streamer process pid
+             */
 
-            serverProcessPID = data[0];
-            mjpegStreamPID = data[1];
-            //  if the returned value is numeric (pid of the process) continue with camera
-            if ($.isNumeric(serverProcessPID) || $.isNumeric(mjpegStreamPID)) {
-                isCameraAvailable = true; 
-                if (DEBUG) console.log("serverProcessPID: " + serverProcessPID);
-                if (DEBUG) console.log("mjpegStreamPID: " + mjpegStreamPID);
+            var numberOfClients = data[0];
+            if (DEBUG) console.log("numberOfClients: " + numberOfClients);
 
-                //  start communication with webserver
-                setTimeout(function(){
-                    amplify.publish("linux->serverCommunication", "start communication on port 8080");
-                }, 500);
+            /*
+             *  connect only if there is no more clients connected
+             */
+            if (numberOfClients == 0) {
+                serverProcessPID = data[1];
+                mjpegStreamPID = data[2];
+                //  if the returned value is numeric (pid of the process) continue with camera
+                if ($.isNumeric(serverProcessPID) || $.isNumeric(mjpegStreamPID)) {
+                    isCameraAvailable = true; 
+                    if (DEBUG) console.log("serverProcessPID: " + serverProcessPID);
+                    if (DEBUG) console.log("mjpegStreamPID: " + mjpegStreamPID);
+
+                    //  start communication with webserver
+                    setTimeout(function(){
+                        amplify.publish("linux->serverCommunication", "start communication on port 8080");
+                    }, 500);
+                }
+                //  otherwise display a notice and work with static image
+                else {
+                    if (DEBUG) console.log("couldn't initialize python server");
+                    isCameraAvailable = false;
+                    serverProcessPID = -1;
+                    mjpegStreamPID = -1;
+                    amplify.publish("all->ui", "notifications.server-connection-error");
+                }
+
+                amplify.publish("linux->controller", "communication established");
             }
-            //  otherwise display a notice and work with static image
-            else {
-                if (DEBUG) console.log("couldn't initialize python server");
-                isCameraAvailable = false;
-                serverProcessPID = -1;
-                mjpegStreamPID = -1;
-                amplify.publish("all->ui", "notifications.server-connection-error");
-            }
-
-            amplify.publish("linux->controller", "communication established");
+            else amplify.publish("all->ui", "notifications.client-already-connected");
         });
     };
 
