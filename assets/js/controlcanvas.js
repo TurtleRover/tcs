@@ -88,6 +88,17 @@ var controlCanvas = (function () {
     /*
 	 * 																		EVENTS area
 	 */
+
+    /*
+     *                                                                  SERVO
+     */
+    $("#servo-control-div").on("change", function() {
+        amplify.publish("controlCanvas->port8080", "set new servo position");
+    });
+
+    /*
+     *                                                                  MOTORS
+     */
     canvas.mousemove(function(event) { move(event); });
     canvas[0].addEventListener("touchmove", function(event) {
         event.preventDefault();

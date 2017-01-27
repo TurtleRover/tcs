@@ -67,6 +67,9 @@ var serverCommunication = (function () {
                 case "stop all motors":
                     stopMotors();
                     break;
+                case "set new servo position":
+                    setNewServoPosition();
+                    break;
                 default:
                     console.log("unknown command: " + message);
             }
@@ -120,6 +123,16 @@ var serverCommunication = (function () {
             console.log("Connection closed. Log: " + e.data);
             socket8080.socket = null;
             socket8080.isOpen = null;
+        };
+
+        /*
+         *  set new position of servo
+         */
+        function setNewServoPosition() {
+            console.log("New servo value: " + $("#servo-control-input").val());
+            if (socket8080.isOpen) {
+                //$("#servo-control-input").value();
+            }
         };
 
         /*
