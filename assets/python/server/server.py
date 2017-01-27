@@ -65,6 +65,11 @@ class MyServerProtocol(WebSocketServerProtocol):
                     result = [0x41, int(signal)]
                     #   add CRC (no way to be wrong)
                     received = buildCommand(result)
+                elif payload[0] == 0x84:
+                    setNewServoPosition(payload[1], payload[2], payload[3])
+                    result = [0x85, 0x00]
+                    #   add CRC
+                    received = buildCommand(result)
 
                 print("Received from Motor Module: " + hexdump.dump(bytes(received), sep=" "))
             except OSError:

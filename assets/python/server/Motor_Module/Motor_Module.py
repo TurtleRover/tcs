@@ -23,3 +23,12 @@ def updateMotors (PWM1, PWM2, PWM3, PWM4):
 #	Read battery voltage (actualy, not the voltage but ADC reading)
 def readBatteryVoltage():
 	return readI2C(0x30, 0x05)
+
+#	Set servo values
+def setNewServoPosition(servo, msb, lsb):
+	command = [0x84]
+	command.append(servo)
+	command.append(msb)
+	command.append(lsb)
+
+	sendI2C(command)

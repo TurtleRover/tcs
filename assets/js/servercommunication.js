@@ -131,7 +131,27 @@ var serverCommunication = (function () {
         function setNewServoPosition() {
             console.log("New servo value: " + $("#servo-control-input").val());
             if (socket8080.isOpen) {
-                //$("#servo-control-input").value();
+                var servoValue = $("#servo-control-input").val() * 4;   //  in quarter of microseconds
+                var buf = new ArrayBuffer(4);
+                var arr = new Uint8Array(buf);
+
+                /*
+                 *  command to send
+                 *  https://www.pololu.com/docs/0J40/5.c
+                 */
+                arr[0] = 0x84;
+                arr[1] = 0x00;
+
+                arr[2] = servoValue & 0x7F;
+                arr[3] = (servoValue >> 7) & 0x7F;
+                socket8080.socket.send(buf);
+
+                // Convert to readable form
+                var hex = '';
+                for (var i = 0; i < arr.length; i++)
+                    hex += ('00' + arr[i].toString(16)).substr(-2);
+                    
+                if(DEBUG) console.log("Binary message sent. " + hex);
             }
         };
 
