@@ -51,6 +51,14 @@ var controlCanvas = (function () {
     }
 
     /*
+     *  describes how the manipulator should be moved
+     */
+    var manipulatorMove = {
+        direction: "unknown",
+        speed: 0    //  in %
+    }
+
+    /*
      *  returns touch position
      */
     function getMousePosition(canvas, event) {
@@ -226,11 +234,16 @@ var controlCanvas = (function () {
         return motorsSpeed;
     };
 
+    function getManipulatorMovePriv () {
+        return manipulatorMove;
+    };
+
     /*
 	 * 																		PUBLIC area
 	 */
     return {
         isCoordinatesClicked : isCoordinatesClickedPriv,
-        getMotorsSpeed : getMotorsSpeedPriv
+        getMotorsSpeed : getMotorsSpeedPriv,
+        getManipulatorMove : getManipulatorMovePriv
     };
 })();
