@@ -38,7 +38,7 @@ var serverCommunication = (function () {
      *  defines how often new information is sent
      */
     const INTERVAL = 100;
-    const BAT_INTERVAL = 2000;
+    const BAT_INTERVAL = 200000;
 
     /*
      *  class for every new socket communication
@@ -144,6 +144,7 @@ var serverCommunication = (function () {
             console.log("New servo positions: " + newPosition.alpha + "\t" + newPosition.beta);
             if (socket8080.isOpen) {
                 var alphaValue = newPosition.alpha * 4;   //  in quarter of microseconds
+                var betaValue = newPosition.beta * 4;
                 var buf = new ArrayBuffer(4);
                 var arr = new Uint8Array(buf);
 

@@ -102,6 +102,10 @@ var controlCanvas = (function () {
      *                                                                  SERVO
      */
     $("#servo-control-div").on("change", function() {
+        servoValueChanged();
+    });
+
+    function servoValueChanged() {
         if ($("#servo-control-input").val() > manipulatorMove.value)
             manipulatorMove.direction = "right";
         else
@@ -110,7 +114,7 @@ var controlCanvas = (function () {
         manipulatorMove.value = $("#servo-control-input").val();
 
         amplify.publish("controlCanvas->manipulator", "move");
-    });
+    }
 
     /*
      *                                                                  MOTORS

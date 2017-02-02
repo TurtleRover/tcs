@@ -20,8 +20,8 @@ var manipulator = ( function () {
 
     //  object constructor for the array elements
     function position(servo_1, servo_2) {
-        this.servo1 = servo_1;
-        this.servo2 = servo_2;
+        this.alpha = servo_1;
+        this.beta = servo_2;
     }
 
     /*
@@ -72,8 +72,8 @@ var manipulator = ( function () {
      *  may be used with other value than deg90 and deg0 (that's why there are variables degrees and shift)
      */
     function servoCalibration(deg0, deg90, degrees, shift) {
-        var degree = (deg0 - deg90)/degrees;
-        var zero = deg0 + shift;
+        this.degree = (deg90 - deg0)/degrees;
+        this.zero = deg0 + shift;
     }
 
     function getServoPosition(servo, degrees) {
@@ -84,26 +84,29 @@ var manipulator = ( function () {
     var servoBeta = new servoCalibration(1875, 1400, 45, 475);
 
     //  generated values for servo and different angles
-    var anglesArray;
+    var anglesArray = [];
 
     for (i = 0; i < alpha.length; i++) {
+        anglesArray[i] = [];
         for (j = 0; j < alpha[0].length; j++) {
-            anglesArray[i][j] = new position(getServoPosition(servoAlpha, alpha[i][j]), getServoPosition(servoBeta, beta[i][j]));
+            var temp = new position(getServoPosition(servoAlpha, alpha[i][j]), getServoPosition(servoBeta, beta[i][j]));
+            anglesArray[i][j] = temp;
+            console.log(temp.alpha + "\t" + temp.beta);
         }
     }
 
     //  contains coordinates for the anglesArray
     var currentPosition = {
         x: 0,
-        y: 0,
+        y: 7,
         alpha: 0,
         beta: 0,
         checkDimensions: function () {
-            if (x >= anglesArray.length) this.x = anglesArray.length;
-            else if (x < 0) this.x = 0;
+            if (this.x >= anglesArray.length) this.x = anglesArray.length;
+            else if (this.x < 0) this.x = 0;
 
-            if (y >= anglesArray[0].length) this.y = anglesArray[0].length;
-            else if (x < 0) this.y = 0;
+            if (this.y >= anglesArray[0].length) this.y = anglesArray[0].length;
+            else if (this.y < 0) this.y = 0;
         }
     }
 
@@ -144,7 +147,8 @@ var manipulator = ( function () {
     function move() {
         var manipulatorMove = controlCanvas.getManipulatorMove();
 
-        moveInterval = setInterval(nextStep, INTERVAL, manipulatorMove);
+        //moveInterval = setInterval(nextStep, INTERVAL, manipulatorMove);
+        nextStep(manipulatorMove);
     };
 
     function stop(){
@@ -155,8 +159,6 @@ var manipulator = ( function () {
      *  execute next step in intervals
      */
     function nextStep(manipulatorMove) {
-        currentPosition;
-
         switch(manipulatorMove.direction) {
             case "up":
                 currentPosition.y++;
@@ -177,11 +179,22 @@ var manipulator = ( function () {
         //  to nearest if outside range
         currentPosition.checkDimensions();
 
-        currentPosition.alpha = alpha[currentPosition.y][currentPosition.x];
-        currentPosition.beta = beta[currentPosition.y][currentPosition.x];
+        console.log("currentPosition.x: " + currentPosition.x + "\tcurrentPosition.y: " + currentPosition.y);
+
+        currentPosition.alpha = anglesArray[currentPosition.x][currentPosition.y].alpha;
+        currentPosition.beta = anglesArray[currentPosition.x][currentPosition.y].beta;
 
         amplify.publish("manipulator->port8080", "set new servo position");
     };
+
+    /*
+     *                                                                      REVEALED functions
+     */
+    function getCurrentPositionPriv() {
+        return currentPosition;
+    };
+
+    function setPositionPriv() {};
 
     /*
      *                                                                      PUBLIC area
