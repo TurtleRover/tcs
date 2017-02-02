@@ -44,7 +44,7 @@ end
 
 save("inverse kinematics.txt", "alpha_angles", "beta_angles", "x_lin", "y_lin")
 
-dlmwrite("alpha.csv", alpha_angles, "delimiter", "\t", "precision", 3)
-dlmwrite("beta.csv", beta_angles, "delimiter", "\t", "precision", 3)
-dlmwrite("x_lin.csv", x_lin, "delimiter", "\t", "precision", 3)
-dlmwrite("y_lin.csv", y_lin, "delimiter", "\t", "precision", 3)
+dlmwrite("alpha.csv", alpha_angles, "delimiter", ",", "precision", 3, "newline", "],\n[", "roffset",1)
+dlmwrite("beta.csv", beta_angles, "delimiter", ",", "precision", 3, "newline", "],\n[", "roffset",1)
+dlmwrite("x_lin.csv", x_lin, "delimiter", ",", "precision", 3, "newline", "],\n[", "roffset",1)
+dlmwrite("y_lin.csv", y_lin, "delimiter", ",", "precision", 3, "newline", "],\n[", "roffset",1)

@@ -54,6 +54,7 @@ var controlCanvas = (function () {
      *  describes how the manipulator should be moved
      */
     var manipulatorMove = {
+        value: $("#servo-control-input").val(),
         direction: "unknown",
         speed: 0    //  in %
     }
@@ -101,7 +102,14 @@ var controlCanvas = (function () {
      *                                                                  SERVO
      */
     $("#servo-control-div").on("change", function() {
-        amplify.publish("controlCanvas->port8080", "set new servo position");
+        if ($("#servo-control-input").val() > manipulatorMove.value)
+            manipulatorMove.direction = "right";
+        else
+            manipulatorMove.direction = "left";
+
+        manipulatorMove.value = $("#servo-control-input").val();
+
+        amplify.publish("controlCanvas->manipulator", "move");
     });
 
     /*
