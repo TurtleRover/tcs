@@ -4,7 +4,7 @@ a = 150
 b = 190
 
 # generate angles in radians
-res = 30
+res = 250
 alpha = linspace(45, 90, res)
 beta = linspace(110, 150, res)
 
@@ -16,9 +16,9 @@ for i = 1:numel(alpha)
 end
 
 # generate linear approximation
-res = 15
-x_lin = linspace(120, 170, res)
-y_lin = linspace(-10, 10, res)
+res = 100
+x_lin = linspace(140, 300, res)
+y_lin = linspace(-40, 40, res)
 alpha_angles = zeros(res,res)
 beta_angles = zeros(res,res)
 
