@@ -1,46 +1,46 @@
 clear
+
 # manipulator constants
-a = 150
-b = 190
+a = 148
+b = 188
 
 # generate angles in radians
 res = 250
-alpha = linspace(45, 90, res)
-beta = linspace(110, 150, res)
+alpha = linspace(21, 150, res)
+beta = linspace(41, 140, res)
 
-for i = 1:numel(alpha)
-  for j = 1:numel(beta)
-    x(i,j) = a * cosd(alpha(i)) + b * cosd(alpha(i) - beta(j))
-    y(i,j) = a * sind(alpha(i)) + b * sind(alpha(i) - beta(j))
-  end
-end
+x = zeros(res,res)
+y = zeros(res,res)
+
+[i,j] = meshgrid(1:numel(alpha),1:numel(beta))
+x = a * cosd(alpha(i)) + b * cosd(alpha(i) - beta(j))
+y = a * sind(alpha(i)) + b * sind(alpha(i) - beta(j))
 
 # generate linear approximation
 res = 100
-x_lin = linspace(140, 300, res)
-y_lin = linspace(-40, 40, res)
+x_lin = linspace(120, 300, res)
+y_lin = linspace(-150, 200, res)
 alpha_angles = zeros(res,res)
 beta_angles = zeros(res,res)
 
+k = linspace(1, numel(alpha), numel(alpha))
+l = linspace(1, numel(beta), numel(beta))
+
+cost = zeros(numel(alpha),numel(beta))
+
 for i = 1:numel(x_lin)
   for j = 1:numel(y_lin)
-    cost = Inf
     
-    for k = 1:numel(alpha)
-      for l = 1:numel(beta)
-        cost_temp = (x(k,l) - x_lin(i))^2 + (y(k,l) - y_lin(j))^2
-        cost = min(cost, cost_temp)
-        
-        if (cost == cost_temp)
-          alpha_angles(i,j) = alpha(k)
-          beta_angles(i,j) = beta(l)
-        endif
-        
-      end
-    end
+    cost = (x(k,l) - x_lin(i)).^2 + (y(k,l) - y_lin(j)).^2
     
-  end
-end
+    minimum = min(cost(:))
+    [row, col] = find(cost==minimum)
+    
+    alpha_angles(i,j) = alpha(col)
+    beta_angles(i,j) = beta(row)
+    
+  endfor
+endfor
 
 save("inverse kinematics.txt", "alpha_angles", "beta_angles", "x_lin", "y_lin")
 
