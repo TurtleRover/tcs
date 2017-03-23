@@ -34,8 +34,7 @@ import sys
 import os
 import hexdump
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from Hardware_Communication.I2C import *
-from Hardware_Communication.CRC import *
+from Hardware_Communication.serial import *
 from Motor_Module.Motor_Module import *
 
 class MyServerProtocol(WebSocketServerProtocol):
@@ -56,7 +55,7 @@ class MyServerProtocol(WebSocketServerProtocol):
             try:
                 if payload[0] == 0x10:
                     received = updateMotors(payload[1], payload[2], payload[3], payload[4])
-                elif payload[0] == 0x30:
+                '''elif payload[0] == 0x30:
                     received = readBatteryVoltage()
                 elif payload[0] == 0x40:
                     f = os.popen('iwconfig wlan1 | grep -i signal | grep -ohP "Signal level=[0-9]*" | grep -ohP "[0-9]*"')
@@ -69,32 +68,19 @@ class MyServerProtocol(WebSocketServerProtocol):
                     setNewServoPosition(payload[1], payload[2], payload[3])
                     result = [0x85, 0x00]
                     #   add CRC
-                    received = buildCommand(result)
+                    received = buildCommand(result)'''
 
                 print("Received from Motor Module: " + hexdump.dump(bytes(received), sep=" "))
             except OSError:
                 received = None
                 print("Communication error has occured")
-            
-            #	Check CRC of received message
-            CRCOK = False
-            if received != None:
-                receivedWithCalculatedCRC = buildCommand(received[:len(received)-2])
-            
-                if receivedWithCalculatedCRC == received:
-                    CRCOK = True
-                else:
-                    CRCOK = False
-			
-            print("CRC: " + str(CRCOK))
-            print("\n")
-			
+
         else:
             print("Text message received: {0}".format(payload.decode('utf8')))
         
         # echo back message verbatim
         if received != None:
-            self.sendMessage(bytes(received), CRCOK)
+            self.sendMessage(bytes(received), True)
         else:
             self.sendMessage(bytes(0x00), False)
 
