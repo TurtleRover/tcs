@@ -34,7 +34,7 @@ import sys
 import os
 import hexdump
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from Hardware_Communication.serial import *
+from Hardware_Communication.turtleSerial import *
 from Motor_Module.Motor_Module import *
 
 class MyServerProtocol(WebSocketServerProtocol):

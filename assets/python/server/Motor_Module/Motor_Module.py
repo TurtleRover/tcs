@@ -7,7 +7,7 @@ import sys
 import time
 import os
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.pardir))
-from Hardware_Communication.serial import *
+from Hardware_Communication.turtleSerial import *
 
 #	Updates Motors PWM values
 def updateMotors (PWM1, PWM2, PWM3, PWM4):
@@ -16,8 +16,8 @@ def updateMotors (PWM1, PWM2, PWM3, PWM4):
 	command.append(PWM2)
 	command.append(PWM3)
 	command.append(PWM4)
-	command.append = [0x0D]
-	command.append = [0x0A]
+	command.append(0x0D)
+	command.append(0x0A)
 	sendSerial(command)
 	#	Read data from Arduino
 	return command

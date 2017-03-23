@@ -16,13 +16,3 @@ def sendSerial (message):
     print(message)
     ser.write(message)
     return
-
-if __name__ == '__main__':
-    command = [0x10]    #    Set all motors
-    command.append(0x00)
-    command.append(0x40)
-    command.append(0xC0)
-    command.append(0x7F)
-    command.append(0x0D)
-    command.append(0x0A)
-    sendSerial(command)
