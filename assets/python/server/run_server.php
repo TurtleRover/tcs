@@ -11,11 +11,11 @@
     //  run processes only if nobody is connected
     if ($numberOfClients == 0) {
         //  kill old processes
-        exec ("sudo killall python3 > /dev/null 2>&1");
+        #exec ("sudo killall python3 > /dev/null 2>&1");
         exec ("sudo killall mjpeg_streamer > /dev/null 2>&1");
         sleep(0.5);
 
-        $pidPythonServer = exec("sudo python3 server.py > /dev/null 2>&1 & echo $!");
+        #$pidPythonServer = exec("sudo python3 server.py > /dev/null 2>&1 & echo $!");
         sleep(0.5);
         $pidPythonServer = exec("pidof python3");
         $command = "sudo sh ../../bash/start_camera.sh " . $resolution . " > /dev/null 2>&1 & echo $!";
