@@ -200,7 +200,7 @@ var serverCommunication = (function () {
                 /*	Multiplying by this value should make possible to write directly to PWM
                     Current range is -127 - 127	*/
                 var k = 1.27;
-                arr[1] = Math.round(Math.abs(motorsSpeed.motor_1 * k) | (Math.sign(motorsSpeed.motor_1) << 7));	//	Left front
+                arr[1] = Math.round(Math.abs(motorsSpeed.motor_1 * k) | (motorsSpeed.motor_1 & 0x80));	//	Left front
                 arr[2] = Math.round(motorsSpeed.motor_2 * k);	//	Right front
                 arr[3] = Math.round(motorsSpeed.motor_3 * k);	//	Left rear
                 arr[4] = Math.round(motorsSpeed.motor_4 * k);	//	Right rear
@@ -210,7 +210,9 @@ var serverCommunication = (function () {
                 var hex = '';
                 for (var i = 0; i < arr.length; i++)
                     hex += ('00' + arr[i].toString(16)).substr(-2);
-                    
+               	
+				if(DEBUG) console.log("motor 1: " + motorsSpeed.motor_1)
+				if(DEBUG) console.log("sign: " + motorsSpeed.motor_1 & 0x80)
                 if(DEBUG) console.log("Binary message sent. " + hex);
             }
             else {
