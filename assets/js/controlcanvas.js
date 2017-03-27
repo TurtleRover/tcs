@@ -153,7 +153,7 @@ var controlCanvas = (function () {
         mousePosition = getMousePosition(canvas, event);
         console.log(mousePosition);
 
-        var direction = -1;
+        var direction = 1;
 
         /*
         *  declare constants used to control rover

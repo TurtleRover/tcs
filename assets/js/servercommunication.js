@@ -200,7 +200,7 @@ var serverCommunication = (function () {
                 /*	Multiplying by this value should make possible to write directly to PWM
                     Current range is -127 - 127	*/
                 var k = 1.27;
-                arr[1] = Math.round(motorsSpeed.motor_1 * k);	//	Left front
+                arr[1] = Math.round(Math.abs(motorsSpeed.motor_1 * k) | (Math.sign(motorsSpeed.motor_1) << 7));	//	Left front
                 arr[2] = Math.round(motorsSpeed.motor_2 * k);	//	Right front
                 arr[3] = Math.round(motorsSpeed.motor_3 * k);	//	Left rear
                 arr[4] = Math.round(motorsSpeed.motor_4 * k);	//	Right rear
