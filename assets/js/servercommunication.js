@@ -297,12 +297,12 @@ var serverCommunication = (function () {
         /*
          *  read battery value
          */
-        setInterval(function () {
+        /*setInterval(function () {
             if(socket8080.isOpen) {
                 getBatteryLevel();
                 getSignalLevel();
             }
-        }, BAT_INTERVAL);
+        }, BAT_INTERVAL);*/
     };
 
     /*
