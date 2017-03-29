@@ -55,9 +55,9 @@ class MyServerProtocol(WebSocketServerProtocol):
             try:
                 if payload[0] == 0x10:
                     received = updateMotors(payload[1], payload[2], payload[3], payload[4])
-                    '''elif payload[0] == 0x30:
+                elif payload[0] == 0x30:
                     received = readBatteryVoltage()
-                elif payload[0] == 0x40:
+                '''elif payload[0] == 0x40:
                     f = os.popen('iwconfig wlan1 | grep -i signal | grep -ohP "Signal level=[0-9]*" | grep -ohP "[0-9]*"')
                     signal = f.read()
                     signal = signal[:len(signal)-1]
