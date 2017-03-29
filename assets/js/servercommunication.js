@@ -117,8 +117,8 @@ var serverCommunication = (function () {
 
                 //  read battery voltage
                 if (arr[0] == 0x31) {
-                    var voltage = (arr[1] << 8) + arr[2];
-                    voltage = voltage / 54.5 // voltage divider
+                    var voltage = arr[1];
+                    voltage = voltage / 14 + 0.3 // voltage divider
                     var str_voltage = voltage.toString();
                     $("#battery-level-text").text(str_voltage.substr(0,4) + " V");
                 }
