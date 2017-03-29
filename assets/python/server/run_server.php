@@ -10,10 +10,14 @@
 
     //  run processes only if nobody is connected
     if ($numberOfClients == 0) {
+		//	restart STM
+		exec ("sudo gpio mode 1 out");
+		exec ("sudo write 1 1");
         //  kill old processes
         #exec ("sudo killall python3 > /dev/null 2>&1");
         exec ("sudo killall mjpeg_streamer > /dev/null 2>&1");
         sleep(0.5);
+		exec ("sudo write 1 0");
 
         #$pidPythonServer = exec("sudo python3 server.py > /dev/null 2>&1 & echo $!");
         sleep(0.5);
