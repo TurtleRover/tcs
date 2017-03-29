@@ -38,7 +38,7 @@ var serverCommunication = (function () {
      *  defines how often new information is sent
      */
     const INTERVAL = 100;
-    const BAT_INTERVAL = 200000;
+    const BAT_INTERVAL = 2000;
 
     /*
      *  class for every new socket communication
@@ -297,12 +297,12 @@ var serverCommunication = (function () {
         /*
          *  read battery value
          */
-        /*setInterval(function () {
+        setInterval(function () {
             if(socket8080.isOpen) {
                 getBatteryLevel();
-                getSignalLevel();
+                //getSignalLevel();
             }
-        }, BAT_INTERVAL);*/
+        }, BAT_INTERVAL);
     };
 
     /*
