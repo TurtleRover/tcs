@@ -300,7 +300,7 @@ var serverCommunication = (function () {
         setInterval(function () {
             if(socket8080.isOpen) {
                 getBatteryLevel();
-                getSignalLevel();
+                // getSignalLevel();
             }
         }, BAT_INTERVAL);
     };
