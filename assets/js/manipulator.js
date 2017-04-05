@@ -81,7 +81,6 @@ var manipulator = ( function () {
         for (j = 0; j < alpha[0].length; j++) {
             var temp = new position(getServoPosition(servoAlpha, alpha[i][j]), getServoPosition(servoBeta, beta[i][j]));
             anglesArray[i][j] = temp;
-            console.log(temp.alpha + "\t" + temp.beta);
         }
     }
 

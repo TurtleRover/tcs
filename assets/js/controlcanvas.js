@@ -202,10 +202,10 @@ var controlCanvas = (function () {
                 rightMotors = -rightMotors;
             }*/
 
-            motorsSpeed.motor_1 = Math.round(leftMotors) * direction;
-            motorsSpeed.motor_3 = Math.round(leftMotors) * direction;
-            motorsSpeed.motor_2 = Math.round(rightMotors) * direction;
-            motorsSpeed.motor_4 = Math.round(rightMotors) * direction;
+            motorsSpeed.motor_1 = Math.round(Math.round(leftMotors) * direction * Number($('#left-front-wheel').val()));
+            motorsSpeed.motor_3 = Math.round(Math.round(leftMotors) * direction * Number($('#left-rear-wheel').val()));
+            motorsSpeed.motor_2 = Math.round(Math.round(rightMotors) * direction * Number($('#right-front-wheel').val()));
+            motorsSpeed.motor_4 = Math.round(Math.round(rightMotors) * direction * Number($('#right-rear-wheel').val()));
         }
         else {
             motorsSpeed.motor_1 = 0;

@@ -75,17 +75,17 @@
 											</div>
 										</form>
 									</li>
-									<li><a href="index.html" class="localised" id="menu.home">Home</a></li>
+									<!-- <li><a href="index.html" class="localised" id="menu.home">Home</a></li>
 									<li><a href="#" onclick="amplify.publish('all->ui', 'notifications.working-on')" class="localised" id="menu.help">Help</a></li>
 									<li><a href="#" onclick="amplify.publish('all->ui', 'notifications.working-on')" class="localised" id="menu.advanced-settings">Advanced Settings</a></li>
 									<li><a href="#" onclick="amplify.publish('all->ui', 'console button clicked')"class="localised" id="menu.console">Console</a></li>
 									<li><a href="#" onclick="amplify.publish('all->ui', 'notifications.working-on')" class="localised" id="menu.statistics">Statistics</a></li>
 									<li><a href="#" onclick="amplify.publish('all->ui', 'notifications.working-on')" class="localised" id="menu.about">About</a></li>
-									<li></li>
+									<li></li> -->
 									<li>
 										<ul class="tg-list">
 											<li class="tg-list-item">
-												<div class="tg-list-description"><p id="settings.advanced-interface" class="localised">Advanced Interface</p></div>
+												<!-- <div class="tg-list-description"><p id="settings.advanced-interface" class="localised">Advanced Interface</p></div>
 												<div class="tg-list-button">
 													<input id="advanced-interface-button" type="checkbox" class="tgl tgl-flat"/>
 													<label for="advanced-interface-button" class="tgl-btn"></label>
@@ -94,6 +94,22 @@
 												<div class="tg-list-button">
 													<input id="another-setting-button" type="checkbox" class="tgl tgl-flat"/>
 													<label for="another-setting-button" class="tgl-btn"></label>
+												</div> -->
+												<div class="tg-list-description"><p>Left Front</p></div>
+												<div class="tg-list-button">
+													<input id="left-front-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
+												</div>
+												<div class="tg-list-description"><p>Right Front</p></div>
+												<div class="tg-list-button">
+													<input id="right-front-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
+												</div>
+												<div class="tg-list-description"><p>Left Rear</p></div>
+												<div class="tg-list-button">
+													<input id="left-rear-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
+												</div>
+												<div class="tg-list-description"><p>Right Rear</p></div>
+												<div class="tg-list-button">
+													<input id="right-rear-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
 												</div>
 											</li>
 										</ul>
@@ -118,10 +134,10 @@
 					<img id="camera-video-img" src="assets/img/marsyard-camera.jpg" draggable="false" onmousedown="return false" style="user-drag: none">
 					<img id="hud-frame-img" src="assets/img/hud/frame.png" draggable="false" onmousedown="return false" style="user-drag: none">
 
-					<div id="servo-control-div">
+					<!-- <div id="servo-control-div">
 						<input type="range" id="servo-control-vertical-input" min="0" max="9" value="5" step="1" style="transform: rotate(270deg)"><br><br><br><br>
 						<input type="range" id="servo-control-input" min="0" max="9" value="5" step="1">
-					</div>
+					</div> -->
 
 					<div id="navigation-ring-div" draggable="false" onmousedown="return false" style="user-drag: none">
 						<img id="navigation-ring-img" src="assets/img/navigation/tech-ring.png" draggable="false" onmousedown="return false" style="user-drag: none">

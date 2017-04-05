@@ -53,7 +53,7 @@ var linux = (function () {
              *  connect only if there is no more clients connected
 			 *	TODO: should be numberOfClients == 0. Does not work properly
              */
-            if (numberOfClients >= 0) {
+            if (numberOfClients >= 0 || document.domain.includes("localhost")) {
                 serverProcessPID = data[1];
                 mjpegStreamPID = data[2];
                 //  if the returned value is numeric (pid of the process) continue with camera
