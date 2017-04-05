@@ -214,10 +214,10 @@ var ui = (function () {
 	 */ 
 	function changedFullScreen() {
 		if ($(document).fullScreen()) {
-			$("#full-screen-button-img").attr("src", "assets/img/navigation/fullscreen-exit.png");
+			//$("#full-screen-button-img").attr("src", "assets/img/navigation/fullscreen-exit.png");
 		}
 		else {
-			$("#full-screen-button-img").attr("src", "assets/img/navigation/fullscreen.png");
+			//$("#full-screen-button-img").attr("src", "assets/img/navigation/fullscreen.png");
 		}
 	}
 
@@ -297,7 +297,7 @@ var ui = (function () {
 	 * 																		EVENT functions
 	 */
 	$("#languageSelector").change(function(e, data) {languageChanged(data);});
-	$("#full-screen-button-img").click(function() {toggleFullScreen();});
+	$(".fullscreen-button-img").click(function() {toggleFullScreen();});
 	$(document).bind("fullscreenchange", function() {changedFullScreen();});
 	$("#advanced-interface-button").change(function(e, data) {advancedInterfaceChanged();});
 	

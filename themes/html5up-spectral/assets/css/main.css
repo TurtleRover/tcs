@@ -3263,8 +3263,8 @@
 		-webkit-transition: background-color 0.2s ease;
 		-ms-transition: background-color 0.2s ease;
 		transition: background-color 0.2s ease;
-		background: #2e3842;
-		height: 3em;
+		opacity: 1;
+		height: 2.5em;
 		left: 0;
 		line-height: 3em;
 		position: fixed;
@@ -3301,7 +3301,7 @@
 				}
 
 		#header nav {
-			height: inherit;
+			height: 100%;
 			line-height: inherit;
 			position: absolute;
 			right: 0;
@@ -3336,16 +3336,16 @@
 						}
 
 							#header nav > ul > li > a.menuToggle:after {
-								background-image: url("images/bars.svg");
+								background-image: url("../../../../assets/img/ui/nav-bar-menu.svg");
 								background-position: center;
 								background-repeat: no-repeat;
-								background-size: 100px 50px;
+								background-size: 40px auto;
 								content: '';
 								display: inline-block;
-								height: 5.75em;
+								height: 2.75em;
 								vertical-align: top;
-								width: 5em;
-								opacity: 0.6;
+								width: 2em;
+								opacity: 1;
 							}
 
 							@media screen and (max-width: 736px) {
@@ -3373,7 +3373,7 @@
 					}
 
 		#header.alt {
-			background: transparent;
+			 background: black;
 		}
 
 			#header.alt h1 {
