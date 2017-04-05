@@ -3377,9 +3377,9 @@
 		}
 
 		#header.footer {
-			background: black;
 			top:auto;
 			bottom: 0;
+			height: 55%;
 			width: 100%;
 		}
 

@@ -100,7 +100,7 @@
 									<li>
 										<ul class="tg-list">
 											<li class="tg-list-item">
-												<!-- <div class="tg-list-description"><p id="settings.advanced-interface" class="localised">Advanced Interface</p></div>
+												<div class="tg-list-description"><p id="settings.advanced-interface" class="localised">Advanced Interface</p></div>
 												<div class="tg-list-button">
 													<input id="advanced-interface-button" type="checkbox" class="tgl tgl-flat"/>
 													<label for="advanced-interface-button" class="tgl-btn"></label>
@@ -109,7 +109,7 @@
 												<div class="tg-list-button">
 													<input id="another-setting-button" type="checkbox" class="tgl tgl-flat"/>
 													<label for="another-setting-button" class="tgl-btn"></label>
-												</div> -->
+												</div> 
 												<div class="tg-list-description"><p>Left Front</p></div>
 												<div class="tg-list-button">
 													<input id="left-front-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
@@ -155,8 +155,8 @@
 					</div> -->
 
 					<div id="navigation-ring-div" draggable="false" onmousedown="return false" style="user-drag: none">
-						<img id="navigation-ring-img" src="assets/img/navigation/tech-ring.png" draggable="false" onmousedown="return false" style="user-drag: none">
-						<canvas id="navigation-ring-canvas"></canvas>
+						<!-- <img id="navigation-ring-img" src="assets/img/navigation/tech-ring.png" draggable="false" onmousedown="return false" style="user-drag: none"> -->
+						<!--<canvas id="navigation-ring-canvas"></canvas>-->
 					</div>
 
 					<div id="turtle-top-view-div" class="advanced-interface">
@@ -185,6 +185,15 @@
 
 			<!-- footer -->
 			<div id="header" class="footer">
+				<div id="control-container-div">
+					<div id="right-navigation-div" draggable="false" onmousedown="return false" style="user-drag: none">
+					<div id="transparent-background-div"></div>
+						<div id="right-navigation-cross-div" draggable="false" onmousedown="return false" sytle="user-drag: none">
+							<img id="right-navigation-cross-img" src="assets/img/ui/right-krzyz.svg" draggable="false" onmousedown="return false" style="user-drag:none">
+							<img id="turtle-navigation-view-img" src="assets/img/ui/right-lazik.svg" draggable="false" onmousedown="return false" style="user-drag:none">
+						</div>
+					</div>
+				</div>
 				<div id="footer-container-div">
 					<div id="footer-div" class="left-footer-div">
 						<img id="left-footer-button-img" class="footer-button-img" src="assets/img/ui/menu-dolne-gora.svg">
