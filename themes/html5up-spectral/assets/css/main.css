@@ -3376,6 +3376,13 @@
 			 background: black;
 		}
 
+		#header.footer {
+			background: black;
+			top:auto;
+			bottom: 0;
+			width: 100%;
+		}
+
 			#header.alt h1 {
 				-moz-pointer-events: none;
 				-webkit-pointer-events: none;
