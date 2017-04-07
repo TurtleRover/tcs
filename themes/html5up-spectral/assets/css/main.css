@@ -1,4 +1,3 @@
-@import url(font-awesome.min.css);
 /* @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,800,800italic"); */
 
 /*
@@ -9,6 +8,11 @@
 
 /* Reset */
 
+	@font-face {
+		font-family: turtleFont;
+		src: url("../../../../assets/fonts/turtle-font.ttf");
+	}
+
 	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
 		margin: 0;
 		padding: 0;
@@ -16,6 +20,7 @@
 		font-size: 100%;
 		font: inherit;
 		vertical-align: baseline;
+		font-family: turtleFont;
 	}
 
 	html {
@@ -1403,7 +1408,7 @@
 	}
 
 	body {
-		background: #2e3842;
+		background:black;
 	}
 
 		body.is-loading *, body.is-loading *:before, body.is-loading *:after {
@@ -1419,7 +1424,6 @@
 
 	body, input, select, textarea {
 		color: #fff;
-		font-family: "Open Sans", Helvetica, sans-serif;
 		font-size: 15pt;
 		font-weight: 400;
 		letter-spacing: 0.075em;
@@ -1568,7 +1572,6 @@
 	code {
 		background: rgba(144, 144, 144, 0.25);
 		border-radius: 3px;
-		font-family: "Courier New", monospace;
 		font-size: 0.9em;
 		letter-spacing: 0;
 		margin: 0 0.25em;
@@ -1577,7 +1580,6 @@
 
 	pre {
 		-webkit-overflow-scrolling: touch;
-		font-family: "Courier New", monospace;
 		font-size: 0.9em;
 		margin: 0 0 2em 0;
 	}
@@ -1720,7 +1722,6 @@
 		.select-wrapper:before {
 			-moz-osx-font-smoothing: grayscale;
 			-webkit-font-smoothing: antialiased;
-			font-family: FontAwesome;
 			font-style: normal;
 			font-weight: normal;
 			text-transform: none !important;
@@ -1789,7 +1790,6 @@
 			input[type="radio"] + label:before {
 				-moz-osx-font-smoothing: grayscale;
 				-webkit-font-smoothing: antialiased;
-				font-family: FontAwesome;
 				font-style: normal;
 				font-weight: normal;
 				text-transform: none !important;
@@ -1887,7 +1887,6 @@
 		.icon:before {
 			-moz-osx-font-smoothing: grayscale;
 			-webkit-font-smoothing: antialiased;
-			font-family: FontAwesome;
 			font-style: normal;
 			font-weight: normal;
 			text-transform: none !important;
@@ -2243,12 +2242,11 @@
 		background-color: transparent;
 		border-radius: 3px;
 		border: 0;
-		box-shadow: inset 0 0 0 2px #fff;
 		color: #fff;
 		cursor: pointer;
 		display: inline-block;
 		font-size: 0.8em;
-		font-weight: 600;
+		font-weight: 300;
 		height: 3.125em;
 		letter-spacing: 0.225em;
 		line-height: 3.125em;
@@ -3145,6 +3143,14 @@
 		padding-top: 3em;
 	}
 
+	#camera-video-img{
+		-moz-transition: opacity 0.5s ease;
+		-webkit-transition: opacity 0.5s ease;
+		-ms-transition: opacity 0.5s ease;
+		transition: opacity 0.5s ease;
+		opacity: 1;
+	}
+
 		#page-wrapper:before {
 			background: transparent;
 			content: '';
@@ -3159,17 +3165,17 @@
 		}
 
 	#menu {
-		-moz-transform: translateX(20em);
-		-webkit-transform: translateX(20em);
-		-ms-transform: translateX(20em);
-		transform: translateX(20em);
+		-moz-transform: translateX(25em);
+		-webkit-transform: translateX(25em);
+		-ms-transform: translateX(25em);
+		transform: translateX(25em);
 		-moz-transition: -moz-transform 0.5s ease;
 		-webkit-transition: -webkit-transform 0.5s ease;
 		-ms-transition: -ms-transform 0.5s ease;
 		transition: transform 0.5s ease;
 		-webkit-overflow-scrolling: touch;
 		/* background: #21b2a6; */
-		background: #2E2E2E;
+		background: rgba(0,0,0, 0.8);
 		color: #ffffff;
 		height: 100%;
 		max-width: 80%;
@@ -3178,7 +3184,7 @@
 		position: fixed;
 		right: 0;
 		top: 0;
-		width: 20em;
+		width: 25em;
 		z-index: 10002;
 	}
 
@@ -3220,14 +3226,15 @@
 
 		#menu .close {
 			background-image: url("images/close.svg");
-			background-position: 4.85em 1em;
+			background-position: 1em 0.75em;
 			background-repeat: no-repeat;
+			background-origin: 0 0;
 			border: 0;
 			cursor: pointer;
 			display: block;
 			height: 3em;
 			position: absolute;
-			right: 0;
+			left: 0;
 			top: 0;
 			vertical-align: middle;
 			width: 7em;
@@ -3241,8 +3248,8 @@
 
 		}
 
-	body.is-menu-visible #page-wrapper {
-		opacity: 0.35;
+	body.is-menu-visible #camera-video-img {
+		opacity: 0.7;
 	}
 
 		body.is-menu-visible #page-wrapper:before {
@@ -3346,6 +3353,12 @@
 								vertical-align: top;
 								width: 2em;
 								opacity: 1;
+							}
+
+							body.is-menu-visible nav > ul > li {
+								visibility: hidden;
+								opacity: 0;
+								transition: visibility 0s 0.5s, opacity 0.5s linear;
 							}
 
 							@media screen and (max-width: 736px) {

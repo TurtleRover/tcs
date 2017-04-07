@@ -64,16 +64,6 @@
 				<nav id="nav">
 
 					<ul>	
-						<li class="special">
-							<!-- <form>
-								<div class="form-group">
-									<div id="languageSelector"
-										data-input-name="country"
-										data-selected-country="US">
-									</div>
-								</div>
-							</form> -->
-						</li>
 
 						<li class="special">
 							<a href="#menu" class="menuToggle"><span></span></a>
@@ -97,6 +87,38 @@
 									<li><a href="#" onclick="amplify.publish('all->ui', 'notifications.working-on')" class="localised" id="menu.statistics">Statistics</a></li>
 									<li><a href="#" onclick="amplify.publish('all->ui', 'notifications.working-on')" class="localised" id="menu.about">About</a></li>
 									<li></li> -->
+<button class="accordion">Section 1</button>
+<div class="panel">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+
+<button class="accordion">Section 2</button>
+<div class="panel">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+
+<button class="accordion">Section 3</button>
+<div class="panel">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  }
+}
+</script>
+
 									<li>
 										<ul class="tg-list">
 											<li class="tg-list-item">
@@ -147,7 +169,7 @@
 
 				<div id="camera-video" hidden>
 					<img id="camera-video-img" src="assets/img/marsyard-camera.jpg" draggable="false" onmousedown="return false" style="user-drag: none">
-					<img id="hud-frame-img" src="assets/img/hud/frame.png" draggable="false" onmousedown="return false" style="user-drag: none">
+					<img id="hud-frame-img" src="assets/img/ui/siatka kropy.svg" draggable="false" onmousedown="return false" style="user-drag: none">
 
 					<!-- <div id="servo-control-div">
 						<input type="range" id="servo-control-vertical-input" min="0" max="9" value="5" step="1" style="transform: rotate(270deg)"><br><br><br><br>
@@ -157,14 +179,6 @@
 					<div id="navigation-ring-div" draggable="false" onmousedown="return false" style="user-drag: none">
 						<!-- <img id="navigation-ring-img" src="assets/img/navigation/tech-ring.png" draggable="false" onmousedown="return false" style="user-drag: none"> -->
 						<!--<canvas id="navigation-ring-canvas"></canvas>-->
-					</div>
-
-					<div id="turtle-top-view-div" class="advanced-interface">
-						<img id="turtle-top-view-img" src="assets/img/hud/turtle.png" draggable="false" onmousedown="return false" style="user-drag: none">
-						<div id="turtle-top-view-left-top-div"><p id="turtle-top-view-left-top-p">0%</p></div>
-						<div id="turtle-top-view-right-top-div"><p id="turtle-top-view-right-top-p">0%</p></div>
-						<div id="turtle-top-view-left-bottom-div"><p id="turtle-top-view-left-bottom-p">0%</p></div>
-						<div id="turtle-top-view-right-bottom-div"><p id="turtle-top-view-right-bottom-p">0%</p></div>
 					</div>
 
 					<div id="stats-view-div" class="advanced-interface">
@@ -191,6 +205,11 @@
 						<div id="right-navigation-cross-div" draggable="false" onmousedown="return false" sytle="user-drag: none">
 							<img id="right-navigation-cross-img" src="assets/img/ui/right-krzyz.svg" draggable="false" onmousedown="return false" style="user-drag:none">
 							<img id="turtle-navigation-view-img" src="assets/img/ui/right-lazik.svg" draggable="false" onmousedown="return false" style="user-drag:none">
+
+							<div id="turtle-top-view-left-top-div" class="advanced-interface"><p id="turtle-top-view-left-top-p" class="debug-text">0%</p></div>
+							<div id="turtle-top-view-right-top-div" class="advanced-interface"><p id="turtle-top-view-right-top-p" class="debug-text">0%</p></div>
+							<div id="turtle-top-view-left-bottom-div" class="advanced-interface"><p id="turtle-top-view-left-bottom-p" class="debug-text">0%</p></div>
+							<div id="turtle-top-view-right-bottom-div" class="advanced-interface"><p id="turtle-top-view-right-bottom-p" class="debug-text">0%</p></div>
 						</div>
 					</div>
 				</div>

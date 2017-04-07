@@ -277,6 +277,18 @@
     bottom: 0;
 }
 
+body.is-menu-visible #control-container-div {
+  opacity: 0;
+}
+
+#control-container-div{
+		-moz-transition: opacity 0.5s ease;
+		-webkit-transition: opacity 0.5s ease;
+		-ms-transition: opacity 0.5s ease;
+		transition: opacity 0.5s ease;
+		opacity: 1;
+}
+
 #right-navigation-div {
     position: absolute;
     margin-right: 0;
@@ -339,8 +351,9 @@
 
     #footer-div.center-footer-div {
         position:absolute;
-        max-width: 100%;
-        width: 100%;
+        max-width: 50%;
+        width: 50px;
+        margin-left: calc((100% - 50px) / 2);
     }
 
     #footer-div.right-footer-div {
@@ -461,6 +474,8 @@
 .tg-list-item .tg-list-description {
     width: 70%;
     float: left;
+    text-transform: uppercase;
+
 }
 
 .tg-list-item .tg-list-button {
@@ -528,7 +543,7 @@
      width: 100%;
      height: auto;
      z-index: 5;
-     opacity: 0.1;
+     opacity: 0.5;
  }
 
   #turtle-top-view-div {
@@ -547,6 +562,10 @@
      width: auto;
      max-height: 100%;
      opacity: 0.4;
+ }
+
+ .debug-text {
+     font-size: 6pt;
  }
 
  #turtle-top-view-left-top-div {
@@ -570,7 +589,7 @@
    #turtle-top-view-left-bottom-div {
      position: absolute;
      left: 10px;
-     top: 95px;
+     bottom: 18px;
      width: 50px;
      z-index: 7;
      opacity: 0.8;
@@ -579,7 +598,7 @@
 #turtle-top-view-right-bottom-div {
      position: absolute;
      right: 10px;
-     top: 95px;
+     bottom: 18px;
      width: 50px;
      z-index: 7;
      opacity: 0.8;
@@ -589,6 +608,47 @@
      min-width: 800px;
      min-height: 39vw;
  }
+
+ button.accordion, p.accordion {
+    cursor: pointer;
+    padding: 8px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    transition: 0.4s;
+    font-size: 0.9em;
+    font-weight: 300;
+	height: 4em;
+    background-image: url("../img/ui/menu-dolne-dol.svg");
+    background-repeat: no-repeat;
+    background-size: 10% auto;
+    background-position-x: 95%;
+    background-position-y: 50%;
+}
+
+button.accordion:active, button.accordion:hover {
+   /* background-color: #ddd; */
+    border: none;
+    outline: none;
+    background-color: rgba(0,0,0, 0.8);
+}
+
+button.accordion:after {
+    background-image: url("../img/ui/menu-dolne-gora.svg");
+}
+
+button.accordion.active:after {
+    background-image: url("../img/ui/menu-dolne-gora.svg");
+}
+
+div.panel {
+    border: none;
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
 
 /*
  *  force landscape
