@@ -459,7 +459,6 @@ body.is-menu-visible #control-container-div {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin-top: 50px;
   -webkit-box-align: center;
   -webkit-align-items: center;
       -ms-flex-align: center;
@@ -467,21 +466,41 @@ body.is-menu-visible #control-container-div {
 }
 
 .tg-list-item {
-  margin: 0 2em;
+  margin: 0 1em;
   width: 100%;
 }
 
 .tg-list-item .tg-list-description {
-    width: 70%;
+    width: 40%;
     float: left;
-    text-transform: uppercase;
-
 }
 
 .tg-list-item .tg-list-button {
+    width: 40%;
+    float: right;
+}
+
+#setting-menu-grid-element-left {
+    width: 50%;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+#setting-menu-grid-element-right {
     width: 30%;
     float: right;
-    text-align: right;
+    margin: 0;
+    padding: 0;
+}
+
+#setting-menu-grid {
+    padding-bottom: 1em;
+    float: none;
+    width: 100%;
+}
+
+#clear {
+    clear: both;
 }
 
 /*
@@ -631,7 +650,7 @@ button.accordion:active, button.accordion:hover {
    /* background-color: #ddd; */
     border: none;
     outline: none;
-    background-color: rgba(0,0,0, 0.8);
+    background-color: transparent;
 }
 
 button.accordion:after {
@@ -644,7 +663,7 @@ button.accordion.active:after {
 
 div.panel {
     border: none;
-    padding: 0 18px;
+    padding: 0 0;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;

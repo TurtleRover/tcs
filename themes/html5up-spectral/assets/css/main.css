@@ -1480,7 +1480,7 @@
 	}
 
 	p {
-		margin: 0 0 2em 0;
+		margin: 0 0 0 0;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -3180,7 +3180,7 @@
 		height: 100%;
 		max-width: 80%;
 		overflow-y: auto;
-		padding: 3em 2em;
+		padding: 3em 0;
 		position: fixed;
 		right: 0;
 		top: 0;
@@ -3194,15 +3194,18 @@
 		}
 
 			#menu ul > li {
-				border-top: solid 1px rgba(0, 0, 0, 0.125);
-				margin: 0.5em 0 0 0;
-				padding: 0.5em 0 0 0;
+				border-top: solid 1px rgba(255, 255, 255, 0.15);
+				padding-top: 0.5em;
+				padding-bottom: 0.5em;
+				padding-left: 2em;
+				padding-right: 2em;
 			}
 
 				#menu ul > li:first-child {
-					border-top: 0 !important;
-					margin-top: 0 !important;
-					padding-top: 0 !important;
+				}
+
+				#menu ul > li:hover {
+					background-color: rgba(0,0,0,0.8);
 				}
 
 				#menu ul > li > a {

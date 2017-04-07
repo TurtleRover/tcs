@@ -69,8 +69,54 @@
 							<a href="#menu" class="menuToggle"><span></span></a>
 							<div id="menu">
 								<ul>
-									<li class="dropdown">
-										<form>
+									<li>
+										<button class="accordion">Maximum Speed</button>
+										<div class="panel">
+											<div id="setting-menu-grid">
+												<div id="setting-menu-grid-element-left"><p>Left Front<p></div>
+												<div id="setting-menu-grid-element-right">
+													<input id="left-front-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
+												</div>
+												<div id="clear"></div>
+											</div>
+											
+											<div id="setting-menu-grid">
+												<div id="setting-menu-grid-element-left"><p>Right Front</p></div>
+												<div id="setting-menu-grid-element-right">
+													<input id="right-front-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
+												</div>
+												<div id="clear"></div>
+											</div>
+
+											<div id="setting-menu-grid">
+												<div id="setting-menu-grid-element-left"><p>Left Rear</p></div>
+												<div id="setting-menu-grid-element-right">
+													<input id="left-rear-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
+												</div>
+												<div id="clear"></div>
+											</div>
+
+											<div id="setting-menu-grid">
+												<div id="setting-menu-grid-element-left"><p>Right Rear</p></div>
+												<div id="setting-menu-grid-element-right">
+													<input id="right-rear-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
+												</div>
+												<div id="clear"></div>
+											</div>
+										</div>
+									</li>
+
+									<li>
+										<button class="accordion">camera brightness</button>
+										<div class="panel">
+											<p>DUPA</p>
+										</div>
+									</li>
+
+									<li>
+										<button class="accordion">Language</button>
+										<div class="panel">
+											<form>
 											<div class="form-group">
 												<div class="flagstrap"
 													id="languageSelector"
@@ -78,78 +124,27 @@
 													data-selected-country="US">
 												</div>
 											</div>
-										</form>
+											</form>
+										</div>
 									</li>
-									<!-- <li><a href="index.html" class="localised" id="menu.home">Home</a></li>
-									<li><a href="#" onclick="amplify.publish('all->ui', 'notifications.working-on')" class="localised" id="menu.help">Help</a></li>
-									<li><a href="#" onclick="amplify.publish('all->ui', 'notifications.working-on')" class="localised" id="menu.advanced-settings">Advanced Settings</a></li>
-									<li><a href="#" onclick="amplify.publish('all->ui', 'console button clicked')"class="localised" id="menu.console">Console</a></li>
-									<li><a href="#" onclick="amplify.publish('all->ui', 'notifications.working-on')" class="localised" id="menu.statistics">Statistics</a></li>
-									<li><a href="#" onclick="amplify.publish('all->ui', 'notifications.working-on')" class="localised" id="menu.about">About</a></li>
-									<li></li> -->
-<button class="accordion">Section 1</button>
-<div class="panel">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-</div>
 
-<button class="accordion">Section 2</button>
-<div class="panel">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-</div>
-
-<button class="accordion">Section 3</button>
-<div class="panel">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-</div>
-
-<script>
-var acc = document.getElementsByClassName("accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].onclick = function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight){
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    } 
-  }
-}
-</script>
 
 									<li>
-										<ul class="tg-list">
-											<li class="tg-list-item">
-												<div class="tg-list-description"><p id="settings.advanced-interface" class="localised">Advanced Interface</p></div>
+										<button class="accordion">Advanced Interface</button>
+										<div class="panel">
+											<div class="tg-list-description"><p id="settings.advanced-interface" class="localised">Advanced Interface</p></div>
 												<div class="tg-list-button">
 													<input id="advanced-interface-button" type="checkbox" class="tgl tgl-flat"/>
 													<label for="advanced-interface-button" class="tgl-btn"></label>
 												</div>
-												<div class="tg-list-description"><p id="settings.another-setting" class="localised">Another Setting</p></div>
-												<div class="tg-list-button">
-													<input id="another-setting-button" type="checkbox" class="tgl tgl-flat"/>
-													<label for="another-setting-button" class="tgl-btn"></label>
-												</div> 
-												<div class="tg-list-description"><p>Left Front</p></div>
-												<div class="tg-list-button">
-													<input id="left-front-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
-												</div>
-												<div class="tg-list-description"><p>Right Front</p></div>
-												<div class="tg-list-button">
-													<input id="right-front-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
-												</div>
-												<div class="tg-list-description"><p>Left Rear</p></div>
-												<div class="tg-list-button">
-													<input id="left-rear-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
-												</div>
-												<div class="tg-list-description"><p>Right Rear</p></div>
-												<div class="tg-list-button">
-													<input id="right-rear-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
-												</div>
-											</li>
-										</ul>
+										</div>
+									</li>
+
+									<li>
+										<button class="accordion">About</button>
+										<div class="panel">
+											<p>something about us</p>
+										</div>
 									</li>
 								</ul>
 							</div>
@@ -287,6 +282,23 @@ for (i = 0; i < acc.length; i++) {
 
 		<!-- user interface -->
 		<script src='assets/js/ui.js'></script>
+
+		<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  }
+}
+</script>
 		
 	</body>
 </html>
