@@ -562,7 +562,8 @@ body.is-menu-visible #control-container-div {
      width: 100%;
      height: auto;
      z-index: 5;
-     opacity: 0.5;
+     opacity: 0.3;
+     filter: invert(100%);
  }
 
   #turtle-top-view-div {

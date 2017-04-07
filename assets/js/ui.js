@@ -196,6 +196,9 @@ var ui = (function () {
 		$("#camera-video").fadeIn();
 		$("#navigation-ring-div").fadeIn();
 
+		$(".alt").fadeIn();
+		$(".footer").fadeIn();
+
 		//	hide some elements if interface in advanced mode
 		if($("#advanced-interface-button").prop('checked') == true) $(".advanced-interface").hide();
 	}
