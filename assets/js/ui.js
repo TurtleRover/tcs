@@ -303,6 +303,7 @@ var ui = (function () {
 	$(".fullscreen-button-img").click(function() {toggleFullScreen();});
 	$(document).bind("fullscreenchange", function() {changedFullScreen();});
 	$("#advanced-interface-button").change(function(e, data) {advancedInterfaceChanged();});
+	$("#go-button").click(function() {amplify.publish("ui->controller", "GO button is pressed");});
 	
 	/*
 	 * 																		SEND information to controller

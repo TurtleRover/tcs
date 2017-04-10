@@ -45,6 +45,9 @@ var controller = (function () {
 			case "ui is ready for operation":
 				documentReadyCallback();
 				break;
+			case "GO button is pressed":
+				mainPageLoaded();
+				break;
 			default:
 				console.log("unknown command: " + message);
 		}
@@ -55,7 +58,8 @@ var controller = (function () {
 
 		switch(message) {
 			case "communication established":
-				mainPageLoaded();
+				// mainPageLoaded();
+				amplify.publish("controller->ui", "wait until GO button is pressed");
 				break;
 			default:
 				console.log("unknown command: " + message);
