@@ -172,7 +172,7 @@ var ui = (function () {
 
 		if (camera) {	
 			//	rotate camera
-			var deg = 180;
+			var deg = 0;
 			var rotate = 'rotate(' + deg + 'deg)';
 			$("#camera-video-img").each(function () {
 				$(this).css({
