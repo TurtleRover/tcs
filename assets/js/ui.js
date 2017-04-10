@@ -190,7 +190,7 @@ var ui = (function () {
 	 *	hide welcome screen is called when page is already loaded
 	 */
 	function hideWelcomeScreen() {
-		$(".inner").fadeOut("slow")
+		$(".inner").fadeOut("slow");
 	}
 	function displayCameraVideo() {
 		$("#camera-video").fadeIn();
@@ -201,6 +201,13 @@ var ui = (function () {
 
 		//	hide some elements if interface in advanced mode
 		if($("#advanced-interface-button").prop('checked') == true) $(".advanced-interface").hide();
+	}
+
+	/*
+	 *	display welcome screen
+	 */
+	function displayWelocmeScreen() {
+		$("#go-button").fadeIn();
 	}
 
 	/*
@@ -268,6 +275,9 @@ var ui = (function () {
 				break;
 			case "change image source to default background":
 				setCameraBackground(false);
+				break;
+			case "wait until GO button is pressed":
+				displayWelocmeScreen();
 				break;
 			default:
 				console.log("unknown command: " + message);

@@ -682,6 +682,7 @@ div.panel {
     background-position: center;
     height: 100%;
     width: 100%;
+    display: none;
 }
 
 #go-button:hover {

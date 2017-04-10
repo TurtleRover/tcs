@@ -58,7 +58,6 @@ var controller = (function () {
 
 		switch(message) {
 			case "communication established":
-				// mainPageLoaded();
 				amplify.publish("controller->ui", "wait until GO button is pressed");
 				break;
 			default:
