@@ -137,12 +137,11 @@
 
 #stats-view-div {
     position: absolute;
-    left: 25px;
-    bottom: 10px;
-    height: 40%;
+    left: 0;
+    top: 8%;
     width: 50%;
     z-index: 10;
-    opacity: 0.6;
+    opacity: 0.4;
 }
 
 #signal-strength-div {
@@ -162,7 +161,6 @@
 #battery-level-div {
     text-align: left;
     position: relative;
-    top: 15px;
     height: 30%;
     width: 100%;
 }
@@ -177,7 +175,6 @@
 #session-time-div {
     text-align: left;
     position: relative;
-    top: 15px;
     height: 30%;
     width: 100%;
 }
