@@ -1,0 +1,61 @@
+.flat-slider.ui-corner-all,
+.flat-slider .ui-corner-all {
+  border-radius: 0;
+}
+
+.flat-slider.ui-slider {
+  border: 0;
+  background: transparent;
+  border-radius: 10px;
+  border: 1px solid rgb(34,177,76);
+}
+
+.flat-slider.ui-slider-horizontal {
+  height: 20px;
+  margin: 10px;
+}
+
+.flat-slider.ui-slider-vertical {
+  height: 15em;
+  width: 13px;
+}
+
+.flat-slider .ui-slider-handle {
+  width: 12px;
+  height: 12px;
+  background: #47ba2f;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  margin: auto;
+}
+
+.flat-slider.ui-slider-horizontal .ui-slider-handle {
+  top: 50%;
+  margin-top: -6px;
+}
+
+.flat-slider.ui-slider-vertical .ui-slider-handle {
+  left: 50%;
+  margin-left: -6px;
+}
+
+.flat-slider .ui-slider-handle:hover {
+  opacity: .8;
+}
+
+.flat-slider .ui-slider-range {
+  border: 0;
+  border-radius: 10;
+  background: #261817;
+}
+
+.flat-slider.ui-slider-horizontal .ui-slider-range {
+  top: 0;
+  height: 13px;
+}
+
+.flat-slider.ui-slider-vertical .ui-slider-range {
+  left: 0;
+  width: 13px;
+}

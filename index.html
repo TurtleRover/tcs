@@ -25,12 +25,18 @@
 		<link href="vendors/jquery_flagstrap/css/flags.css" rel="stylesheet">
 		<!-- <link href="vendors/bootstrap/css/bootstrap.css" rel="stylesheet"> -->
 
-		<!-- mine CSS -->
-		<link href="assets/css/custom.css" rel="stylesheet">
+		<!-- jQuery -->
+		<link href="assets/css/jquery-ui.css" rel="stylesheet">
 
 		<!-- vex dialogs CSS -->
 		<link href="vendors/vex/css/vex.css" rel="stylesheet">
 		<link href="vendors/vex/css/vex-theme-os.css" rel="stylesheet">
+
+		<!-- mine CSS -->
+		<link href="assets/css/custom.css" rel="stylesheet">
+		<link href="assets/css/horizontal-slider.css" rel="stylesheet">
+		<link href="assets/css/disable-text-select.css" rel="stylesheet">
+
 	</head>
 	<body class="landing camera-body" oncontextmenu="return false;">
 		<div id="page-wrapper">
@@ -107,9 +113,9 @@
 									</li>
 
 									<li>
-										<button class="accordion">camera brightness</button>
+										<button class="accordion">camera settings</button>
 										<div class="panel">
-											<p>DUPA</p>
+											<div class="flat-slider" id="flat-slider"></div>
 										</div>
 									</li>
 
@@ -243,6 +249,8 @@
 		<script src="themes/html5up-spectral/assets/js/util.js"></script>
 		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 		<script src="themes/html5up-spectral/assets/js/main.js"></script>
+
+		<script src='vendors/jquery/jquery-ui.js'></script>
 		
 		<!-- js-Cookie -->
 		<script src='vendors/js_cookie/js.cookie.js'></script>
@@ -290,6 +298,8 @@
 		<script src='assets/js/ui.js'></script>
 
 		<script>
+/*	accordion buttons - the menu ones 	*/
+/*	----------------------------------- */
 var acc = document.getElementsByClassName("accordion");
 var i;
 
@@ -304,6 +314,14 @@ for (i = 0; i < acc.length; i++) {
     } 
   }
 }
+/*	----------------------------------- */
+
+/*	Sliders	*/
+$('#flat-slider').slider({
+  orientation: 'horizontal',
+  range:       false,
+  value:      17
+});
 </script>
 		
 	</body>
