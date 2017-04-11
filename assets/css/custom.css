@@ -644,8 +644,10 @@ body.is-menu-visible #control-container-div {
     background-image: url("../img/ui/menu-dolne-dol.svg");
     background-repeat: no-repeat;
     background-size: 10% auto;
-    background-position-x: 95%;
-    background-position-y: 50%;
+    /*background-position-x: 95%;
+    background-position-y: 50%;*/
+    background-color: transparent;
+    background-position: 95%;
 }
 
 button.accordion:active, button.accordion:hover {
@@ -657,10 +659,12 @@ button.accordion:active, button.accordion:hover {
 
 button.accordion:after {
     background-image: url("../img/ui/menu-dolne-gora.svg");
+    background-color: transparent;
 }
 
 button.accordion.active:after {
     background-image: url("../img/ui/menu-dolne-gora.svg");
+    background-color:transparent;
 }
 
 div.panel {
