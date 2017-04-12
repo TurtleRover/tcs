@@ -115,7 +115,16 @@
 									<li>
 										<button class="accordion">camera settings</button>
 										<div class="panel">
-											<div class="flat-slider" id="flat-slider"></div>
+											<div class="flat-slider-wrapper">
+												<div class="flat-slider-description"><p>brightness</p></div>
+												<div class="flat-slider" id="brightness-slider"><input type="range" class="flat-slider-horizontal" id="brightness-slider" max="64" min="0" step="1"/></div>
+												<div id="clear"></div>
+											</div>
+											<div class="flat-slider-wrapper">
+												<div class="flat-slider-description"><p>contrast</p></div>
+												<div class="flat-slider" id="contrast-slider"><input type="range" class="flat-slider-horizontal" id="contrast-slider" max="64" min="0" step="1"/></div>
+												<div id="clear"></div>
+											</div>
 										</div>
 									</li>
 
@@ -316,12 +325,6 @@ for (i = 0; i < acc.length; i++) {
 }
 /*	----------------------------------- */
 
-/*	Sliders	*/
-$('#flat-slider').slider({
-  orientation: 'horizontal',
-  range:       false,
-  value:      17
-});
 </script>
 		
 	</body>
