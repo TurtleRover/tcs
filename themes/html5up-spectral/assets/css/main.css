@@ -3186,11 +3186,16 @@
 		top: 0;
 		width: 25em;
 		z-index: 10002;
+		-ms-overflow-style: none;
+	}
+
+	#menu::-webkit-scrollbar {
+		display: none;
 	}
 
 		#menu ul {
 			list-style: none;
-			padding: 0;
+			padding: 0;;
 		}
 
 			#menu ul > li {

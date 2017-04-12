@@ -657,6 +657,10 @@ button.accordion:active, button.accordion:hover {
     background-color: transparent;
 }
 
+button.accordion.active {
+    background-image: url("../img/ui/menu-dolne-gora.svg");
+}
+
 button.accordion:after {
     background-image: url("../img/ui/menu-dolne-gora.svg");
     background-color: transparent;
