@@ -20,7 +20,6 @@ var serverCommunication = (function () {
 	 * 																		SUBSCRIBE to all topics
 	 */
     amplify.subscribe("linux->serverCommunication", linuxMessageCallback);
-    amplify.subscribe("ui->serverCommunication", uiMessageCallback);
 
     function linuxMessageCallback(message) {
         if (DEBUG) console.log("linuxMessageCallback: " + message);
@@ -29,19 +28,6 @@ var serverCommunication = (function () {
         switch (message) {
             case "start communication on port 8080":
                 connect8080();
-                break;
-            default:
-                console.log("unknown command: " + message);
-        }
-    };
-
-    function uiMessageCallback(message) {
-        if (DEBUG) console.log("uiMessageCallback: " + message);
-		if (DEBUG) amplify.publish("all->utests", message);
-
-        switch (message) {
-            case "update camera settings":
-                updateCameraSettings();
                 break;
             default:
                 console.log("unknown command: " + message);
@@ -94,6 +80,20 @@ var serverCommunication = (function () {
             switch (message) {
                 case "set new servo position":
                     setNewServoPosition();
+                    break;
+                default:
+                    console.log("unknown command: " + message);
+            }
+        };
+
+        amplify.subscribe("ui->port8080", uiMessageCallback);
+        function uiMessageCallback(message) {
+            if (DEBUG) console.log("uiMessageCallback: " + message);
+            if (DEBUG) amplify.publish("all->utests", message);
+
+            switch (message) {
+                case "update camera settings":
+                    updateCameraSettings();
                     break;
                 default:
                     console.log("unknown command: " + message);

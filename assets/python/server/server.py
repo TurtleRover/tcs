@@ -36,6 +36,7 @@ import hexdump
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from Hardware_Communication.turtleSerial import *
 from Motor_Module.Motor_Module import *
+import numpy as np
 
 class MyServerProtocol(WebSocketServerProtocol):
 
@@ -63,7 +64,7 @@ class MyServerProtocol(WebSocketServerProtocol):
                     signal = signal[:len(signal)-1]
                     received = [0x41, int(signal)]
                 elif payload[0] == 0x50:
-                    f = os.popen('v4l2-ctl --set-ctrl brightness=' + payload[1])
+                    f = os.popen('v4l2-ctl --set-ctrl brightness=' + str(np.int8(payload[1])))
                     received = [0x51]
                 '''elif payload[0] == 0x84:
                     setNewServoPosition(payload[1], payload[2], payload[3])

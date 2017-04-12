@@ -315,7 +315,7 @@ var ui = (function () {
 	$("#advanced-interface-button").change(function(e, data) {advancedInterfaceChanged();});
 	$("#go-button").click(function() {amplify.publish("ui->controller", "GO button is pressed");});
 
-	$("#brightness-slider").change(function(e, data) {amplify.publish("ui->serverCommunication", "update camera settings");});
+	$("#brightness-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
 	
 	/*
 	 * 																		SEND information to controller
