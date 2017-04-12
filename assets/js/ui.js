@@ -314,6 +314,8 @@ var ui = (function () {
 	$(document).bind("fullscreenchange", function() {changedFullScreen();});
 	$("#advanced-interface-button").change(function(e, data) {advancedInterfaceChanged();});
 	$("#go-button").click(function() {amplify.publish("ui->controller", "GO button is pressed");});
+
+	$("#brightness-slider").change(function(e, data) {amplify.publish("ui->serverCommunication", "update camera settings");});
 	
 	/*
 	 * 																		SEND information to controller

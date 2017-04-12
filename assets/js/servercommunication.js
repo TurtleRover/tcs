@@ -20,14 +20,28 @@ var serverCommunication = (function () {
 	 * 																		SUBSCRIBE to all topics
 	 */
     amplify.subscribe("linux->serverCommunication", linuxMessageCallback);
+    amplify.subscribe("ui->serverCommunication", uiMessageCallback);
 
     function linuxMessageCallback(message) {
-        if (DEBUG) console.log("clinuxMessageCallback: " + message);
+        if (DEBUG) console.log("linuxMessageCallback: " + message);
 		if (DEBUG) amplify.publish("all->utests", message);
 
         switch (message) {
             case "start communication on port 8080":
                 connect8080();
+                break;
+            default:
+                console.log("unknown command: " + message);
+        }
+    };
+
+    function uiMessageCallback(message) {
+        if (DEBUG) console.log("uiMessageCallback: " + message);
+		if (DEBUG) amplify.publish("all->utests", message);
+
+        switch (message) {
+            case "update camera settings":
+                updateCameraSettings();
                 break;
             default:
                 console.log("unknown command: " + message);
@@ -273,6 +287,27 @@ var serverCommunication = (function () {
                 var buf = new ArrayBuffer(1);
                 var arr = new Uint8Array(buf);
                 arr[0] = 0x40;
+                socket8080.socket.send(buf);
+                
+                // Convert to readable form
+                var hex = '';
+                for (var i = 0; i < arr.length; i++)
+                    hex += ('00' + arr[i].toString(16)).substr(-2);
+                    
+                if(DEBUG) console.log("Binary message sent. " + hex);
+            }
+            else console.log("Connection not opened.");
+        };
+
+        /*
+         *  update all camera settings
+         */
+        function updateCameraSettings() {
+            if (socket8080.isOpen) {
+                var buf = new ArrayBuffer(2);
+                var arr = new Uint8Array(buf);
+                arr[0] = 0x50;
+                arr[1] = $("#brightness-slider-input").val();
                 socket8080.socket.send(buf);
                 
                 // Convert to readable form
