@@ -190,7 +190,7 @@
 }
 
 #battery-level-indicator-img {
-    height: 50%;
+    height: 40%;
     top: 0;
     left: 0;
     width: auto;
@@ -207,7 +207,7 @@
 }
 
 #signal-level-indicator-img {
-    height: 50%;
+    height: 40%;
     top: 0;
     left: 0;
     width: auto;
