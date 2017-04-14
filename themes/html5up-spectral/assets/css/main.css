@@ -3253,8 +3253,8 @@
 
 		}
 
-	body.is-menu-visible #camera-video-img {
-		opacity: 0.7;
+	body.is-menu-visible #transparent-background-camera {
+		opacity: 0.3;
 	}
 
 		body.is-menu-visible #page-wrapper:before {

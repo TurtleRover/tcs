@@ -300,12 +300,24 @@ body.is-menu-visible #control-container-div {
     top: 0;
 }
 
-#transparent-background-div {
+.transparent-background-div {
     position: absolute;
     width: 100%;
     height: 100%;
     background-color: black;
+
+    -moz-transition: opacity 0.5s ease;
+    -webkit-transition: opacity 0.5s ease;
+    -ms-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
+}
+
+#transparent-background-navigation-right {
     opacity: 0.6;
+}
+
+#transparent-background-camera {
+    opacity: 0;
 }
 
 #right-navigation-cross-div {
