@@ -64,7 +64,9 @@ class MyServerProtocol(WebSocketServerProtocol):
                     signal = signal[:len(signal)-1]
                     received = [0x41, int(signal)]
                 elif payload[0] == 0x50:
-                    f = os.popen('v4l2-ctl --set-ctrl brightness=' + str(np.int8(payload[1])))
+                    f = os.popen('v4l2-ctl --set-ctrl brightness=' + str(np.int8(payload[1])) + ' --set-ctrl contrast=' + str(np.int8(payload[2])) + ' --set-ctrl saturation=' + str(np.uint8(payload[3])) + \
+                    ' --set-ctrl hue=' + str(np.int8(payload[4])) + ' --set-ctrl gamma=' + str( np.uint16((np.uint8(payload[5]) << 8) + np.uint(payload[6])) ) + ' --set-ctrl gain=' + str(np.uint8(payload[7])) + \
+                    ' --set-ctrl sharpness=' + str(np.uint8(payload[8])) )
                     received = [0x51]
                 '''elif payload[0] == 0x84:
                     setNewServoPosition(payload[1], payload[2], payload[3])

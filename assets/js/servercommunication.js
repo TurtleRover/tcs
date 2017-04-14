@@ -304,10 +304,18 @@ var serverCommunication = (function () {
          */
         function updateCameraSettings() {
             if (socket8080.isOpen) {
-                var buf = new ArrayBuffer(2);
+                var buf = new ArrayBuffer(9);
                 var arr = new Uint8Array(buf);
                 arr[0] = 0x50;
                 arr[1] = $("#brightness-slider-input").val();
+                arr[2] = $("#contrast-slider-input").val();
+                arr[3] = $("#saturation-slider-input").val();
+                arr[4] = $("#hue-slider-input").val();
+                arr[5] = ($("#gamma-slider-input").val() & 0xFF00) >> 8;
+                arr[6] = $("#gamma-slider-input").val() & 0x00FF;
+                arr[7] = $("#gain-slider-input").val();
+                arr[8] = $("#sharpness-slider-input").val();
+
                 socket8080.socket.send(buf);
                 
                 // Convert to readable form

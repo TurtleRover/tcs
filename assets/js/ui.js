@@ -316,6 +316,12 @@ var ui = (function () {
 	$("#go-button").click(function() {amplify.publish("ui->controller", "GO button is pressed");});
 
 	$("#brightness-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
+	$("#contrast-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
+	$("#saturation-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
+	$("#hue-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
+	$("#gamma-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
+	$("#gain-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
+	$("#sharpness-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
 	
 	/*
 	 * 																		SEND information to controller
