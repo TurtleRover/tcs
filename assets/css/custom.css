@@ -256,7 +256,7 @@
         float: right;
     }
 
-#main-header-button-img {
+.main-header-button-img {
     margin-top: 3%;
     max-height: 50%;
     top: 0;
@@ -265,7 +265,7 @@
     transition: all .2s ease-in-out;
 }
 
-#main-header-button-img:hover {
+.main-header-button-img:hover {
     transform: scale(1.4);
 }
 

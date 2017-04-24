@@ -199,7 +199,7 @@
 
                             case "geticecandidate":
                                 var candidates = JSON.parse(msg.data);
-                                for (var i = 0; candidates && i < candidates.length; i++) {
+                                /* for (var i = 0; candidates && i < candidates.length; i++) {
                                     var elt = candidates[i];
                                     let candidate = new RTCIceCandidate({sdpMLineIndex: elt.sdpMLineIndex, candidate: elt.candidate});
                                     pc.addIceCandidate(candidate,
@@ -210,7 +210,7 @@
                                             console.log("addIceCandidate error: " + error);
                                         }
                                     );
-                                }
+                                } */
                                 document.documentElement.style.cursor ='default';
                                 break;
                         }

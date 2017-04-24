@@ -220,6 +220,20 @@ var ui = (function () {
 	}
 
 	/*
+	 *	take schreenshot of the view and prompt to save
+	 */
+	function takeScreenShot() {
+		html2canvas(document.body, {
+			onrendered: function (canvas) {
+				console.log("saved as image");
+				canvas.toBlob(function(blob) {
+					saveAs(blob, "snap.png");
+				});
+			}
+		});
+	}
+
+	/*
 	 *	full screen mode has been changed
 	 */ 
 	function changedFullScreen() {
@@ -311,6 +325,7 @@ var ui = (function () {
 	 */
 	$("#languageSelector").change(function(e, data) {languageChanged(data);});
 	$(".fullscreen-button-img").click(function() {toggleFullScreen();});
+	$("#snap-button-img").click(function() {takeScreenShot();});
 	$(document).bind("fullscreenchange", function() {changedFullScreen();});
 	$("#advanced-interface-button").change(function(e, data) {advancedInterfaceChanged();});
 	$("#go-button").click(function() {amplify.publish("ui->controller", "GO button is pressed");});
