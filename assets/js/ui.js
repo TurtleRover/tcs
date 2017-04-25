@@ -161,7 +161,7 @@ var ui = (function () {
 	 *	set the source of an image depending on connection status
 	 */
 	function setCameraBackground(camera) {
-		if (camera && isInternetExplorer()) {
+		/* if (camera && isInternetExplorer()) {
 			setInterval(function (){
 				time = new Date();
 				$("#camera-video-img").attr("src", "http://192.168.10.1:8090/?action=snapshot&time="+ time.getTime());
@@ -183,7 +183,7 @@ var ui = (function () {
 					'transform': rotate 
 				});
 			});
-		}
+		} */
 	}
 
 	/*

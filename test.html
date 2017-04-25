@@ -44,16 +44,6 @@
             function createPeerConnection() {
                 try {
                     var pcConfig_ = pcConfig;
-                    try {
-                        ice_servers = document.getElementById('ice_servers').value;
-                        if (ice_servers) {
-                            pcConfig_.iceServers = JSON.parse(ice_servers);
-                        }
-                    } catch (e) {
-                        alert(e + "\nExample: "
-                                + '\n[ {"urls": "stun:stun1.example.net"}, {"urls": "turn:turn.example.org", "username": "user", "credential": "myPassword"} ]'
-                                + "\nContinuing with built-in RTCIceServer array");
-                    }
                     console.log(JSON.stringify(pcConfig_));
                     pc = new RTCPeerConnection(pcConfig_, pcOptions);
                     pc.onicecandidate = onIceCandidate;
@@ -135,8 +125,8 @@
                         var command = {
                             command_id: "offer",
                             options: {
-                                /*force_hw_vcodec: document.getElementById("remote_hw_vcodec").checked,
-                                vformat: document.getElementById("remote_vformat").value*/
+                                force_hw_vcodec: false,
+                                vformat: 55
                             }
                         };
                         ws.send(JSON.stringify(command));
@@ -199,7 +189,7 @@
 
                             case "geticecandidate":
                                 var candidates = JSON.parse(msg.data);
-                                /* for (var i = 0; candidates && i < candidates.length; i++) {
+                                for (var i = 0; candidates && i < candidates.length; i++) {
                                     var elt = candidates[i];
                                     let candidate = new RTCIceCandidate({sdpMLineIndex: elt.sdpMLineIndex, candidate: elt.candidate});
                                     pc.addIceCandidate(candidate,
@@ -210,7 +200,7 @@
                                             console.log("addIceCandidate error: " + error);
                                         }
                                     );
-                                } */
+                                }
                                 document.documentElement.style.cursor ='default';
                                 break;
                         }

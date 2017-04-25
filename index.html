@@ -112,6 +112,7 @@
 										</div>
 									</li>
 
+									<!--
 									<li>
 										<button class="accordion">camera settings</button>
 										<div class="panel">
@@ -152,6 +153,7 @@
 											</div>
 										</div>
 									</li>
+									-->
 
 									<li>
 										<button class="accordion">Language</button>
@@ -167,7 +169,6 @@
 											</form>
 										</div>
 									</li>
-
 
 									<li>
 										<button class="accordion">Advanced Interface</button>
@@ -200,7 +201,7 @@
 					<!-- <h2>turtle</h2>
 					<p class="localised" id="welcome-message">Your way to mars!</p>
 					<div id="loader"></div> -->
-					<div class="welcome-screen-horizontal-wrapper">
+					<div class="welcome-screen-horizontal-wrapper"><i></i>
 						<div id="welcome-screen-button-left" class="welcome-screen-button">&nbsp;</div>
 						<div id="welcome-screen-button-center" class="welcome-screen-button"><button id="go-button"></button></div>
 						<div id="welcome-screen-button-right" class="welcome-screen-button">&nbsp;</div>
@@ -208,7 +209,8 @@
 				</div>
 
 				<div id="camera-video" hidden>
-					<img id="camera-video-img" src="assets/img/marsyard-camera.jpg" draggable="false" onmousedown="return false" style="user-drag: none">
+					<!-- <img id="camera-video-img" src="assets/img/marsyard-camera.jpg" draggable="false" onmousedown="return false" style="user-drag: none"> -->
+					<video id="camera-video-img" draggable="false" onmousedown="return false" style="user-drag: none"></video>
 					<img id="hud-frame-img" src="assets/img/ui/siatka kropy.svg" draggable="false" onmousedown="return false" style="user-drag: none">
 					<div class="transparent-background-div" id="transparent-background-camera"></div>
 
@@ -300,6 +302,9 @@
 		<script src='vendors/amplify_js/src/core.js'></script>
 		<script src='vendors/amplify_js/src/request.js'></script>
 		<script src='vendors/amplify_js/src/store.js'></script>
+
+		<!-- user interface -->
+		<script src='assets/js/webrtc.js'></script>
 		
 		<!-- controller -->
 		<script src='assets/js/controller.js'></script>
@@ -328,7 +333,7 @@
 
 		<!-- vex dialogs -->
 		<script src='vendors/vex/js/vex.combined.js'></script>
-
+		
 		<!-- html2canvas -->
 		<script src='vendors/html2canvas/html2canvas.js'></script>
 

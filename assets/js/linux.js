@@ -11,6 +11,7 @@ var linux = (function () {
     var isCameraAvailable = false;
     var serverProcessPID = -1;
     var mjpegStreamPID = -1;
+    var communicationEstablished = false;
 
     /*
      *  start python server
@@ -62,6 +63,9 @@ var linux = (function () {
                     if (DEBUG) console.log("serverProcessPID: " + serverProcessPID);
                     if (DEBUG) console.log("mjpegStreamPID: " + mjpegStreamPID);
 
+                    //  start webrtc streaming
+                    amplify.publish("linux->webrtc", "start webrtc stream");
+
                     //  start communication with webserver
                     setTimeout(function(){
                         amplify.publish("linux->serverCommunication", "start communication on port 8080");
@@ -76,7 +80,7 @@ var linux = (function () {
                     amplify.publish("all->ui", "notifications.server-connection-error");
                 }
 
-                amplify.publish("linux->controller", "communication established");
+                communicationEstablished = true;
             }
             else amplify.publish("all->ui", "notifications.client-already-connected");
         });
@@ -96,6 +100,7 @@ var linux = (function () {
 	 * 																		SUBSCRIBE to all topics
 	 */
 	amplify.subscribe("controller->linux", controllerMessageCallback);
+    amplify.subscribe("webrtc->linux", webrtcMessageCallback);
 
     /*
 	 * 																		CALLBACK functions
@@ -110,6 +115,20 @@ var linux = (function () {
             case "stop python server":
                 stopPythonServer();
                 break;
+			default:
+				console.log("unknown command: " + message);
+		}
+	};
+
+    function webrtcMessageCallback(message) {
+		if (DEBUG) console.log("webrtcMessageCallback: " + message);
+
+		switch(message) {
+			case "camera stream is ready": 
+                //  wait until communication channel is ready
+                while (communicationEstablished == false) setTimeout(function() { }, 1000);
+                amplify.publish("linux->controller", "communication established");
+				break;
 			default:
 				console.log("unknown command: " + message);
 		}
