@@ -141,7 +141,7 @@ var webrtc = (function () {
                 var command = {
                     command_id: "offer",
                     options: {
-                        force_hw_vcodec: true,
+                        force_hw_vcodec: false,
                         vformat: 55
                     }
                 };
