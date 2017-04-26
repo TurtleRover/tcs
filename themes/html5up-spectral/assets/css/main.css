@@ -19,7 +19,7 @@
 		border: 0;
 		font-size: 100%;
 		font: inherit;
-		vertical-align: baseline;
+		vertical-align: top;
 		font-family: turtleFont;
 	}
 
@@ -3276,7 +3276,7 @@
 		-ms-transition: background-color 0.2s ease;
 		transition: background-color 0.2s ease;
 		opacity: 1;
-		height: 2.5em;
+		height: 6%;
 		left: 0;
 		line-height: 3em;
 		position: fixed;
@@ -3318,7 +3318,7 @@
 			line-height: inherit;
 			position: absolute;
 			right: 0;
-			top: 0;
+			top: 20%;
 		}
 
 			#header nav > ul {
@@ -3352,12 +3352,12 @@
 								background-image: url("../../../../assets/img/ui/nav-bar-menu.svg");
 								background-position: center;
 								background-repeat: no-repeat;
-								background-size: 40px auto;
+								background-size: auto 2vw;
 								content: '';
 								display: inline-block;
-								height: 2.75em;
+								height: 2vw;
 								vertical-align: top;
-								width: 2em;
+								width: 3vw;
 								opacity: 1;
 							}
 
@@ -3815,10 +3815,8 @@
 
 	body.is-mobile.landing #banner,
 	body.is-mobile.landing .wrapper.style4 {
-		background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
-		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
-		background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
-		background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
+		background-image: url("../../../../assets/img/welcome-screen/tlo-bez-kropek-kropki-te-same.png");
+		background-attachment: fixed;
 		background-position: center center;
 		background-repeat: no-repeat;
 		background-size: cover;

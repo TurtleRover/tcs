@@ -10,6 +10,20 @@ var ui = (function () {
 	 */
 
 	/*
+	 *																		INTERFACE functions
+	 */
+	function updateInterface() {
+		/*	set width of right navigation div */
+		$('#right-navigation-div').css("height", $('#right-navigation-div').width() + 0.03 * $(window).height());
+	}
+
+	updateInterface();
+
+	window.addEventListener('resize', function(event) {
+		updateInterface();
+	});
+
+	/*
 	 *	obvious stupid function
 	 */
 	function isInternetExplorer() {
@@ -201,6 +215,8 @@ var ui = (function () {
 
 		//	hide some elements if interface in advanced mode
 		if($("#advanced-interface-button").prop('checked') == true) $(".advanced-interface").hide();
+
+		updateInterface();
 	}
 
 	/*
