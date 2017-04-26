@@ -210,7 +210,7 @@ var webrtc = (function () {
                             let candidate = new RTCIceCandidate({sdpMLineIndex: elt.sdpMLineIndex, candidate: elt.candidate});
                             pc.addIceCandidate(candidate,
                                 function () {
-                                    console.log("IceCandidate added: " + JSON.stringify(candidate));
+                                    /* console.log("IceCandidate added: " + JSON.stringify(candidate)); */
                                 },
                                 function (error) {
                                     console.log("addIceCandidate error: " + error);

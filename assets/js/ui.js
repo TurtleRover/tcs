@@ -328,7 +328,11 @@ var ui = (function () {
 	$("#snap-button-img").click(function() {takeScreenShot();});
 	$(document).bind("fullscreenchange", function() {changedFullScreen();});
 	$("#advanced-interface-button").change(function(e, data) {advancedInterfaceChanged();});
-	$("#go-button").click(function() {amplify.publish("ui->controller", "GO button is pressed");});
+	$("#go-button").click(function() {
+		var remoteVideoElement = document.getElementById('camera-video-img');
+		remoteVideoElement.play();
+		amplify.publish("ui->controller", "GO button is pressed");
+	});
 
 	$("#brightness-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
 	$("#contrast-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
@@ -366,7 +370,7 @@ var ui = (function () {
 	 */
 	$(function() {
 		var previousSessionSetting = Cookies.get("advanced-interface");
-		if (previousSessionSetting == undefined) previousSessionSetting = "false";
+		if (previousSessionSetting == undefined) previousSessionSetting = "true";
 
 		if (previousSessionSetting == "false") {
 			$("#advanced-interface-button").prop('checked', false);

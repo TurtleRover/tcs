@@ -127,7 +127,7 @@ var serverCommunication = (function () {
                 var hex = '';
                 for (var i = 0; i < arr.length; i++)
                     hex += ('00' + arr[i].toString(16)).substr(-2);
-                if (DEBUG) console.log("Binary message received from Arduino: " + hex);
+                if (DEBUG) console.log("Binary message received from RPi: " + hex);
 
                 //  read battery voltage
                 if (arr[0] == 0x31) {

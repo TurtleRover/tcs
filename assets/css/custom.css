@@ -700,11 +700,18 @@ div.panel {
     height: 100%;
     width: 100%;
     display: none;
+    border: none;
+    outline: none;
 }
 
 #go-button:hover {
     background-image: url("../img/welcome-screen/go-button-2.png");
     background-color: transparent;
+}
+
+#go-button:hover, #go-button:active {
+    border: none;
+    outline: none;
 }
 
 .welcome-screen-horizontal-wrapper {
