@@ -103,8 +103,9 @@ var serverCommunication = (function () {
         //  for 3G used service ngrok
         if (location.host == "bentos.eu.ngrok.io")
             var socket8080 = new socket(new WebSocket("ws://" + "bentossocket.eu.ngrok.io"), false, -1);
-        else
+        else {
             var socket8080 = new socket(new WebSocket("ws://" + location.hostname + ":8080"), false, -1);
+        }
 
         socket8080.socket.binaryType = "arraybuffer";
 
@@ -148,6 +149,8 @@ var serverCommunication = (function () {
             console.log("Connection closed. Log: " + e.data);
             socket8080.socket = null;
             socket8080.isOpen = null;
+
+            setTimeout(function(){connect8080()}, 1000);
         };
 
         /*
