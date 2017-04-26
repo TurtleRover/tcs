@@ -331,6 +331,7 @@ var ui = (function () {
 	$("#go-button").click(function() {
 		var remoteVideoElement = document.getElementById('camera-video-img');
 		remoteVideoElement.play();
+		toggleFullScreen();
 		amplify.publish("ui->controller", "GO button is pressed");
 	});
 

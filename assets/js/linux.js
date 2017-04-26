@@ -126,7 +126,7 @@ var linux = (function () {
 		switch(message) {
 			case "camera stream is ready": 
                 //  wait until communication channel is ready
-                while (communicationEstablished == false) setTimeout(function() { }, 1000);
+                while (communicationEstablished == false && !document.domain.includes("localhost")) setTimeout(function() { }, 1000);
                 amplify.publish("linux->controller", "communication established");
 				break;
 			default:
