@@ -255,9 +255,16 @@ var ui = (function () {
 
 		context.drawImage(video,0,0,video.clientWidth,video.clientHeight);
 
-		canvas.toBlob(function(blob) {
+		/*canvas.toBlob(function(blob) {
 			saveAs(blob, "turtle_snap.png");
-		});
+		});*/
+
+		var d = new Date();
+
+		var link = document.getElementById('snap-download-a');
+		link.href = canvas.toDataURL();
+		link.download = "turtle_" + d.getFullYear() + "_" + d.getMonth() + 1 + "_" + d.getDate() + "_" + d.getHours() + "_" + d.getMinutes() + "_" + d.getSeconds() + ".png";
+		
 	}
 
 	/*
