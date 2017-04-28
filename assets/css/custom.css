@@ -358,6 +358,7 @@ body.is-menu-visible #control-container-div {
     max-width: 350px;
     height:100%;
     text-align: center;
+    padding-top: 0.5%;
 }
     #footer-div.left-footer-div {
         float: left;

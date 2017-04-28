@@ -239,13 +239,24 @@ var ui = (function () {
 	 *	take schreenshot of the view and prompt to save
 	 */
 	function takeScreenShot() {
-		html2canvas(document.body, {
+		/*html2canvas(document.body, {
 			onrendered: function (canvas) {
 				console.log("saved as image");
 				canvas.toBlob(function(blob) {
 					saveAs(blob, "snap.png");
 				});
 			}
+		});*/
+		var video = document.getElementById('camera-video-img');
+		var canvas = document.getElementById('snap-background-canvas');
+		var context = canvas.getContext('2d');
+		canvas.width = video.clientWidth;
+		canvas.height = video.clientHeight;
+
+		context.drawImage(video,0,0,video.clientWidth,video.clientHeight);
+
+		canvas.toBlob(function(blob) {
+			saveAs(blob, "turtle_snap.png");
 		});
 	}
 
