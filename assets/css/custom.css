@@ -707,8 +707,10 @@ div.panel {
 }
 
 #go-button:hover {
-    background-image: url("../img/welcome-screen/go-button-2.png");
+    background-image: url("../img/welcome-screen/go-button-opacity-10.png");
+    transition: all .2s ease-in-out;
     background-color: transparent;
+    transform: scale(1.02);
 }
 
 #go-button:hover, #go-button:active {
@@ -722,7 +724,7 @@ div.panel {
     width: 100%;
     height: 8%;
     max-height: 150px;
-    bottom: 30%;
+    bottom: 45%;
 }
 
 .welcome-screen-button {
