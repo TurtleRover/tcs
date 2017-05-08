@@ -255,16 +255,26 @@ var ui = (function () {
 
 		context.drawImage(video,0,0,video.clientWidth,video.clientHeight);
 
+		/*
+		 *	draw also turtle logo
+		 */
+		var img = new Image;
+
 		/*canvas.toBlob(function(blob) {
 			saveAs(blob, "turtle_snap.png");
 		});*/
 
-		var d = new Date();
+		img.src = 'assets/img/hud/turtle-logo.png';
 
-		var link = document.getElementById('snap-download-a');
-		link.href = canvas.toDataURL();
-		link.download = "turtle_" + d.getFullYear() + "_" + d.getMonth() + 1 + "_" + d.getDate() + "_" + d.getHours() + "_" + d.getMinutes() + "_" + d.getSeconds() + ".png";
 		
+			var logoWidth = video.clientWidth / 12;
+			var logoHeight = logoWidth * 0.265;
+			context.drawImage(img, 25, 10, logoWidth, logoHeight);
+			var d = new Date();
+0
+			var link = document.getElementById('snap-download-a');
+			link.href = canvas.toDataURL();
+			link.download = "turtle_" + d.getFullYear() + "_" + d.getMonth() + 1 + "_" + d.getDate() + "_" + d.getHours() + "_" + d.getMinutes() + "_" + d.getSeconds() + ".png";
 	}
 
 	/*
