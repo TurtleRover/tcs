@@ -694,11 +694,12 @@ div.panel {
 }
 
 #go-button {
-    background-image: url("../img/welcome-screen/go-button-1.png");
+    background-image: url("../img/welcome-screen/flash.png"), url("../img/welcome-screen/go-button-1.png");
+    background-color: transparent;
     width: 100%;
     background-repeat: no-repeat;
-    background-size: auto 100%;
-    background-position: center;
+    background-size: auto 100%, auto 100%;
+    background-position: -18% 0%, center;
     height: 100%;
     width: 100%;
     display: none;
@@ -707,10 +708,10 @@ div.panel {
 }
 
 #go-button:hover {
-    background-image: url("../img/welcome-screen/go-button-opacity-10.png");
+    background-image: url("../img/welcome-screen/flash.png"), url("../img/welcome-screen/go-button-opacity-10.png");
     transition: all .2s ease-in-out;
     background-color: transparent;
-    transform: scale(1.02);
+    /*transform: scale(1.02);*/
 }
 
 #go-button:hover, #go-button:active {
@@ -718,15 +719,58 @@ div.panel {
     outline: none;
 }
 
-.welcome-screen-horizontal-wrapper {
-    position: absolute;
+.welcome-screen-wrapper {
+    display: inline-block;
+    vertical-align: bottom;
     left: 0%;
+    padding: 0;
+    margin: 0;
+    height: 40%;
     width: 100%;
-    height: 8%;
-    max-height: 150px;
     bottom: 45%;
 }
 
+.welcome-screen-horizontal-wrapper {
+    position: relative;
+    left: 0%;
+    width: 100%;
+    top: auto;
+}
+
+#welcome-screen-horizontal-wrapper-button {
+    height: 58px;
+    bottom: 0;
+    top: auto;
+}
+
+#welcome-screen-horizontal-wrapper-text {
+    height: 10%;
+    top: auto;
+    margin: 0;
+    padding: 0;
+}
+
+#welcome-screen-horizontal-wrapper-logo {
+    position: relative;
+    height: 60px;
+    top: auto;
+    margin: 0;
+    padding: 0;
+}
+
+#welcome-screen-horizontal-logo {
+    content:url("../../assets/img/welcome-screen/turtle-logo.svg");
+    height: 70%;
+    width: auto;
+}
+
+#welcome-screen-adventure-text {
+    font-family: turtleFontLight;
+    font-size: 250%;
+    font-weight: 100;
+    text-transform: none;
+    letter-spacing: normal;
+}
 .welcome-screen-button {
     width: 25%;
     max-width: 350px;
@@ -740,8 +784,8 @@ div.panel {
     #welcome-screen-button-center {
         position:absolute;
         max-width: 50%;
-        width: 12%;
-        margin-left: calc((100% - 12%) / 2);
+        width: 129px;
+        margin-left: calc((100% - 129px) / 2);
         text-align:center;
     }
 

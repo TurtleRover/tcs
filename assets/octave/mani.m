@@ -1,23 +1,23 @@
 clear
 
 # manipulator constants
-a = 148
-b = 188
+a = 144.5
+b = 220
 
 # generate angles in radians
-res = 250
-alpha = linspace(21, 150, res)
-beta = linspace(41, 140, res)
+res = 100
+alpha = linspace(30, 135, res)
+beta = linspace(120, 225, res)
 
 x = zeros(res,res)
 y = zeros(res,res)
 
 [i,j] = meshgrid(1:numel(alpha),1:numel(beta))
-x = a * cosd(alpha(i)) + b * cosd(alpha(i) - beta(j))
-y = a * sind(alpha(i)) + b * sind(alpha(i) - beta(j))
+x = a * cosd(alpha(i)) + b * cosd(180 - beta(j))
+y = a * sind(alpha(i)) - b * sind(180 - beta(j))
 
 # generate linear approximation
-res = 100
+res = 25
 x_lin = linspace(120, 300, res)
 y_lin = linspace(-150, 200, res)
 alpha_angles = zeros(res,res)
