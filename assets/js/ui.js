@@ -271,7 +271,6 @@ var ui = (function () {
 			var logoHeight = logoWidth * 0.265;
 			context.drawImage(img, 25, 10, logoWidth, logoHeight);
 			var d = new Date();
-0
 			var link = document.getElementById('snap-download-a');
 			link.href = canvas.toDataURL();
 			link.download = "turtle_" + d.getFullYear() + "_" + d.getMonth() + 1 + "_" + d.getDate() + "_" + d.getHours() + "_" + d.getMinutes() + "_" + d.getSeconds() + ".png";
@@ -386,6 +385,21 @@ var ui = (function () {
 	$("#gamma-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
 	$("#gain-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
 	$("#sharpness-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
+
+	/*
+	 *	timeout functions
+	 */
+	
+	setTimeout(function() {turtleIsAwake();}, 2000);
+
+	$("#welcome-screen-status-text").children().last().attr('data-content', '[ ]');
+
+	function turtleIsAwake() {
+		$("#welcome-screen-status-text").children().last().attr('data-content', '[*]');
+		$("#welcome-screen-status-text").children().last().removeClass('animation-typewriter');
+		$("#welcome-screen-status-text").append("<p class='animation-typewriter'>connecting...</p>");
+		$("#welcome-screen-status-text").children().last().attr('data-content', '[ ]');
+	};
 	
 	/*
 	 * 																		SEND information to controller
