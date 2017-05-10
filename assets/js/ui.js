@@ -335,6 +335,13 @@ var ui = (function () {
 				break;
 			case "wait until GO button is pressed":
 				displayWelocmeScreen();
+				setLastStatusDone(true);
+				addNewStatus("turtle is ready to go!");
+				setTimeout(function() {setLastStatusDone(true);}, 1000);
+				break;
+			case "turtle is awake":
+				setLastStatusDone(true);
+				addNewStatus("connecting...");
 				break;
 			default:
 				console.log("unknown command: " + message);
@@ -357,6 +364,15 @@ var ui = (function () {
 				break;
 			case "console button clicked":
 				consoleButtonClicked();
+				break;
+			case "set last status done":
+				setLastStatusDone(true);
+				break;
+			case "set last status error":
+				setLastStatusDone(false);
+				break;
+			case "initialize camera...":
+				addNewStatus(message);
 				break;
 			default:
 				console.log("unknown command: " + message);
@@ -387,17 +403,24 @@ var ui = (function () {
 	$("#sharpness-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
 
 	/*
-	 *	timeout functions
+	 *	status functions
 	 */
-	
-	setTimeout(function() {turtleIsAwake();}, 2000);
 
+	$("#welcome-screen-status-text").append("<p class='animation-typewriter'>turtle is awake</p>");
 	$("#welcome-screen-status-text").children().last().attr('data-content', '[ ]');
 
-	function turtleIsAwake() {
-		$("#welcome-screen-status-text").children().last().attr('data-content', '[*]');
-		$("#welcome-screen-status-text").children().last().removeClass('animation-typewriter');
-		$("#welcome-screen-status-text").append("<p class='animation-typewriter'>connecting...</p>");
+	function setLastStatusDone(stat) {
+		if (stat == true) {
+			$("#welcome-screen-status-text").children().last().attr('data-content', '[*]');
+			$("#welcome-screen-status-text").children().last().removeClass('animation-typewriter');
+		}
+		else {
+			$("#welcome-screen-status-text").children().last().attr('data-content', '[!]');
+		}
+	};
+
+	function addNewStatus(status) {
+		$("#welcome-screen-status-text").append("<p class='animation-typewriter'>" + status + "</p>");
 		$("#welcome-screen-status-text").children().last().attr('data-content', '[ ]');
 	};
 	

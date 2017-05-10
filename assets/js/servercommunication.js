@@ -116,6 +116,8 @@ var serverCommunication = (function () {
         socket8080.socket.onopen = function() {
             console.log("Connected with port 8080");
             socket8080.isOpen = true;
+            amplify.publish("all->ui", "set last status done");
+            amplify.publish("all->ui", "initialize camera...");
         };
 
         socket8080.socket.onmessage = function(e) {
@@ -149,6 +151,8 @@ var serverCommunication = (function () {
             console.log("Connection closed. Log: " + e.data);
             socket8080.socket = null;
             socket8080.isOpen = null;
+
+            amplify.publish("all->ui", "set last status error");
 
             setTimeout(function(){connect8080()}, 1000);
         };

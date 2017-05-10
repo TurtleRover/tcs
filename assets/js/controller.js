@@ -77,6 +77,7 @@ var controller = (function () {
 		//	start python server
 		setTimeout(function () {
 			amplify.publish("controller->linux", "start python server");
+			amplify.publish("controller->ui", "turtle is awake");
 		}, 1500);
 	};
 
