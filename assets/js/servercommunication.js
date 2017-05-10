@@ -137,7 +137,8 @@ var serverCommunication = (function () {
                     var voltage = arr[1];
                     voltage = voltage / 14 + 0.3 // voltage divider
                     var str_voltage = voltage.toString();
-                    $("#battery-level-text").text(str_voltage.substr(0,4) + " V");
+                    $("#battery-level-text").text("battery voltage: " + str_voltage.substr(0,4) + " V");
+                    if (DEBUG) console.log("battery level: " + $("#battery-level-text").text());
                 }
                 //  read signal strength
                 else if (arr[0] == 0x41) {

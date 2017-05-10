@@ -337,7 +337,7 @@ var ui = (function () {
 				displayWelocmeScreen();
 				setLastStatusDone(true);
 				addNewStatus("turtle is ready to go!");
-				setTimeout(function() {setLastStatusDone(true);}, 1000);
+				setTimeout(function() {setLastStatusDone(true);addNewStatus("battery voltage: ", "battery-level-text", false)}, 1000);
 				break;
 			case "turtle is awake":
 				setLastStatusDone(true);
@@ -419,9 +419,10 @@ var ui = (function () {
 		}
 	};
 
-	function addNewStatus(status) {
-		$("#welcome-screen-status-text").append("<p class='animation-typewriter'>" + status + "</p>");
-		$("#welcome-screen-status-text").children().last().attr('data-content', '[ ]');
+	function addNewStatus(status, id, before) {
+		$("#welcome-screen-status-text").append("<p class='animation-typewriter' id='" + id + "'>" + status + "</p>");
+		if (before != false) $("#welcome-screen-status-text").children().last().attr('data-content', '[ ]');
+		else $("#welcome-screen-status-text").children().last().attr('data-content', "\00 \00");
 	};
 	
 	/*
