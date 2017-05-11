@@ -130,7 +130,6 @@ var serverCommunication = (function () {
                 var hex = '';
                 for (var i = 0; i < arr.length; i++)
                     hex += ('00' + arr[i].toString(16)).substr(-2);
-                if (DEBUG) console.log("Binary message received from RPi: " + hex);
 
                 //  read battery voltage
                 if (arr[0] == 0x31) {
@@ -138,12 +137,20 @@ var serverCommunication = (function () {
                     voltage = voltage / 14 + 0.3 // voltage divider
                     var str_voltage = voltage.toString();
                     $("#battery-level-text").text("battery voltage: " + str_voltage.substr(0,4) + " V");
-                    if (DEBUG) console.log($("#battery-level-text").text());
                 }
                 //  read signal strength
                 else if (arr[0] == 0x41) {
                     var signal = arr[1];
                     $("#signal-strength-text").text("signal strength: -" + signal.toString() + " dBm");
+
+                    /*
+                     *  set icon according to signal strength
+                     */
+                    if (signal < 50) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-4.svg");
+                    else if (signal < 58) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-3.svg");
+                    else if (signal < 66) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-2.svg");
+                    else if (signal < 74) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-1.svg");
+                    else $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-0.svg");
                 }
                 //  read processor temperature
                 else if (arr[0] == 0x61) {
@@ -191,7 +198,7 @@ var serverCommunication = (function () {
                 for (var i = 0; i < arr.length; i++)
                     hex += ('00' + arr[i].toString(16)).substr(-2);
                     
-                if(DEBUG) console.log("Binary message sent. " + hex);
+                // if(DEBUG) console.log("Binary message sent. " + hex);
 
                 /*
                  *  command to send
@@ -209,7 +216,7 @@ var serverCommunication = (function () {
                 for (var i = 0; i < arr.length; i++)
                     hex += ('00' + arr[i].toString(16)).substr(-2);
                     
-                if(DEBUG) console.log("Binary message sent. " + hex);
+                // if(DEBUG) console.log("Binary message sent. " + hex);
             }
         };
 
@@ -238,7 +245,7 @@ var serverCommunication = (function () {
                 for (var i = 0; i < arr.length; i++)
                     hex += ('00' + arr[i].toString(16)).substr(-2);
                	
-                if(DEBUG) console.log("Binary message sent. " + hex);
+                // if(DEBUG) console.log("Binary message sent. " + hex);
             }
             else {
                 console.log("Connection not opened.");
@@ -267,7 +274,7 @@ var serverCommunication = (function () {
                 for (var i = 0; i < arr.length; i++)
                     hex += ('00' + arr[i].toString(16)).substr(-2);
                     
-                if(DEBUG) console.log("Binary message sent. " + hex);
+                // if(DEBUG) console.log("Binary message sent. " + hex);
             }
             else console.log("Connection not opened.");
         };
@@ -287,7 +294,7 @@ var serverCommunication = (function () {
                 for (var i = 0; i < arr.length; i++)
                     hex += ('00' + arr[i].toString(16)).substr(-2);
                     
-                if(DEBUG) console.log("Binary message sent. " + hex);
+                // if(DEBUG) console.log("Binary message sent. " + hex);
             }
             else console.log("Connection not opened.");
         };
@@ -307,7 +314,7 @@ var serverCommunication = (function () {
                 for (var i = 0; i < arr.length; i++)
                     hex += ('00' + arr[i].toString(16)).substr(-2);
                     
-                if(DEBUG) console.log("Binary message sent. " + hex);
+                // if(DEBUG) console.log("Binary message sent. " + hex);
             }
             else console.log("Connection not opened.");
         };
@@ -327,7 +334,7 @@ var serverCommunication = (function () {
                 for (var i = 0; i < arr.length; i++)
                     hex += ('00' + arr[i].toString(16)).substr(-2);
                     
-                if(DEBUG) console.log("Binary message sent. " + hex);
+                // if(DEBUG) console.log("Binary message sent. " + hex);
             }
             else console.log("Connection not opened.");
         };

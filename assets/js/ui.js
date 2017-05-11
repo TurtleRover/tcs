@@ -276,6 +276,10 @@ var ui = (function () {
 			link.download = "turtle_" + d.getFullYear() + "_" + d.getMonth() + 1 + "_" + d.getDate() + "_" + d.getHours() + "_" + d.getMinutes() + "_" + d.getSeconds() + ".png";
 	}
 
+	function recordVideo() {
+		amplify.publish("ui->webrtc", "start stop recording");
+	}
+
 	/*
 	 *	full screen mode has been changed
 	 */ 
@@ -390,6 +394,7 @@ var ui = (function () {
 	$("#languageSelector").change(function(e, data) {languageChanged(data);});
 	$(".fullscreen-button-img").click(function() {toggleFullScreen();});
 	$("#snap-button-img").click(function() {takeScreenShot();});
+	$("#record-button-img").click(function() {recordVideo();});
 	$(document).bind("fullscreenchange", function() {changedFullScreen();});
 	$("#advanced-interface-button").change(function(e, data) {advancedInterfaceChanged();});
 	$("#go-button").click(function() {

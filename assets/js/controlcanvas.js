@@ -151,7 +151,7 @@ var controlCanvas = (function () {
 
     function updateMotors(event) {
         mousePosition = getMousePosition(canvas, event);
-        console.log(mousePosition);
+        // console.log(mousePosition);
 
         var direction = 1;
 
