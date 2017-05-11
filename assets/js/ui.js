@@ -340,7 +340,7 @@ var ui = (function () {
 				setTimeout(function() {
 					setLastStatusDone(true);
 					addNewStatus("battery voltage: ", "battery-level-text", false);
-					addNewStatus("signal strenght: ", "signal-strength-text", false);
+					addNewStatus("signal strength: ", "signal-strength-text", false);
 					addNewStatus("processor temp.: ", "processor-temperature-text", false);
 				}, 1000);
 				break;

@@ -196,6 +196,11 @@
     border-right: 0px;
 }
 
+#signal-strength-text, #processor-temperature-text {
+    text-transform: none !important;
+    border-right: 0px;
+}
+
 .animation-typewriter {
     border-right: 5px solid rgba(255,255,255,.75);
     animation: typewriter 1s steps(20) 0.1s 1 normal both, 1s blinkTextCursor step-end infinite;

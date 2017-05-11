@@ -138,12 +138,17 @@ var serverCommunication = (function () {
                     voltage = voltage / 14 + 0.3 // voltage divider
                     var str_voltage = voltage.toString();
                     $("#battery-level-text").text("battery voltage: " + str_voltage.substr(0,4) + " V");
-                    if (DEBUG) console.log("battery level: " + $("#battery-level-text").text());
+                    if (DEBUG) console.log($("#battery-level-text").text());
                 }
                 //  read signal strength
                 else if (arr[0] == 0x41) {
                     var signal = arr[1];
-                    $("#signal-strength-text").text(signal.toString() + " %");
+                    $("#signal-strength-text").text("signal strength: -" + signal.toString() + " dBm");
+                }
+                //  read processor temperature
+                else if (arr[0] == 0x61) {
+                    var temperature = arr[1];
+                    $("#processor-temperature-text").text("processor temp.: " + temperature.toString() + " °C");
                 }
             }
         };
@@ -308,6 +313,26 @@ var serverCommunication = (function () {
         };
 
         /*
+         *  get processor temperature
+         */
+        function getProcessorTemperature() {
+            if (socket8080.isOpen) {
+                var buf = new ArrayBuffer(1);
+                var arr = new Uint8Array(buf);
+                arr[0] = 0x60;
+                socket8080.socket.send(buf);
+                
+                // Convert to readable form
+                var hex = '';
+                for (var i = 0; i < arr.length; i++)
+                    hex += ('00' + arr[i].toString(16)).substr(-2);
+                    
+                if(DEBUG) console.log("Binary message sent. " + hex);
+            }
+            else console.log("Connection not opened.");
+        };
+
+        /*
          *  update all camera settings
          */
         function updateCameraSettings() {
@@ -351,7 +376,8 @@ var serverCommunication = (function () {
         setInterval(function () {
             if(socket8080.isOpen) {
                 getBatteryLevel();
-                // getSignalLevel();
+                getSignalLevel();
+                getProcessorTemperature();
             }
         }, BAT_INTERVAL);
     };

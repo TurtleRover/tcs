@@ -59,7 +59,7 @@ class MyServerProtocol(WebSocketServerProtocol):
                 elif payload[0] == 0x30:
                     received = readBatteryVoltage()
                 elif payload[0] == 0x40:
-                    f = os.popen('iw wlan1 station dump | grep "signal avg" | grep -ohP "signal avg:\t-[0-9]*" | grep -ohP "\-[0-9]*"')
+                    f = os.popen('iw wlan1 station dump | grep "signal avg" | grep -ohP "signal avg:\t-[0-9]*" | grep -ohP "[0-9]*" | tail -1')
                     signal = f.read()
                     signal = signal[:len(signal)-1]
                     received = [0x41, int(signal)]
@@ -68,6 +68,11 @@ class MyServerProtocol(WebSocketServerProtocol):
                     ' --set-ctrl hue=' + str(np.int8(payload[4])) + ' --set-ctrl gamma=' + str( np.uint16((np.uint8(payload[5]) << 8) + np.uint(payload[6])) ) + ' --set-ctrl gain=' + str(np.uint8(payload[7])) + \
                     ' --set-ctrl sharpness=' + str(np.uint8(payload[8])) )
                     received = [0x51]
+                elif payload[0] == 0x60:
+                    f = os.popen('vcgencmd measure_temp | grep -ohP "=[0-9]*" | cut -c 2-')
+                    temperature = f.read()
+                    temperature = temperature[:len(temperature)-1]
+                    received = [0x61, int(temperature)]
                 '''elif payload[0] == 0x84:
                     setNewServoPosition(payload[1], payload[2], payload[3])
                     result = [0x85, 0x00]
