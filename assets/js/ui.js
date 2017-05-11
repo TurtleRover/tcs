@@ -337,7 +337,12 @@ var ui = (function () {
 				displayWelocmeScreen();
 				setLastStatusDone(true);
 				addNewStatus("turtle is ready to go!");
-				setTimeout(function() {setLastStatusDone(true);addNewStatus("battery voltage: ", "battery-level-text", false)}, 1000);
+				setTimeout(function() {
+					setLastStatusDone(true);
+					addNewStatus("battery voltage: ", "battery-level-text", false);
+					addNewStatus("signal strenght: ", "signal-strength-text", false);
+					addNewStatus("processor temp.: ", "processor-temperature-text", false);
+				}, 1000);
 				break;
 			case "turtle is awake":
 				setLastStatusDone(true);
