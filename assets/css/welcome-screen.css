@@ -49,7 +49,7 @@
 }
 
 #welcome-screen-horizontal-wrapper-text {
-    height: 10%;
+    height: auto;
     top: auto;
     margin: 0;
     padding: 0;
