@@ -581,6 +581,20 @@ body.is-menu-visible #control-container-div {
      filter: invert(100%);
  }
 
+ #circle-img {
+     position: absolute;
+     margin: auto !important;
+     overflow: auto;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     height: 100% !important;
+     width: auto;
+     opacity: 0.25;
+     max-width: 200% !important;
+ }
+
   #turtle-top-view-div {
      position: relative;
      left: 10px;

@@ -56,17 +56,15 @@
 }
 
 #welcome-screen-horizontal-wrapper-logo {
+    background-image: url("../../assets/img/welcome-screen/turtle-logo.svg");
+    background-size: auto 70%;
+    background-position: center center;
+    background-repeat: no-repeat;
     position: relative;
     height: 60px;
     top: auto;
     margin: 0;
     padding: 0;
-}
-
-#welcome-screen-horizontal-logo {
-    content:url("../../assets/img/welcome-screen/turtle-logo.svg");
-    height: 70%;
-    width: auto;
 }
 
 #welcome-screen-adventure-text {

@@ -293,6 +293,22 @@ var ui = (function () {
 	}
 
 	/*
+	 *	show or hide side menu
+	 */
+	function showHideMenu(pointer) {
+		if (pointer.is(":visible")) {
+			setTimeout(function() {pointer.hide();},250);
+			var height = String(pointer.height()) + "px";
+			pointer.transition({ y: height });
+		}
+		else {
+			pointer.show();
+			var height = "-" + String(pointer.height()) + "px";
+			pointer.transition({ y: 0 });
+		}
+	}
+
+	/*
 	 *	display notification for a user using noty library
 	 */
 	function displayNotification(id) {
@@ -403,6 +419,8 @@ var ui = (function () {
 		toggleFullScreen();
 		amplify.publish("ui->controller", "GO button is pressed");
 	});
+
+	$("#show-hide-right-menu-img").click(function() {showHideMenu($("#right-navigation-div"));});
 
 	$("#brightness-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
 	$("#contrast-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
