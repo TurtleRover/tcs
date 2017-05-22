@@ -95,6 +95,9 @@ var serverCommunication = (function () {
                 case "update camera settings":
                     updateCameraSettings();
                     break;
+                case "set new gripper position":
+                    setNewGripperPosition();
+                    break;
                 default:
                     console.log("unknown command: " + message);
             }
@@ -219,6 +222,22 @@ var serverCommunication = (function () {
                 // if(DEBUG) console.log("Binary message sent. " + hex);
             }
         };
+
+        function setNewGripperPosition() {
+            //var gripperPosition = manipulator.getGripperPosition();
+            var gripperPosition = $("#mani-gripper").val();
+            console.log("New gripper position: "+ gripperPosition);
+            if (socket8080.isOpen) {
+                var buf = new ArrayBuffer(3);
+                var arr = new Uint8Array(buf);
+
+                arr[0] = 0x94;
+                arr[1] = (gripperPosition >> 8) & 0x7F;
+                arr[2] = gripperPosition & 0x7F;
+
+                socket8080.socket.send(buf);
+            }
+        }
 
         /*
         *  set all motors values

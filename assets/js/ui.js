@@ -430,6 +430,8 @@ var ui = (function () {
 	$("#gain-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
 	$("#sharpness-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
 
+	$("#mani-gripper").change(function(e, data) {amplify.publish("ui->port8080", "set new gripper position");});
+
 	/*
 	 *	status functions
 	 */

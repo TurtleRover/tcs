@@ -39,10 +39,12 @@ def readBatteryVoltage():
 	return data
 
 #	Set servo values
-def setNewServoPosition(servo, msb, lsb):
-	'''command = [0x84]
-	command.append(servo)
+def setNewGripperPosition(msb, lsb):
+	command = [0x94]
 	command.append(msb)
 	command.append(lsb)
-
-	sendI2C(command)'''
+	command.append(0x00)
+	command.append(0x00)
+	command.append(0x0D)
+	command.append(0x0A)
+	sendSerial(command)

@@ -99,6 +99,10 @@ var manipulator = ( function () {
         }
     }
 
+    var gripperPosition = {
+        gripperTimer: 3600
+    }
+
     /*
 	 * 																		SUBSCRIBE to all topics
 	 */
@@ -186,6 +190,10 @@ var manipulator = ( function () {
         return currentPosition;
     };
 
+    function getGripperPositionPriv() {
+        return gripperPosition.gripperTimer;
+    };
+
     function setPositionPriv() {};
 
     /*
@@ -193,6 +201,7 @@ var manipulator = ( function () {
      */
     return {
         getCurrentPosition : getCurrentPositionPriv,
+        getGripperPosition : getGripperPositionPriv,
         setPosition : setPositionPriv
     };
 })();
