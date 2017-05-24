@@ -431,6 +431,11 @@ var ui = (function () {
 	$("#sharpness-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
 
 	$("#mani-gripper").change(function(e, data) {amplify.publish("ui->port8080", "set new gripper position");});
+	$("#mani-axis-1").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
+	$("#mani-axis-2").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
+
+	$("#mani-x").change(function(e, data) {amplify.publish("ui->manipulator", "move mani");});
+	$("#mani-y").change(function(e, data) {amplify.publish("ui->manipulator", "move mani");});
 
 	/*
 	 *	status functions

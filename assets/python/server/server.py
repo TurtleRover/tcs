@@ -73,6 +73,10 @@ class MyServerProtocol(WebSocketServerProtocol):
                     temperature = f.read()
                     temperature = temperature[:len(temperature)-1]
                     received = [0x61, int(temperature)]
+                elif payload[0] == 0x84:
+                    setNewManiPosition(payload[1], payload[2], payload[3], payload[4])
+                    #   add CRC
+                    received = [0x85, 0x00]
                 elif payload[0] == 0x94:
                     setNewGripperPosition(payload[1], payload[2])
                     #   add CRC

@@ -6,15 +6,15 @@ b = 220
 
 # generate angles in radians
 res = 100
-alpha = linspace(30, 135, res)
-beta = linspace(120, 225, res)
+alpha = linspace(20, 135, res)
+beta = linspace(90, 225, res)
 
 x = zeros(res,res)
 y = zeros(res,res)
 
 [i,j] = meshgrid(1:numel(alpha),1:numel(beta))
-x = a * cosd(alpha(i)) + b * cosd(180 - beta(j))
-y = a * sind(alpha(i)) - b * sind(180 - beta(j))
+x = a * cosd(alpha(i)) + b * cosd(203.5 - beta(j))
+y = a * sind(alpha(i)) - b * sind(203.5 - beta(j))
 
 # generate linear approximation
 res = 25

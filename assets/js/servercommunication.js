@@ -79,7 +79,7 @@ var serverCommunication = (function () {
 
             switch (message) {
                 case "set new servo position":
-                    setNewServoPosition();
+                    setNewManiPosition();
                     break;
                 default:
                     console.log("unknown command: " + message);
@@ -97,6 +97,9 @@ var serverCommunication = (function () {
                     break;
                 case "set new gripper position":
                     setNewGripperPosition();
+                    break;
+                case "set new mani position":
+                    setNewManiPosition();
                     break;
                 default:
                     console.log("unknown command: " + message);
@@ -176,50 +179,26 @@ var serverCommunication = (function () {
         /*
          *  set new position of servo
          */
-        function setNewServoPosition() {
-            var newPosition = manipulator.getCurrentPosition();
-            console.log("New servo positions: " + newPosition.alpha + "\t" + newPosition.beta);
+        function setNewManiPosition() {
+            //var newPosition = manipulator.getCurrentPosition();
             if (socket8080.isOpen) {
-                var alphaValue = newPosition.alpha * 4;   //  in quarter of microseconds
-                var betaValue = newPosition.beta * 4;
-                var buf = new ArrayBuffer(4);
+                /*var alphaValue = newPosition.alpha * 4;   //  in quarter of microseconds
+                var betaValue = newPosition.beta * 4;*/
+                var buf = new ArrayBuffer(5);
                 var arr = new Uint8Array(buf);
 
-                /*
-                 *  command to send
-                 *  https://www.pololu.com/docs/0J40/5.c
-                 */
+                var axis_1 = $("#mani-axis-1").val();
+                var axis_2 = $("#mani-axis-2").val();
+
+                console.log("New mani position: " + axis_1 + "\t" + axis_2);
+
                 arr[0] = 0x84;
-                arr[1] = 0x00;
+                arr[1] = (axis_1 >> 8) & 0xFF;
+                arr[2] = axis_1 & 0xFF;
+                arr[3] = (axis_2 >> 8) & 0xFF;
+                arr[4] = axis_2 & 0xFF;
 
-                arr[2] = alphaValue & 0x7F;
-                arr[3] = (alphaValue >> 7) & 0x7F;
                 socket8080.socket.send(buf);
-
-                // Convert to readable form
-                var hex = '';
-                for (var i = 0; i < arr.length; i++)
-                    hex += ('00' + arr[i].toString(16)).substr(-2);
-                    
-                // if(DEBUG) console.log("Binary message sent. " + hex);
-
-                /*
-                 *  command to send
-                 *  https://www.pololu.com/docs/0J40/5.c
-                 */
-                arr[0] = 0x84;
-                arr[1] = 0x01;
-
-                arr[2] = betaValue & 0x7F;
-                arr[3] = (betaValue >> 7) & 0x7F;
-                socket8080.socket.send(buf);
-
-                // Convert to readable form
-                var hex = '';
-                for (var i = 0; i < arr.length; i++)
-                    hex += ('00' + arr[i].toString(16)).substr(-2);
-                    
-                // if(DEBUG) console.log("Binary message sent. " + hex);
             }
         };
 
@@ -232,8 +211,8 @@ var serverCommunication = (function () {
                 var arr = new Uint8Array(buf);
 
                 arr[0] = 0x94;
-                arr[1] = (gripperPosition >> 8) & 0x7F;
-                arr[2] = gripperPosition & 0x7F;
+                arr[1] = (gripperPosition >> 8) & 0xFF;
+                arr[2] = gripperPosition & 0xFF;
 
                 socket8080.socket.send(buf);
             }
