@@ -430,8 +430,7 @@ var ui = (function () {
 	$("#gain-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
 	$("#sharpness-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
 
-	$("#gripper-slider").change(function(e, data) {console.log("DUPA")});
-	$("#mani-gripper").change(function(e, data) {amplify.publish("ui->port8080", "set new gripper position");});
+	$("#gripper-slider").on("input", function(e, data) {amplify.publish("ui->port8080", "set new gripper position");});
 	$("#mani-axis-1").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
 	$("#mani-axis-2").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
 
