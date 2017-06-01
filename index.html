@@ -154,7 +154,7 @@
 										</div>
 									</li>
 
-									<!--
+									
 									<li>
 										<button class="accordion">camera settings</button>
 										<div class="panel">
@@ -194,8 +194,7 @@
 												<div id="clear"></div>
 											</div>
 										</div>
-									</li>
-									-->
+									</li>																	
 
 									<li>
 										<button class="accordion">Language</button>
@@ -262,7 +261,6 @@
 						<div class="welcome-screen-horizontal-wrapper" id="welcome-screen-horizontal-wrapper-text">
 							<h1 id="welcome-screen-adventure-text">Let's start an adventure!</h1>
 						</div>
-
 						<div class="welcome-screen-horizontal-wrapper" id="welcome-screen-horizontal-wrapper-button">
 							<div id="welcome-screen-button-left" class="welcome-screen-button">&nbsp;</div>
 							<div id="welcome-screen-button-center" class="welcome-screen-button"><button id="go-button"></button></div>
@@ -298,6 +296,7 @@
 							<h2 id="session-time-h1">0:00</h2>
 						</div>
 					</div>
+
 				</div>
 			</section>
 
@@ -310,16 +309,34 @@
 							<img id="right-navigation-cross-img" src="assets/img/ui/right-krzyz.svg" draggable="false" onmousedown="return false" style="user-drag:none">
 							<img id="turtle-navigation-view-img" src="assets/img/ui/right-lazik.svg" draggable="false" onmousedown="return false" style="user-drag:none">
 
-							<!-- <div id="navigation-ring-div" draggable="false" onmousedown="return false" style="user-drag: none" hidden>
-								dupa -->
-								<!-- <img id="navigation-ring-img" src="assets/img/navigation/tech-ring.png" draggable="false" onmousedown="return false" style="user-drag: none"> -->
 							<canvas id="navigation-ring-canvas"></canvas>
-							<!-- </div> -->
 
 							<div id="turtle-top-view-left-top-div" class="advanced-interface"><p id="turtle-top-view-left-top-p" class="debug-text">0%</p></div>
 							<div id="turtle-top-view-right-top-div" class="advanced-interface"><p id="turtle-top-view-right-top-p" class="debug-text">0%</p></div>
 							<div id="turtle-top-view-left-bottom-div" class="advanced-interface"><p id="turtle-top-view-left-bottom-p" class="debug-text">0%</p></div>
 							<div id="turtle-top-view-right-bottom-div" class="advanced-interface"><p id="turtle-top-view-right-bottom-p" class="debug-text">0%</p></div>
+						</div>
+					</div>
+
+					<div id="left-navigation-div" draggable="false" style="user-drag: none">
+						
+						<div class="transparent-background-div" id="transparent-background-navigation-right"></div>
+						<div id="grab-drive-wrapper">
+							<div class="grab-drive-class" id="grab-div"><p class="grab-drive-text grab-drive-text-empty-dot" id="grab-text">grab</p></div>
+							<div class="grab-drive-class" id="drive-div"><p class="grab-drive-text grab-drive-text-empty-dot grab-drive-text-filled-dot" id="drive-text">drive</p></div>
+						</div>
+
+						<div id="gripper-wrapper">
+							<div id="gripper-slider-wrapper">
+								<div class="flat-slider-wrapper">
+									<div class="flat-slider gripper-slider" id="gripper-slider"><input type="range" class="flat-slider-horizontal" id="gripper-slider-input" max="128" min="0" step="1" value="60"/></div>
+									<div id="clear"></div>
+								</div>
+							</div>
+							<div id="gripper-images-wrapper">
+								<img src="assets/img/ui/left-chwytak-otwarty.svg" class="gripper-img" id="left-gripper-img">
+								<img src="assets/img/ui/left-chwytak-zamkniety.svg" class="gripper-img" id="right-gripper-img">
+							</div>
 						</div>
 					</div>
 				</div>

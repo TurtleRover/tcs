@@ -430,12 +430,28 @@ var ui = (function () {
 	$("#gain-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
 	$("#sharpness-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
 
+	$("#gripper-slider").change(function(e, data) {console.log("DUPA")});
 	$("#mani-gripper").change(function(e, data) {amplify.publish("ui->port8080", "set new gripper position");});
 	$("#mani-axis-1").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
 	$("#mani-axis-2").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
 
 	$("#mani-x").change(function(e, data) {amplify.publish("ui->manipulator", "move mani");});
 	$("#mani-y").change(function(e, data) {amplify.publish("ui->manipulator", "move mani");});
+
+	$("#grab-text").click(function(e, data) {
+		$("#grab-text").addClass("grab-drive-text-filled-dot");
+		$("#drive-text").removeClass("grab-drive-text-filled-dot");
+		$("#right-navigation-cross-img").attr('src', 'assets/img/ui/right-krzyz-mani.svg');
+		$("#turtle-navigation-view-img").attr('src', 'assets/img/ui/right-manipulator.svg');
+	});
+
+	$("#drive-text").click(function(e, data) {
+		$("#drive-text").addClass("grab-drive-text-filled-dot");
+		$("#grab-text").removeClass("grab-drive-text-filled-dot");
+		$("#right-navigation-cross-img").attr('src', 'assets/img/ui/right-krzyz.svg');
+		$("#turtle-navigation-view-img").attr('src', 'assets/img/ui/right-lazik.svg');
+	});
+
 
 	/*
 	 *	status functions

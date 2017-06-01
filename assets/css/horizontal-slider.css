@@ -30,6 +30,12 @@
     padding: 0;
 }
 
+.gripper-slider {
+    width: 80%;
+    margin-right: 10%;
+    padding: 0;
+}
+
 .flat-slider-horizontal {
     width: 90%;
     background-color: transparent;
