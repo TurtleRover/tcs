@@ -162,8 +162,8 @@ var webrtc = (function () {
                     var command = {
                         command_id: "offer",
                         options: {
-                            force_hw_vcodec: false,
-                            vformat: 55
+                            force_hw_vcodec: true,
+                            vformat: 30
                         }
                     };
                     ws.send(JSON.stringify(command));
