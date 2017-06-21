@@ -1,0 +1,52 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Motor_Module.py	assets/python/server/Motor_Module/Motor_Module.py	1;"	kind:file	line:1
+MyClientProtocol	assets/python/server/client.py	/^class MyClientProtocol(WebSocketClientProtocol):$/;"	kind:class	line:31
+MyClientProtocol	assets/python/server/client_coroutines.py	/^class MyClientProtocol(WebSocketClientProtocol):$/;"	kind:class	line:36
+MyClientProtocol	assets/python/server/client_coroutines_py2.py	/^class MyClientProtocol(WebSocketClientProtocol):$/;"	kind:class	line:33
+MyServerProtocol	assets/python/server/server.py	/^class MyServerProtocol(WebSocketServerProtocol):$/;"	kind:class	line:41
+client.py	assets/python/server/client.py	1;"	kind:file	line:1
+client_coroutines.py	assets/python/server/client_coroutines.py	1;"	kind:file	line:1
+client_coroutines_py2.py	assets/python/server/client_coroutines_py2.py	1;"	kind:file	line:1
+coro	assets/python/server/client.py	/^    coro = loop.create_connection(factory, '127.0.0.1', 9000)$/;"	kind:variable	line:69
+coro	assets/python/server/client_coroutines.py	/^    coro = loop.create_connection(factory, '127.0.0.1', 9000)$/;"	kind:variable	line:67
+coro	assets/python/server/client_coroutines_py2.py	/^    coro = loop.create_connection(factory, '127.0.0.1', 9000)$/;"	kind:variable	line:64
+coro	assets/python/server/server.py	/^    coro = loop.create_server(factory, '0.0.0.0', 8080)$/;"	kind:variable	line:116
+factory	assets/python/server/client.py	/^    factory = WebSocketClientFactory(u"ws:\/\/127.0.0.1:9000")$/;"	kind:variable	line:65
+factory	assets/python/server/client_coroutines.py	/^    factory = WebSocketClientFactory(u"ws:\/\/127.0.0.1:9000")$/;"	kind:variable	line:63
+factory	assets/python/server/client_coroutines_py2.py	/^    factory = WebSocketClientFactory(u"ws:\/\/127.0.0.1:9000")$/;"	kind:variable	line:60
+factory	assets/python/server/server.py	/^    factory = WebSocketServerFactory(u"ws:\/\/127.0.0.1:8080")$/;"	kind:variable	line:112
+hello	assets/python/server/client.py	/^        def hello():$/;"	kind:function	line:39
+loop	assets/python/server/client.py	/^    loop = asyncio.get_event_loop()$/;"	kind:variable	line:68
+loop	assets/python/server/client_coroutines.py	/^    loop = asyncio.get_event_loop()$/;"	kind:variable	line:66
+loop	assets/python/server/client_coroutines_py2.py	/^    loop = trollius.get_event_loop()$/;"	kind:variable	line:63
+loop	assets/python/server/server.py	/^    loop = asyncio.get_event_loop()$/;"	kind:variable	line:115
+onClose	assets/python/server/client.py	/^    def onClose(self, wasClean, code, reason):$/;"	kind:member	line:53
+onClose	assets/python/server/client_coroutines.py	/^    def onClose(self, wasClean, code, reason):$/;"	kind:member	line:57
+onClose	assets/python/server/client_coroutines_py2.py	/^    def onClose(self, wasClean, code, reason):$/;"	kind:member	line:54
+onClose	assets/python/server/server.py	/^    def onClose(self, wasClean, code, reason):$/;"	kind:member	line:99
+onConnect	assets/python/server/client.py	/^    def onConnect(self, response):$/;"	kind:member	line:33
+onConnect	assets/python/server/client_coroutines.py	/^    def onConnect(self, response):$/;"	kind:member	line:38
+onConnect	assets/python/server/client_coroutines_py2.py	/^    def onConnect(self, response):$/;"	kind:member	line:35
+onConnect	assets/python/server/server.py	/^    def onConnect(self, request):$/;"	kind:member	line:43
+onMessage	assets/python/server/client.py	/^    def onMessage(self, payload, isBinary):$/;"	kind:member	line:47
+onMessage	assets/python/server/client_coroutines.py	/^    def onMessage(self, payload, isBinary):$/;"	kind:member	line:51
+onMessage	assets/python/server/client_coroutines_py2.py	/^    def onMessage(self, payload, isBinary):$/;"	kind:member	line:48
+onMessage	assets/python/server/server.py	/^    def onMessage(self, payload, isBinary):$/;"	kind:member	line:50
+onOpen	assets/python/server/client.py	/^    def onOpen(self):$/;"	kind:member	line:36
+onOpen	assets/python/server/client_coroutines.py	/^    def onOpen(self):$/;"	kind:member	line:42
+onOpen	assets/python/server/client_coroutines_py2.py	/^    def onOpen(self):$/;"	kind:member	line:39
+onOpen	assets/python/server/server.py	/^    def onOpen(self):$/;"	kind:member	line:46
+readBatteryVoltage	assets/python/server/Motor_Module/Motor_Module.py	/^def readBatteryVoltage():$/;"	kind:function	line:26
+sendSerial	assets/python/server/Hardware_Communication/turtleSerial.py	/^def sendSerial (message):$/;"	kind:function	line:13
+ser	assets/python/server/Hardware_Communication/turtleSerial.py	/^ser = serial.Serial("\/dev\/serial0")$/;"	kind:variable	line:10
+server	assets/python/server/server.py	/^    server = loop.run_until_complete(coro)$/;"	kind:variable	line:117
+server.py	assets/python/server/server.py	1;"	kind:file	line:1
+setNewGripperPosition	assets/python/server/Motor_Module/Motor_Module.py	/^def setNewGripperPosition(msb, lsb):$/;"	kind:function	line:42
+setNewManiPosition	assets/python/server/Motor_Module/Motor_Module.py	/^def setNewManiPosition(axis_1_msb, axis_1_lsb, axis_2_msb, axis_2_lsb):$/;"	kind:function	line:53
+turtleSerial.py	assets/python/server/Hardware_Communication/turtleSerial.py	1;"	kind:file	line:1
+updateMotors	assets/python/server/Motor_Module/Motor_Module.py	/^def updateMotors (PWM1, PWM2, PWM3, PWM4):$/;"	kind:function	line:13

@@ -442,6 +442,7 @@ var ui = (function () {
 		$("#drive-text").removeClass("grab-drive-text-filled-dot");
 		$("#right-navigation-cross-img").attr('src', 'assets/img/ui/right-krzyz-mani.svg');
 		$("#turtle-navigation-view-img").attr('src', 'assets/img/ui/right-manipulator.svg');
+		amplify.publish("ui->controlCanvas", "set function to GRAB");
 	});
 
 	$("#drive-text").click(function(e, data) {
@@ -449,6 +450,7 @@ var ui = (function () {
 		$("#grab-text").removeClass("grab-drive-text-filled-dot");
 		$("#right-navigation-cross-img").attr('src', 'assets/img/ui/right-krzyz.svg');
 		$("#turtle-navigation-view-img").attr('src', 'assets/img/ui/right-lazik.svg');
+		amplify.publish("ui->controlCanvas", "set function to DRIVE");
 	});
 
 

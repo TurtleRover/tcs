@@ -182,39 +182,47 @@ var webrtc = (function () {
 
                 ws.onmessage = function (evt) {
                     var msg = JSON.parse(evt.data);
+                    if (msg.what !== 'undefined') {
+                        var what = msg.what;
+                        var data = msg.data;
+                    } else { /* TODO: for backward compatibility, remove this branch in the future */
+                        var what = msg.type;
+                        var data = msg; // only used for 'offer' in the switch case below
+                        console.log("still using the old API?");
+                    }
                     //console.log("message=" + msg);
-                    console.log("type=" + msg.type);
+                    console.log("message =" + what);
 
-                    switch (msg.type) {
+                    switch (what) {
                         case "offer":
-                            pc.setRemoteDescription(new RTCSessionDescription(msg),
-                                function onRemoteSdpSuccess() {
-                                    console.log('onRemoteSdpSucces()');
-                                    pc.createAnswer(function (sessionDescription) {
-                                        pc.setLocalDescription(sessionDescription);
-                                        var command = {
-                                            command_id: "answer",
-                                            data: JSON.stringify(sessionDescription)
-                                        };
-                                        ws.send(JSON.stringify(command));
-                                        console.log(command);
+                            pc.setRemoteDescription(new RTCSessionDescription(JSON.parse(data)),
+                                    function onRemoteSdpSuccess() {
+                                        console.log('onRemoteSdpSucces()');
+                                        pc.createAnswer(function (sessionDescription) {
+                                            pc.setLocalDescription(sessionDescription);
+                                            var request = {
+                                                what: "answer",
+                                                data: JSON.stringify(sessionDescription)
+                                            };
+                                            ws.send(JSON.stringify(request));
+                                            console.log(request);
 
-                                    }, function (error) {
-                                        alert("Failed to createAnswer: " + error);
+                                        }, function (error) {
+                                            alert("Failed to createAnswer: " + error);
 
-                                    }, mediaConstraints);
-                                },
-                                function onRemoteSdpError(event) {
-                                    alert('Failed to set remote description (unsupported codec on this browser?): ' + event);
-                                    stop();
-                                }
+                                        }, mediaConstraints);
+                                    },
+                                    function onRemoteSdpError(event) {
+                                        alert('Failed to set remote description (unsupported codec on this browser?): ' + event);
+                                        stop();
+                                    }
                             );
 
-                            var command = {
-                                command_id: "geticecandidate"
+                            var request = {
+                                what: "generateIceCandidates"
                             };
-                            console.log(command);
-                            ws.send(JSON.stringify(command));
+                            console.log(request);
+                            ws.send(JSON.stringify(request));
                             break;
 
                         case "answer":
@@ -224,21 +232,22 @@ var webrtc = (function () {
                             alert(msg.data);
                             break;
 
-                        case "geticecandidate":
+                        case "geticecandidate": // TODO: remove
+                        case "iceCandidates":
                             var candidates = JSON.parse(msg.data);
                             for (var i = 0; candidates && i < candidates.length; i++) {
                                 var elt = candidates[i];
                                 let candidate = new RTCIceCandidate({sdpMLineIndex: elt.sdpMLineIndex, candidate: elt.candidate});
                                 pc.addIceCandidate(candidate,
-                                    function () {
-                                        /* console.log("IceCandidate added: " + JSON.stringify(candidate)); */
-                                    },
-                                    function (error) {
-                                        console.log("addIceCandidate error: " + error);
-                                    }
+                                        function () {
+                                            console.log("IceCandidate added: " + JSON.stringify(candidate));
+                                        },
+                                        function (error) {
+                                            console.error("addIceCandidate error: " + error);
+                                        }
                                 );
                             }
-                            document.documentElement.style.cursor ='default';
+                            document.documentElement.style.cursor = 'default';
                             break;
                     }
                 };

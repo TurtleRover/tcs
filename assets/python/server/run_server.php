@@ -21,7 +21,7 @@
 		exec ("sudo gpio write 1 1");
 		#sleep(1);
         $pidPythonServer = exec("sudo python3 server.py > /dev/null 2>&1 & echo $!");
-        sleep(0.5);
+        sleep(2);
         $pidPythonServer = exec("pidof python3");
 		#sleep(1);
         #$command = "sudo sh ../../bash/start_camera.sh " . $resolution . " > /dev/null 2>&1 & echo $!";

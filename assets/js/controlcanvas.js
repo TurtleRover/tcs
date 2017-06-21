@@ -20,6 +20,23 @@ var controlCanvas = (function () {
 
     };
 
+    amplify.subscribe("ui->controlCanvas", uiMessageCallback);
+    function uiMessageCallback(message) {
+        if (DEBUG) console.log("uiMessageCallback: " + message);
+		if (DEBUG) amplify.publish("all->utests", message);
+
+		switch(message) {
+			case "set function to GRAB":
+				grabOrDrive = "GRAB";
+				break;
+			case "set function to DRIVE":
+				grabOrDrive = "DRIVE";
+				break;
+			default:
+				console.log("unknown command: " + message);
+		}
+    };
+
     /*
 	 * 																		PRIVATE area
 	 */
@@ -50,14 +67,7 @@ var controlCanvas = (function () {
         motor_4: 0
     }
 
-    /*
-     *  describes how the manipulator should be moved
-     */
-    var manipulatorMove = {
-        value: $("#servo-control-input").val(),
-        direction: "unknown",
-        speed: 0    //  in %
-    }
+    var grabOrDrive = "DRIVE";
 
     /*
      *  returns touch position
@@ -80,41 +90,26 @@ var controlCanvas = (function () {
 
     function move(event) {
         if (coordinates.clicked == true) {
-            updateMotors(event);
+            if (grabOrDrive == "DRIVE")
+                updateMotors(event);
         }
     }
 
     function start(event) {
         coordinates.clicked = true;
-        updateMotors(event);
+        if (grabOrDrive == "DRIVE")
+            updateMotors(event);
     }
 
     function stop(event) {
         coordinates.clicked = false;
-        stopMotors();
+        if (grabOrDrive == "DRIVE")
+            stopMotors();
     }
 
     /*
 	 * 																		EVENTS area
 	 */
-
-    /*
-     *                                                                  SERVO
-     */
-    $("#servo-control-div").on("change", function() {
-        servoValueChanged();
-    });
-
-    function servoValueChanged() {
-        if ($("#servo-control-input").val() > manipulatorMove.value)
-            manipulatorMove.direction = "right";
-        else
-            manipulatorMove.direction = "left";
-
-        manipulatorMove.value = $("#servo-control-input").val();
-
-        amplify.publish("controlCanvas->manipulator", "move");
-    }
 
     /*
      *                                                                  MOTORS
@@ -146,7 +141,8 @@ var controlCanvas = (function () {
 
     canvas.mouseout(function(event) {
         coordinates.clicked = false;
-        stopMotors();
+        if (grabOrDrive == "DRIVE")
+            stopMotors();
     });
 
     function updateMotors(event) {
@@ -189,8 +185,8 @@ var controlCanvas = (function () {
             //  TURN
             else {
                 var a = -coordinates.x / circleRadius * 100;
-                leftMotors = a;
-                rightMotors = -a;
+                leftMotors = -a;
+                rightMotors = a;
             }
 
             //  var leftMotors = (coordinates.x >= 0) ? a : b;
@@ -246,16 +242,11 @@ var controlCanvas = (function () {
         return motorsSpeed;
     };
 
-    function getManipulatorMovePriv () {
-        return manipulatorMove;
-    };
-
     /*
 	 * 																		PUBLIC area
 	 */
     return {
         isCoordinatesClicked : isCoordinatesClickedPriv,
         getMotorsSpeed : getMotorsSpeedPriv,
-        getManipulatorMove : getManipulatorMovePriv
     };
 })();
