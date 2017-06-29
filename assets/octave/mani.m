@@ -13,8 +13,8 @@ x = zeros(res,res);
 y = zeros(res,res);
 
 [i,j] = meshgrid(1:numel(alpha),1:numel(beta));
-x = a * cosd(alpha(i)) + b * cosd(203.5 - beta(j));
-y = a * sind(alpha(i)) - b * sind(203.5 - beta(j));
+x = a * cosd(alpha(i)) + b * cosd(175.9 - beta(j));
+y = a * sind(alpha(i)) - b * sind(175.9 - beta(j));
 
 # generate linear approximation
 res = 100;

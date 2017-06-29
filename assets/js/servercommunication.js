@@ -381,7 +381,7 @@ var serverCommunication = (function () {
         setInterval(function () {
             if(socket8080.isOpen) {
                 getBatteryLevel();
-                getSignalLevel();
+                // getSignalLevel();
                 getProcessorTemperature();
             }
         }, BAT_INTERVAL);
