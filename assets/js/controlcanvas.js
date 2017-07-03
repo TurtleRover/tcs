@@ -103,6 +103,7 @@ var controlCanvas = (function () {
         if (grabOrDrive == "DRIVE")
             updateMotors(event);
         else {
+            clearInterval(maniTimerId);
             maniTimerId = setInterval(function () {setNewManiPosition(event);}, 100);
         }
     }
