@@ -159,13 +159,28 @@ var webrtc = (function () {
                     if (stream) {
                         pc.addStream(stream);
                     }
-                    var command = {
-                        command_id: "offer",
-                        options: {
-                            force_hw_vcodec: true,
-                            vformat: 30
-                        }
-                    };
+                    var command;
+
+                    testExp = new RegExp('Android|webOS|iPhone|iPad|' + 'BlackBerry|Windows Phone|' + 'Opera Mini|IEMobile|Mobile' ,'i');
+
+                    if(testExp.test(navigator.userAgent)) {
+                        command = {
+                            command_id: "offer",
+                            options: {
+                                force_hw_vcodec: false,
+                                vformat: 30
+                            }
+                        };
+                    }
+                    else {
+                        command = {
+                            command_id: "offer",
+                            options: {
+                                force_hw_vcodec: true,
+                                vformat: 30
+                            }
+                        };
+                    }
                     ws.send(JSON.stringify(command));
                     console.log("offer(), command=" + JSON.stringify(command));
                 }

@@ -1,11 +1,11 @@
 clear
 
 # manipulator constants
-a = 144.5;
-b = 220;
+a = 130;
+b = 180;
 
 # generate angles in radians
-res = 250;
+res = 1000;
 alpha = linspace(20, 135, res);
 beta = linspace(90, 225, res);
 
@@ -17,7 +17,7 @@ x = a * cosd(alpha(i)) + b * cosd(175.9 - beta(j));
 y = a * sind(alpha(i)) - b * sind(175.9 - beta(j));
 
 # generate linear approximation
-res = 100;
+res = 250;
 x_lin = linspace(120, 300, res);
 y_lin = linspace(-150, 200, res);
 alpha_angles = zeros(res,res);

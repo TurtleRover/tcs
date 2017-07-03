@@ -67,6 +67,9 @@ var controlCanvas = (function () {
         motor_4: 0
     }
 
+    var maniDirection = "NONE";
+    var maniTimerId = 0;
+
     var grabOrDrive = "DRIVE";
 
     /*
@@ -99,12 +102,18 @@ var controlCanvas = (function () {
         coordinates.clicked = true;
         if (grabOrDrive == "DRIVE")
             updateMotors(event);
+        else {
+            maniTimerId = setInterval(function () {setNewManiPosition(event);}, 100);
+        }
     }
 
     function stop(event) {
         coordinates.clicked = false;
         if (grabOrDrive == "DRIVE")
             stopMotors();
+        else {
+            clearInterval(maniTimerId);
+        }
     }
 
     /*
@@ -143,6 +152,9 @@ var controlCanvas = (function () {
         coordinates.clicked = false;
         if (grabOrDrive == "DRIVE")
             stopMotors();
+        else {
+            clearInterval(maniTimerId);
+        }
     });
 
     function updateMotors(event) {
@@ -212,6 +224,50 @@ var controlCanvas = (function () {
 
         updatePowerDisplay();
     };
+
+    function updateManipulator(event) {
+        mousePosition = getMousePosition(canvas, event);
+
+        if (Math.abs(mousePosition.x) > Math.abs(mousePosition.y)) {
+            if(mousePosition.x > 0) maniDirection = "RIGHT";
+            else maniDirection = "LEFT";
+        }
+        else {
+            if(mousePosition.y > 0) maniDirection = "UP";
+            else maniDirection = "DOWN";
+        }
+    };
+
+    function setNewManiPosition(event) {
+        updateManipulator(event);
+        var change = 3;
+        var oldX = parseInt($("#mani-x").val());
+        var oldY = parseInt($("#mani-y").val());
+
+        if (maniDirection == "RIGHT") {
+            var newX = oldX - change;
+            $("#mani-x").val(newX);
+            $("#mani-x").trigger('change');
+        }
+
+        if (maniDirection == "LEFT") {
+            var newX = oldX + change;
+            $("#mani-x").val(newX);
+            $("#mani-x").trigger('change');
+        }
+
+        if (maniDirection == "UP") {
+            var newY = oldY + change;
+            $("#mani-y").val(newY);
+            $("#mani-y").trigger('change');
+        }
+
+        if (maniDirection == "DOWN") {
+            var newY = oldY - change;
+            $("#mani-y").val(newY);
+            $("#mani-y").trigger('change');
+        }
+    }
 
     function stopMotors() {
         amplify.publish("controlCanvas->port8080", "stop all motors");
