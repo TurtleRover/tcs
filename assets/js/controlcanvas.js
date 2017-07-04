@@ -28,6 +28,8 @@ var controlCanvas = (function () {
 		switch(message) {
 			case "set function to GRAB":
 				grabOrDrive = "GRAB";
+                $("#mani-x").trigger('change');
+                $("#mani-y").trigger('change');
 				break;
 			case "set function to DRIVE":
 				grabOrDrive = "DRIVE";
