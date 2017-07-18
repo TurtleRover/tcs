@@ -682,6 +682,16 @@ body.is-menu-visible #control-container-div {
      height: auto;
  }
 
+ .camera-video-drive-mode {
+     top: 0px;
+     bottom: auto;
+ }
+
+ .camera-video-grab-mode {
+     top: auto;
+     bottom: 0px;
+ }
+
  #hud-frame-img {
      position: absolute;
      left: 0px;

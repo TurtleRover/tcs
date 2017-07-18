@@ -243,30 +243,38 @@ var controlCanvas = (function () {
 
     function setNewManiPosition(event) {
         updateManipulator(event);
-        var change = 3;
+        var change = 4;
+        var minX = 0;
+        var maxX = 249;
+        var minY = 0;
+        var maxY = 249;
         var oldX = parseInt($("#mani-x").val());
         var oldY = parseInt($("#mani-y").val());
 
         if (maniDirection == "RIGHT") {
             var newX = oldX - change;
+            if (newX < minX) newX = minX;
             $("#mani-x").val(newX);
             $("#mani-x").trigger('change');
         }
 
         if (maniDirection == "LEFT") {
             var newX = oldX + change;
+            if (newX > maxX) newX = maxX;
             $("#mani-x").val(newX);
             $("#mani-x").trigger('change');
         }
 
         if (maniDirection == "UP") {
             var newY = oldY + change;
+            if (newY > maxY) newY = maxY;
             $("#mani-y").val(newY);
             $("#mani-y").trigger('change');
         }
 
         if (maniDirection == "DOWN") {
             var newY = oldY - change;
+            if (newY < minY) newY = minY;
             $("#mani-y").val(newY);
             $("#mani-y").trigger('change');
         }

@@ -440,6 +440,8 @@ var ui = (function () {
 	$("#grab-text").click(function(e, data) {
 		$("#grab-text").addClass("grab-drive-text-filled-dot");
 		$("#drive-text").removeClass("grab-drive-text-filled-dot");
+		$("#camera-video-img").removeClass("camera-video-drive-mode");
+		$("#camera-video-img").addClass("camera-video-grab-mode");
 		$("#right-navigation-cross-img").attr('src', 'assets/img/ui/right-krzyz-mani.svg');
 		$("#turtle-navigation-view-img").attr('src', 'assets/img/ui/right-manipulator.svg');
 		amplify.publish("ui->controlCanvas", "set function to GRAB");
@@ -448,6 +450,8 @@ var ui = (function () {
 	$("#drive-text").click(function(e, data) {
 		$("#drive-text").addClass("grab-drive-text-filled-dot");
 		$("#grab-text").removeClass("grab-drive-text-filled-dot");
+		$("#camera-video-img").removeClass("camera-video-grab-mode");
+		$("#camera-video-img").addClass("camera-video-drive-mode");
 		$("#right-navigation-cross-img").attr('src', 'assets/img/ui/right-krzyz.svg');
 		$("#turtle-navigation-view-img").attr('src', 'assets/img/ui/right-lazik.svg');
 		amplify.publish("ui->controlCanvas", "set function to DRIVE");
