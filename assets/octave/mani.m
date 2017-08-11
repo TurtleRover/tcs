@@ -6,8 +6,8 @@ b = 180;
 
 # generate angles in radians
 res = 1000;
-alpha = linspace(20, 135, res);
-beta = linspace(90, 225, res);
+alpha = linspace(5, 110, res);
+beta = linspace(80, 215, res);
 
 x = zeros(res,res);
 y = zeros(res,res);
@@ -17,7 +17,7 @@ x = a * cosd(alpha(i)) + b * cosd(175.9 - beta(j));
 y = a * sind(alpha(i)) - b * sind(175.9 - beta(j));
 
 # generate linear approximation
-res = 250;
+res = 50;
 x_lin = linspace(120, 300, res);
 y_lin = linspace(-150, 200, res);
 alpha_angles = zeros(res,res);
@@ -36,8 +36,8 @@ for i = 1:numel(x_lin)
     minimum = min(cost(:));
     [row, col] = find(cost==minimum);
     
-    alpha_angles(i,j) = alpha(col);
-    beta_angles(i,j) = beta(row);
+    alpha_angles(i,j) = int16(alpha(col));
+    beta_angles(i,j) = int16(beta(row));
     
   endfor
 endfor

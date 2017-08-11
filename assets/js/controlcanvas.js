@@ -243,7 +243,7 @@ var controlCanvas = (function () {
 
     function setNewManiPosition(event) {
         updateManipulator(event);
-        var change = 4;
+        var change = 3;
         var minX = 0;
         var maxX = 249;
         var minY = 0;
