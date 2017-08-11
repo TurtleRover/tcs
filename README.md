@@ -10,3 +10,7 @@ As the rover is designed to drive on land, you don’t have to be a rocket scien
 Attach it to your backpack and go to the mountains to explore caves in places no one explored yet. Find old ruins and inspect them with no worry of being stuck in tight passages. Go home and have fun with an open-source code in the soul of the robot to find out how to extend its functionality to the borders.
 
 http://turtlerover.com
+
+https://www.youtube.com/channel/UCxukvEct3wP0S5FACa3uelA
+
+https://www.facebook.com/TurtleRover/
