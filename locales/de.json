@@ -1,4 +1,21 @@
 {
-    "my-button": "Clicken Sie bitte!",
-    "welcome-message": "Ihren Weg zum Mars!"
+    "my-button": "Drück mich!",
+    "welcome-message": "Dein Weg zum Mars!",
+    "menu": {
+        "home": "Start",
+        "help": "Hilfe",
+        "advanced-settings": "Erweiterte Einstellungen",
+        "console": "Konsole",
+        "statistics": "Statistik",
+        "about": "Über"
+    },
+    "settings": {
+        "advanced-interface": "Erweitertes Interface",
+        "another-setting": "Andere Einstellungen"
+    },
+    "notifications": {
+        "working-on": "In Bearbeitung...",
+        "server-connection-error": "Fehler bei Server Verbindung - Kamera Video deaktiviert.",
+        "client-already-connected": "Klient bereits verbunden."
+    }
 }
