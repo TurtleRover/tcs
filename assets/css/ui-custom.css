@@ -422,3 +422,7 @@ position: absolute;
 .ui-spinner {
     display: block !important;
 }
+
+.ui-accordion .ui-accordion-content {
+    padding: 1em 1em !important;
+}
