@@ -1,0 +1,424 @@
+@font-face {
+    font-family: turtleFont;
+    src: url("/fonts/turtle-font.ttf");
+}
+
+@font-face {
+    font-family: turtleFontLight;
+    src: url("/fonts/turtle-font-light.ttf");
+}
+
+@font-face {
+    font-family: turtleFontMono;
+    src: url("/fonts/turtle-font-mono.ttf");
+}
+
+body {
+    font-size: 100%;
+    font: inherit;
+    font-family: turtleFont;
+    background-color: #080a0b;
+    color: #fff;
+    background-image: url("/assets/img/ui/background.png");
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+}
+
+html {
+    height: 100%;
+}
+
+.turtle-logo-img {
+    max-height: 4vh;
+    top: 0;
+    left: 0;
+    width: auto;
+}
+
+#battery-level-indicator-img {
+    max-height: 2.5vh;
+    top: 0;
+    left: 0;
+    width: auto;
+    z-index: 1070;
+    opacity: 1;
+}
+
+#signal-level-indicator-img {
+    max-height: 2.5vh;
+    top: 0;
+    left: 0;
+    width: auto;
+    z-index: 1070;
+    opacity: 1;
+}
+
+.main-header-button-img {
+    max-height: 2.5vh;
+    top: 0;
+    left: 0;
+    width: auto;
+    z-index: 1070;
+    opacity: 1;    
+}
+
+#camera-video-tag {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 100;
+}
+
+.camera-video-drive-mode {
+    top: 0px;
+    bottom: auto;
+}
+
+.camera-video-grab-mode {
+    top: auto;
+    bottom: 0px;
+}
+
+.hud-frame-img {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: auto;
+    z-index: 0;
+    opacity: 0.3;
+    filter: invert(100%);
+    z-index: 110; /* Above video (100) but below control container */
+}
+
+.aim-circle-img {
+    position: fixed;
+    margin: auto !important;
+    overflow: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100% !important;
+    width: auto;
+    opacity: 0.25;
+    max-width: 200% !important;
+    z-index: 110; /* Above video (100) */
+}
+
+#welcome-screen {
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -moz-justify-content: center;
+    -webkit-justify-content: center;
+    -ms-justify-content: center;
+    justify-content: center;
+    cursor: default;
+    height: 100vh;
+    min-height: 35em;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+}
+
+#welcome-screen-status-text {
+    position: fixed;
+    left: 0;
+    top: 1vh;
+}
+
+#welcome-screen-status-text > p {
+    font-family: turtleFontMono;
+    font-size: small;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 1vw;
+    line-height: 100%;
+
+    color: rgb(115,115,115);
+    list-style: none;
+
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#welcome-screen-status-text > p:before {
+    content: attr(data-content);
+    padding-right: 6px;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+#welcome-screen-horizontal-wrapper-logo {
+    background-image: url("/assets/img/ui/nav-bar-logo.svg");
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 4vh;
+}
+
+#welcome-screen-adventure-text {
+    font-family: turtleFontLight;
+    font-size: 250%;
+    font-weight: 100;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+#button-go:hover {
+    background-image: url("/assets/img/ui/go-button-o10.png");
+    transition: all .2s ease-in-out;
+    background-color: transparent;
+}
+
+.status-text {
+    text-transform: none !important;
+    border-right: 0px;
+}
+
+.animation-typewriter {
+    border-right: 5px solid rgba(255,255,255,.75);
+    animation: typewriter 1s steps(20) 0.1s 1 normal both, 1s blinkTextCursor step-end infinite;
+}
+@keyframes typewriter{
+    from{width: 0;}
+    to{width: 100%;}
+}
+@keyframes blinkTextCursor{
+    from, to {
+        border-right-color: transparent;
+    }
+    50% {
+        border-right-color: rgb(115,115,115);;
+    }
+}
+
+.ui-panel {
+    width: 25vw;
+    min-height: 100%;
+    max-height: none;
+    border-width: 0;
+    position: absolute;
+    top: 0;
+    display: block;
+    background-color: #000;
+    right: 0;
+    transition: transform 300ms ease;
+    transform: translate3d(0,0,0);
+    z-index: 1030;
+}
+
+#control-container-div {
+    position: absolute;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    max-height: 400px;
+    bottom: 0;
+    -moz-transition: opacity 0.5s ease;
+    -webkit-transition: opacity 0.5s ease;
+    -ms-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
+    opacity: 1;
+    z-index: 120; /* Above video (100)*/
+}
+
+#right-navigation-div {
+    position: absolute;
+    margin-right: 0;
+    right: 0;
+    width: 25%;
+    max-width: 350px;
+    height: 100%;
+    bottom: 0;
+}
+
+#left-navigation-div {
+    position: absolute;
+    margin-left: 0;
+    left: 0;
+    width: 25%;
+    max-width: 350px;
+    height: 50%;
+    bottom: 0;
+    float:left;
+}
+
+.transparent-background-div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    border-radius: 10px;
+    opacity: 0.7;
+
+    -moz-transition: opacity 0.5s ease;
+    -webkit-transition: opacity 0.5s ease;
+    -ms-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
+}
+
+#right-navigation-cross-div {
+    position: absolute;
+    width: 100%;
+    height: 85%;
+    top: 0;
+    text-align: center;
+}
+
+#right-navigation-cross-img {
+    width: 80%;
+    margin-top: 4%;
+    opacity: 1;
+    -webkit-box-reflect: below -100%;
+}
+
+#turtle-navigation-view-img {
+    width: 20%;
+    margin-left: 0%;
+    margin-top: 20px;
+    opacity: 1;
+    height: auto;
+}
+
+#turtle-top-view-left-top-div {
+    position: absolute;
+    left: 10px;
+    top: 18px;
+    width: 50px;
+    z-index: 7;
+    opacity: 0.8;
+    font-size: 0.5em;
+}
+
+#turtle-top-view-right-top-div {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+    width: 50px;
+    z-index: 7;
+    opacity: 0.8;
+    font-size: 0.5em;
+}
+
+#turtle-top-view-left-bottom-div {
+    position: absolute;
+    left: 10px;
+    bottom: 18px;
+    width: 50px;
+    z-index: 7;
+    opacity: 0.8;
+    font-size: 0.5em;
+}
+
+#turtle-top-view-right-bottom-div {
+    position: absolute;
+    right: 10px;
+    bottom: 18px;
+    width: 50px;
+    z-index: 7;
+    opacity: 0.8;
+    font-size: 0.5em;
+}
+
+#navigation-ring-canvas {
+    position:absolute;
+    touch-action: none;
+    width: 80%;
+    padding-top: 40%;
+    align-self: center;
+    right:0;
+    left:0;
+    top:4%;
+    margin: auto;
+}
+
+#gripper-wrapper {
+position: absolute;
+    width: 100%;
+    height: 40%;
+    bottom: 30%;
+    top: auto;
+    margin: 0;
+}
+
+#gripper-slider-wrapper{
+    position: absolute;
+    width: 80%;
+    height: 25%;
+    bottom: 0;
+    margin-left: 10%;
+    margin-right: 10%;
+    top: 30%;
+}
+#gripper-images-wrapper{
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    bottom: 0;
+}
+
+.gripper-img {
+    position: absolute;
+    height: 80%;
+    bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    margin-top: auto;
+    padding-top: auto;
+}
+
+#left-gripper-img {
+    left: 12.5%;
+}
+
+#right-gripper-img {
+    right: 12.5%;
+}
+
+#grab-drive-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    bottom: auto;
+    top: 5%;
+    margin: 0;
+}
+
+.stats-view-div {
+    position: fixed;
+    left: 0;
+    top: 10%;
+    width: 50%;
+    z-index: 1030;
+    opacity: 0.5;
+}
+
+.level-color-gradient {
+    background-image: -webkit-linear-gradient(left, rgb(244,67,54) 0%, rgb(255,235,59) 50%, rgb(139,195,74) 100%);
+    background-image: -moz-linear-gradient(left, rgb(244,67,54) 0%, rgb(255,235,59) 50%, rgb(139,195,74) 100%);
+    background-image: -o-linear-gradient(left, rgb(244,67,54) 0%, rgb(255,235,59) 50%, rgb(139,195,74) 100%);
+    background-image: linear-gradient(left, rgb(244,67,54) 0%, rgb(255,235,59) 50%, rgb(139,195,74) 100%);
+}
+
+/* Override jquery-ui defaults */
+.ui-front {
+    z-index: 1030;
+}
+
+.ui-spinner {
+    display: block !important;
+}

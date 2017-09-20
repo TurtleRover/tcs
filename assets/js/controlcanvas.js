@@ -3,18 +3,12 @@
  * It uses the Revealing Module Pattern
  * https://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript
  * 
- * For drawing and touch applications it uses CREATEJS set of libraries
- *  + EaselJS
- *  + TweenJS
- *  + SoundJS
- *  + PreloadJS
- * http://www.createjs.com/docs
-*/
+ */
 
 var controlCanvas = (function () {
     /*
-	 * 																		SUBSCRIBE to controller topic
-	 */
+     * Subscribe to controller topic
+     */
     amplify.subscribe("controller->controlCanvas", controllerMessageCallback);
     function controllerMessageCallback(message) {
 
@@ -22,30 +16,29 @@ var controlCanvas = (function () {
 
     amplify.subscribe("ui->controlCanvas", uiMessageCallback);
     function uiMessageCallback(message) {
-        if (DEBUG) console.log("uiMessageCallback: " + message);
-		if (DEBUG) amplify.publish("all->utests", message);
+        if (DEBUG)
+            console.log("uiMessageCallback: " + message);
+        if (DEBUG)
+            amplify.publish("all->utests", message);
 
-		switch(message) {
-			case "set function to GRAB":
-				grabOrDrive = "GRAB";
-                $("#mani-x").trigger('change');
-                $("#mani-y").trigger('change');
-				break;
-			case "set function to DRIVE":
-				grabOrDrive = "DRIVE";
-				break;
-			default:
-				console.log("unknown command: " + message);
-		}
+        switch (message) {
+            case "set function to GRAB":
+                grabOrDrive = "GRAB";
+                $("slider-manipulator-axis-x").trigger('change');
+                $("slider-manipulator-axis-y").trigger('change');
+                break;
+            case "set function to DRIVE":
+                grabOrDrive = "DRIVE";
+                break;
+            default:
+                console.log("unknown command: " + message);
+        }
     };
 
-    /*
-	 * 																		PRIVATE area
-	 */
     var canvas = $('#navigation-ring-canvas');
 
     /*
-     *  information about mouse (touch) coordinates
+     * Information about mouse (touch) coordinates
      */
     var coordinates = {
         x: 0,
@@ -56,18 +49,19 @@ var controlCanvas = (function () {
     };
 
     /*
-     *  calculated speeds (in %)
-     *  motor_1 - left front
-     *  motor_2 - right front
-     *  motor_3 - left rear
-     *  motor_4 - right rear
+     * Calculated speeds (in %)
+     * motor_1 - left front
+     * motor_2 - right front
+     * motor_3 - left rear
+     * motor_4 - right rear
+     *  
      */
     var motorsSpeed = {
         motor_1: 0,
         motor_2: 0,
         motor_3: 0,
         motor_4: 0
-    }
+    };
 
     var maniDirection = "NONE";
     var maniTimerId = 0;
@@ -81,7 +75,7 @@ var controlCanvas = (function () {
         var rect = canvas.get(0).getBoundingClientRect();
         return {
             x: event.clientX - rect.left - (rect.right - rect.left) / 2,
-            y: rect.bottom - event.clientY - (rect.bottom - rect.top) / 2,
+            y: rect.bottom - event.clientY - (rect.bottom - rect.top) / 2
         };
     }
 
@@ -94,25 +88,27 @@ var controlCanvas = (function () {
     }
 
     function move(event) {
-        if (coordinates.clicked == true) {
-            if (grabOrDrive == "DRIVE")
+        if (coordinates.clicked === true) {
+            if (grabOrDrive === "DRIVE")
                 updateMotors(event);
         }
     }
 
     function start(event) {
         coordinates.clicked = true;
-        if (grabOrDrive == "DRIVE")
+        if (grabOrDrive === "DRIVE")
             updateMotors(event);
         else {
             clearInterval(maniTimerId);
-            maniTimerId = setInterval(function () {setNewManiPosition(event);}, 100);
+            maniTimerId = setInterval(function () {
+                setNewManiPosition(event);
+            }, 100);
         }
     }
 
     function stop(event) {
         coordinates.clicked = false;
-        if (grabOrDrive == "DRIVE")
+        if (grabOrDrive === "DRIVE")
             stopMotors();
         else {
             clearInterval(maniTimerId);
@@ -120,14 +116,12 @@ var controlCanvas = (function () {
     }
 
     /*
-	 * 																		EVENTS area
-	 */
-
-    /*
-     *                                                                  MOTORS
+     * Motors
      */
-    canvas.mousemove(function(event) { move(event); });
-    canvas[0].addEventListener("touchmove", function(event) {
+    canvas.mousemove(function (event) {
+        move(event);
+    });
+    canvas[0].addEventListener("touchmove", function (event) {
         event.preventDefault();
         var touch = event.touches[0];
         var mouseEvent = new MouseEvent("mousedown", {
@@ -137,8 +131,10 @@ var controlCanvas = (function () {
         canvas[0].dispatchEvent(mouseEvent);
     });
 
-    canvas.mousedown(function(event) { start(event); });
-    canvas[0].addEventListener("touchstart", function(event) { 
+    canvas.mousedown(function (event) {
+        start(event);
+    });
+    canvas[0].addEventListener("touchstart", function (event) {
         event.preventDefault();
         var touch = event.touches[0];
         var mouseEvent = new MouseEvent("mousedown", {
@@ -148,12 +144,18 @@ var controlCanvas = (function () {
         canvas[0].dispatchEvent(mouseEvent);
     });
 
-    canvas.mouseup(function(event) { stop(event); });
-    canvas[0].addEventListener("touchend", function(event) { event.preventDefault(); stop(event); });
+    canvas.mouseup(function (event) {
+        stop(event);
+    });
+    
+    canvas[0].addEventListener("touchend", function (event) {
+        event.preventDefault();
+        stop(event);
+    });
 
-    canvas.mouseout(function(event) {
+    canvas.mouseout(function (event) {
         coordinates.clicked = false;
-        if (grabOrDrive == "DRIVE")
+        if (grabOrDrive === "DRIVE")
             stopMotors();
         else {
             clearInterval(maniTimerId);
@@ -167,14 +169,14 @@ var controlCanvas = (function () {
         var direction = 1;
 
         /*
-        *  declare constants used to control rover
-        */
+         * Declare constants used to control rover
+         */
         var canvasDimensions = getCanvasDimensions(canvas);
-        var circleRadius = canvasDimensions.height/2;
-        var emptyZoneRadius = canvasDimensions.height/10;
-        var emptyZoneHeight = canvasDimensions.height/12;
+        var circleRadius = canvasDimensions.height / 2;
+        var emptyZoneRadius = canvasDimensions.height / 10;
+        var emptyZoneHeight = canvasDimensions.height / 12;
 
-        //  alternative steering method
+        // Alternative steering method
         emptyZoneHeight = 0;
 
         coordinates.x = mousePosition.x;
@@ -182,22 +184,22 @@ var controlCanvas = (function () {
         coordinates.module = Math.sqrt(coordinates.x * coordinates.x + coordinates.y * coordinates.y);
         coordinates.angle = Math.asin(coordinates.y / coordinates.module) * 180 / Math.PI;
 
-        //  calculate motors values if the appropriate zone was 
-        
+        // Calculate motors values if the appropriate zone was 
+
         if (coordinates.module > emptyZoneRadius && coordinates.module <= circleRadius && Math.abs(coordinates.y) > emptyZoneHeight) {
             //  var a = coordinates.module / circleRadius * 100;
             //  var b = coordinates.module * (Math.sin((2 * coordinates.angle - 90) * Math.PI / 180)) / circleRadius * 100;
 
-            //  alternative steering method
+            //  Alternative steering method
             var leftMotors;
             var rightMotors;
-            //  FORWARD
+            //  Forward
             if (Math.abs(coordinates.y) > Math.abs(coordinates.x)) {
                 var a = coordinates.y / circleRadius * 100;
                 leftMotors = a;
                 rightMotors = a;
             }
-            //  TURN
+            // Turn
             else {
                 var a = -coordinates.x / circleRadius * 100;
                 leftMotors = -a;
@@ -207,18 +209,17 @@ var controlCanvas = (function () {
             //  var leftMotors = (coordinates.x >= 0) ? a : b;
             //  var rightMotors = (coordinates.x >= 0) ? b : a;
 
-            //  reverse if backward
+            // Reverse if backward
             /*if (coordinates.y < 0) {
-                leftMotors = -leftMotors;
-                rightMotors = -rightMotors;
-            }*/
+             leftMotors = -leftMotors;
+             rightMotors = -rightMotors;
+             }*/
 
-            motorsSpeed.motor_1 = Math.round(Math.round(leftMotors) * direction * Number($('#left-front-wheel').val()));
-            motorsSpeed.motor_3 = Math.round(Math.round(leftMotors) * direction * Number($('#left-rear-wheel').val()));
-            motorsSpeed.motor_2 = Math.round(Math.round(rightMotors) * direction * Number($('#right-front-wheel').val()));
-            motorsSpeed.motor_4 = Math.round(Math.round(rightMotors) * direction * Number($('#right-rear-wheel').val()));
-        }
-        else {
+            motorsSpeed.motor_1 = Math.round(Math.round(leftMotors) * direction * Number($("#slider-speed-fl").slider("value")));
+            motorsSpeed.motor_3 = Math.round(Math.round(leftMotors) * direction * Number($("#slider-speed-rl").slider("value")));
+            motorsSpeed.motor_2 = Math.round(Math.round(rightMotors) * direction * Number($("#slider-speed-fr").slider("value")));
+            motorsSpeed.motor_4 = Math.round(Math.round(rightMotors) * direction * Number($("#slider-speed-rr").slider("value")));
+        } else {
             motorsSpeed.motor_1 = 0;
             motorsSpeed.motor_2 = 0;
             motorsSpeed.motor_3 = 0;
@@ -232,12 +233,15 @@ var controlCanvas = (function () {
         mousePosition = getMousePosition(canvas, event);
 
         if (Math.abs(mousePosition.x) > Math.abs(mousePosition.y)) {
-            if(mousePosition.x > 0) maniDirection = "RIGHT";
-            else maniDirection = "LEFT";
-        }
-        else {
-            if(mousePosition.y > 0) maniDirection = "UP";
-            else maniDirection = "DOWN";
+            if (mousePosition.x > 0)
+                maniDirection = "RIGHT";
+            else
+                maniDirection = "LEFT";
+        } else {
+            if (mousePosition.y > 0)
+                maniDirection = "UP";
+            else
+                maniDirection = "DOWN";
         }
     };
 
@@ -248,37 +252,41 @@ var controlCanvas = (function () {
         var maxX = 249;
         var minY = 0;
         var maxY = 249;
-        var oldX = parseInt($("#mani-x").val());
-        var oldY = parseInt($("#mani-y").val());
+        var oldX = parseInt($("#slider-manipulator-axis-x").slider("value"));
+        var oldY = parseInt($("#slider-manipulator-axis-y").slider("value"));
 
-        if (maniDirection == "RIGHT") {
+        if (maniDirection === "RIGHT") {
             var newX = oldX - change;
-            if (newX < minX) newX = minX;
-            $("#mani-x").val(newX);
-            $("#mani-x").trigger('change');
+            if (newX < minX)
+                newX = minX;
+            $("#slider-manipulator-axis-x").slider("value", newX);
+            //$("slider-manipulator-axis-x").trigger("change");
         }
 
-        if (maniDirection == "LEFT") {
+        if (maniDirection === "LEFT") {
             var newX = oldX + change;
-            if (newX > maxX) newX = maxX;
-            $("#mani-x").val(newX);
-            $("#mani-x").trigger('change');
+            if (newX > maxX)
+                newX = maxX;
+            $("#slider-manipulator-axis-x").slider("value", newX);
+            //$("slider-manipulator-axis-x").trigger("change");
         }
 
-        if (maniDirection == "UP") {
+        if (maniDirection === "UP") {
             var newY = oldY + change;
-            if (newY > maxY) newY = maxY;
-            $("#mani-y").val(newY);
-            $("#mani-y").trigger('change');
+            if (newY > maxY)
+                newY = maxY;
+            $("#slider-manipulator-axis-y").slider("value", newY);
+            //$("slider-manipulator-axis-y").trigger("change");
         }
 
-        if (maniDirection == "DOWN") {
+        if (maniDirection === "DOWN") {
             var newY = oldY - change;
-            if (newY < minY) newY = minY;
-            $("#mani-y").val(newY);
-            $("#mani-y").trigger('change');
+            if (newY < minY)
+                newY = minY;
+            $("#slider-manipulator-axis-y").slider("value", newY);
+            //$("slider-manipulator-axis-y").trigger("change");
         }
-    }
+    };
 
     function stopMotors() {
         amplify.publish("controlCanvas->port8080", "stop all motors");
@@ -291,29 +299,30 @@ var controlCanvas = (function () {
     };
 
     function updatePowerDisplay() {
-        $('#turtle-top-view-left-top-p').text(String(motorsSpeed.motor_1) + "%");
-        $('#turtle-top-view-right-top-p').text(String(motorsSpeed.motor_2) + "%");
-        $('#turtle-top-view-left-bottom-p').text(String(motorsSpeed.motor_3) + "%");
-        $('#turtle-top-view-right-bottom-p').text(String(motorsSpeed.motor_4) + "%");
+        $('#turtle-top-view-left-top-div').text(String(motorsSpeed.motor_1) + "%");
+        $('#turtle-top-view-right-top-div').text(String(motorsSpeed.motor_2) + "%");
+        $('#turtle-top-view-left-bottom-div').text(String(motorsSpeed.motor_3) + "%");
+        $('#turtle-top-view-right-bottom-div').text(String(motorsSpeed.motor_4) + "%");
     };
 
     /*
-	 * 																	REVEALED functions
-	 */
+     * 	Revealed functions
+     */
 
-    function isCoordinatesClickedPriv () {
+    function isCoordinatesClickedPriv() {
         return coordinates.clicked;
     };
 
-    function getMotorsSpeedPriv () {
+    function getMotorsSpeedPriv() {
         return motorsSpeed;
     };
 
     /*
-	 * 																		PUBLIC area
-	 */
+     * Public area
+     */
     return {
-        isCoordinatesClicked : isCoordinatesClickedPriv,
-        getMotorsSpeed : getMotorsSpeedPriv,
+        isCoordinatesClicked: isCoordinatesClickedPriv,
+        getMotorsSpeed: getMotorsSpeedPriv,
+        emergencyMotorsStop: stopMotors
     };
 })();

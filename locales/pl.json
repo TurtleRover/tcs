@@ -1,21 +1,55 @@
 {
-    "my-button": "Kliknij mnie!",
-    "welcome-message":  "Twoja droga na marsa!",
-    "menu": {
-        "home": "strona główna",
-        "help": "pomoc",
-        "advanced-settings": "ustawienia zaawansowane",
-        "console": "terminal",
-        "statistics": "statystyki",
-        "about": "o aplikacji"
+    "test": "Polski - Please translate me :-)",
+    "welcome": {
+        "message": "Let's start an adventure!"
+    },
+    "main": {
+        "icon-temp": "Processor temperatur",
+        "icon-battery": "Battery status",
+        "icon-signal": "Signal level",
+        "button-record": "Record video",
+        "button-snapshot": "Take snapshot",
+        "button-fullscreen": "Fullscreen",
+        "button-settings": "Settings",
+        "button-minimize-left": "Minimize",
+        "button-minimize-right": "Minimize",
+        "button-emergency-stop": "Emergency stop motors",
+        "button-drive": "Drive mode",
+        "button-grab": "Grab mode",
+        "slider-grab": "Grab open&close"
     },
     "settings": {
-        "advanced-interface": "zaawansowany interfejs",
-        "another-setting": "inne ustawienia"
+        "button-close": "Close settings",
+        "speed-tab": "Speed",
+        "speed-all-wheels": "All wheels: ",
+        "speed-fl": "Front left: ",
+        "speed-fr": "Front right: ",
+        "speed-rl": "Rear left: ",
+        "speed-rr": "Rear right: ",
+        "manipulator-tab": "Grab",
+        "manipulator-axis1": "Axis 1: ",
+        "manipulator-axis2": "Axis 2: ",
+        "manipulator-grab": "Grab: ",
+        "manipulator-axis-x": "Axis X: ",
+        "manipulator-axis-y": "Axis Y: ",
+        "camera-tab": "Camera",
+        "camera-brightness": "Brightness: ",
+        "camera-contrast": "Constrast: ",
+        "camera-saturation": "Saturation: ",
+        "camera-hue": "Hue: ",
+        "camera-gamma": "Gamma: ",
+        "camera-gain": "Gain: ",
+        "camera-sharpness": "Sharpness: ",
+        "language-tab": "Language",
+        "language-selector": "Select language",
+        "adv-interface-tab": "Advanced Interface",
+        "about-tab": "About",
+        "about-content": "Turtle Rover Mission Control by Mictronics"
     },
     "notifications": {
-        "working-on": "jesteśmy w trakcie pracy nad wybraną funkcjonalnością",
-        "server-connection-error": "nie udało się połączyć z serwerem i uruchomić kamery",
-        "client-already-connected": "inny klient jest już połączony"
+        "processing": "Processing...",
+        "server-connection-error": "Server connection error - Camera video disabled.",
+        "client-already-connected": "Client already connected.",
+        "battery-threshold-error": "Battery voltage thresholds not defined! Level indication is wrong."
     }
 }

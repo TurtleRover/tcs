@@ -1,21 +1,55 @@
 {
-    "my-button": "Drück mich!",
-    "welcome-message": "Dein Weg zum Mars!",
-    "menu": {
-        "home": "Start",
-        "help": "Hilfe",
-        "advanced-settings": "Erweiterte Einstellungen",
-        "console": "Konsole",
-        "statistics": "Statistik",
-        "about": "Über"
+    "test": "Deutsch",
+    "welcome": {
+        "message": "Lass uns ein Abenteuer starten!"
+    },
+    "main": {
+        "icon-temp": "Prozessor Temperatur",
+        "icon-battery": "Batteriestatus",
+        "icon-signal": "Signalstärke",
+        "button-record": "Video aufzeichnen",
+        "button-snapshot": "Bildschirmfoto speichern",
+        "button-fullscreen": "Vollbildmodus",
+        "button-settings": "Einstellungen",
+        "button-minimize-left": "Minimieren",
+        "button-minimize-right": "Minimieren",
+        "button-emergency-stop": "Not-Aus Motoren",
+        "button-drive": "Fahrmodus",
+        "button-grab": "Greifermodus",
+        "slider-grab": "Greifer öffen&schliessen"
     },
     "settings": {
-        "advanced-interface": "Erweitertes Interface",
-        "another-setting": "Andere Einstellungen"
+        "button-close": "Einstellungen schliessen",
+        "speed-tab": "Geschwindigkeit",
+        "speed-all-wheels": "Alle Räder: ",
+        "speed-fl": "Vorn links: ",
+        "speed-fr": "Vorn rechts: ",
+        "speed-rl": "Hinten links: ",
+        "speed-rr": "Hinten rechts: ",
+        "manipulator-tab": "Greifer",
+        "manipulator-axis1": "Achse 1: ",
+        "manipulator-axis2": "Achse 2: ",
+        "manipulator-grab": "Greifer: ",
+        "manipulator-axis-x": "Achse X: ",
+        "manipulator-axis-y": "Achse Y: ",
+        "camera-tab": "Kamera",
+        "camera-brightness": "Helligkeit: ",
+        "camera-contrast": "Kontrast: ",
+        "camera-saturation": "Sättigung: ",
+        "camera-hue": "Farbwert: ",
+        "camera-gamma": "Gamma: ",
+        "camera-gain": "Verstärkung: ",
+        "camera-sharpness": "Schärfe: ",
+        "language-tab": "Sprache",
+        "language-selector": "Sprache auswählen",
+        "adv-interface-tab": "Erweiterte Anzeige",
+        "about-tab": "Über",
+        "about-content": "Turtle Rover Mission Control by Mictronics"
     },
     "notifications": {
-        "working-on": "In Bearbeitung...",
+        "processing": "In Bearbeitung...",
         "server-connection-error": "Fehler bei Server Verbindung - Kamera Video deaktiviert.",
-        "client-already-connected": "Klient bereits verbunden."
+        "client-already-connected": "Klient bereits verbunden.",
+        "battery-threshold-error": "Batteriespannung nicht kalibriert! Statusanzeige falsch."
     }
 }
