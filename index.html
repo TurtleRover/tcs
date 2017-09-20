@@ -61,7 +61,7 @@
                 
                 <!-- Main video layer -->
                 <div id="camera-video-div" class="row embed-responsive embed-responsive-16by9">
-                    <video src="http://techslides.com/demos/sample-videos/small.mp4" id="camera-video-tag" class="camera-video-drive-mode" draggable="false" onmousedown="return false" style="-webkit-user-drag: none"></video>
+                    <video id="camera-video-tag" class="camera-video-drive-mode" draggable="false" onmousedown="return false" style="-webkit-user-drag: none"></video>
                     <img class="hud-frame-img" src="/assets/img/ui/dot-grid.svg" draggable="false" onmousedown="return false" style="-webkit-user-drag: none">
                     <img class="aim-circle-img" src="/assets/img/ui/aim-circle.svg" draggable="false" onmousedown="return false" style="-webkit-user-drag: none">
                     <div class="transparent-background-div" id="transparent-background-camera"></div>
@@ -75,23 +75,26 @@
                 </div>
 
                 <!-- Bottom rover controls -->
-                <div id="control-container-div">
-                    <div id="right-navigation-div" draggable="false" onmousedown="return false" style="user-drag: none">
-                        <div class="transparent-background-div" id="transparent-background-navigation-right"></div>
-                        <div id="right-navigation-cross-div" draggable="false" onmousedown="return false">
-                            <img id="right-navigation-cross-img" src="/assets/img/ui/right-cross.svg" draggable="false" onmousedown="return false" style="user-drag:none">
-                            <img id="turtle-navigation-view-img" src="/assets/img/ui/right-rover.svg" draggable="false" onmousedown="return false" style="user-drag:none">
-                            <canvas id="navigation-ring-canvas"></canvas>
-                            <div class="adv-interface" style="display: none;">
-                                <div id="turtle-top-view-left-top-div">0%</div>
-                                <div id="turtle-top-view-right-top-div">0%</div>
-                                <div id="turtle-top-view-left-bottom-div">0%</div>
-                                <div id="turtle-top-view-right-bottom-div">0%</div>
-                            </div>
-                        </div>
+                <span id="right-navigation-div">
+                    <span <div class="mr-2 mb-2 right-navigation-div navigation-background"></span>
+                    <div class="mr-2 mb-2 right-navigation-div">
+                        <img id="right-navigation-cross-img" src="/assets/img/ui/right-cross.svg" draggable="false" onmousedown="return false" style="user-drag:none">
+                        <img id="turtle-navigation-view-img" src="/assets/img/ui/right-rover.svg" draggable="false" onmousedown="return false" style="user-drag:none">
                     </div>
-                    <div id="left-navigation-div" draggable="false" style="user-drag: none">
-                        <div class="transparent-background-div" id="transparent-background-navigation-right"></div>
+                    <div class="mr-2 mb-2 right-navigation-div">
+                        <div id="turtle-top-view-left-top-div">0%</div>
+                        <div id="turtle-top-view-right-top-div">0%</div>
+                        <div id="turtle-top-view-left-bottom-div">0%</div>
+                        <div id="turtle-top-view-right-bottom-div">0%</div>
+                    </div>                
+                    <div class="mr-2 mb-2 right-navigation-div">
+                        <canvas id="navigation-ring-canvas"></canvas>                        
+                    </div>
+                </span>
+
+                <span id="left-navigation-div">
+                    <span <div class="mr-2 mb-2 left-navigation-div navigation-background"></span>
+                    <div class="ml-2 mb-2 left-navigation-div">
                         <div id="grab-drive-wrapper" class="d-flex justify-content-around">
                             <fieldset>
                                 <label for="grab-radio"><span class="fa fa-lg fa-hand-grab-o localized" data-i18n="[title]main.button-grab"></span></label>
@@ -101,21 +104,22 @@
                                 <label for="drive-radio"><span class="fa fa-lg fa-car localized" data-i18n="[title]main.button-drive"></span></label>
                                 <input type="radio" name="radio-group" id="drive-radio">
                             </fieldset>
-                        </div>
+                        </div>                    
                         <div id="gripper-wrapper">
                             <div id="gripper-slider-wrapper" class="localized" data-i18n="[title]main.slider-grab">
-                                    <div id="slider-gripper-input"></div>
+                                <div id="slider-gripper-input"></div>
                             </div>
                             <div id="gripper-images-wrapper">
                                 <img src="/assets/img/ui/left-grip-open.svg" class="gripper-img" id="left-gripper-img">
                                 <img src="/assets/img/ui/left-grip-closed.svg" class="gripper-img" id="right-gripper-img">
                             </div>
-                        </div>                        
+                        </div>                         
                     </div>
-                </div>
+                </span>
                 
                 <!-- Bottom nav bar -->
                 <div class="d-flex flex-nowrap justify-content-between fixed-bottom mb-1">
+                    <div></div>
                     <div class="p-2 localized" data-i18n="[title]main.button-minimize-left">
                         <button id="button-minimize-left-ctrl" class="ui-button ui-widget ui-corner-all">
                             <span id="icon-toggle-left" class="fa fa-window-minimize"></span>
@@ -131,6 +135,7 @@
                             <span id="icon-toggle-right" class="fa fa-window-minimize"></span>
                         </button>          
                     </div>
+                    <div></div>
                 </div>
 
                 <!-- Right side settings menu -->
@@ -216,7 +221,7 @@
                 <div id="welcome-screen-status-text" class="text-lowercase font-weight-normal">
                     <p class="localized" data-content="[*]" data-i18n="status.initializing"></p>
                 </div>
-                <div class="welcome-screen-wrapper">
+                <div>
                     <div id="welcome-screen-horizontal-wrapper-logo"></div>
                     <div id="welcome-screen-horizontal-wrapper-text">
                         <h1 id="welcome-screen-adventure-text" class="localized" data-i18n="welcome.message"></h1>
