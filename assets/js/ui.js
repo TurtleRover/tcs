@@ -293,7 +293,7 @@ var ui = (function () {
             "lng": lng,
             "fallbackLng": 'us',
             "backend": {
-                "loadPath": "locales/{{lng}}.json"
+                "loadPath": "/locales/{{lng}}.json"
             }}, function (err, t) {
 
             jqueryI18next.init(i18next, $, {
