@@ -272,7 +272,8 @@ var ui = (function () {
             countries: {
                 "PL": "Poland",
                 "US": "United States",
-                "DE": "Germany"
+                "DE": "Germany",
+                "RU": "Russia"
             },
             inputId: "languageSelect"
         });
@@ -290,7 +291,7 @@ var ui = (function () {
         i18next.init({
             "debug": false,
             "lng": lng,
-            "fallbackLng": false,
+            "fallbackLng": 'us',
             "backend": {
                 "loadPath": "locales/{{lng}}.json"
             }}, function (err, t) {
@@ -534,17 +535,17 @@ var ui = (function () {
             case "wait until GO button is pressed":
                 showGoButton();
                 setLastStatusDone(true);
-                addNewStatus("turtle is ready to go!");
+                addNewStatus(i18next.t('status.turtle-ready'));
                 setTimeout(function () {
                     setLastStatusDone(true);
-                    addNewStatus("battery voltage: ", "battery-level-text", false);
-                    addNewStatus("signal strength: ", "signal-strength-text", false);
-                    addNewStatus("processor temp.: ", "processor-temperature-text", false);
+                    addNewStatus(i18next.t('status.battery-level'), "battery-level-text", false);
+                    addNewStatus(i18next.t('status.signal-level'), "signal-strength-text", false);
+                    addNewStatus(i18next.t('status.processor-temp'), "processor-temperature-text", false);
                 }, 1000);
                 break;
             case "turtle is awake":
                 setLastStatusDone(true);
-                addNewStatus("connecting...");
+                addNewStatus(i18next.t('status.connecting'));
                 break;
             default:
                 console.log("unknown command: " + message);
@@ -659,9 +660,6 @@ var ui = (function () {
         $("#advanced-interface-checkbox").trigger("change");
     });
 
-    $("#welcome-screen-status-text").append("<p class='animation-typewriter'>done</p>");
-    $("#welcome-screen-status-text").children().last().attr('data-content', '[ ]');
-    
     return {};
 })();
 
