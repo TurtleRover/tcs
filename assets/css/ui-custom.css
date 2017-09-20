@@ -16,7 +16,7 @@
 body {
     font-size: 100%;
     font: inherit;
-    font-family: turtleFont;
+    font-family: turtleFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, -apple-system, BlinkMacSystemFont, sans-serif;
     background-color: #080a0b;
     color: #fff;
     background-image: url("/assets/img/ui/background.png");
@@ -140,7 +140,7 @@ html {
 }
 
 #welcome-screen-status-text > p {
-    font-family: turtleFontMono;
+    font-family: turtleFontMono, "Segoe UI", Roboto, "Helvetica Neue", Arial, -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: small;
     text-align: left;
     margin-top: 0;
@@ -171,7 +171,7 @@ html {
 }
 
 #welcome-screen-adventure-text {
-    font-family: turtleFontLight;
+    font-family: turtleFontLight, "Segoe UI", Roboto, "Helvetica Neue", Arial, -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 250%;
     font-weight: 100;
     text-transform: none;
