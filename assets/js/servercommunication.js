@@ -175,15 +175,15 @@ var serverCommunication = (function () {
                      *  set icon color according to signal strength
                      */
                     if (signal < 50)
-                        $('#icon-signal-level').css("color", "rgb(139,195,74)");
+                        $('#icon-signal-level').css("color", "rgb(139,195,74)").css("width", "0.1em");
                     else if (signal < 58)
-                        $('#icon-signal-level').css("color", "rgb(205,220,57)");
+                        $('#icon-signal-level').css("color", "rgb(205,220,57)").css("width", "0.8em");
                     else if (signal < 66)
-                        $('#icon-signal-level').css("color", "rgb(255,235,59)");
+                        $('#icon-signal-level').css("color", "rgb(255,235,59)").css("width", "0.6em");
                     else if (signal < 74)
-                        $('#icon-signal-level').css("color", "rgb(255,152,0)");
+                        $('#icon-signal-level').css("color", "rgb(255,152,0)").css("width", "0.4em");
                     else
-                        $('#icon-signal-level').css("color", "rgb(244,67,54)");
+                        $('#icon-signal-level').css("color", "rgb(244,67,54)").css("width", "0.2em");
                 }
                 //  read processor temperature
                 else if (arr[0] == 0x61) {

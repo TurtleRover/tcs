@@ -484,23 +484,35 @@ var ui = (function () {
     };
     
     function onMinimizeLeftButtonClick(e) {
-        $("#left-navigation-div").fadeToggle(400, "swing", function(){
+        function changeIcon(){
             if($("#icon-toggle-left").hasClass("fa-window-minimize")){
                 $("#icon-toggle-left").removeClass().addClass("fa fa-window-maximize");
             } else {
                 $("#icon-toggle-left").removeClass().addClass("fa fa-window-minimize");
-            }
-        });
+            }            
+        };
+        
+        if($(".left-navigation-div").hasClass("left-float")){
+            $("#left-navigation-div").fadeToggle( 400, "swing", changeIcon);
+        } else {
+            $("#right-navigation-div").fadeToggle( 400, "swing", changeIcon);
+        }
     }
 
     function onMinimizeRightButtonClick(e) {
-        $("#right-navigation-div").fadeToggle(400, "swing", function(){
+        function changeIcon(){
             if($("#icon-toggle-right").hasClass("fa-window-minimize")){
                 $("#icon-toggle-right").removeClass().addClass("fa fa-window-maximize");
             } else {
                 $("#icon-toggle-right").removeClass().addClass("fa fa-window-minimize");
-            }
-        });
+            }            
+        };
+        
+        if($(".right-navigation-div").hasClass("right-float")){
+            $("#right-navigation-div").fadeToggle( 400, "swing", changeIcon);
+        } else {
+            $("#left-navigation-div").fadeToggle( 400, "swing", changeIcon);
+        }
     }    
     
     function toggleLeftRightSteering(val) {
