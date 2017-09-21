@@ -50,6 +50,9 @@ var controller = (function () {
             case "GO button is pressed":
                 mainPageLoaded();
                 break;
+            case "ui close page":
+                closePage();
+                break;
             default:
                 console.log("unknown command: " + message);
         }

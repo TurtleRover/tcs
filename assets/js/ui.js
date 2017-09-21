@@ -460,12 +460,42 @@ var ui = (function () {
         }).show();
     }
     
+    /*
+     * Prevent race condition between play and pause in case
+     * video is not yet playing but pause is requested
+     */
+    var video = $("#camera-video-tag").get(0);
+    var videoOnPlaying = false;
+    var videoOnPause = true;
+    video.onplaying = function() {
+        videoOnPlaying = true;
+        videoOnPause = false;
+    };
+    video.onpause = function() {
+        videoOnPlaying = false;
+        videoOnPause = true;
+    };    
+    
     function onGoButtonClick(e){
-        var remoteVideoElement = $("#camera-video-tag").get(0);
-        remoteVideoElement.play();
         toggleFullScreen();
         amplify.publish("ui->controller", "GO button is pressed");
+        if (video.paused && !videoOnPlaying) {
+            video.play();
+        }
     };
+    
+    /*
+     * Halt video and go back to welcome screen
+     */
+    function onTurtleLogoClick(e) {
+        if (!video.paused && !videoOnPause) {
+           video.pause();
+        }
+        amplify.publish("ui->controller", "ui close page");
+        toggleFullScreen();
+        $("#main-screen").fadeOut("slow");
+        $("#welcome-screen").fadeIn();
+    }
     
     function onControlRadioChanged(e) {
         if(e.target.id === "drive-radio") {
@@ -639,6 +669,7 @@ var ui = (function () {
     $("#button-go").on("click", onGoButtonClick);
     $("#button-minimize-left-ctrl").on("click", onMinimizeLeftButtonClick);
     $("#button-minimize-right-ctrl").on("click", onMinimizeRightButtonClick);
+    $("#icon-turtle-logo").on("click", onTurtleLogoClick);
     
     $("#slider-camera-brightness").on("slidechange", function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
     $("#slider-camera-contrast").on("slidechange", function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
