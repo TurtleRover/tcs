@@ -175,7 +175,7 @@ var serverCommunication = (function () {
                      *  set icon color according to signal strength
                      */
                     if (signal < 50)
-                        $('#icon-signal-level').css("color", "rgb(139,195,74)").css("width", "0.1em");
+                        $('#icon-signal-level').css("color", "rgb(139,195,74)").css("width", "1em");
                     else if (signal < 58)
                         $('#icon-signal-level').css("color", "rgb(205,220,57)").css("width", "0.8em");
                     else if (signal < 66)
