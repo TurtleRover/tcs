@@ -53,7 +53,7 @@
         "battery-threshold-error": "Battery voltage thresholds not defined! Level indication is wrong."
     },
     "status": {
-        "battery-level": "batterie: ",
+        "battery-level": "battery: ",
         "signal-level": "signal: ",
         "processor-temp": "processor: ",
         "connecting": "connecting...",
