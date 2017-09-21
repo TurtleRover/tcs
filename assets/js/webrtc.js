@@ -139,13 +139,13 @@ var webrtc = (function () {
 
         function onRemoteStreamAdded(event) {
             console.log("Remote stream added:", URL.createObjectURL(event.stream));
-            var remoteVideoElement = document.getElementById('camera-video-img');
+            var remoteVideoElement = $("#camera-video-tag").get(0);
             remoteVideoElement.src = URL.createObjectURL(event.stream);
             remoteVideoElement.play();
         }
 
         function onRemoteStreamRemoved(event) {
-            var remoteVideoElement = document.getElementById('camera-video-img');
+            var remoteVideoElement = $("#camera-video-tag").get(0);
             remoteVideoElement.src = '';
         }
 
