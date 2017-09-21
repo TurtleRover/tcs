@@ -132,7 +132,7 @@ var ui = (function () {
             }
         });
         $("#value-axis2").text($("#slider-manipulator-axis2").slider("value"));
-        
+        // In settings grab tab
         $("#slider-manipulator-gripper").slider({
             value: 3600,
             min: 2800,
@@ -140,9 +140,21 @@ var ui = (function () {
             step: 50,
             slide: function (event, ui) {
                 $("#value-gripper").text(ui.value);
+                $("#slider-gripper-input").slider("value", ui.value);
             }
         });
         $("#value-gripper").text($("#slider-manipulator-gripper").slider("value"));
+        // Master grab control
+        $("#slider-gripper-input").slider({
+            value: 3600,
+            min: 2800, // Fine tune required?
+            max: 4800, // Fine tune required?
+            step: 10,
+            slide: function (event, ui) {
+                $("#value-gripper").text(ui.value);
+                $("#slider-manipulator-gripper").slider("value", ui.value);
+            }
+        });
         
         $("#slider-manipulator-axis-x").slider({
             value: 0,
@@ -243,17 +255,7 @@ var ui = (function () {
             }
         });
         $("#value-sharpness").text($("#slider-camera-sharpness").slider("value"));
-        
-        // Grab input
-        $("#slider-gripper-input").slider({
-            value: 4000,
-            min: 3400,
-            max: 4600,
-            step: 10,
-            slide: function (event, ui) {
-
-            }
-        });
+   
     }
 
     /*

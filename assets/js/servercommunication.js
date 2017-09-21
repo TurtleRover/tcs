@@ -253,7 +253,7 @@ var serverCommunication = (function () {
 
         function setNewGripperPosition() {
             //var gripperPosition = manipulator.getGripperPosition();
-            var gripperPosition = $("#slider-manipulator-gripper").slider("value");
+            var gripperPosition = $("#slider-gripper-input").slider("value");
             console.log("New gripper position: " + gripperPosition);
             if (socket8080.isOpen) {
                 var buf = new ArrayBuffer(3);
