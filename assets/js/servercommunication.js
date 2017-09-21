@@ -189,19 +189,19 @@ var serverCommunication = (function () {
                 else if (arr[0] == 0x61) {
                     var temperature = arr[1];
                     $("#processor-temperature-text").text(temperature.toString() + " °C");
-                    if (temperature > 26) {
+                    if (temperature > 80) {
                         $('#icon-processor-temp').css("color", "rgb(139,195,74)");
                         $("#icon-processor-temp").removeClass().addClass("fa fa-2x fa-thermometer-4");
                     }
-                    else if (temperature > 24) {
+                    else if (temperature > 70) {
                         $('#icon-processor-temp').css("color", "rgb(205,220,57)");
                         $("#icon-processor-temp").removeClass().addClass("fa fa-2x fa-thermometer-3");
                     }
-                    else if (temperature > 22) {
+                    else if (temperature > 55) {
                         $('#icon-processor-temp').css("color", "rgb(255,235,59)");
                         $("#icon-processor-temp").removeClass().addClass("fa fa-2x fa-thermometer-2");
                     }
-                    else if (temperature > 20) {
+                    else if (temperature > 40) {
                         $('#icon-processor-temp').css("color", "rgb(255,152,0)");
                         $("#icon-processor-temp").removeClass().addClass("fa fa-2x fa-thermometer-1");
                     }
