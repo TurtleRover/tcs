@@ -437,6 +437,11 @@ html {
     #grab-drive-wrapper {
         top: 1vw;
     }
+    
+    #navigation-ring-canvas {
+        width: 15vw;
+        height: 15vw;
+    }
 }
 
 /* Override jquery-ui defaults */
