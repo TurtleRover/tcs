@@ -401,6 +401,33 @@ html {
 @media (min-width: 768px) {
     .left-navigation-div {
         width: 16vw;
+        height: 12vw;
+    }
+
+    .right-navigation-div {
+        width: 20vw;
+        height: 22vw;
+    }
+    
+    #gripper-wrapper {
+        top: 3vw;
+    }
+
+    #gripper-slider-wrapper{
+        top: 3vw;
+    }
+    #gripper-images-wrapper{
+        top: 5vw;
+    }
+    
+    #grab-drive-wrapper {
+        top: 1vw;
+    }
+}
+
+@media (min-width: 1200px) {
+    .left-navigation-div {
+        width: 14vw;
         height: 10vw;
     }
 
