@@ -46,7 +46,7 @@
         "adv-indication": "Numeric indication",
         "adv-lh-steering": "Left hand steering",
         "about-tab": "About",
-        "about-content": "Turtle Rover Mission Control by Mictronics"
+        "about-content": "Turtle Rover Mission Control<br><small>Mictronics version</small><br><a href='http://turtlerover.com/'>turtlerover.com</a>"
     },
     "notifications": {
         "processing": "Processing...",
