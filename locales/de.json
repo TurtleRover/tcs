@@ -42,7 +42,9 @@
         "camera-sharpness": "Schärfe: ",
         "language-tab": "Sprache",
         "language-selector": "Sprache auswählen",
-        "adv-interface-tab": "Erweiterte Anzeige",
+        "adv-interface-tab": "Erweiterte Einstellungen",
+        "adv-indication": "Numerische Anzeige",
+        "adv-lh-steering": "Steuerung links",
         "about-tab": "Über",
         "about-content": "Turtle Rover Mission Control by Mictronics"
     },

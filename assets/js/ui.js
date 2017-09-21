@@ -105,7 +105,8 @@ var ui = (function () {
         $("#value-speed-rr").text($("#slider-speed-rr").slider("value"));
         
         // Checkboxes
-        $("#advanced-interface-checkbox").checkboxradio({icon: false});
+        $("#advanced-indication-checkbox").checkboxradio({icon: false});
+        $("#checkbox-lh-steering").checkboxradio({icon: false});
         $("#grab-radio").checkboxradio({icon: false});
         $("#drive-radio").checkboxradio({icon: false});
         $("#drive-radio").prop("checked", true).checkboxradio("refresh");
@@ -341,15 +342,15 @@ var ui = (function () {
     /*
      * Hide or show advanced interface
      */
-    function advancedInterfaceChanged(e) {
+    function onChangeAdvancedIndication(e) {
         if(e.target.checked === true) {
-            $("#icon-adv-interface").removeClass("fa-toggle-off").addClass("fa-toggle-on");
-            $(".adv-interface").fadeIn();
-            Cookies.set("advanced-interface", true);
+            $("#icon-adv-indication").removeClass("fa-toggle-off").addClass("fa-toggle-on");
+            $(".adv-indication").fadeIn();
+            Cookies.set("advanced-indication", true);
         } else {
-            $("#icon-adv-interface").removeClass("fa-toggle-on").addClass("fa-toggle-off");
-            $(".adv-interface").fadeOut();
-            Cookies.set("advanced-interface", false);
+            $("#icon-adv-indication").removeClass("fa-toggle-on").addClass("fa-toggle-off");
+            $(".adv-indication").fadeOut();
+            Cookies.set("advanced-indication", false);
         }
     };
     
@@ -502,6 +503,27 @@ var ui = (function () {
         });
     }    
     
+    function toggleLeftRightSteering(val) {
+        if(val === true){
+            $(".left-navigation-div").removeClass("left-float").addClass("right-float");
+            $(".right-navigation-div").removeClass("right-float").addClass("left-float");            
+        } else {
+            $(".left-navigation-div").removeClass("right-float").addClass("left-float");
+            $(".right-navigation-div").removeClass("left-float").addClass("right-float");            
+        }
+    }
+    
+    function onChangeLhSteering(e) {
+        if(e.target.checked === true) {
+            $("#icon-lh-steering").removeClass("fa-toggle-off").addClass("fa-toggle-on");
+            Cookies.set("lh-steering", true);
+        } else {
+            $("#icon-lh-steering").removeClass("fa-toggle-on").addClass("fa-toggle-off");
+            Cookies.set("lh-steering", false);
+        }
+        toggleLeftRightSteering(e.target.checked);
+    }
+    
     /*
      * Subscripe topics
      */
@@ -594,7 +616,8 @@ var ui = (function () {
     /*
      * Event functions
      */
-    $("#advanced-interface-checkbox").on("change", advancedInterfaceChanged);
+    $("#advanced-indication-checkbox").on("change", onChangeAdvancedIndication);
+    $("#checkbox-lh-steering").on("change", onChangeLhSteering);
     $("#button-fullscreen").on("click", toggleFullScreen);
     $("#button-snapshot").on("click", takeScreenShot);
     $("#button-record").on("click", recordVideo);
@@ -650,16 +673,27 @@ var ui = (function () {
      *	read settings from last session
      */
     $(function () {
-        var previousSessionSetting = Cookies.get("advanced-interface");
-        if (previousSessionSetting == undefined)
-            previousSessionSetting = "true";
+        var previousSessionSetting = Cookies.get("advanced-indication");
+        if (previousSessionSetting === undefined) previousSessionSetting = "true";
 
-        if (previousSessionSetting == "false") {
-            $("#advanced-interface-checkbox").prop('checked', false).checkboxradio("refresh");
+        if (previousSessionSetting === "false") {
+            $("#advanced-indication-checkbox").prop('checked', false).checkboxradio("refresh");
         } else {
-            $("#advanced-interface-checkbox").prop('checked', true).checkboxradio("refresh");
+            $("#advanced-indication-checkbox").prop('checked', true).checkboxradio("refresh");
         }
-        $("#advanced-interface-checkbox").trigger("change");
+        $("#advanced-indication-checkbox").trigger("change");
+        
+        previousSessionSetting = Cookies.get("lh-steering");
+        if (previousSessionSetting === undefined) previousSessionSetting = "false";
+
+        if (previousSessionSetting === "false") {
+            $("#checkbox-lh-steering").prop('checked', false).checkboxradio("refresh");
+        } else {
+            $("#checkbox-lh-steering").prop('checked', true).checkboxradio("refresh");
+        }
+        toggleLeftRightSteering(previousSessionSetting);
+        $("#checkbox-lh-steering").trigger("change");
+        
     });
 
     return {};

@@ -66,7 +66,7 @@
                     <img class="aim-circle-img" src="/assets/img/ui/aim-circle.svg" draggable="false" onmousedown="return false" style="-webkit-user-drag: none">
                     <div class="transparent-background-div" id="transparent-background-camera"></div>
                     <canvas style="visibility:hidden; width: 100%; height:100%" id="snap-background-canvas"></canvas>
-                    <div class="adv-interface stats-view-div" style="display: none;">
+                    <div class="adv-indication stats-view-div" style="display: none;">
                         <h3 id="signal-strength-text">--- dBm</h3>
                         <h3 id="battery-level-text">--- V</h3>
                         <h3 id="processor-temperature-text">--- °C</h3>
@@ -75,13 +75,13 @@
                 </div>
 
                 <!-- Bottom rover controls -->
-                <span id="right-navigation-div">
-                    <span <div class="mr-2 mb-2 right-navigation-div navigation-background"></span>
+                <div id="right-navigation-div">
+                    <span class="mr-2 mb-2 right-navigation-div navigation-background"></span>
                     <div class="mr-2 mb-2 right-navigation-div">
                         <img id="right-navigation-cross-img" src="/assets/img/ui/right-cross.svg" draggable="false" onmousedown="return false" style="user-drag:none">
                         <img id="turtle-navigation-view-img" src="/assets/img/ui/right-rover.svg" draggable="false" onmousedown="return false" style="user-drag:none">
                     </div>
-                    <div class="mr-2 mb-2 right-navigation-div">
+                    <div class="adv-indication mr-2 mb-2 right-navigation-div" style="display: none;">
                         <div id="turtle-top-view-left-top-div">0%</div>
                         <div id="turtle-top-view-right-top-div">0%</div>
                         <div id="turtle-top-view-left-bottom-div">0%</div>
@@ -90,10 +90,10 @@
                     <div class="mr-2 mb-2 right-navigation-div">
                         <canvas id="navigation-ring-canvas"></canvas>                        
                     </div>
-                </span>
+                </div>
 
-                <span id="left-navigation-div">
-                    <span <div class="mr-2 mb-2 left-navigation-div navigation-background"></span>
+                <div id="left-navigation-div">
+                    <span class="mr-2 mb-2 left-navigation-div navigation-background"></span>
                     <div class="ml-2 mb-2 left-navigation-div">
                         <div id="grab-drive-wrapper" class="d-flex justify-content-around">
                             <fieldset>
@@ -115,7 +115,7 @@
                             </div>
                         </div>                         
                     </div>
-                </span>
+                </div>
                 
                 <!-- Bottom nav bar -->
                 <div class="d-flex flex-nowrap justify-content-between fixed-bottom mb-1">
@@ -202,8 +202,14 @@
                             <h4><span class="localized" data-i18n="settings.adv-interface-tab"></span></h4>
                             <div>
                                 <fieldset>
-                                    <label for="advanced-interface-checkbox"><span id="icon-adv-interface" class="fa fa-lg fa-toggle-off"></span></label>
-                                    <input type="checkbox" name="advanced-interface-checkbox" id="advanced-interface-checkbox">
+                                    <label for="advanced-indication-checkbox"><span id="icon-adv-indication" class="fa fa-lg fa-toggle-off"></span></label>
+                                    <input type="checkbox" name="advanced-indication-checkbox" id="advanced-indication-checkbox">
+                                    <span class="localized" data-i18n="settings.adv-indication"></span>
+                                </fieldset>
+                                <fieldset>
+                                    <label for="checkbox-lh-steering"><span id="icon-lh-steering" class="fa fa-lg fa-toggle-off"></span></label>
+                                    <input type="checkbox" name="checkbox-lh-steering" id="checkbox-lh-steering">
+                                    <span class="localized" data-i18n="settings.adv-lh-steering"></span>
                                 </fieldset>
                             </div>
                             <!-- About tab -->

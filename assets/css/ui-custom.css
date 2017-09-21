@@ -231,27 +231,6 @@ html {
     z-index: 120; /* Above video (100)*/
 }
 
-#right-navigation-div {
-    position: absolute;
-    margin-right: 0;
-    right: 0;
-    width: 25%;
-    max-width: 350px;
-    height: 100%;
-    bottom: 0;
-}
-
-#left-navigation-div {
-    position: absolute;
-    margin-left: 0;
-    left: 0;
-    width: 25%;
-    max-width: 350px;
-    height: 50%;
-    bottom: 0;
-    float:left;
-}
-
 .navigation-background {
     background-color: #0972a5;
     opacity: 0.3;
@@ -265,7 +244,7 @@ html {
 .left-navigation-div {
     position: fixed;
     bottom: 0;
-    left: 0;
+    /*left: 0;*/
     width: 20vw;
     height: 12vw;
     border-radius: 10px;
@@ -273,15 +252,23 @@ html {
     z-index: 1020 !important;
 }
 
+.left-float {
+    left: 0;
+}
+
 .right-navigation-div {
     position: fixed;
     bottom: 0;
-    right: 0;
+    /*right: 0;*/
     width: 20vw;
     height: 22vw;
     border-radius: 10px;
     text-align: center;
     z-index: 1020 !important;
+}
+
+.right-float {
+    right: 0;
 }
 
 #right-navigation-cross-img {
