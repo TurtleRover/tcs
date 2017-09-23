@@ -17,15 +17,9 @@ var ui = (function () {
         var time = new Date();
         var diff = time - startTime;
         diff = Math.round(diff / 1000);	// change from milliseconds to seconds
-        var minutes = Math.floor(diff / 60);
-        var seconds = diff - minutes * 60;
-
-        // Add leading 0 to the string
-        function pad(n) {
-            return (n < 10) ? ("0" + n) : n;
-        }
-
-        $('#session-time-text').text(pad(String(minutes)) + ":" + pad(String(seconds)));
+        var session = new Date(null);
+        session.setSeconds(diff);
+        $('#session-time-text').text(session.toISOString().substr(11, 8));
     };
     
     /*
