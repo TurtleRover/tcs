@@ -34,8 +34,11 @@
                     <div class="p-2 mt-2 localized" data-i18n="[title]main.icon-battery">
                         <span id="icon-battery-level" class="fa fa-2x fa-battery-0"></span>
                     </div>
-                    <div class="p-2 mt-2 localized" data-i18n="[title]main.icon-signal">
-                        <span id="icon-signal-level" class="fa fa-2x fa-signal" style="overflow: hidden;"></span>           
+                    <div class="p-2 mt-2 localized" data-i18n="[title]main.icon-network-speed">
+                        <span id="icon-network-speed" class="fa fa-2x fa-signal" style="overflow: hidden;"></span>           
+                    </div>
+                    <div class="p-2 mt-2 localized" data-i18n="[title]main.icon-txpower">
+                        <span id="icon-txpower-level" class="fa fa-2x fa-wifi"></span>           
                     </div>
                     <div class="p-2 localized" data-i18n="[title]main.button-record">
                         <button id="button-record" class="ui-button ui-widget ui-corner-all" type="button">
@@ -67,9 +70,10 @@
                     <div class="transparent-background-div" id="transparent-background-camera"></div>
                     <canvas style="visibility:hidden; width: 100%; height:100%" id="snap-background-canvas"></canvas>
                     <div class="adv-indication stats-view-div" style="display: none;">
-                        <h3 id="signal-strength-text">--- dBm</h3>
+                        <h3 id="txpower-level-text">--- dBm</h3>
                         <h3 id="battery-level-text">--- V</h3>
                         <h3 id="processor-temperature-text">--- °C</h3>
+                        <h3 id="network-speed-text">--- Mbps</h3>
                         <h3 id="session-time-text">--:--</h3>
                     </div>
                 </div>
@@ -105,13 +109,13 @@
                                 <input type="radio" name="radio-group" id="drive-radio">
                             </fieldset>
                         </div>                    
-                        <div id="gripper-wrapper">
-                            <div id="gripper-slider-wrapper" class="localized" data-i18n="[title]main.slider-grab">
-                                <div id="slider-gripper-input"></div>
+                        <div id="grab-wrapper">
+                            <div id="grab-slider-wrapper" class="localized" data-i18n="[title]main.slider-grab">
+                                <div id="slider-grab-input"></div>
                             </div>
-                            <div id="gripper-images-wrapper">
-                                <img src="/assets/img/ui/left-grip-open.svg" class="gripper-img" id="left-gripper-img">
-                                <img src="/assets/img/ui/left-grip-closed.svg" class="gripper-img" id="right-gripper-img">
+                            <div id="grab-images-wrapper">
+                                <img src="/assets/img/ui/left-grip-open.svg" class="grab-img" id="left-grab-img">
+                                <img src="/assets/img/ui/left-grip-closed.svg" class="grab-img" id="right-grab-img">
                             </div>
                         </div>                         
                     </div>
@@ -147,7 +151,8 @@
                         <div id="menu-accordion">
                             <!-- Speed tab -->
                             <h4><span class="localized" data-i18n="settings.speed-tab"></span></h4>
-                            <div>
+                            <div class="d-flex justify-content-between">
+                                <div><span class="fa fa-bicycle"></span><span class="fa fa-rocket"></span></div>
                                 <span class="localized" data-i18n="settings.speed-all-wheels"></span><label class="m-1" id="value-speed-all" for="slider-speed-all"></label>
                                 <div id="slider-speed-all"></div>
                                 <span class="localized" data-i18n="settings.speed-fl"></span><label class="m-1" id="value-speed-fl" for="slider-speed-fl"></label>
@@ -166,8 +171,8 @@
                                 <div id="slider-manipulator-axis1"></div>
                                 <span class="localized" data-i18n="settings.manipulator-axis2"></span><label class="m-1" id="value-axis2" for="slider-manipulator-axis2"></label>
                                 <div id="slider-manipulator-axis2"></div>
-                                <span class="localized" data-i18n="settings.manipulator-grab"></span><label class="m-1" id="value-gripper" for="slider-manipulator-gripper"></label>
-                                <div id="slider-manipulator-gripper"></div>
+                                <span class="localized" data-i18n="settings.manipulator-grab"></span><label class="m-1" id="value-grab" for="slider-manipulator-grab"></label>
+                                <div id="slider-manipulator-grab"></div>
                                 <span class="localized" data-i18n="settings.manipulator-axis-x"></span><label class="m-1" id="value-axis-x" for="slider-manipulator-axis-x"></label>
                                 <div id="slider-manipulator-axis-x"></div>
                                 <span class="localized" data-i18n="settings.manipulator-axis-y"></span><label class="m-1" id="value-axis-y" for="slider-manipulator-axis-y"></label>
