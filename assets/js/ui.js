@@ -133,27 +133,29 @@ var ui = (function () {
             }
         });
         $("#value-axis2").text($("#slider-manipulator-axis2").slider("value"));
+        
         // In settings grab tab
-        $("#slider-manipulator-gripper").slider({
+        $("#slider-manipulator-grab").slider({
             value: 3600,
             min: 2800,
             max: 4800,
             step: 50,
             slide: function (event, ui) {
-                $("#value-gripper").text(ui.value);
-                $("#slider-gripper-input").slider("value", ui.value);
+                $("#value-grab").text(ui.value);
+                $("#slider-grab-input").slider("value", ui.value);
             }
         });
-        $("#value-gripper").text($("#slider-manipulator-gripper").slider("value"));
+        $("#value-grab").text($("#slider-manipulator-grab").slider("value"));
+        
         // Master grab control
-        $("#slider-gripper-input").slider({
+        $("#slider-grab-input").slider({
             value: 3600,
             min: 2800, // Fine tune required?
             max: 4800, // Fine tune required?
             step: 10,
             slide: function (event, ui) {
-                $("#value-gripper").text(ui.value);
-                $("#slider-manipulator-gripper").slider("value", ui.value);
+                $("#value-grab").text(ui.value);
+                $("#slider-manipulator-grab").slider("value", ui.value);
             }
         });
         
@@ -256,7 +258,6 @@ var ui = (function () {
             }
         });
         $("#value-sharpness").text($("#slider-camera-sharpness").slider("value"));
-   
     }
 
     /*
@@ -602,12 +603,6 @@ var ui = (function () {
                 showGoButton();
                 setLastStatusDone(true);
                 addNewStatus(i18next.t('status.turtle-ready'));
-                setTimeout(function () {
-                    setLastStatusDone(true);
-                    addNewStatus(i18next.t('status.battery-level'), "battery-level-text", false);
-                    addNewStatus(i18next.t('status.signal-level'), "signal-strength-text", false);
-                    addNewStatus(i18next.t('status.processor-temp'), "processor-temperature-text", false);
-                }, 1000);
                 break;
             case "turtle is awake":
                 setLastStatusDone(true);
@@ -642,7 +637,20 @@ var ui = (function () {
                 setLastStatusDone(false);
                 break;
             case "initialize camera...":
-                addNewStatus(message);
+                /* At this point the websocket to server is already connected */ 
+                setTimeout(function () {
+                    /* So get parameter status */
+                    addNewStatus(i18next.t('status.battery-level') + $("#battery-level-text").text(), null, false);
+                    setLastStatusDone(true);
+                    addNewStatus(i18next.t('status.txpower-level') + $("#txpower-level-text").text(), null, false);
+                    setLastStatusDone(true);
+                    addNewStatus(i18next.t('status.processor-temp') + $("#processor-temperature-text").text(), null, false);
+                    setLastStatusDone(true);
+                    addNewStatus(i18next.t('status.network-speed') + $("#network-speed-text").text(), null, false);
+                    setLastStatusDone(true);                    
+                    addNewStatus(message);
+                }, 3000);                
+                /* Waiting for camera initialization */
                 break;
             
             /* Remove this once battery voltage thresholds are set correct */
@@ -679,8 +687,8 @@ var ui = (function () {
     $("#slider-camera-gain").on("slidechange", function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
     $("#slider-camera-sharpness").on("slidechange", function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
 
-    $("#slider-gripper-input").on("slidechange", function(e, data) {amplify.publish("ui->port8080", "set new gripper position");});
-    $("#slider-manipulator-gripper").on("slidechange", function(e, data) {amplify.publish("ui->port8080", "set new gripper position");});
+    $("#slider-grab-input").on("slidechange", function(e, data) {amplify.publish("ui->port8080", "set new grab position");});
+    /* Master grab input and the one in settings menu are linked together by change event. So we are listen only to master. */
     $("#slider-manipulator-axis1").on("slidechange", function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
     $("#slider-manipulator-axis2").on("slidechange", function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
 
@@ -736,7 +744,6 @@ var ui = (function () {
         }
         toggleLeftRightSteering(previousSessionSetting);
         $("#checkbox-lh-steering").trigger("change");
-        
     });
 
     return {};
