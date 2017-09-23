@@ -52,7 +52,6 @@ var webrtc = (function () {
 
         var ws = null;
         var pc;
-        var gn;
         var datachannel, localdatachannel;
         var audio_video_stream;
         var recorder = null;
