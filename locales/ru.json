@@ -6,7 +6,8 @@
     "main": {
         "icon-temp": "Температура процессора",
         "icon-battery": "Состояние батареи",
-        "icon-signal": "Качество сигнала",
+        "icon-txpower": "Мощность передатчика",
+        "icon-network-speed": "Скорость передачи данных",
         "button-record": "Начать видезапись",
         "button-snapshot": "Сохранить копию экрана",
         "button-fullscreen": "Полноэкранный режим",
@@ -56,10 +57,11 @@
     },
     "status": {
         "battery-level": "батарея: ",
-        "signal-level": "сигнал: ",
+        "txpower-level": "мощность передатчика: ",
         "processor-temp": "процессор: ",
         "connecting": "соединен...",
         "turtle-ready": "turtle rover готов.",
-        "initializing": "инициализация..."
+        "initializing": "инициализация...",
+        "network-speed": "скорость передачи данных: "
     }
 }

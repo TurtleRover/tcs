@@ -6,7 +6,8 @@
     "main": {
         "icon-temp": "Processor temperatur",
         "icon-battery": "Battery status",
-        "icon-signal": "Signal level",
+        "icon-txpower": "TX power level",
+        "icon-network-speed": "Network speed",
         "button-record": "Record video",
         "button-snapshot": "Take snapshot",
         "button-fullscreen": "Fullscreen",
@@ -56,10 +57,11 @@
     },
     "status": {
         "battery-level": "battery: ",
-        "signal-level": "signal: ",
+        "txpower-level": "tx power: ",
         "processor-temp": "processor: ",
         "connecting": "connecting...",
         "turtle-ready": "turtle rover ready to go.",
-        "initializing": "initializing..."
+        "initializing": "initializing...",
+        "network-speed": "network speed: "
     }
 }

@@ -6,7 +6,8 @@
     "main": {
         "icon-temp": "Prozessor Temperatur",
         "icon-battery": "Batteriestatus",
-        "icon-signal": "Signalstärke",
+        "icon-txpower": "Sendeleistung",
+        "icon-network-speed": "Datenübertragungsrate",
         "button-record": "Video aufzeichnen",
         "button-snapshot": "Bildschirmfoto speichern",
         "button-fullscreen": "Vollbildmodus",
@@ -56,10 +57,11 @@
     },
     "status": {
         "battery-level": "batterie: ",
-        "signal-level": "signal: ",
+        "txpower-level": "sendeleistung: ",
         "processor-temp": "prozessor: ",
         "connecting": "verbinden...",
         "turtle-ready": "turtle rover bereit.",
-        "initializing": "initialisierung..."
+        "initializing": "initialisierung...",
+        "network-speed": "datenübertragungsrate: "
     }
 }
