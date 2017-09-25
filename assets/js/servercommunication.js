@@ -27,10 +27,10 @@ var serverCommunication = (function () {
     };
 
     /*
-     * Defines how often new information is sent
+     * Defines how often new information is send and read back.
      */
-    const INTERVAL = 100;
-    const BAT_INTERVAL = 2000;
+    const INTERVAL = 100; /* Sends motor parameters */
+    const REQUEST_INTERVAL = 500; /* Requesting in sequently manner will refresh each parameter every 2 seconds. */
 
     var connection = window.navigator.connection || window.navigator.mozConnection || null;
     if (connection === null) {
@@ -144,80 +144,122 @@ var serverCommunication = (function () {
                 for (var i = 0; i < arr.length; i++)
                     hex += ('00' + arr[i].toString(16)).substr(-2);
 
-                //  read battery voltage
-                if (arr[0] == 0x31) {
-                    var voltage = arr[1];
-                    voltage = voltage / 14 + 0.3 // voltage divider
-                    var str_voltage = voltage.toString();
-                    $("#battery-level-text").text(str_voltage.substr(0, 4) + " V");
-                    /*
-                     *  set icon color according to battery voltage
-                     *  
-                     *  Voltage thresholds to be defined according to battery specs!
-                     */
-                    if (voltage > 18) {
-                        $('#icon-battery-level').css("color", "rgb(139,195,74)");
-                        $("#icon-battery-level").removeClass().addClass("fa fa-2x fa-battery-4");
-                    }
-                    else if (voltage > 16) {
-                        $('#icon-battery-level').css("color", "rgb(205,220,57)");
-                        $("#icon-battery-level").removeClass().addClass("fa fa-2x fa-battery-3");
-                    }
-                    else if (voltage > 14) {
-                        $('#icon-battery-level').css("color", "rgb(255,235,59)");
-                        $("#icon-battery-level").removeClass().addClass("fa fa-2x fa-battery-2");
-                    }
-                    else if (voltage > 12) {
-                        $('#icon-battery-level').css("color", "rgb(255,152,0)");
-                        $("#icon-battery-level").removeClass().addClass("fa fa-2x fa-battery-1");
-                    }
-                    else {
-                        $('#icon-battery-level').css("color", "rgb(244,67,54)");
-                        $("#icon-battery-level").removeClass().addClass("fa fa-2x fa-battery-0");
-                    }
-                }
-                //  read tx power level
-                else if (arr[0] == 0x41) {
-                    var signal = arr[1];
-                    $("#txpower-level-text").text(signal.toString() + " dBm");
-                    /*
-                     *  set icon color according to tx power level
-                     */
-                    if (signal > 30)
-                        $('#icon-txpower-level').css("color", "rgb(139,195,74)");
-                    else if (signal > 24)
-                        $('#icon-txpower-level').css("color", "rgb(205,220,57)");
-                    else if (signal > 18)
-                        $('#icon-txpower-level').css("color", "rgb(255,235,59)");
-                    else if (signal > 12)
-                        $('#icon-txpower-level').css("color", "rgb(255,152,0)");
-                    else
-                        $('#icon-txpower-level').css("color", "rgb(244,67,54)");
-                }
-                //  read processor temperature
-                else if (arr[0] === 0x61) {
-                    var temperature = arr[1];
-                    $("#processor-temperature-text").text(temperature.toString() + " °C");
-                    if (temperature > 80) {
-                        $('#icon-processor-temp').css("color", "rgb(244,67,54)");
-                        $("#icon-processor-temp").removeClass().addClass("fa fa-2x fa-thermometer-4");
-                    }
-                    else if (temperature > 70) {
-                        $('#icon-processor-temp').css("color", "rgb(255,152,0)");
-                        $("#icon-processor-temp").removeClass().addClass("fa fa-2x fa-thermometer-3");
-                    }
-                    else if (temperature > 55) {
-                        $('#icon-processor-temp').css("color", "rgb(255,235,59)");
-                        $("#icon-processor-temp").removeClass().addClass("fa fa-2x fa-thermometer-2");
-                    }
-                    else if (temperature > 40) {
-                        $('#icon-processor-temp').css("color", "rgb(205,220,57)");
-                        $("#icon-processor-temp").removeClass().addClass("fa fa-2x fa-thermometer-1");
-                    }
-                    else {
-                        $('#icon-processor-temp').css("color", "rgb(139,195,74)");
-                        $("#icon-processor-temp").removeClass().addClass("fa fa-2x fa-thermometer-0");
-                    }
+                switch(arr[0]){
+                    case 0x31: // Read battery voltage
+                        var voltage = arr[1];
+                        voltage = voltage / 14 + 0.3 // voltage divider
+                        var str_voltage = voltage.toString();
+                        $("#battery-level-text").text(str_voltage.substr(0, 4) + " V");
+                        /*
+                         *  set icon color according to battery voltage
+                         *  
+                         *  Voltage thresholds to be defined according to battery specs!
+                         */
+                        if (voltage > 18) {
+                            $('#icon-battery-level').css("color", "rgb(139,195,74)");
+                            $("#icon-battery-level").removeClass().addClass("fa fa-2x fa-battery-4");
+                        }
+                        else if (voltage > 16) {
+                            $('#icon-battery-level').css("color", "rgb(205,220,57)");
+                            $("#icon-battery-level").removeClass().addClass("fa fa-2x fa-battery-3");
+                        }
+                        else if (voltage > 14) {
+                            $('#icon-battery-level').css("color", "rgb(255,235,59)");
+                            $("#icon-battery-level").removeClass().addClass("fa fa-2x fa-battery-2");
+                        }
+                        else if (voltage > 12) {
+                            $('#icon-battery-level').css("color", "rgb(255,152,0)");
+                            $("#icon-battery-level").removeClass().addClass("fa fa-2x fa-battery-1");
+                        }
+                        else {
+                            $('#icon-battery-level').css("color", "rgb(244,67,54)");
+                            $("#icon-battery-level").removeClass().addClass("fa fa-2x fa-battery-0");
+                        }
+                        break;
+               
+                    case 0x41: // Read tx power level
+                        var signal = arr[1];
+                        $("#txpower-level-text").text(signal.toString() + " dBm");
+                        /*
+                         *  set icon color according to tx power level
+                         */
+                        if (signal > 30) {
+                            $('#icon-txpower-level').css("color", "rgb(139,195,74)");
+                        }
+                        else if (signal > 24) {
+                            $('#icon-txpower-level').css("color", "rgb(205,220,57)");
+                        }
+                        else if (signal > 18) {
+                            $('#icon-txpower-level').css("color", "rgb(255,235,59)");
+                        }
+                        else if (signal > 12) {
+                            $('#icon-txpower-level').css("color", "rgb(255,152,0)");
+                        }
+                        else {
+                            $('#icon-txpower-level').css("color", "rgb(244,67,54)");
+                        }
+                        break;
+                
+                    case 0x61: // Read processor temperature
+                        var temperature = arr[1];
+                        $("#processor-temperature-text").text(temperature.toString() + " °C");
+                        if (temperature > 80) {
+                            $('#icon-processor-temp').css("color", "rgb(244,67,54)");
+                            $("#icon-processor-temp").removeClass().addClass("fa fa-2x fa-thermometer-4");
+                        }
+                        else if (temperature > 70) {
+                            $('#icon-processor-temp').css("color", "rgb(255,152,0)");
+                            $("#icon-processor-temp").removeClass().addClass("fa fa-2x fa-thermometer-3");
+                        }
+                        else if (temperature > 55) {
+                            $('#icon-processor-temp').css("color", "rgb(255,235,59)");
+                            $("#icon-processor-temp").removeClass().addClass("fa fa-2x fa-thermometer-2");
+                        }
+                        else if (temperature > 40) {
+                            $('#icon-processor-temp').css("color", "rgb(205,220,57)");
+                            $("#icon-processor-temp").removeClass().addClass("fa fa-2x fa-thermometer-1");
+                        }
+                        else {
+                            $('#icon-processor-temp').css("color", "rgb(139,195,74)");
+                            $("#icon-processor-temp").removeClass().addClass("fa fa-2x fa-thermometer-0");
+                        }
+                        break;
+                        
+                    case 0x71: // Read GPS position
+                        var mode = arr[1];
+                        switch(mode){
+                            case 3:
+                                $('#icon-location').css("color", "rgb(139,195,74)");
+                                break;
+                            case 2:
+                                $('#icon-location').css("color", "rgb(255,235,59)");
+                                break;
+                            case 1:
+                                $('#icon-location').css("color", "rgb(255,152,0)");
+                                break;
+                            case 0:
+                                $('#icon-location').css("color", "rgb(244,67,54)");
+                                break;
+                            default:
+                                $('#icon-location').css("color", "rgb(255,255,255)");
+                                break;
+                        }
+                        
+                        if(mode > 1) { /* Position requires at least a 2D fix. */
+                            var lat = new Float64Array(new Uint8Array([arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8], arr[9]]).buffer)[0]
+                            var lon = new Float64Array(new Uint8Array([arr[10], arr[11], arr[12], arr[13], arr[14], arr[15], arr[16], arr[17]]).buffer)[0]
+                            var ns = 'N';
+                            var ew = 'E';
+                            if(lat < 0) ns = 'S';
+                            if(lon < 9) ew = 'W';
+                            $("#location-text").text(ns + Math.abs(lat) +" " + ew + Math.abs(lon));
+                        } else {
+                            $("#location-text").text("---");
+                        }
+                        break;
+                        
+                    default:
+                        break;
                 }
             }
         };
@@ -267,11 +309,9 @@ var serverCommunication = (function () {
             if (socket8080.isOpen) {
                 var buf = new ArrayBuffer(3);
                 var arr = new Uint8Array(buf);
-
                 arr[0] = 0x94;
                 arr[1] = (grabPosition >> 8) & 0xFF;
                 arr[2] = grabPosition & 0xFF;
-
                 socket8080.socket.send(buf);
             }
         };
@@ -284,24 +324,16 @@ var serverCommunication = (function () {
                 var motorsSpeed = controlCanvas.getMotorsSpeed();
                 var buf = new ArrayBuffer(5);
                 var arr = new Uint8Array(buf);
-
-                //  command to send
                 arr[0] = 0x10;
-                /*	Multiplying by this value should make possible to write directly to PWM
-                 Current range is 0 - 127 with first bit as direction	*/
+                /* Multiplying by this value should make possible to write directly to PWM
+                 * Current range is 0 - 127 with first bit as direction
+                 */
                 var k = 1.27;
                 arr[1] = Math.round(Math.abs(motorsSpeed.motor_1 * k) | (motorsSpeed.motor_1 & 0x80));	//	Left front
                 arr[2] = Math.round(Math.abs(motorsSpeed.motor_2 * k) | (motorsSpeed.motor_2 & 0x80));	//	Right front
                 arr[3] = Math.round(Math.abs(motorsSpeed.motor_3 * k) | (motorsSpeed.motor_3 & 0x80));	//	Left rear
                 arr[4] = Math.round(Math.abs(motorsSpeed.motor_4 * k) | (motorsSpeed.motor_4 & 0x80));	//	Right rear
                 socket8080.socket.send(buf);
-
-                // Convert to readable form
-                var hex = '';
-                for (var i = 0; i < arr.length; i++)
-                    hex += ('00' + arr[i].toString(16)).substr(-2);
-
-                // if(DEBUG) console.log("Binary message sent. " + hex);
             } else {
                 console.log("Connection not opened.");
             }
@@ -314,21 +346,12 @@ var serverCommunication = (function () {
             if (socket8080.isOpen) {
                 var buf = new ArrayBuffer(5);
                 var arr = new Uint8Array(buf);
-
-                //  command to send
                 arr[0] = 0x10;
                 arr[1] = 0;
                 arr[2] = 0;
                 arr[3] = 0;
                 arr[4] = 0;
                 socket8080.socket.send(buf);
-
-                // Convert to readable form
-                var hex = '';
-                for (var i = 0; i < arr.length; i++)
-                    hex += ('00' + arr[i].toString(16)).substr(-2);
-
-                // if(DEBUG) console.log("Binary message sent. " + hex);
             } else
                 console.log("Connection not opened.");
         };
@@ -342,34 +365,19 @@ var serverCommunication = (function () {
                 var arr = new Uint8Array(buf);
                 arr[0] = 0x30;
                 socket8080.socket.send(buf);
-
-                // Convert to readable form
-                var hex = '';
-                for (var i = 0; i < arr.length; i++)
-                    hex += ('00' + arr[i].toString(16)).substr(-2);
-
-                // if(DEBUG) console.log("Binary message sent. " + hex);
             } else
                 console.log("Connection not opened.");
         };
 
         /*
-         * Get signal level
-         * This is in fact tx power level.
+         * Get TX power level
          */
-        function getSignalLevel() {
+        function getTxPowerLevel() {
             if (socket8080.isOpen) {
                 var buf = new ArrayBuffer(1);
                 var arr = new Uint8Array(buf);
                 arr[0] = 0x40;
                 socket8080.socket.send(buf);
-
-                // Convert to readable form
-                var hex = '';
-                for (var i = 0; i < arr.length; i++)
-                    hex += ('00' + arr[i].toString(16)).substr(-2);
-
-                // if(DEBUG) console.log("Binary message sent. " + hex);
             } else
                 console.log("Connection not opened.");
         };
@@ -383,13 +391,6 @@ var serverCommunication = (function () {
                 var arr = new Uint8Array(buf);
                 arr[0] = 0x60;
                 socket8080.socket.send(buf);
-
-                // Convert to readable form
-                var hex = '';
-                for (var i = 0; i < arr.length; i++)
-                    hex += ('00' + arr[i].toString(16)).substr(-2);
-
-                // if(DEBUG) console.log("Binary message sent. " + hex);
             } else
                 console.log("Connection not opened.");
         };
@@ -451,6 +452,19 @@ var serverCommunication = (function () {
         }
         
         /*
+         * Get rovers GPS position
+         */
+        function getGpsPosition() {
+            if (socket8080.isOpen) {
+                var buf = new ArrayBuffer(1);
+                var arr = new Uint8Array(buf);
+                arr[0] = 0x70;
+                socket8080.socket.send(buf);
+            } else
+                console.log("Connection not opened.");
+        }
+        
+        /*
          * Set interval to update motor values
          * Take care to not overload CPU
          */
@@ -459,17 +473,18 @@ var serverCommunication = (function () {
                 setMotors();
         }, INTERVAL);
 
+        var req_functions = [getBatteryLevel, getProcessorTemperature, getTxPowerLevel, getNetworkInfo, getGpsPosition];
+        var req_index = 0;
+
         /*
-         * Read battery value
+         * Request data from websocket server in a sequently manner.
          */
         setInterval(function () {
             if (socket8080.isOpen) {
-                getBatteryLevel();
-                getSignalLevel();
-                getProcessorTemperature();
-                getNetworkInfo();
+                req_functions[req_index]();
+                req_index = (req_index+1) % req_functions.length;
             }
-        }, BAT_INTERVAL);
+        }, REQUEST_INTERVAL);
     };
 
 })();
