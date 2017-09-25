@@ -8,6 +8,7 @@
         "icon-battery": "Состояние батареи",
         "icon-txpower": "Мощность передатчика",
         "icon-network-speed": "Скорость передачи данных",
+        "icon-location": "Качество GPS",
         "button-record": "Начать видезапись",
         "button-snapshot": "Сохранить копию экрана",
         "button-fullscreen": "Полноэкранный режим",

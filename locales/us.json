@@ -8,6 +8,7 @@
         "icon-battery": "Battery status",
         "icon-txpower": "TX power level",
         "icon-network-speed": "Network speed",
+        "icon-location": "GPS Quality",
         "button-record": "Record video",
         "button-snapshot": "Take snapshot",
         "button-fullscreen": "Fullscreen",

@@ -8,6 +8,7 @@
         "icon-battery": "Batteriestatus",
         "icon-txpower": "Sendeleistung",
         "icon-network-speed": "Datenübertragungsrate",
+        "icon-location": "GPS Qualität",
         "button-record": "Video aufzeichnen",
         "button-snapshot": "Bildschirmfoto speichern",
         "button-fullscreen": "Vollbildmodus",
