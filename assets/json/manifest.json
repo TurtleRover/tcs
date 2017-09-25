@@ -1,4 +1,27 @@
 {
-    "display":      "fullscreen",
-    "orientation":  "landscape"
+    "lang": "en-US",
+    "dir": "ltr",
+    "name": "Turtle Rover Control",
+    "description": "Mission control application driving the Turtle Rover.",
+    "short_name": "Rover Ctrl",
+    "scope": "/",
+    "start_url": "/index.html",
+    "display": "fullscreen",
+    "orientation": "landscape",
+    "background_color": "black",
+    "theme_color": "black",
+    "icons": [
+        {
+            "src": "/assets/img/tiles/turtle-70x70.png",
+            "sizes": "70x70"
+        }, {
+            "src": "/assets/img/tiles/turtle-150x150.png",
+            "sizes": "150x150"
+        }, {
+            "src": "/assets/img/tiles/turtle-310x310.png",
+            "sizes": "310x310"
+        }, {
+            "src": "/assets/img/tiles/turtle-original.png",
+            "sizes": "875x1008"
+        }]
 }

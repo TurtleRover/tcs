@@ -3,3 +3,4 @@ docs/desktop.ini
 *desktop.ini
 *Thumbs.db
 *.pyc
+/nbproject/

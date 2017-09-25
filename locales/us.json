@@ -1,21 +1,68 @@
 {
-    "my-button": "Click Me!",
-    "welcome-message": "Your way to Mars!",
-    "menu": {
-        "home": "home",
-        "help": "help",
-        "advanced-settings": "advanced settings",
-        "console": "console",
-        "statistics": "statistics",
-        "about": "about"
+    "test": "English",
+    "welcome": {
+        "message": "Let's start an adventure!"
+    },
+    "main": {
+        "icon-temp": "Processor temperatur",
+        "icon-battery": "Battery status",
+        "icon-txpower": "TX power level",
+        "icon-network-speed": "Network speed",
+        "icon-location": "GPS Quality",
+        "button-record": "Record video",
+        "button-snapshot": "Take snapshot",
+        "button-fullscreen": "Fullscreen",
+        "button-settings": "Settings",
+        "button-minimize-left": "Minimize",
+        "button-minimize-right": "Minimize",
+        "button-emergency-stop": "Emergency stop motors",
+        "button-drive": "Drive mode",
+        "button-grab": "Grab mode",
+        "slider-grab": "Grab open&close"
     },
     "settings": {
-        "advanced-interface": "advanced interface",
-        "another-setting": "another setting"
+        "button-close": "Close settings",
+        "speed-tab": "Speed",
+        "speed-all-wheels": "All wheels: ",
+        "speed-fl": "Front left: ",
+        "speed-fr": "Front right: ",
+        "speed-rl": "Rear left: ",
+        "speed-rr": "Rear right: ",
+        "manipulator-tab": "Grab",
+        "manipulator-axis1": "Axis 1: ",
+        "manipulator-axis2": "Axis 2: ",
+        "manipulator-grab": "Grab: ",
+        "manipulator-axis-x": "Axis X: ",
+        "manipulator-axis-y": "Axis Y: ",
+        "camera-tab": "Camera",
+        "camera-brightness": "Brightness: ",
+        "camera-contrast": "Constrast: ",
+        "camera-saturation": "Saturation: ",
+        "camera-hue": "Hue: ",
+        "camera-gamma": "Gamma: ",
+        "camera-gain": "Gain: ",
+        "camera-sharpness": "Sharpness: ",
+        "language-tab": "Language",
+        "language-selector": "Select language",
+        "adv-interface-tab": "Advanced Settings",
+        "adv-indication": "Numeric indication",
+        "adv-lh-steering": "Left hand steering",
+        "about-tab": "About",
+        "about-content": "Turtle Rover Mission Control<br><small>Mictronics version</small><br><a href='http://turtlerover.com/'>turtlerover.com</a>"
     },
     "notifications": {
-        "working-on": "we are currently working on this feature",
-        "server-connection-error": "an error has occurred while establishing server communication - camera image will be disabled",
-        "client-already-connected": "one client is already connected"
+        "processing": "Processing...",
+        "server-connection-error": "Server connection error - Camera video disabled.",
+        "client-already-connected": "Client already connected.",
+        "battery-threshold-error": "Battery voltage thresholds not defined! Level indication is wrong."
+    },
+    "status": {
+        "battery-level": "batterie: ",
+        "txpower-level": "tx power: ",
+        "processor-temp": "processor: ",
+        "connecting": "connecting...",
+        "turtle-ready": "turtle rover ready to go.",
+        "initializing": "initializing...",
+        "network-speed": "network speed: "
     }
 }
