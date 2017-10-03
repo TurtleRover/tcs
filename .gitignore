@@ -5,3 +5,6 @@ docs/desktop.ini
 *.pyc
 .settings/
 .vscode/
+tags
+test.html
+ieconfig.xml
