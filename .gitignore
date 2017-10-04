@@ -3,3 +3,8 @@ docs/desktop.ini
 *desktop.ini
 *Thumbs.db
 *.pyc
+.settings/
+.vscode/
+tags
+test.html
+ieconfig.xml
