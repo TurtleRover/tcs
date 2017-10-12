@@ -66,6 +66,15 @@ var ui = (function () {
 		}
 	};
 
+	function photographyChanged() {
+		if($("#photography-button").prop('checked') == false) {
+			Cookies.set("photography", false);
+		}
+		else {
+			Cookies.set("photography", true);
+		}
+	}
+
 	/*
 	 *	run popup window with shellinabox
 	 */
@@ -325,6 +334,15 @@ var ui = (function () {
 	}
 
 	/*
+	 *	if the rover has mounted camera rotation device, the slider should be back to the center if touchup and mousup
+	 */
+	function gripperSliderUp() {
+		if($("#photography-button").prop('checked'))
+			$("#gripper-slider-input").val(
+				(parseInt($("#gripper-slider-input").attr("max"))+parseInt($("#gripper-slider-input").attr("min"))) * 0.5);
+	}
+
+	/*
 	 * 																		SUBSCRIBE topics
 	 */
 	amplify.subscribe("controller->ui", controllerMessageCallback);
@@ -413,6 +431,7 @@ var ui = (function () {
 	$("#record-button-img").click(function() {recordVideo();});
 	$(document).bind("fullscreenchange", function() {changedFullScreen();});
 	$("#advanced-interface-button").change(function(e, data) {advancedInterfaceChanged();});
+	$("#photography-button").change(function(e, data) {photographyChanged();});
 	$("#go-button").click(function() {
 		var remoteVideoElement = document.getElementById('camera-video-img');
 		remoteVideoElement.play();
@@ -431,6 +450,8 @@ var ui = (function () {
 	$("#sharpness-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
 
 	$("#gripper-slider").on("input", function(e, data) {amplify.publish("ui->port8080", "set new gripper position");});
+	$("#gripper-slider").on("mouseup touchend", function(e, data) {gripperSliderUp();});
+	
 	$("#mani-axis-1").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
 	$("#mani-axis-2").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
 
@@ -508,16 +529,16 @@ var ui = (function () {
 	 *	read settings from last session
 	 */
 	$(function() {
-		var previousSessionSetting = Cookies.get("advanced-interface");
-		if (previousSessionSetting == undefined) previousSessionSetting = "true";
-
-		if (previousSessionSetting == "false") {
-			$("#advanced-interface-button").prop('checked', false);
-		}
-		else {
-			$("#advanced-interface-button").prop('checked', true);
-		}
+		readSetting(Cookies.get("advanced-interface"), "#advanced-interface-button", "true");
+		readSetting(Cookies.get("photography"), "#photography-button", "false");
 	});
+
+	function readSetting(value, name, defVal) {
+		if (value == undefined) value = defVal;
+
+		if (value == "false") $(name).prop('checked', false);
+		else $(name).prop('checked', true);
+	}
 
 	/*
 	 *	configure vex dialogs
