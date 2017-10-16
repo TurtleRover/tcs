@@ -310,10 +310,10 @@
 			<!-- footer -->
 			<div id="header" class="footer" hidden>
 				<div id="control-container-div">
-					<div id="right-navigation-div" draggable="false" onmousedown="return false" style="user-drag: none">
+					<div id="right-navigation-div" draggable="false" style="user-drag: none">
 						<div class="transparent-background-div" id="transparent-background-navigation-right"></div>
-						<div id="right-navigation-cross-div" draggable="false" onmousedown="return false" sytle="user-drag: none">
-							<img id="right-navigation-cross-img" src="assets/img/ui/right-krzyz.svg" draggable="false" onmousedown="return false" style="user-drag:none">
+						<div id="right-navigation-cross-div" draggable="false" style="user-drag: none">
+						 	<img id="right-navigation-cross-img" src="assets/img/ui/right-krzyz.svg" draggable="false" onmousedown="return false" style="user-drag:none">
 							<img id="turtle-navigation-view-img" src="assets/img/ui/right-lazik.svg" draggable="false" onmousedown="return false" style="user-drag:none">
 
 							<canvas id="navigation-ring-canvas"></canvas>
@@ -321,7 +321,15 @@
 							<div id="turtle-top-view-left-top-div" class="advanced-interface"><p id="turtle-top-view-left-top-p" class="debug-text">0%</p></div>
 							<div id="turtle-top-view-right-top-div" class="advanced-interface"><p id="turtle-top-view-right-top-p" class="debug-text">0%</p></div>
 							<div id="turtle-top-view-left-bottom-div" class="advanced-interface"><p id="turtle-top-view-left-bottom-p" class="debug-text">0%</p></div>
-							<div id="turtle-top-view-right-bottom-div" class="advanced-interface"><p id="turtle-top-view-right-bottom-p" class="debug-text">0%</p></div>
+							<div id="turtle-top-view-right-bottom-div" class="advanced-interface"><p id="turtle-top-view-right-bottom-p" class="debug-text">0%</p></div> 
+
+
+							<div id="camera-slider-wrapper" hidden>
+								<div class="flat-slider-wrapper vranger">
+									<div class="flat-slider gripper-slider" id="camera-slider"><input type="range" class="flat-slider-horizontal" id="camera-slider-input" max="4600" min="3400" step="10" value="4000"/></div>
+									<div id="clear"></div>
+								</div>
+							</div>
 						</div>
 					</div>
 

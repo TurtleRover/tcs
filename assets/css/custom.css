@@ -327,6 +327,14 @@ body.is-menu-visible #control-container-div {
     height: 50%;
     bottom: 0;
 }
+
+#camera-slider-wrapper{
+    position: absolute;
+    height:100%;
+    width: 100%;
+    bottom: 0;
+}
+
 #gripper-images-wrapper{
     position: absolute;
     width: 100%;

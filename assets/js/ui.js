@@ -341,6 +341,10 @@ var ui = (function () {
 			$("#gripper-slider-input").val(
 				(parseInt($("#gripper-slider-input").attr("max"))+parseInt($("#gripper-slider-input").attr("min"))) * 0.5);
 	}
+	function cameraSliderUp() {
+		$("#camera-slider-input").val(
+			(parseInt($("#camera-slider-input").attr("max"))+parseInt($("#camera-slider-input").attr("min"))) * 0.5);
+	}
 
 	/*
 	 * 																		SUBSCRIBE topics
@@ -451,6 +455,7 @@ var ui = (function () {
 
 	$("#gripper-slider").on("input", function(e, data) {amplify.publish("ui->port8080", "set new gripper position");});
 	$("#gripper-slider").on("mouseup touchend", function(e, data) {gripperSliderUp();});
+	$("#camera-slider").on("mouseup touchend", function(e, data) {cameraSliderUp();});
 	
 	$("#mani-axis-1").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
 	$("#mani-axis-2").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
@@ -458,25 +463,49 @@ var ui = (function () {
 	$("#mani-x").change(function(e, data) {amplify.publish("ui->manipulator", "move mani");});
 	$("#mani-y").change(function(e, data) {amplify.publish("ui->manipulator", "move mani");});
 
-	$("#grab-text").click(function(e, data) {
-		$("#grab-text").addClass("grab-drive-text-filled-dot");
-		$("#drive-text").removeClass("grab-drive-text-filled-dot");
-		$("#camera-video-img").removeClass("camera-video-drive-mode");
-		$("#camera-video-img").addClass("camera-video-grab-mode");
-		$("#right-navigation-cross-img").attr('src', 'assets/img/ui/right-krzyz-mani.svg');
-		$("#turtle-navigation-view-img").attr('src', 'assets/img/ui/right-manipulator.svg');
-		amplify.publish("ui->controlCanvas", "set function to GRAB");
-	});
+	$("#grab-text").click(function(e, data) {grabOrDriveClicked("grab");});
+	$("#drive-text").click(function(e, data) {grabOrDriveClicked("drive");});
 
-	$("#drive-text").click(function(e, data) {
-		$("#drive-text").addClass("grab-drive-text-filled-dot");
-		$("#grab-text").removeClass("grab-drive-text-filled-dot");
-		$("#camera-video-img").removeClass("camera-video-grab-mode");
-		$("#camera-video-img").addClass("camera-video-drive-mode");
-		$("#right-navigation-cross-img").attr('src', 'assets/img/ui/right-krzyz.svg');
-		$("#turtle-navigation-view-img").attr('src', 'assets/img/ui/right-lazik.svg');
-		amplify.publish("ui->controlCanvas", "set function to DRIVE");
-	});
+	function grabOrDriveClicked(name) {
+		if (name == "grab") {
+			$("#grab-text").addClass("grab-drive-text-filled-dot");
+			$("#drive-text").removeClass("grab-drive-text-filled-dot");
+			/*
+			 *	if standard grab mode (not photography), use standard GRAB
+			 *	else use GRAB for photography
+			 */
+			if($("#photography-button").prop('checked') == false) {
+				$("#camera-video-img").removeClass("camera-video-drive-mode");
+				$("#camera-video-img").addClass("camera-video-grab-mode");
+				$("#right-navigation-cross-img").fadeIn();
+				$("#turtle-navigation-view-img").fadeIn();
+				$("#right-navigation-cross-img").attr('src', 'assets/img/ui/right-krzyz-mani.svg');
+				$("#turtle-navigation-view-img").attr('src', 'assets/img/ui/right-manipulator.svg');
+				amplify.publish("ui->controlCanvas", "set function to GRAB");
+			}
+			else {
+				//	set camera as for drive
+				$("#camera-video-img").removeClass("camera-video-grab-mode");
+				$("#camera-video-img").addClass("camera-video-drive-mode");
+				$("#camera-slider-wrapper").fadeIn();
+				$("#right-navigation-cross-img").fadeOut();
+				$("#turtle-navigation-view-img").fadeOut();
+			}
+
+		}
+		else if (name == "drive") {
+			$("#camera-slider-wrapper").fadeOut();
+			$("#drive-text").addClass("grab-drive-text-filled-dot");
+			$("#grab-text").removeClass("grab-drive-text-filled-dot");
+			$("#camera-video-img").removeClass("camera-video-grab-mode");
+			$("#camera-video-img").addClass("camera-video-drive-mode");
+			$("#right-navigation-cross-img").fadeIn();
+			$("#turtle-navigation-view-img").fadeIn();
+			$("#right-navigation-cross-img").attr('src', 'assets/img/ui/right-krzyz.svg');
+			$("#turtle-navigation-view-img").attr('src', 'assets/img/ui/right-lazik.svg');
+			amplify.publish("ui->controlCanvas", "set function to DRIVE");
+		}
+	}
 
 
 	/*
