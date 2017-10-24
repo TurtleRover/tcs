@@ -36,6 +36,7 @@ import hexdump
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from Hardware_Communication.turtleSerial import *
 from Motor_Module.Motor_Module import *
+from link_quality import *
 import numpy as np
 
 class MyServerProtocol(WebSocketServerProtocol):
@@ -107,19 +108,25 @@ if __name__ == '__main__':
     except ImportError:
         # Trollius >= 0.3 was renamed
         import trollius as asyncio
-	
+        
     print("Working")
     factory = WebSocketServerFactory(u"ws://127.0.0.1:8080")
     factory.protocol = MyServerProtocol
 
     loop = asyncio.get_event_loop()
+
     coro = loop.create_server(factory, '0.0.0.0', 8080)
     server = loop.run_until_complete(coro)
 
+
     try:
+        asyncio.async(pingToGetLinkQuality())
         loop.run_forever()
+        #link_quality_loop.run_until_complete(pingToGetLinkQuality())
     except KeyboardInterrupt:
         pass
     finally:
         server.close()
         loop.close()
+        #link_quality_loop.close()
+
