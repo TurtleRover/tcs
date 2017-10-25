@@ -7,8 +7,9 @@ Created on Oct 18, 2017
 import subprocess
 import sys
 import asyncio
+import os
 
-MOVING_AVERAGE_LEN = 5
+MOVING_AVERAGE_LEN = 200
 LIST_DEFAULT_VAL = 1
 
 def fillList(lenght, val):
@@ -20,7 +21,12 @@ def fillList(lenght, val):
 
 @asyncio.coroutine
 def pingToGetLinkQuality():
-    process = subprocess.Popen(['ping', '-i', '0.2', '192.168.10.11', '-f'], stdout=subprocess.PIPE)
+    global link_quality_var
+    link_quality_var = 69
+    f = os.popen('arp | grep "ra0" | grep -E -o [0-9]+[.][0-9]+[.][0-9]+[.][0-9]+')
+    ip = f.read()
+
+    process = subprocess.Popen(['ping', '-i', '0.01', ip, '-f'], stdout=subprocess.PIPE)
     
     #    Fill the moving average with 100 %
     dots = fillList(MOVING_AVERAGE_LEN, LIST_DEFAULT_VAL)
@@ -57,8 +63,9 @@ def pingToGetLinkQuality():
             
             i += 1
                 
-            if (i >= 100):
-                print("link quality: ", sum(backspaces) / sum(dots) * 100, " %")
+            if (i >= MOVING_AVERAGE_LEN):
+                # print("link quality: ", int(sum(backspaces) / sum(dots) * 100), " %")
+                link_quality_var = sum(backspaces) / sum(dots) * 100
                 i = 0
         
     rc = process.poll()

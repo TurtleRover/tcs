@@ -146,16 +146,17 @@ var serverCommunication = (function () {
                 }
                 //  read signal strength
                 else if (arr[0] == 0x41) {
-                    var signal = arr[1];
-                    $("#signal-strength-text").text("signal strength: -" + signal.toString() + " dBm");
+                    var signal = parseInt(arr[1]);
+                    // $("#signal-strength-text").text("signal strength: -" + signal.toString() + " dBm");
+                    console.log("signal" + signal);
 
                     /*
                      *  set icon according to signal strength
                      */
-                    if (signal < 50) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-4.svg");
-                    else if (signal < 58) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-3.svg");
-                    else if (signal < 66) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-2.svg");
-                    else if (signal < 74) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-1.svg");
+                    if (signal > 95) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-4.svg");
+                    else if (signal > 90) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-3.svg");
+                    else if (signal > 85) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-2.svg");
+                    else if (signal > 80) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-1.svg");
                     else $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-0.svg");
                 }
                 //  read processor temperature
@@ -381,7 +382,7 @@ var serverCommunication = (function () {
         setInterval(function () {
             if(socket8080.isOpen) {
                 getBatteryLevel();
-                // getSignalLevel();
+                getSignalLevel();
                 getProcessorTemperature();
             }
         }, BAT_INTERVAL);

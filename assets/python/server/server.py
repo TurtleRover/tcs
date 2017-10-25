@@ -36,7 +36,7 @@ import hexdump
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from Hardware_Communication.turtleSerial import *
 from Motor_Module.Motor_Module import *
-from link_quality import *
+import link_quality
 import numpy as np
 
 class MyServerProtocol(WebSocketServerProtocol):
@@ -60,9 +60,10 @@ class MyServerProtocol(WebSocketServerProtocol):
                 elif payload[0] == 0x30:
                     received = readBatteryVoltage()
                 elif payload[0] == 0x40:
-                    f = os.popen('iw wlan1 station dump | grep "signal avg" | grep -ohP "signal avg:\t-[0-9]*" | grep -ohP "[0-9]*" | tail -1')
-                    signal = f.read()
-                    signal = signal[:len(signal)-1]
+                    #f = os.popen('iw wlan1 station dump | grep "signal avg" | grep -ohP "signal avg:\t-[0-9]*" | grep -ohP "[0-9]*" | tail -1')
+                    #signal = f.read()
+                    #signal = signal[:len(signal)-1]
+                    signal = link_quality.link_quality_var
                     received = [0x41, int(signal)]
                 elif payload[0] == 0x50:
                     f = os.popen('v4l2-ctl --set-ctrl brightness=' + str(np.int8(payload[1])) + ' --set-ctrl contrast=' + str(np.int8(payload[2])) + ' --set-ctrl saturation=' + str(np.uint8(payload[3])) + \
@@ -120,13 +121,10 @@ if __name__ == '__main__':
 
 
     try:
-        asyncio.async(pingToGetLinkQuality())
+        asyncio.async(link_quality.pingToGetLinkQuality())
         loop.run_forever()
-        #link_quality_loop.run_until_complete(pingToGetLinkQuality())
     except KeyboardInterrupt:
         pass
     finally:
         server.close()
         loop.close()
-        #link_quality_loop.close()
-
