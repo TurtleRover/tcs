@@ -9,7 +9,7 @@ import sys
 import asyncio
 import os
 
-MOVING_AVERAGE_LEN = 200
+MOVING_AVERAGE_LEN = 40
 LIST_DEFAULT_VAL = 1
 
 def fillList(lenght, val):
@@ -23,10 +23,12 @@ def fillList(lenght, val):
 def pingToGetLinkQuality():
     global link_quality_var
     link_quality_var = 69
-    f = os.popen('arp | grep "ra0" | grep -E -o [0-9]+[.][0-9]+[.][0-9]+[.][0-9]+')
+    # flush the old connection
+    os.popen('sudo ip -s -s neigh flush all')
+    f = os.popen('arp | grep "ra0" | grep -v incomplete | grep -E -o -m 1 [0-9]+[.][0-9]+[.][0-9]+[.][0-9]+')
     ip = f.read()
 
-    process = subprocess.Popen(['ping', '-i', '0.01', ip, '-f'], stdout=subprocess.PIPE)
+    process = subprocess.Popen(['ping', '-i', '0.05', ip, '-f'], stdout=subprocess.PIPE)
     
     #    Fill the moving average with 100 %
     dots = fillList(MOVING_AVERAGE_LEN, LIST_DEFAULT_VAL)
@@ -64,7 +66,7 @@ def pingToGetLinkQuality():
             i += 1
                 
             if (i >= MOVING_AVERAGE_LEN):
-                # print("link quality: ", int(sum(backspaces) / sum(dots) * 100), " %")
+                print("link quality: ", int(sum(backspaces) / sum(dots) * 100), " %")
                 link_quality_var = sum(backspaces) / sum(dots) * 100
                 i = 0
         

@@ -167,7 +167,7 @@ var webrtc = (function () {
                         command = {
                             command_id: "offer",
                             options: {
-                                force_hw_vcodec: false,
+                                force_hw_vcodec: true,
                                 vformat: 30
                             }
                         };
@@ -176,8 +176,8 @@ var webrtc = (function () {
                         command = {
                             command_id: "offer",
                             options: {
-                                force_hw_vcodec: false,
-                                vformat: 30
+                                force_hw_vcodec: true,
+                                vformat: 55
                             }
                         };
                     }
