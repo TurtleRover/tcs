@@ -442,6 +442,7 @@ var ui = (function () {
 		toggleFullScreen();
 		amplify.publish("ui->controller", "GO button is pressed");
 	});
+	$("#open-console-button").click(function() {consoleButtonClicked();});
 
 	$("#show-hide-right-menu-img").click(function() {showHideMenu($("#right-navigation-div"));});
 
