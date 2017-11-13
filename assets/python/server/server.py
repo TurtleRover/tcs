@@ -83,6 +83,9 @@ class MyServerProtocol(WebSocketServerProtocol):
                     setNewGripperPosition(payload[1], payload[2])
                     #   add CRC
                     received = [0x95, 0x00]
+                elif payload[0] == 0xA4:
+                    setNewCameraPosition(payload[1], payload[2])
+                    received = [0xA5, 0x00]
 
                 print("Received from Motor Module: " + hexdump.dump(bytes(received), sep=" "))
             except OSError:

@@ -98,6 +98,9 @@ var serverCommunication = (function () {
                 case "set new gripper position":
                     setNewGripperPosition();
                     break;
+                case "set new camera position":
+                    setNewCameraPosition();
+                    break;
                 case "set new mani position":
                     setNewManiPosition();
                     break;
@@ -214,6 +217,21 @@ var serverCommunication = (function () {
                 arr[0] = 0x94;
                 arr[1] = (gripperPosition >> 8) & 0xFF;
                 arr[2] = gripperPosition & 0xFF;
+
+                socket8080.socket.send(buf);
+            }
+        }
+
+        function setNewCameraPosition() {
+            var cameraPosition = $("#camera-slider-input").val();
+            console.log("New camera position: " + cameraPosition);
+            if (socket8080.isOpen) {
+                var buf = new ArrayBuffer(3);
+                var arr = new Uint8Array(buf);
+
+                arr[0] = 0xA4;
+                arr[1] = (cameraPosition >> 8) & 0xFF;
+                arr[2] = cameraPosition & 0xFF;
 
                 socket8080.socket.send(buf);
             }

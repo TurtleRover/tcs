@@ -455,8 +455,12 @@ var ui = (function () {
 	$("#sharpness-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
 
 	$("#gripper-slider").on("input", function(e, data) {amplify.publish("ui->port8080", "set new gripper position");});
+	$("#camera-slider").on("input", function(e, data) {amplify.publish("ui->port8080", "set new camera position");});
+	/*
+	 * TBD: is it better to have it back to the center or not?
 	$("#gripper-slider").on("mouseup touchend", function(e, data) {gripperSliderUp();});
 	$("#camera-slider").on("mouseup touchend", function(e, data) {cameraSliderUp();});
+	*/
 	
 	$("#mani-axis-1").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
 	$("#mani-axis-2").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
