@@ -143,9 +143,16 @@ var serverCommunication = (function () {
                 //  read battery voltage
                 if (arr[0] == 0x31) {
                     var voltage = arr[1];
-                    voltage = voltage / 14 + 0.3 // voltage divider
+                    console.log("voltage: " + voltage);
+                    voltage = voltage * 0.1 + 7.6 // voltage divider
                     var str_voltage = voltage.toString();
                     $("#battery-level-text").text("battery voltage: " + str_voltage.substr(0,4) + " V");
+
+                    if (voltage > 24) amplify.publish("all->ui", "set battery level to full");
+                    else if (voltage > 23) amplify.publish("all->ui", "set battery level to 3");
+                    else if (voltage > 21.5) amplify.publish("all->ui", "set battery level to 2");
+                    else if (voltage > 19.5) amplify.publish("all->ui", "set battery level to 1");
+                    else amplify.publish("all->ui", "set battery level to 0");
                 }
                 //  read signal strength
                 else if (arr[0] == 0x41) {
@@ -400,8 +407,8 @@ var serverCommunication = (function () {
         setInterval(function () {
             if(socket8080.isOpen) {
                 getBatteryLevel();
-                getSignalLevel();
-                getProcessorTemperature();
+                setTimeout(function(){getSignalLevel()}, 500);
+                setTimeout(function(){getProcessorTemperature()}, 1000);
             }
         }, BAT_INTERVAL);
     };

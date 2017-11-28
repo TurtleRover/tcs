@@ -421,6 +421,22 @@ var ui = (function () {
 			case "initialize camera...":
 				addNewStatus(message);
 				break;
+			case "set battery level to full":
+				setBatteryLevel(4);
+				break;
+			case "set battery level to 3":
+				setBatteryLevel(3);
+				break;
+			case "set battery level to 2":
+				setBatteryLevel(2);
+				break;
+			case "set battery level to 1":
+				setBatteryLevel(1);
+				break;
+			case "set battery level to 0":
+				setBatteryLevel(0);
+				break;
+			
 			default:
 				console.log("unknown command: " + message);
 		}
@@ -462,14 +478,22 @@ var ui = (function () {
 	$("#camera-slider").on("mouseup touchend", function(e, data) {cameraSliderUp();});
 	*/
 	
-	$("#mani-axis-1").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
-	$("#mani-axis-2").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
+	/*$("#mani-axis-1").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
+	$("#mani-axis-2").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});*/
 
 	$("#mani-x").change(function(e, data) {amplify.publish("ui->manipulator", "move mani");});
 	$("#mani-y").change(function(e, data) {amplify.publish("ui->manipulator", "move mani");});
 
 	$("#grab-text").click(function(e, data) {grabOrDriveClicked("grab");});
 	$("#drive-text").click(function(e, data) {grabOrDriveClicked("drive");});
+
+	function setBatteryLevel(level){
+		if (level == 4)	$("#battery-level-indicator-img").attr('src', 'assets/img/ui/nav-bar-battery.svg');
+		else if (level == 3) $("#battery-level-indicator-img").attr('src', 'assets/img/ui/nav-bar-battery-3.svg');
+		else if (level == 2) $("#battery-level-indicator-img").attr('src', 'assets/img/ui/nav-bar-battery-2.svg');
+		else if (level == 1) $("#battery-level-indicator-img").attr('src', 'assets/img/ui/nav-bar-battery-1.svg');
+		else $("#battery-level-indicator-img").attr('src', 'assets/img/ui/nav-bar-battery-0.svg');
+	}
 
 	function grabOrDriveClicked(name) {
 		if (name == "grab") {
@@ -564,7 +588,7 @@ var ui = (function () {
 	 */
 	$(function() {
 		readSetting(Cookies.get("advanced-interface"), "#advanced-interface-button", "true");
-		readSetting(Cookies.get("photography"), "#photography-button", "false");
+		readSetting(Cookies.get("photography"), "#photography-button", "true");
 	});
 
 	function readSetting(value, name, defVal) {
