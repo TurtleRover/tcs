@@ -148,13 +148,14 @@ var controlCanvas = (function () {
         canvas[0].dispatchEvent(mouseEvent);
     });
 
-    canvas.mouseup(function(event) { stop(event); });
+    $("#page-wrapper").mouseup(function(event) {stop(event); });
+    canvas.mouseup(function(event) { console.log("mouseup"); stop(event); });
     canvas[0].addEventListener("touchend", function(event) { event.preventDefault(); stop(event); });
+
 
     canvas.mouseout(function(event) {
         coordinates.clicked = false;
-        if (grabOrDrive == "DRIVE")
-            stopMotors();
+        if (grabOrDrive == "DRIVE") console.log("out of canvas");
         else {
             clearInterval(maniTimerId);
         }
@@ -162,7 +163,6 @@ var controlCanvas = (function () {
 
     function updateMotors(event) {
         mousePosition = getMousePosition(canvas, event);
-        // console.log(mousePosition);
 
         var direction = 1;
 
@@ -177,6 +177,26 @@ var controlCanvas = (function () {
         //  alternative steering method
         emptyZoneHeight = 0;
 
+        if (mousePosition.x > canvasDimensions.width * 0.5) {
+            mousePosition.x = Math.floor(canvasDimensions.width * 0.5);
+            mousePosition.y = 0;
+        }
+        else if (mousePosition.x < -canvasDimensions.width * 0.5) { 
+            mousePosition.x = Math.ceil(-canvasDimensions.width * 0.5);
+            mousePosition.y = 0;
+        }
+
+        if (mousePosition.y > canvasDimensions.height * 0.5) { 
+            mousePosition.y = Math.floor(canvasDimensions.height * 0.5);
+            mousePosition.x = 0;
+        }
+        else if (mousePosition.y < -canvasDimensions.height * 0.5) {
+            mousePosition.y = Math.ceil(-canvasDimensions.height * 0.5);
+            mousePosition.x = 0;
+        }
+
+        console.log(mousePosition);
+
         coordinates.x = mousePosition.x;
         coordinates.y = mousePosition.y;
         coordinates.module = Math.sqrt(coordinates.x * coordinates.x + coordinates.y * coordinates.y);
@@ -184,7 +204,7 @@ var controlCanvas = (function () {
 
         //  calculate motors values if the appropriate zone was 
         
-        if (coordinates.module > emptyZoneRadius && coordinates.module <= circleRadius && Math.abs(coordinates.y) > emptyZoneHeight) {
+        if (coordinates.module > emptyZoneRadius && coordinates.module <= circleRadius) {
             //  var a = coordinates.module / circleRadius * 100;
             //  var b = coordinates.module * (Math.sin((2 * coordinates.angle - 90) * Math.PI / 180)) / circleRadius * 100;
 
