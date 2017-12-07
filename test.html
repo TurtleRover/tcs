@@ -1,0 +1,157 @@
+<video id="video1" width="160" height="120" autoplay></video><br>
+<video id="video2" width="160" height="120" autoplay></video><br>
+<div id="div"></div>
+
+<script>
+    var video1 = document.getElementById('video1');
+    var video2 = document.getElementById('video2');
+    var i = 0;
+    var protocol = location.protocol === "https:" ? "wss:" : "ws:";
+    var ws = new WebSocket(protocol + '//' + "192.168.10.1:9090" + '/stream/webrtc');
+    var pc1;
+    var mediaConstraints = {
+        optional: [],
+        mandatory: {
+            OfferToReceiveAudio: true,
+            OfferToReceiveVideo: true
+        }
+    };
+
+    ws.onopen = function() {
+        console.log("onopen");
+        offer();
+    };
+
+    ws.onmessage = function(evt) {
+        console.log("onmessage");
+        var msg = JSON.parse(evt.data);
+        var what = msg.what;
+        var data = msg.data;
+        console.log("message = " + what);
+
+        switch (what) {
+            case "offer":
+                pc1.setRemoteDescription(new window.RTCSessionDescription(JSON.parse(data)),
+                    function onRemoteSdpSuccess() {
+                        console.log('onRemoteSdpSucces()');
+                        pc1.createAnswer(function (sessionDescription) {
+                            pc1.setLocalDescription(sessionDescription);
+                            var request = {
+                                what: "answer",
+                                data: JSON.stringify(sessionDescription)
+                            };
+                            ws.send(JSON.stringify(request));
+                            console.log("request" + request);
+
+                        }, function (error) {
+                            alert("Failed to createAnswer: " + error);
+
+                        }, mediaConstraints);
+                    },
+                    function onRemoteSdpError(event) {
+                        alert('Failed to set remote description (unsupported codec on this browser?): ' + event);
+                        stop();
+                    }
+                );
+
+            case "answer":
+                break;
+
+            case "message":
+                alert(msg.data);
+                break;
+            
+            case "iceCandidates":
+                var candidates = JSON.parse(msg.data);
+                for (var i = 0; candidates && i < candidates.length; i++) {
+                    var elt = candidates[i];
+                    let candidate = new window.RTCIceCandidate({sdpMLineIndex: elt.sdpMLineIndex, candidate: elt.candidate});
+                    pc1.addIceCandidate(candidate,
+                        function () {
+                            console.log("IceCandidate added: " + JSON.stringify(candidate));
+                        },
+                        function (error) {
+                            console.error("addIceCandidate error: " + error);
+                        }
+                    );
+                }
+                document.documentElement.style.cursor = 'default';
+                break;
+        }
+    };
+
+    ws.onclose = function() {
+        if (pc1) {
+            pc1.close();
+            pc1 = null;
+        }
+        console.log("onclose");
+    };
+
+    ws.onerror = function (evt) {
+        alert("An error has occurred!");
+        ws.close();
+    };
+
+    function offer() {
+        pc1 = new RTCPeerConnection();
+        pc1.ontrack = onTrack;
+        pc1.onaddstream = onTrack;
+        pc1.onicecandidate = onIceCandidate;
+        pc1.oniceconnectionstatechange = e => log(pc1.iceConnectionState);
+
+        command = {
+            command_id: "offer",
+            options: {
+                force_hw_vcodec: true,
+                vformat: 55
+            }
+        };
+        ws.send(JSON.stringify(command));
+        console.log("offer(), command=" + JSON.stringify(command));
+
+        /*pc1.createOffer({offerToReceiveAudio: false, offerToReceiveVideo: true})
+        .then(d => pc1.setLocalDescription(d))
+        .then(() => pc2.setRemoteDescription(pc1.localDescription))
+        .then(() => haveGum)
+        .then(stream => pc2.addStream(video2.srcObject = stream))
+        .then(() => pc2.createAnswer()).then(d => pc2.setLocalDescription(d))
+        .then(() => pc1.setRemoteDescription(pc2.localDescription))
+        .catch(log);*/
+    }
+
+    function onTrack (e) {
+        if (i == 0) {
+            console.log("onTrack0");
+            //video1.srcObject = e.streams[0];
+            video1.src = URL.createObjectURL(e.stream);
+            video1.play();
+        }
+        else if (i == 1) {
+            console.log("onTrack1");
+            //video2.srcObject = e.streams[1];
+            video2.src = URL.createObjectURL(e.stream);
+            video2.play();
+        }
+        i = i+1;
+    };
+
+    function onIceCandidate(e) {
+        if (e.candidate) {
+            var candidate = {
+                sdpMLineIndex: event.candidate.sdpMLineIndex,
+                sdpMid: event.candidate.sdpMid,
+                candidate: event.candidate.candidate
+            };
+            var command = {
+                command_id: "addicecandidate",
+                data: JSON.stringify(candidate)
+            };
+            ws.send(JSON.stringify(command));
+        } else {
+            console.log("End of candidates.");
+        }
+    }
+
+    var log = msg => div.innerHTML += "<br>" + msg;
+</script>
