@@ -14,3 +14,8 @@ http://turtlerover.com
 https://www.youtube.com/channel/UCxukvEct3wP0S5FACa3uelA
 
 https://www.facebook.com/TurtleRover/
+
+## FAQ
+
+**1. How to change WiFi name?**
+  Edit ssid in */etc/Wireless/RT2870AP/RT2870AP.dat*
