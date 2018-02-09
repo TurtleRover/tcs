@@ -143,7 +143,7 @@ var serverCommunication = (function () {
                 //  read battery voltage
                 if (arr[0] == 0x31) {
                     var voltage = arr[1];
-                    console.log("voltage: " + voltage);
+                    // console.log("voltage: " + voltage);
                     voltage = voltage * 0.1 + 7.6 // voltage divider
                     var str_voltage = voltage.toString();
                     $("#battery-level-text").text("battery voltage: " + str_voltage.substr(0,4) + " V");
@@ -158,7 +158,7 @@ var serverCommunication = (function () {
                 else if (arr[0] == 0x41) {
                     var signal = parseInt(arr[1]);
                     // $("#signal-strength-text").text("signal strength: -" + signal.toString() + " dBm");
-                    console.log("signal" + signal);
+                    //console.log("signal" + signal);
 
                     /*
                      *  set icon according to signal strength

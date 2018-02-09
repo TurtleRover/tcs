@@ -1,18 +1,17 @@
-<video id="video1" width="160" height="120" autoplay></video><br>
+<video id="video1" width="160" height="120" autoplay muted></video><br>
 <video id="video2" width="160" height="120" autoplay></video><br>
 <div id="div"></div>
 
 <script>
     var video1 = document.getElementById('video1');
     var video2 = document.getElementById('video2');
-    var i = 0;
     var protocol = location.protocol === "https:" ? "wss:" : "ws:";
     var ws = new WebSocket(protocol + '//' + "192.168.10.1:9090" + '/stream/webrtc');
     var pc1;
     var mediaConstraints = {
         optional: [],
         mandatory: {
-            OfferToReceiveAudio: true,
+            OfferToReceiveAudio: false,
             OfferToReceiveVideo: true
         }
     };
@@ -95,10 +94,10 @@
 
     function offer() {
         pc1 = new RTCPeerConnection();
-        pc1.ontrack = onTrack;
+        //pc1.ontrack = onTrack;
         pc1.onaddstream = onTrack;
         pc1.onicecandidate = onIceCandidate;
-        pc1.oniceconnectionstatechange = e => log(pc1.iceConnectionState);
+        //pc1.oniceconnectionstatechange = e => log(pc1.iceConnectionState);
 
         command = {
             command_id: "offer",
@@ -110,30 +109,13 @@
         ws.send(JSON.stringify(command));
         console.log("offer(), command=" + JSON.stringify(command));
 
-        /*pc1.createOffer({offerToReceiveAudio: false, offerToReceiveVideo: true})
-        .then(d => pc1.setLocalDescription(d))
-        .then(() => pc2.setRemoteDescription(pc1.localDescription))
-        .then(() => haveGum)
-        .then(stream => pc2.addStream(video2.srcObject = stream))
-        .then(() => pc2.createAnswer()).then(d => pc2.setLocalDescription(d))
-        .then(() => pc1.setRemoteDescription(pc2.localDescription))
-        .catch(log);*/
+        /*https://stackoverflow.com/questions/44111573/using-webrtc-to-view-video-in-a-remote-browser-local-browser-never-gets-ontrack*/
     }
 
     function onTrack (e) {
-        if (i == 0) {
-            console.log("onTrack0");
-            //video1.srcObject = e.streams[0];
-            video1.src = URL.createObjectURL(e.stream);
-            video1.play();
-        }
-        else if (i == 1) {
-            console.log("onTrack1");
-            //video2.srcObject = e.streams[1];
-            video2.src = URL.createObjectURL(e.stream);
-            video2.play();
-        }
-        i = i+1;
+        console.log("onTrack0");
+        //document.getElementById('video1').srcObject = e.streams[0];
+        video1.src = URL.createObjectURL(e.stream);
     };
 
     function onIceCandidate(e) {

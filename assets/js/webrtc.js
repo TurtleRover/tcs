@@ -55,16 +55,6 @@ var webrtc = (function () {
         var audio_video_stream;
         var recorder = null;
         var recordedBlobs;
-        var pcConfig = {"iceServers": [
-                {"urls": ["stun:stun.l.google.com:19302", "stun:" + signalling_server_hostname + ":3478"]}
-            ]};
-        var pcOptions = {
-            optional: [
-                // Deprecated:
-                //{RtpDataChannels: false},
-                //{DtlsSrtpKeyAgreement: true}
-            ]
-        };
         var mediaConstraints = {
             optional: [],
             mandatory: {
@@ -74,24 +64,22 @@ var webrtc = (function () {
         };
         var keys = [];
 
-        RTCPeerConnection = window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
-        RTCSessionDescription = window.mozRTCSessionDescription || window.RTCSessionDescription;
-        RTCIceCandidate = window.mozRTCIceCandidate || window.RTCIceCandidate;
+        //RTCPeerConnection = window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
+        //RTCSessionDescription = window.mozRTCSessionDescription || window.RTCSessionDescription;
+        //RTCIceCandidate = window.mozRTCIceCandidate || window.RTCIceCandidate;
         navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia;
         var URL =  window.URL || window.webkitURL;
 
         function createPeerConnection() {
             try {
-                var pcConfig_ = pcConfig;
-                console.log(JSON.stringify(pcConfig_));
-                pc = new RTCPeerConnection(pcConfig_, pcOptions);
+                pc = new window.RTCPeerConnection();
                 pc.onicecandidate = onIceCandidate;
                 pc.onaddstream = onRemoteStreamAdded;
                 pc.onremovestream = onRemoteStreamRemoved;
                 pc.ondatachannel = onDataChannel;
                 console.log("peer connection successfully created!");
             } catch (e) {
-                console.log("createPeerConnection() failed");
+                console.log("createPeerConnection() failed " + e);
             }
         }
 
@@ -101,7 +89,7 @@ var webrtc = (function () {
 
             event.channel.onopen = function () {
                 console.log("Data Channel is open!");
-                amplify.publish("webrtc->linux", "camera stream is ready");
+                //amplify.publish("webrtc->linux", "camera stream is ready");
             };
 
             event.channel.onerror = function (error) {
@@ -140,6 +128,7 @@ var webrtc = (function () {
             var remoteVideoElement = document.getElementById('camera-video-img');
             remoteVideoElement.src = URL.createObjectURL(event.stream);
             remoteVideoElement.play();
+            amplify.publish("webrtc->linux", "camera stream is ready");
         }
 
         function onRemoteStreamRemoved(event) {
@@ -157,6 +146,7 @@ var webrtc = (function () {
                 function offer(stream) {
                     createPeerConnection();
                     if (stream) {
+                        console.log("stream already added");
                         pc.addStream(stream);
                     }
                     var command;
@@ -197,40 +187,33 @@ var webrtc = (function () {
 
                 ws.onmessage = function (evt) {
                     var msg = JSON.parse(evt.data);
-                    if (msg.what !== 'undefined') {
-                        var what = msg.what;
-                        var data = msg.data;
-                    } else { /* TODO: for backward compatibility, remove this branch in the future */
-                        var what = msg.type;
-                        var data = msg; // only used for 'offer' in the switch case below
-                        console.log("still using the old API?");
-                    }
-                    //console.log("message=" + msg);
+                    var what = msg.what;
+                    var data = msg.data;
                     console.log("message =" + what);
 
                     switch (what) {
                         case "offer":
-                            pc.setRemoteDescription(new RTCSessionDescription(JSON.parse(data)),
-                                    function onRemoteSdpSuccess() {
-                                        console.log('onRemoteSdpSucces()');
-                                        pc.createAnswer(function (sessionDescription) {
-                                            pc.setLocalDescription(sessionDescription);
-                                            var request = {
-                                                what: "answer",
-                                                data: JSON.stringify(sessionDescription)
-                                            };
-                                            ws.send(JSON.stringify(request));
-                                            console.log(request);
+                            pc.setRemoteDescription(new window.RTCSessionDescription(JSON.parse(data)),
+                                function onRemoteSdpSuccess() {
+                                    console.log('onRemoteSdpSucces()');
+                                    pc.createAnswer(function (sessionDescription) {
+                                        pc.setLocalDescription(sessionDescription);
+                                        var request = {
+                                            what: "answer",
+                                            data: JSON.stringify(sessionDescription)
+                                        };
+                                        ws.send(JSON.stringify(request));
+                                        console.log(request);
 
-                                        }, function (error) {
-                                            alert("Failed to createAnswer: " + error);
+                                    }, function (error) {
+                                        alert("Failed to createAnswer: " + error);
 
-                                        }, mediaConstraints);
-                                    },
-                                    function onRemoteSdpError(event) {
-                                        alert('Failed to set remote description (unsupported codec on this browser?): ' + event);
-                                        stop();
-                                    }
+                                    }, mediaConstraints);
+                                },
+                                function onRemoteSdpError(event) {
+                                    alert('Failed to set remote description (unsupported codec on this browser?): ' + event);
+                                    stop();
+                                }
                             );
 
                             var request = {
@@ -247,12 +230,11 @@ var webrtc = (function () {
                             alert(msg.data);
                             break;
 
-                        case "geticecandidate": // TODO: remove
                         case "iceCandidates":
                             var candidates = JSON.parse(msg.data);
                             for (var i = 0; candidates && i < candidates.length; i++) {
                                 var elt = candidates[i];
-                                let candidate = new RTCIceCandidate({sdpMLineIndex: elt.sdpMLineIndex, candidate: elt.candidate});
+                                let candidate = new window.RTCIceCandidate({sdpMLineIndex: elt.sdpMLineIndex, candidate: elt.candidate});
                                 pc.addIceCandidate(candidate,
                                         function () {
                                             console.log("IceCandidate added: " + JSON.stringify(candidate));

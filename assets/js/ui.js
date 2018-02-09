@@ -66,14 +66,14 @@ var ui = (function () {
 		}
 	};
 
-	function photographyChanged() {
+	/*function photographyChanged() {
 		if($("#photography-button").prop('checked') == false) {
 			Cookies.set("photography", false);
 		}
 		else {
 			Cookies.set("photography", true);
 		}
-	}
+	}*/
 
 	/*
 	 *	run popup window with shellinabox
@@ -336,7 +336,7 @@ var ui = (function () {
 	/*
 	 *	if the rover has mounted camera rotation device, the slider should be back to the center if touchup and mousup
 	 */
-	function gripperSliderUp() {
+	/*function gripperSliderUp() {
 		if($("#photography-button").prop('checked'))
 			$("#gripper-slider-input").val(
 				(parseInt($("#gripper-slider-input").attr("max"))+parseInt($("#gripper-slider-input").attr("min"))) * 0.5);
@@ -344,7 +344,7 @@ var ui = (function () {
 	function cameraSliderUp() {
 		$("#camera-slider-input").val(
 			(parseInt($("#camera-slider-input").attr("max"))+parseInt($("#camera-slider-input").attr("min"))) * 0.5);
-	}
+	}*/
 
 	/*
 	 * 																		SUBSCRIBE topics
@@ -396,7 +396,7 @@ var ui = (function () {
 	};
 
 	function allMessageCallback(message) {
-		if (DEBUG) console.log("all->ui: " + message);
+		//if (DEBUG) console.log("all->ui: " + message);
 		
 		//	choose action
 		switch(message) {
@@ -451,7 +451,7 @@ var ui = (function () {
 	$("#record-button-img").click(function() {recordVideo();});
 	$(document).bind("fullscreenchange", function() {changedFullScreen();});
 	$("#advanced-interface-button").change(function(e, data) {advancedInterfaceChanged();});
-	$("#photography-button").change(function(e, data) {photographyChanged();});
+	//$("#photography-button").change(function(e, data) {photographyChanged();});
 	$("#go-button").click(function() {
 		var remoteVideoElement = document.getElementById('camera-video-img');
 		remoteVideoElement.play();
@@ -471,15 +471,15 @@ var ui = (function () {
 	$("#sharpness-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
 
 	$("#gripper-slider").on("input", function(e, data) {amplify.publish("ui->port8080", "set new gripper position");});
-	$("#camera-slider").on("input", function(e, data) {amplify.publish("ui->port8080", "set new camera position");});
+	//$("#camera-slider").on("input", function(e, data) {amplify.publish("ui->port8080", "set new camera position");});
 	/*
 	 * TBD: is it better to have it back to the center or not?
 	$("#gripper-slider").on("mouseup touchend", function(e, data) {gripperSliderUp();});
 	$("#camera-slider").on("mouseup touchend", function(e, data) {cameraSliderUp();});
 	*/
 	
-	/*$("#mani-axis-1").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
-	$("#mani-axis-2").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});*/
+	$("#mani-axis-1").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
+	$("#mani-axis-2").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
 
 	$("#mani-x").change(function(e, data) {amplify.publish("ui->manipulator", "move mani");});
 	$("#mani-y").change(function(e, data) {amplify.publish("ui->manipulator", "move mani");});
@@ -503,15 +503,15 @@ var ui = (function () {
 			 *	if standard grab mode (not photography), use standard GRAB
 			 *	else use GRAB for photography
 			 */
-			if($("#photography-button").prop('checked') == false) {
-				$("#camera-video-img").removeClass("camera-video-drive-mode");
-				$("#camera-video-img").addClass("camera-video-grab-mode");
-				$("#right-navigation-cross-img").fadeIn();
-				$("#turtle-navigation-view-img").fadeIn();
-				$("#right-navigation-cross-img").attr('src', 'assets/img/ui/right-krzyz-mani.svg');
-				$("#turtle-navigation-view-img").attr('src', 'assets/img/ui/right-manipulator.svg');
-				amplify.publish("ui->controlCanvas", "set function to GRAB");
-			}
+			//if($("#photography-button").prop('checked') == false) {
+			$("#camera-video-img").removeClass("camera-video-drive-mode");
+			$("#camera-video-img").addClass("camera-video-grab-mode");
+			$("#right-navigation-cross-img").fadeIn();
+			$("#turtle-navigation-view-img").fadeIn();
+			$("#right-navigation-cross-img").attr('src', 'assets/img/ui/right-krzyz-mani.svg');
+			$("#turtle-navigation-view-img").attr('src', 'assets/img/ui/right-manipulator.svg');
+			amplify.publish("ui->controlCanvas", "set function to GRAB");
+			/*}
 			else {
 				//	set camera as for drive
 				$("#camera-video-img").removeClass("camera-video-grab-mode");
@@ -519,7 +519,7 @@ var ui = (function () {
 				$("#camera-slider-wrapper").fadeIn();
 				$("#right-navigation-cross-img").fadeOut();
 				$("#turtle-navigation-view-img").fadeOut();
-			}
+			}*/
 
 		}
 		else if (name == "drive") {
@@ -588,7 +588,7 @@ var ui = (function () {
 	 */
 	$(function() {
 		readSetting(Cookies.get("advanced-interface"), "#advanced-interface-button", "true");
-		readSetting(Cookies.get("photography"), "#photography-button", "true");
+		readSetting(Cookies.get("photography"), "#photography-button", "false");
 	});
 
 	function readSetting(value, name, defVal) {
