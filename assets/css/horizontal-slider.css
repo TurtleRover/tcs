@@ -6,6 +6,15 @@
     padding: 0;
 }
 
+.flat-vertical-slider-wrapper {
+    padding-bottom: 1em;
+    float: none;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 .flat-slider-description {
     width: 40%;
     float: left;
@@ -25,7 +34,7 @@
 
 .flat-slider {
     width: 50%;
-    float: right;
+    float: right; 
     margin: 0;
     padding: 0;
 }
@@ -33,6 +42,14 @@
 .gripper-slider {
     width: 80%;
     margin-right: 10%;
+    padding: 0;
+}
+
+.camera-slider {
+    height:80%;
+    width: 20%;
+    margin-top: 10%;
+    margin-right: 40%;
     padding: 0;
 }
 
@@ -48,6 +65,12 @@
     margin: 10px;
     outline: none;
 }
+
+.vranger {
+    margin-top: 40%;
+     transform: rotate(270deg);
+    -moz-transform: rotate(270deg); /*do same for other browsers if required*/
+  }
 
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;

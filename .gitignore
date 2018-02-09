@@ -6,5 +6,5 @@ docs/desktop.ini
 .settings/
 .vscode/
 tags
-test.html
 ieconfig.xml
+*.directory

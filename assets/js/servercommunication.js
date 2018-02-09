@@ -98,6 +98,9 @@ var serverCommunication = (function () {
                 case "set new gripper position":
                     setNewGripperPosition();
                     break;
+                case "set new camera position":
+                    setNewCameraPosition();
+                    break;
                 case "set new mani position":
                     setNewManiPosition();
                     break;
@@ -140,22 +143,30 @@ var serverCommunication = (function () {
                 //  read battery voltage
                 if (arr[0] == 0x31) {
                     var voltage = arr[1];
-                    voltage = voltage / 14 + 0.3 // voltage divider
+                    // console.log("voltage: " + voltage);
+                    voltage = voltage * 0.1 + 7.6 // voltage divider
                     var str_voltage = voltage.toString();
                     $("#battery-level-text").text("battery voltage: " + str_voltage.substr(0,4) + " V");
+
+                    if (voltage > 24) amplify.publish("all->ui", "set battery level to full");
+                    else if (voltage > 23) amplify.publish("all->ui", "set battery level to 3");
+                    else if (voltage > 21.5) amplify.publish("all->ui", "set battery level to 2");
+                    else if (voltage > 19.5) amplify.publish("all->ui", "set battery level to 1");
+                    else amplify.publish("all->ui", "set battery level to 0");
                 }
                 //  read signal strength
                 else if (arr[0] == 0x41) {
-                    var signal = arr[1];
-                    $("#signal-strength-text").text("signal strength: -" + signal.toString() + " dBm");
+                    var signal = parseInt(arr[1]);
+                    // $("#signal-strength-text").text("signal strength: -" + signal.toString() + " dBm");
+                    //console.log("signal" + signal);
 
                     /*
                      *  set icon according to signal strength
                      */
-                    if (signal < 50) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-4.svg");
-                    else if (signal < 58) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-3.svg");
-                    else if (signal < 66) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-2.svg");
-                    else if (signal < 74) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-1.svg");
+                    if (signal > 95) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-4.svg");
+                    else if (signal > 90) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-3.svg");
+                    else if (signal > 85) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-2.svg");
+                    else if (signal > 80) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-1.svg");
                     else $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-0.svg");
                 }
                 //  read processor temperature
@@ -213,6 +224,21 @@ var serverCommunication = (function () {
                 arr[0] = 0x94;
                 arr[1] = (gripperPosition >> 8) & 0xFF;
                 arr[2] = gripperPosition & 0xFF;
+
+                socket8080.socket.send(buf);
+            }
+        }
+
+        function setNewCameraPosition() {
+            var cameraPosition = $("#camera-slider-input").val();
+            console.log("New camera position: " + cameraPosition);
+            if (socket8080.isOpen) {
+                var buf = new ArrayBuffer(3);
+                var arr = new Uint8Array(buf);
+
+                arr[0] = 0xA4;
+                arr[1] = (cameraPosition >> 8) & 0xFF;
+                arr[2] = cameraPosition & 0xFF;
 
                 socket8080.socket.send(buf);
             }
@@ -381,8 +407,8 @@ var serverCommunication = (function () {
         setInterval(function () {
             if(socket8080.isOpen) {
                 getBatteryLevel();
-                // getSignalLevel();
-                getProcessorTemperature();
+                setTimeout(function(){getSignalLevel()}, 500);
+                setTimeout(function(){getProcessorTemperature()}, 1000);
             }
         }, BAT_INTERVAL);
     };

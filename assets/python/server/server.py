@@ -36,6 +36,7 @@ import hexdump
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from Hardware_Communication.turtleSerial import *
 from Motor_Module.Motor_Module import *
+import link_quality
 import numpy as np
 
 class MyServerProtocol(WebSocketServerProtocol):
@@ -59,9 +60,10 @@ class MyServerProtocol(WebSocketServerProtocol):
                 elif payload[0] == 0x30:
                     received = readBatteryVoltage()
                 elif payload[0] == 0x40:
-                    f = os.popen('iw wlan1 station dump | grep "signal avg" | grep -ohP "signal avg:\t-[0-9]*" | grep -ohP "[0-9]*" | tail -1')
-                    signal = f.read()
-                    signal = signal[:len(signal)-1]
+                    #f = os.popen('iw wlan1 station dump | grep "signal avg" | grep -ohP "signal avg:\t-[0-9]*" | grep -ohP "[0-9]*" | tail -1')
+                    #signal = f.read()
+                    #signal = signal[:len(signal)-1]
+                    signal = link_quality.link_quality_var
                     received = [0x41, int(signal)]
                 elif payload[0] == 0x50:
                     f = os.popen('v4l2-ctl --set-ctrl brightness=' + str(np.int8(payload[1])) + ' --set-ctrl contrast=' + str(np.int8(payload[2])) + ' --set-ctrl saturation=' + str(np.uint8(payload[3])) + \
@@ -81,6 +83,9 @@ class MyServerProtocol(WebSocketServerProtocol):
                     setNewGripperPosition(payload[1], payload[2])
                     #   add CRC
                     received = [0x95, 0x00]
+                elif payload[0] == 0xA4:
+                    setNewCameraPosition(payload[1], payload[2])
+                    received = [0xA5, 0x00]
 
                 print("Received from Motor Module: " + hexdump.dump(bytes(received), sep=" "))
             except OSError:
@@ -107,16 +112,19 @@ if __name__ == '__main__':
     except ImportError:
         # Trollius >= 0.3 was renamed
         import trollius as asyncio
-	
+        
     print("Working")
     factory = WebSocketServerFactory(u"ws://127.0.0.1:8080")
     factory.protocol = MyServerProtocol
 
     loop = asyncio.get_event_loop()
+
     coro = loop.create_server(factory, '0.0.0.0', 8080)
     server = loop.run_until_complete(coro)
 
+
     try:
+        asyncio.async(link_quality.pingToGetLinkQuality())
         loop.run_forever()
     except KeyboardInterrupt:
         pass

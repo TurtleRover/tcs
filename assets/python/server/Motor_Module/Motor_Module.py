@@ -49,6 +49,16 @@ def setNewGripperPosition(msb, lsb):
 	command.append(0x0A)
 	sendSerial(command)
 
+def setNewCameraPosition(msb, lsb):
+	command = [0xA4]
+	command.append(msb)
+	command.append(lsb)
+	command.append(0x00)
+	command.append(0x00)
+	command.append(0x0D)
+	command.append(0x0A)
+	sendSerial(command)
+
 #	Set servo values
 def setNewManiPosition(axis_1_msb, axis_1_lsb, axis_2_msb, axis_2_lsb):
 	command = [0x84]

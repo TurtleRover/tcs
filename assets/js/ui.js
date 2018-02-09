@@ -66,6 +66,15 @@ var ui = (function () {
 		}
 	};
 
+	/*function photographyChanged() {
+		if($("#photography-button").prop('checked') == false) {
+			Cookies.set("photography", false);
+		}
+		else {
+			Cookies.set("photography", true);
+		}
+	}*/
+
 	/*
 	 *	run popup window with shellinabox
 	 */
@@ -325,6 +334,19 @@ var ui = (function () {
 	}
 
 	/*
+	 *	if the rover has mounted camera rotation device, the slider should be back to the center if touchup and mousup
+	 */
+	/*function gripperSliderUp() {
+		if($("#photography-button").prop('checked'))
+			$("#gripper-slider-input").val(
+				(parseInt($("#gripper-slider-input").attr("max"))+parseInt($("#gripper-slider-input").attr("min"))) * 0.5);
+	}
+	function cameraSliderUp() {
+		$("#camera-slider-input").val(
+			(parseInt($("#camera-slider-input").attr("max"))+parseInt($("#camera-slider-input").attr("min"))) * 0.5);
+	}*/
+
+	/*
 	 * 																		SUBSCRIBE topics
 	 */
 	amplify.subscribe("controller->ui", controllerMessageCallback);
@@ -374,7 +396,7 @@ var ui = (function () {
 	};
 
 	function allMessageCallback(message) {
-		if (DEBUG) console.log("all->ui: " + message);
+		//if (DEBUG) console.log("all->ui: " + message);
 		
 		//	choose action
 		switch(message) {
@@ -399,6 +421,22 @@ var ui = (function () {
 			case "initialize camera...":
 				addNewStatus(message);
 				break;
+			case "set battery level to full":
+				setBatteryLevel(4);
+				break;
+			case "set battery level to 3":
+				setBatteryLevel(3);
+				break;
+			case "set battery level to 2":
+				setBatteryLevel(2);
+				break;
+			case "set battery level to 1":
+				setBatteryLevel(1);
+				break;
+			case "set battery level to 0":
+				setBatteryLevel(0);
+				break;
+			
 			default:
 				console.log("unknown command: " + message);
 		}
@@ -413,12 +451,14 @@ var ui = (function () {
 	$("#record-button-img").click(function() {recordVideo();});
 	$(document).bind("fullscreenchange", function() {changedFullScreen();});
 	$("#advanced-interface-button").change(function(e, data) {advancedInterfaceChanged();});
+	//$("#photography-button").change(function(e, data) {photographyChanged();});
 	$("#go-button").click(function() {
 		var remoteVideoElement = document.getElementById('camera-video-img');
 		remoteVideoElement.play();
 		toggleFullScreen();
 		amplify.publish("ui->controller", "GO button is pressed");
 	});
+	$("#open-console-button").click(function() {consoleButtonClicked();});
 
 	$("#show-hide-right-menu-img").click(function() {showHideMenu($("#right-navigation-div"));});
 
@@ -431,31 +471,70 @@ var ui = (function () {
 	$("#sharpness-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
 
 	$("#gripper-slider").on("input", function(e, data) {amplify.publish("ui->port8080", "set new gripper position");});
+	//$("#camera-slider").on("input", function(e, data) {amplify.publish("ui->port8080", "set new camera position");});
+	/*
+	 * TBD: is it better to have it back to the center or not?
+	$("#gripper-slider").on("mouseup touchend", function(e, data) {gripperSliderUp();});
+	$("#camera-slider").on("mouseup touchend", function(e, data) {cameraSliderUp();});
+	*/
+	
 	$("#mani-axis-1").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
 	$("#mani-axis-2").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
 
 	$("#mani-x").change(function(e, data) {amplify.publish("ui->manipulator", "move mani");});
 	$("#mani-y").change(function(e, data) {amplify.publish("ui->manipulator", "move mani");});
 
-	$("#grab-text").click(function(e, data) {
-		$("#grab-text").addClass("grab-drive-text-filled-dot");
-		$("#drive-text").removeClass("grab-drive-text-filled-dot");
-		$("#camera-video-img").removeClass("camera-video-drive-mode");
-		$("#camera-video-img").addClass("camera-video-grab-mode");
-		$("#right-navigation-cross-img").attr('src', 'assets/img/ui/right-krzyz-mani.svg');
-		$("#turtle-navigation-view-img").attr('src', 'assets/img/ui/right-manipulator.svg');
-		amplify.publish("ui->controlCanvas", "set function to GRAB");
-	});
+	$("#grab-text").click(function(e, data) {grabOrDriveClicked("grab");});
+	$("#drive-text").click(function(e, data) {grabOrDriveClicked("drive");});
 
-	$("#drive-text").click(function(e, data) {
-		$("#drive-text").addClass("grab-drive-text-filled-dot");
-		$("#grab-text").removeClass("grab-drive-text-filled-dot");
-		$("#camera-video-img").removeClass("camera-video-grab-mode");
-		$("#camera-video-img").addClass("camera-video-drive-mode");
-		$("#right-navigation-cross-img").attr('src', 'assets/img/ui/right-krzyz.svg');
-		$("#turtle-navigation-view-img").attr('src', 'assets/img/ui/right-lazik.svg');
-		amplify.publish("ui->controlCanvas", "set function to DRIVE");
-	});
+	function setBatteryLevel(level){
+		if (level == 4)	$("#battery-level-indicator-img").attr('src', 'assets/img/ui/nav-bar-battery.svg');
+		else if (level == 3) $("#battery-level-indicator-img").attr('src', 'assets/img/ui/nav-bar-battery-3.svg');
+		else if (level == 2) $("#battery-level-indicator-img").attr('src', 'assets/img/ui/nav-bar-battery-2.svg');
+		else if (level == 1) $("#battery-level-indicator-img").attr('src', 'assets/img/ui/nav-bar-battery-1.svg');
+		else $("#battery-level-indicator-img").attr('src', 'assets/img/ui/nav-bar-battery-0.svg');
+	}
+
+	function grabOrDriveClicked(name) {
+		if (name == "grab") {
+			$("#grab-text").addClass("grab-drive-text-filled-dot");
+			$("#drive-text").removeClass("grab-drive-text-filled-dot");
+			/*
+			 *	if standard grab mode (not photography), use standard GRAB
+			 *	else use GRAB for photography
+			 */
+			//if($("#photography-button").prop('checked') == false) {
+			$("#camera-video-img").removeClass("camera-video-drive-mode");
+			$("#camera-video-img").addClass("camera-video-grab-mode");
+			$("#right-navigation-cross-img").fadeIn();
+			$("#turtle-navigation-view-img").fadeIn();
+			$("#right-navigation-cross-img").attr('src', 'assets/img/ui/right-krzyz-mani.svg');
+			$("#turtle-navigation-view-img").attr('src', 'assets/img/ui/right-manipulator.svg');
+			amplify.publish("ui->controlCanvas", "set function to GRAB");
+			/*}
+			else {
+				//	set camera as for drive
+				$("#camera-video-img").removeClass("camera-video-grab-mode");
+				$("#camera-video-img").addClass("camera-video-drive-mode");
+				$("#camera-slider-wrapper").fadeIn();
+				$("#right-navigation-cross-img").fadeOut();
+				$("#turtle-navigation-view-img").fadeOut();
+			}*/
+
+		}
+		else if (name == "drive") {
+			$("#camera-slider-wrapper").fadeOut();
+			$("#drive-text").addClass("grab-drive-text-filled-dot");
+			$("#grab-text").removeClass("grab-drive-text-filled-dot");
+			$("#camera-video-img").removeClass("camera-video-grab-mode");
+			$("#camera-video-img").addClass("camera-video-drive-mode");
+			$("#right-navigation-cross-img").fadeIn();
+			$("#turtle-navigation-view-img").fadeIn();
+			$("#right-navigation-cross-img").attr('src', 'assets/img/ui/right-krzyz.svg');
+			$("#turtle-navigation-view-img").attr('src', 'assets/img/ui/right-lazik.svg');
+			amplify.publish("ui->controlCanvas", "set function to DRIVE");
+		}
+	}
 
 
 	/*
@@ -508,16 +587,16 @@ var ui = (function () {
 	 *	read settings from last session
 	 */
 	$(function() {
-		var previousSessionSetting = Cookies.get("advanced-interface");
-		if (previousSessionSetting == undefined) previousSessionSetting = "true";
-
-		if (previousSessionSetting == "false") {
-			$("#advanced-interface-button").prop('checked', false);
-		}
-		else {
-			$("#advanced-interface-button").prop('checked', true);
-		}
+		readSetting(Cookies.get("advanced-interface"), "#advanced-interface-button", "true");
+		readSetting(Cookies.get("photography"), "#photography-button", "false");
 	});
+
+	function readSetting(value, name, defVal) {
+		if (value == undefined) value = defVal;
+
+		if (value == "false") $(name).prop('checked', false);
+		else $(name).prop('checked', true);
+	}
 
 	/*
 	 *	configure vex dialogs
