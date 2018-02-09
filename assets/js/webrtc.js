@@ -141,7 +141,7 @@ var webrtc = (function () {
                 document.documentElement.style.cursor ='wait';
 
                 var protocol = location.protocol === "https:" ? "wss:" : "ws:";
-                ws = new WebSocket(protocol + '//' + "192.168.10.1:9090" + '/stream/webrtc');
+                ws = new WebSocket(protocol + '//' + document.location.hostname + ":9090" + '/stream/webrtc');
 
                 function offer(stream) {
                     createPeerConnection();
