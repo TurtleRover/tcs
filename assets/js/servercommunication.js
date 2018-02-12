@@ -211,7 +211,7 @@ var serverCommunication = (function () {
 
                 socket8080.socket.send(buf);
             }
-        };
+        }
 
         function setNewGripperPosition() {
             //var gripperPosition = manipulator.getGripperPosition();
@@ -274,8 +274,39 @@ var serverCommunication = (function () {
             else {
                 console.log("Connection not opened.");
             }
-        };
+        }
 
+        amplify.subscribe("controlkeyboard->servercommunication", setMotorKeyboard);
+        function setMotorKeyboard(msg) {
+            console.log(msg);
+            
+            // if (socket8080.isOpen) {
+            //     var motorsSpeed = controlCanvas.getMotorsSpeed();
+            //     var buf = new ArrayBuffer(5);
+            //     var arr = new Uint8Array(buf);
+
+            //     //  command to send
+            //     arr[0] = 0x10;
+            //     /*	Multiplying by this value should make possible to write directly to PWM
+            //         Current range is 0 - 127 with first bit as direction	*/
+            //     var k = 1.27;
+            //     arr[1] = Math.round(Math.abs(motorsSpeed.motor_1 * k) | (motorsSpeed.motor_1 & 0x80));	//	Left front
+            //     arr[2] = Math.round(Math.abs(motorsSpeed.motor_2 * k) | (motorsSpeed.motor_2 & 0x80));	//	Right front
+            //     arr[3] = Math.round(Math.abs(motorsSpeed.motor_3 * k) | (motorsSpeed.motor_3 & 0x80));	//	Left rear
+            //     arr[4] = Math.round(Math.abs(motorsSpeed.motor_4 * k) | (motorsSpeed.motor_4 & 0x80));	//	Right rear
+            //     socket8080.socket.send(buf);
+
+            //     // Convert to readable form
+            //     var hex = '';
+            //     for (var i = 0; i < arr.length; i++)
+            //         hex += ('00' + arr[i].toString(16)).substr(-2);
+
+            //     // if(DEBUG) console.log("Binary message sent. " + hex);
+            // }
+            // else {
+            //     console.log("Connection not opened.");
+            // }
+        }
         /*
          *  stop all motors immediately
          */
@@ -301,7 +332,9 @@ var serverCommunication = (function () {
                 // if(DEBUG) console.log("Binary message sent. " + hex);
             }
             else console.log("Connection not opened.");
-        };
+        }
+
+
 
         /*
          *  get battery level
@@ -321,7 +354,7 @@ var serverCommunication = (function () {
                 // if(DEBUG) console.log("Binary message sent. " + hex);
             }
             else console.log("Connection not opened.");
-        };
+        }
 
         /*
          *  get signal level
@@ -341,7 +374,7 @@ var serverCommunication = (function () {
                 // if(DEBUG) console.log("Binary message sent. " + hex);
             }
             else console.log("Connection not opened.");
-        };
+        }
 
         /*
          *  get processor temperature
@@ -361,7 +394,7 @@ var serverCommunication = (function () {
                 // if(DEBUG) console.log("Binary message sent. " + hex);
             }
             else console.log("Connection not opened.");
-        };
+        }
 
         /*
          *  update all camera settings
@@ -390,7 +423,7 @@ var serverCommunication = (function () {
                 if(DEBUG) console.log("Binary message sent. " + hex);
             }
             else console.log("Connection not opened.");
-        };
+        }
 
         /*
          *  set interval to update motor values
@@ -411,7 +444,7 @@ var serverCommunication = (function () {
                 setTimeout(function(){getProcessorTemperature()}, 1000);
             }
         }, BAT_INTERVAL);
-    };
+    }
 
     /*
 	 * 																		PUBLIC area

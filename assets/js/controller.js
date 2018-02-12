@@ -22,7 +22,7 @@ var controller = (function () {
 			amplify.publish("controller->ui", "display camera video");
 		}, 500)
 	};
-
+	
 	/*
 	 * 																		EVENTS triggers
 	 */
