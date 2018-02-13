@@ -25,6 +25,7 @@ var controlkeyboard = (function () {
     }, function (e) {
         clearInterval(interval);
         movement.type = "stop";
+        movement.speed = 0;
         amplify.publish("controlkeyboard->servercommunication", movement);
     });
 
@@ -35,6 +36,46 @@ var controlkeyboard = (function () {
         movement.type = "run";
         movement.direction = [1, 1, 1, 1];
         console.log("Keyboard: DOWN");
+        interval = setInterval(function () {
+            amplify.publish("controlkeyboard->servercommunication", movement);
+            movement.speed++;
+            movement.interval = interval;
+        }, UPDATE_INTERVAL);
+
+    }, function (e) {
+        clearInterval(interval);
+        movement.type = "stop";
+        movement.speed = 0;
+        amplify.publish("controlkeyboard->servercommunication", movement);
+    });
+
+    // BACKWARD
+    keyboardJS.bind('left', function (e) {
+        e.preventRepeat();
+        movement.speed = 1;
+        movement.type = "run";
+        movement.direction = [1, 0, 1, 0];
+        console.log("Keyboard: LEFT");
+        interval = setInterval(function () {
+            amplify.publish("controlkeyboard->servercommunication", movement);
+            movement.speed++;
+            movement.interval = interval;
+        }, UPDATE_INTERVAL);
+
+    }, function (e) {
+        clearInterval(interval);
+        movement.type = "stop";
+        movement.speed = 0;
+        amplify.publish("controlkeyboard->servercommunication", movement);
+    });
+
+    // BACKWARD
+    keyboardJS.bind('right', function (e) {
+        e.preventRepeat();
+        movement.speed = 1;
+        movement.type = "run";
+        movement.direction = [0, 1, 0, 1];
+        console.log("Keyboard: LEFT");
         interval = setInterval(function () {
             amplify.publish("controlkeyboard->servercommunication", movement);
             movement.speed++;

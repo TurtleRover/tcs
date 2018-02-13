@@ -289,11 +289,11 @@ var serverCommunication = (function () {
                     arr[0] = 0x10;
                     /*	Multiplying by this value should make possible to write directly to PWM
                         Current range is 0 - 127 with first bit as direction	*/
-                    if (movement.speed <= (127 - 10) && (movement.speed + 10) >= 0) {
-                        arr[1] = Math.round(Math.abs(movement.speed + 10) | (movement.direction[0] << 7));	//	Left front
-                        arr[2] = Math.round(Math.abs(movement.speed + 10) | (movement.direction[1] << 7));	//	Right front
-                        arr[3] = Math.round(Math.abs(movement.speed + 10) | (movement.direction[2] << 7));	//	Left rear
-                        arr[4] = Math.round(Math.abs(movement.speed + 10) | (movement.direction[3] << 7));	//	Right rear
+                    if (movement.speed <= (127 - 80) && (movement.speed + 80) >= 0) {
+                        arr[1] = Math.round(Math.abs(movement.speed + 80) | (movement.direction[0] << 7));	//	Left front
+                        arr[2] = Math.round(Math.abs(movement.speed + 80) | (movement.direction[1] << 7));	//	Right front
+                        arr[3] = Math.round(Math.abs(movement.speed + 80) | (movement.direction[2] << 7));	//	Left rear
+                        arr[4] = Math.round(Math.abs(movement.speed + 80) | (movement.direction[3] << 7));	//	Right rear
                         socket8080.socket.send(buf);
                         // Convert to readable form
                         var hex = '';
@@ -306,6 +306,7 @@ var serverCommunication = (function () {
                     }
 
                 } else if (movement.type == "stop") {
+                    clearInterval(movement.interval);
                     stopMotors();
                 }
             } else {
