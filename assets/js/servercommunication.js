@@ -23,7 +23,7 @@ var serverCommunication = (function () {
 
     function linuxMessageCallback(message) {
         if (DEBUG) console.log("linuxMessageCallback: " + message);
-		if (DEBUG) amplify.publish("all->utests", message);
+        if (DEBUG) amplify.publish("all->utests", message);
 
         switch (message) {
             case "start communication on port 8080":
@@ -122,14 +122,14 @@ var serverCommunication = (function () {
          *                                                              EVENT functions for socket
          */
 
-        socket8080.socket.onopen = function() {
+        socket8080.socket.onopen = function () {
             console.log("Connected with port 8080");
             socket8080.isOpen = true;
             amplify.publish("all->ui", "set last status done");
             amplify.publish("all->ui", "initialize camera...");
         };
 
-        socket8080.socket.onmessage = function(e) {
+        socket8080.socket.onmessage = function (e) {
             if (typeof e.data == "string") {
                 //  string is only if CRC is NOK
                 console.log("Wrong CRC of received message: " + e.data);
@@ -146,7 +146,7 @@ var serverCommunication = (function () {
                     // console.log("voltage: " + voltage);
                     voltage = voltage * 0.1 + 7.6 // voltage divider
                     var str_voltage = voltage.toString();
-                    $("#battery-level-text").text("battery voltage: " + str_voltage.substr(0,4) + " V");
+                    $("#battery-level-text").text("battery voltage: " + str_voltage.substr(0, 4) + " V");
 
                     if (voltage > 24) amplify.publish("all->ui", "set battery level to full");
                     else if (voltage > 23) amplify.publish("all->ui", "set battery level to 3");
@@ -177,14 +177,14 @@ var serverCommunication = (function () {
             }
         };
 
-        socket8080.socket.onclose = function(e) {
+        socket8080.socket.onclose = function (e) {
             console.log("Connection closed. Log: " + e.data);
             socket8080.socket = null;
             socket8080.isOpen = null;
 
             amplify.publish("all->ui", "set last status error");
 
-            setTimeout(function(){connect8080()}, 1000);
+            setTimeout(function () { connect8080() }, 1000);
         };
 
         /*
@@ -216,7 +216,7 @@ var serverCommunication = (function () {
         function setNewGripperPosition() {
             //var gripperPosition = manipulator.getGripperPosition();
             var gripperPosition = $("#gripper-slider-input").val();
-            console.log("New gripper position: "+ gripperPosition);
+            console.log("New gripper position: " + gripperPosition);
             if (socket8080.isOpen) {
                 var buf = new ArrayBuffer(3);
                 var arr = new Uint8Array(buf);
@@ -263,12 +263,12 @@ var serverCommunication = (function () {
                 arr[3] = Math.round(Math.abs(motorsSpeed.motor_3 * k) | (motorsSpeed.motor_3 & 0x80));	//	Left rear
                 arr[4] = Math.round(Math.abs(motorsSpeed.motor_4 * k) | (motorsSpeed.motor_4 & 0x80));	//	Right rear
                 socket8080.socket.send(buf);
-                
+
                 // Convert to readable form
                 var hex = '';
                 for (var i = 0; i < arr.length; i++)
                     hex += ('00' + arr[i].toString(16)).substr(-2);
-               	
+
                 // if(DEBUG) console.log("Binary message sent. " + hex);
             }
             else {
@@ -277,35 +277,39 @@ var serverCommunication = (function () {
         }
 
         amplify.subscribe("controlkeyboard->servercommunication", setMotorKeyboard);
-        function setMotorKeyboard(msg) {
-            console.log(msg);
-            
-            // if (socket8080.isOpen) {
-            //     var motorsSpeed = controlCanvas.getMotorsSpeed();
-            //     var buf = new ArrayBuffer(5);
-            //     var arr = new Uint8Array(buf);
+        function setMotorKeyboard(movement) {
+            console.log(movement);
 
-            //     //  command to send
-            //     arr[0] = 0x10;
-            //     /*	Multiplying by this value should make possible to write directly to PWM
-            //         Current range is 0 - 127 with first bit as direction	*/
-            //     var k = 1.27;
-            //     arr[1] = Math.round(Math.abs(motorsSpeed.motor_1 * k) | (motorsSpeed.motor_1 & 0x80));	//	Left front
-            //     arr[2] = Math.round(Math.abs(motorsSpeed.motor_2 * k) | (motorsSpeed.motor_2 & 0x80));	//	Right front
-            //     arr[3] = Math.round(Math.abs(motorsSpeed.motor_3 * k) | (motorsSpeed.motor_3 & 0x80));	//	Left rear
-            //     arr[4] = Math.round(Math.abs(motorsSpeed.motor_4 * k) | (motorsSpeed.motor_4 & 0x80));	//	Right rear
-            //     socket8080.socket.send(buf);
+            if (socket8080.isOpen) {
+                if (movement.type == "forward") {
+                    console.log("IT'S FORWARD");
+                    var buf = new ArrayBuffer(5);
+                    var arr = new Uint8Array(buf);
+                    let speed = 0;
+                    //  command to send
+                    arr[0] = 0x10;
+                    /*	Multiplying by this value should make possible to write directly to PWM
+                        Current range is 0 - 127 with first bit as direction	*/
+                    if (movement.speed < 127 && movement.speed >= 0) {
+                        arr[1] = Math.round(Math.abs(movement.speed) | (movement.speed & 0x80));	//	Left front
+                        arr[2] = Math.round(Math.abs(movement.speed) | (movement.speed & 0x80));	//	Right front
+                        arr[3] = Math.round(Math.abs(movement.speed) | (movement.speed & 0x80));	//	Left rear
+                        arr[4] = Math.round(Math.abs(movement.speed) | (movement.speed & 0x80));	//	Right rear
+                        socket8080.socket.send(buf);
+                        // Convert to readable form
+                        var hex = '';
+                        for (var i = 0; i < arr.length; i++) {
+                            hex += ('00' + arr[i].toString(16)).substr(-2);
+                        }
+                        if (DEBUG) console.log("Binary message sent. " + hex);
+                    } else {
+                        clearInterval(movement.interval);
+                    }
 
-            //     // Convert to readable form
-            //     var hex = '';
-            //     for (var i = 0; i < arr.length; i++)
-            //         hex += ('00' + arr[i].toString(16)).substr(-2);
-
-            //     // if(DEBUG) console.log("Binary message sent. " + hex);
-            // }
-            // else {
-            //     console.log("Connection not opened.");
-            // }
+                }
+            } else {
+                console.log("Connection not opened.");
+            }
         }
         /*
          *  stop all motors immediately
@@ -323,12 +327,12 @@ var serverCommunication = (function () {
                 arr[3] = 0;
                 arr[4] = 0;
                 socket8080.socket.send(buf);
-                
+
                 // Convert to readable form
                 var hex = '';
                 for (var i = 0; i < arr.length; i++)
                     hex += ('00' + arr[i].toString(16)).substr(-2);
-                    
+
                 // if(DEBUG) console.log("Binary message sent. " + hex);
             }
             else console.log("Connection not opened.");
@@ -345,12 +349,12 @@ var serverCommunication = (function () {
                 var arr = new Uint8Array(buf);
                 arr[0] = 0x30;
                 socket8080.socket.send(buf);
-                
+
                 // Convert to readable form
                 var hex = '';
                 for (var i = 0; i < arr.length; i++)
                     hex += ('00' + arr[i].toString(16)).substr(-2);
-                    
+
                 // if(DEBUG) console.log("Binary message sent. " + hex);
             }
             else console.log("Connection not opened.");
@@ -365,12 +369,12 @@ var serverCommunication = (function () {
                 var arr = new Uint8Array(buf);
                 arr[0] = 0x40;
                 socket8080.socket.send(buf);
-                
+
                 // Convert to readable form
                 var hex = '';
                 for (var i = 0; i < arr.length; i++)
                     hex += ('00' + arr[i].toString(16)).substr(-2);
-                    
+
                 // if(DEBUG) console.log("Binary message sent. " + hex);
             }
             else console.log("Connection not opened.");
@@ -385,12 +389,12 @@ var serverCommunication = (function () {
                 var arr = new Uint8Array(buf);
                 arr[0] = 0x60;
                 socket8080.socket.send(buf);
-                
+
                 // Convert to readable form
                 var hex = '';
                 for (var i = 0; i < arr.length; i++)
                     hex += ('00' + arr[i].toString(16)).substr(-2);
-                    
+
                 // if(DEBUG) console.log("Binary message sent. " + hex);
             }
             else console.log("Connection not opened.");
@@ -414,13 +418,13 @@ var serverCommunication = (function () {
                 arr[8] = $("#sharpness-slider-input").val();
 
                 socket8080.socket.send(buf);
-                
+
                 // Convert to readable form
                 var hex = '';
                 for (var i = 0; i < arr.length; i++)
                     hex += ('00' + arr[i].toString(16)).substr(-2);
-                    
-                if(DEBUG) console.log("Binary message sent. " + hex);
+
+                if (DEBUG) console.log("Binary message sent. " + hex);
             }
             else console.log("Connection not opened.");
         }
@@ -430,7 +434,7 @@ var serverCommunication = (function () {
          *  take care to not overload CPU
          */
         setInterval(function () {
-            if(socket8080.isOpen && controlCanvas.isCoordinatesClicked())
+            if (socket8080.isOpen && controlCanvas.isCoordinatesClicked())
                 setMotors();
         }, INTERVAL);
 
@@ -438,10 +442,10 @@ var serverCommunication = (function () {
          *  read battery value
          */
         setInterval(function () {
-            if(socket8080.isOpen) {
+            if (socket8080.isOpen) {
                 getBatteryLevel();
-                setTimeout(function(){getSignalLevel()}, 500);
-                setTimeout(function(){getProcessorTemperature()}, 1000);
+                setTimeout(function () { getSignalLevel() }, 500);
+                setTimeout(function () { getProcessorTemperature() }, 1000);
             }
         }, BAT_INTERVAL);
     }
