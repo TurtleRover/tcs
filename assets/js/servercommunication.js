@@ -281,8 +281,7 @@ var serverCommunication = (function () {
             console.log(movement);
 
             if (socket8080.isOpen) {
-                if (movement.type == "forward") {
-                    console.log("IT'S FORWARD");
+                if (movement.type == "run") {
                     var buf = new ArrayBuffer(5);
                     var arr = new Uint8Array(buf);
                     let speed = 0;
@@ -290,11 +289,11 @@ var serverCommunication = (function () {
                     arr[0] = 0x10;
                     /*	Multiplying by this value should make possible to write directly to PWM
                         Current range is 0 - 127 with first bit as direction	*/
-                    if (movement.speed < 127 && movement.speed >= 0) {
-                        arr[1] = Math.round(Math.abs(movement.speed) | (movement.speed & 0x80));	//	Left front
-                        arr[2] = Math.round(Math.abs(movement.speed) | (movement.speed & 0x80));	//	Right front
-                        arr[3] = Math.round(Math.abs(movement.speed) | (movement.speed & 0x80));	//	Left rear
-                        arr[4] = Math.round(Math.abs(movement.speed) | (movement.speed & 0x80));	//	Right rear
+                    if (movement.speed <= 127 && movement.speed >= 0) {
+                        arr[1] = Math.round(Math.abs(movement.speed) | (movement.direction[0] << 7));	//	Left front
+                        arr[2] = Math.round(Math.abs(movement.speed) | (movement.direction[1] << 7));	//	Right front
+                        arr[3] = Math.round(Math.abs(movement.speed) | (movement.direction[2] << 7));	//	Left rear
+                        arr[4] = Math.round(Math.abs(movement.speed) | (movement.direction[3] << 7));	//	Right rear
                         socket8080.socket.send(buf);
                         // Convert to readable form
                         var hex = '';
@@ -308,7 +307,7 @@ var serverCommunication = (function () {
 
                 } else if (movement.type == "stop") {
                     stopMotors ();
-                }
+                } 
             } else {
                 console.log("Connection not opened.");
             }

@@ -5,7 +5,8 @@ var controlkeyboard = (function () {
     var movement = {
         type: "",
         speed: 0,
-        interval: 0
+        interval: 0,
+        direction: [0,0,0,0]
     };
 
     // FORWARD
@@ -13,7 +14,8 @@ var controlkeyboard = (function () {
         e.preventRepeat();
         movement.speed = 1;
         console.log("Keyboard: UP");
-        movement.type = "forward";
+        movement.type = "run";
+        movement.direction = [0, 0, 0, 0];
         interval = setInterval(function () {
             amplify.publish("controlkeyboard->servercommunication", movement);
             movement.speed++;
@@ -29,6 +31,8 @@ var controlkeyboard = (function () {
     keyboardJS.bind('down', function (e) {
         e.preventRepeat();
         movement.speed = 1;
+        movement.type = "run";
+        movement.direction = [1, 1, 1, 1];
         console.log("Keyboard: DOWN");
         interval = setInterval(function () {
             amplify.publish("controlkeyboard->servercommunication", movement);
