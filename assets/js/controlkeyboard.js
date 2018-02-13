@@ -16,27 +16,31 @@ var controlkeyboard = (function () {
         movement.type = "forward";
         interval = setInterval(function () {
             amplify.publish("controlkeyboard->servercommunication", movement);
-            console.log("intervalForward", movement.speed);
             movement.speed++;
             movement.interval = interval;
         }, 50);
     }, function (e) {
         clearInterval(interval);
-        amplify.publish("controlkeyboard->servercommunication", "stop");
+        movement.type = "stop";
+        amplify.publish("controlkeyboard->servercommunication", movement);
     });
 
     // BACKWARD
     keyboardJS.bind('down', function (e) {
+        e.preventRepeat();
+        movement.speed = 1;
         console.log("Keyboard: DOWN");
         interval = setInterval(function () {
-            amplify.publish("controlkeyboard->servercommunication", "backward");
-            console.log("intervalForward", t);
-            t++;
+            amplify.publish("controlkeyboard->servercommunication", movement);
+            movement.speed++;
+            movement.interval = interval;
         }, 50);
 
     }, function (e) {
         clearInterval(interval);
-        amplify.publish("controlkeyboard->servercommunication", "stop");
+        movement.type = "stop";
+        movement.speed = 0;
+        amplify.publish("controlkeyboard->servercommunication", movement);
     });
 })();
 
