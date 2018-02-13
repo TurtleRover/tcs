@@ -1,6 +1,7 @@
 var controlkeyboard = (function () {
 
     var interval;
+    const UPDATE_INTERVAL = 100;
 
     var movement = {
         type: "",
@@ -20,7 +21,7 @@ var controlkeyboard = (function () {
             amplify.publish("controlkeyboard->servercommunication", movement);
             movement.speed++;
             movement.interval = interval;
-        }, 50);
+        }, UPDATE_INTERVAL);
     }, function (e) {
         clearInterval(interval);
         movement.type = "stop";
@@ -38,7 +39,7 @@ var controlkeyboard = (function () {
             amplify.publish("controlkeyboard->servercommunication", movement);
             movement.speed++;
             movement.interval = interval;
-        }, 50);
+        }, UPDATE_INTERVAL);
 
     }, function (e) {
         clearInterval(interval);

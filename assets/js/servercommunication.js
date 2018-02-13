@@ -289,11 +289,11 @@ var serverCommunication = (function () {
                     arr[0] = 0x10;
                     /*	Multiplying by this value should make possible to write directly to PWM
                         Current range is 0 - 127 with first bit as direction	*/
-                    if (movement.speed <= 127 && movement.speed >= 0) {
-                        arr[1] = Math.round(Math.abs(movement.speed) | (movement.direction[0] << 7));	//	Left front
-                        arr[2] = Math.round(Math.abs(movement.speed) | (movement.direction[1] << 7));	//	Right front
-                        arr[3] = Math.round(Math.abs(movement.speed) | (movement.direction[2] << 7));	//	Left rear
-                        arr[4] = Math.round(Math.abs(movement.speed) | (movement.direction[3] << 7));	//	Right rear
+                    if (movement.speed <= (127 - 10) && (movement.speed + 10) >= 0) {
+                        arr[1] = Math.round(Math.abs(movement.speed + 10) | (movement.direction[0] << 7));	//	Left front
+                        arr[2] = Math.round(Math.abs(movement.speed + 10) | (movement.direction[1] << 7));	//	Right front
+                        arr[3] = Math.round(Math.abs(movement.speed + 10) | (movement.direction[2] << 7));	//	Left rear
+                        arr[4] = Math.round(Math.abs(movement.speed + 10) | (movement.direction[3] << 7));	//	Right rear
                         socket8080.socket.send(buf);
                         // Convert to readable form
                         var hex = '';
@@ -306,152 +306,148 @@ var serverCommunication = (function () {
                     }
 
                 } else if (movement.type == "stop") {
-                    stopMotors ();
-                } 
+                    stopMotors();
+                }
             } else {
                 console.log("Connection not opened.");
             }
-
-
-            /*
-             *  stop all motors immediately
-             */
-            function stopMotors() {
-                if (socket8080.isOpen) {
-                    var buf = new ArrayBuffer(5);
-                    var arr = new Uint8Array(buf);
-
-                    //  command to send
-                    arr[0] = 0x10;
-
-                    arr[1] = 0;
-                    arr[2] = 0;
-                    arr[3] = 0;
-                    arr[4] = 0;
-                    socket8080.socket.send(buf);
-
-                    // Convert to readable form
-                    var hex = '';
-                    for (var i = 0; i < arr.length; i++)
-                        hex += ('00' + arr[i].toString(16)).substr(-2);
-
-                    if(DEBUG) console.log("Binary message sent. " + hex);
-                }
-                else console.log("Connection not opened.");
-            }
-
-
-
-            /*
-             *  get battery level
-             */
-            function getBatteryLevel() {
-                if (socket8080.isOpen) {
-                    var buf = new ArrayBuffer(1);
-                    var arr = new Uint8Array(buf);
-                    arr[0] = 0x30;
-                    socket8080.socket.send(buf);
-
-                    // Convert to readable form
-                    var hex = '';
-                    for (var i = 0; i < arr.length; i++)
-                        hex += ('00' + arr[i].toString(16)).substr(-2);
-
-                    // if(DEBUG) console.log("Binary message sent. " + hex);
-                }
-                else console.log("Connection not opened.");
-            }
-
-            /*
-             *  get signal level
-             */
-            function getSignalLevel() {
-                if (socket8080.isOpen) {
-                    var buf = new ArrayBuffer(1);
-                    var arr = new Uint8Array(buf);
-                    arr[0] = 0x40;
-                    socket8080.socket.send(buf);
-
-                    // Convert to readable form
-                    var hex = '';
-                    for (var i = 0; i < arr.length; i++)
-                        hex += ('00' + arr[i].toString(16)).substr(-2);
-
-                    // if(DEBUG) console.log("Binary message sent. " + hex);
-                }
-                else console.log("Connection not opened.");
-            }
-
-            /*
-             *  get processor temperature
-             */
-            function getProcessorTemperature() {
-                if (socket8080.isOpen) {
-                    var buf = new ArrayBuffer(1);
-                    var arr = new Uint8Array(buf);
-                    arr[0] = 0x60;
-                    socket8080.socket.send(buf);
-
-                    // Convert to readable form
-                    var hex = '';
-                    for (var i = 0; i < arr.length; i++)
-                        hex += ('00' + arr[i].toString(16)).substr(-2);
-
-                    // if(DEBUG) console.log("Binary message sent. " + hex);
-                }
-                else console.log("Connection not opened.");
-            }
-
-            /*
-             *  update all camera settings
-             */
-            function updateCameraSettings() {
-                if (socket8080.isOpen) {
-                    var buf = new ArrayBuffer(9);
-                    var arr = new Uint8Array(buf);
-                    arr[0] = 0x50;
-                    arr[1] = $("#brightness-slider-input").val();
-                    arr[2] = $("#contrast-slider-input").val();
-                    arr[3] = $("#saturation-slider-input").val();
-                    arr[4] = $("#hue-slider-input").val();
-                    arr[5] = ($("#gamma-slider-input").val() & 0xFF00) >> 8;
-                    arr[6] = $("#gamma-slider-input").val() & 0x00FF;
-                    arr[7] = $("#gain-slider-input").val();
-                    arr[8] = $("#sharpness-slider-input").val();
-
-                    socket8080.socket.send(buf);
-
-                    // Convert to readable form
-                    var hex = '';
-                    for (var i = 0; i < arr.length; i++)
-                        hex += ('00' + arr[i].toString(16)).substr(-2);
-
-                    if (DEBUG) console.log("Binary message sent. " + hex);
-                }
-                else console.log("Connection not opened.");
-            }
-
-            /*
-             *  set interval to update motor values
-             *  take care to not overload CPU
-             */
-            setInterval(function () {
-                if (socket8080.isOpen && controlCanvas.isCoordinatesClicked())
-                    setMotors();
-            }, INTERVAL);
-
-            /*
-             *  read battery value
-             */
-            setInterval(function () {
-                if (socket8080.isOpen) {
-                    getBatteryLevel();
-                    setTimeout(function () { getSignalLevel() }, 500);
-                    setTimeout(function () { getProcessorTemperature() }, 1000);
-                }
-            }, BAT_INTERVAL);
-
         }
-    }
 
-})();
+        /*
+         *  stop all motors immediately
+         */
+        function stopMotors() {
+            if (socket8080.isOpen) {
+                var buf = new ArrayBuffer(5);
+                var arr = new Uint8Array(buf);
+
+                //  command to send
+                arr[0] = 0x10;
+
+                arr[1] = 0;
+                arr[2] = 0;
+                arr[3] = 0;
+                arr[4] = 0;
+                socket8080.socket.send(buf);
+
+                // Convert to readable form
+                var hex = '';
+                for (var i = 0; i < arr.length; i++)
+                    hex += ('00' + arr[i].toString(16)).substr(-2);
+
+                // if(DEBUG) console.log("Binary message sent. " + hex);
+            }
+            else console.log("Connection not opened.");
+        };
+
+        /*
+         *  get battery level
+         */
+        function getBatteryLevel() {
+            if (socket8080.isOpen) {
+                var buf = new ArrayBuffer(1);
+                var arr = new Uint8Array(buf);
+                arr[0] = 0x30;
+                socket8080.socket.send(buf);
+
+                // Convert to readable form
+                var hex = '';
+                for (var i = 0; i < arr.length; i++)
+                    hex += ('00' + arr[i].toString(16)).substr(-2);
+
+                // if(DEBUG) console.log("Binary message sent. " + hex);
+            }
+            else console.log("Connection not opened.");
+        }
+
+        /*
+         *  get signal level
+         */
+        function getSignalLevel() {
+            if (socket8080.isOpen) {
+                var buf = new ArrayBuffer(1);
+                var arr = new Uint8Array(buf);
+                arr[0] = 0x40;
+                socket8080.socket.send(buf);
+
+                // Convert to readable form
+                var hex = '';
+                for (var i = 0; i < arr.length; i++)
+                    hex += ('00' + arr[i].toString(16)).substr(-2);
+
+                // if(DEBUG) console.log("Binary message sent. " + hex);
+            }
+            else console.log("Connection not opened.");
+        }
+
+        /*
+         *  get processor temperature
+         */
+        function getProcessorTemperature() {
+            if (socket8080.isOpen) {
+                var buf = new ArrayBuffer(1);
+                var arr = new Uint8Array(buf);
+                arr[0] = 0x60;
+                socket8080.socket.send(buf);
+
+                // Convert to readable form
+                var hex = '';
+                for (var i = 0; i < arr.length; i++)
+                    hex += ('00' + arr[i].toString(16)).substr(-2);
+
+                // if(DEBUG) console.log("Binary message sent. " + hex);
+            }
+            else console.log("Connection not opened.");
+        }
+
+        /*
+         *  update all camera settings
+         */
+        function updateCameraSettings() {
+            if (socket8080.isOpen) {
+                var buf = new ArrayBuffer(9);
+                var arr = new Uint8Array(buf);
+                arr[0] = 0x50;
+                arr[1] = $("#brightness-slider-input").val();
+                arr[2] = $("#contrast-slider-input").val();
+                arr[3] = $("#saturation-slider-input").val();
+                arr[4] = $("#hue-slider-input").val();
+                arr[5] = ($("#gamma-slider-input").val() & 0xFF00) >> 8;
+                arr[6] = $("#gamma-slider-input").val() & 0x00FF;
+                arr[7] = $("#gain-slider-input").val();
+                arr[8] = $("#sharpness-slider-input").val();
+
+                socket8080.socket.send(buf);
+
+                // Convert to readable form
+                var hex = '';
+                for (var i = 0; i < arr.length; i++)
+                    hex += ('00' + arr[i].toString(16)).substr(-2);
+
+                if (DEBUG) console.log("Binary message sent. " + hex);
+            }
+            else console.log("Connection not opened.");
+        }
+
+        /*
+         *  set interval to update motor values
+         *  take care to not overload CPU
+         */
+        setInterval(function () {
+            if (socket8080.isOpen && controlCanvas.isCoordinatesClicked())
+                setMotors();
+        }, INTERVAL);
+
+        /*
+         *  read battery value
+         */
+        setInterval(function () {
+            if (socket8080.isOpen) {
+                getBatteryLevel();
+                setTimeout(function () { getSignalLevel() }, 500);
+                setTimeout(function () { getProcessorTemperature() }, 1000);
+            }
+        }, BAT_INTERVAL);
+
+    }
+}) ();
