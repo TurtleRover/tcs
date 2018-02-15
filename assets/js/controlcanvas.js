@@ -16,9 +16,7 @@ var controlCanvas = (function () {
 	 * 																		SUBSCRIBE to controller topic
 	 */
     amplify.subscribe("controller->controlCanvas", controllerMessageCallback);
-    function controllerMessageCallback(message) {
-
-    };
+    function controllerMessageCallback(message) {}
 
     amplify.subscribe("ui->controlCanvas", uiMessageCallback);
     function uiMessageCallback(message) {
