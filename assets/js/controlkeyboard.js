@@ -2,6 +2,7 @@ var controlkeyboard = (function () {
 
     var interval;
     const UPDATE_INTERVAL = 100;
+    const INC = 10;
 
     var movement = {
         type: "",
@@ -13,13 +14,12 @@ var controlkeyboard = (function () {
     // FORWARD
     keyboardJS.bind('up', function (e) {
         e.preventRepeat();
-        movement.speed = 1;
         console.log("Keyboard: UP");
         movement.type = "run";
         movement.direction = [0, 0, 0, 0];
         interval = setInterval(function () {
             amplify.publish("controlkeyboard->servercommunication", movement);
-            movement.speed++;
+            movement.speed = movement.speed + INC;  
             movement.interval = interval;
         }, UPDATE_INTERVAL);
     }, function (e) {
@@ -32,13 +32,12 @@ var controlkeyboard = (function () {
     // BACKWARD
     keyboardJS.bind('down', function (e) {
         e.preventRepeat();
-        movement.speed = 1;
         movement.type = "run";
         movement.direction = [1, 1, 1, 1];
         console.log("Keyboard: DOWN");
         interval = setInterval(function () {
             amplify.publish("controlkeyboard->servercommunication", movement);
-            movement.speed++;
+            movement.speed = movement.speed + INC;  
             movement.interval = interval;
         }, UPDATE_INTERVAL);
 
@@ -49,16 +48,15 @@ var controlkeyboard = (function () {
         amplify.publish("controlkeyboard->servercommunication", movement);
     });
 
-    // BACKWARD
+    // LEFT
     keyboardJS.bind('left', function (e) {
         e.preventRepeat();
-        movement.speed = 1;
         movement.type = "run";
         movement.direction = [1, 0, 1, 0];
         console.log("Keyboard: LEFT");
         interval = setInterval(function () {
             amplify.publish("controlkeyboard->servercommunication", movement);
-            movement.speed++;
+            movement.speed = movement.speed + INC;  
             movement.interval = interval;
         }, UPDATE_INTERVAL);
 
@@ -69,16 +67,15 @@ var controlkeyboard = (function () {
         amplify.publish("controlkeyboard->servercommunication", movement);
     });
 
-    // BACKWARD
+    // RIGHT
     keyboardJS.bind('right', function (e) {
         e.preventRepeat();
-        movement.speed = 1;
         movement.type = "run";
         movement.direction = [0, 1, 0, 1];
-        console.log("Keyboard: LEFT");
+        console.log("Keyboard: RIGHT");
         interval = setInterval(function () {
             amplify.publish("controlkeyboard->servercommunication", movement);
-            movement.speed++;
+            movement.speed = movement.speed + INC;  
             movement.interval = interval;
         }, UPDATE_INTERVAL);
 
