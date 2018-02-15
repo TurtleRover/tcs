@@ -196,7 +196,7 @@
   function getDefaults() {
     return {
       loadPath: '/client/locales/{{lng}}/{{ns}}.json',
-      addPath: 'locales/add/{{lng}}/{{ns}}',
+      addPath: '/client/locales/add/{{lng}}/{{ns}}',
       allowMultiLoading: false,
       parse: JSON.parse,
       crossDomain: false,
