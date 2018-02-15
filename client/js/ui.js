@@ -145,7 +145,7 @@ var ui = (function () {
 			"lng": lng,
 			"fallbackLng": false,
 			"backend": {
-				"loadPath": "locales/{{lng}}.json"
+				"loadPath": "/client/locales/{{lng}}.json"
 			}}, function(err, t) {
 				// initialized and ready to go!
 				if(DEBUG) console.log("Initialized: " + i18next.t('my-button'));
@@ -191,7 +191,7 @@ var ui = (function () {
 			}, 100);
 		}
 		else if (camera) $("#camera-video-img").attr("src", "http://192.168.10.1:8090/?action=stream");
-		else $("#camera-video-img").attr("src", "assets/img/marsyard-camera.jpg");
+		else $("#camera-video-img").attr("src", "client/img/marsyard-camera.jpg");
 
 		if (camera) {	
 			//	rotate camera
@@ -273,7 +273,7 @@ var ui = (function () {
 			saveAs(blob, "turtle_snap.png");
 		});*/
 
-		img.src = 'assets/img/hud/turtle-logo.png';
+		img.src = 'client/img/hud/turtle-logo.png';
 
 		
 			var logoWidth = video.clientWidth / 12;
@@ -294,10 +294,10 @@ var ui = (function () {
 	 */ 
 	function changedFullScreen() {
 		if ($(document).fullScreen()) {
-			//$("#full-screen-button-img").attr("src", "assets/img/navigation/fullscreen-exit.png");
+			//$("#full-screen-button-img").attr("src", "client/img/navigation/fullscreen-exit.png");
 		}
 		else {
-			//$("#full-screen-button-img").attr("src", "assets/img/navigation/fullscreen.png");
+			//$("#full-screen-button-img").attr("src", "client/img/navigation/fullscreen.png");
 		}
 	}
 
@@ -488,11 +488,11 @@ var ui = (function () {
 	$("#drive-text").click(function(e, data) {grabOrDriveClicked("drive");});
 
 	function setBatteryLevel(level){
-		if (level == 4)	$("#battery-level-indicator-img").attr('src', 'assets/img/ui/nav-bar-battery.svg');
-		else if (level == 3) $("#battery-level-indicator-img").attr('src', 'assets/img/ui/nav-bar-battery-3.svg');
-		else if (level == 2) $("#battery-level-indicator-img").attr('src', 'assets/img/ui/nav-bar-battery-2.svg');
-		else if (level == 1) $("#battery-level-indicator-img").attr('src', 'assets/img/ui/nav-bar-battery-1.svg');
-		else $("#battery-level-indicator-img").attr('src', 'assets/img/ui/nav-bar-battery-0.svg');
+		if (level == 4)	$("#battery-level-indicator-img").attr('src', 'client/img/ui/nav-bar-battery.svg');
+		else if (level == 3) $("#battery-level-indicator-img").attr('src', 'client/img/ui/nav-bar-battery-3.svg');
+		else if (level == 2) $("#battery-level-indicator-img").attr('src', 'client/img/ui/nav-bar-battery-2.svg');
+		else if (level == 1) $("#battery-level-indicator-img").attr('src', 'client/img/ui/nav-bar-battery-1.svg');
+		else $("#battery-level-indicator-img").attr('src', 'client/img/ui/nav-bar-battery-0.svg');
 	}
 
 	function grabOrDriveClicked(name) {
@@ -508,8 +508,8 @@ var ui = (function () {
 			$("#camera-video-img").addClass("camera-video-grab-mode");
 			$("#right-navigation-cross-img").fadeIn();
 			$("#turtle-navigation-view-img").fadeIn();
-			$("#right-navigation-cross-img").attr('src', 'assets/img/ui/right-krzyz-mani.svg');
-			$("#turtle-navigation-view-img").attr('src', 'assets/img/ui/right-manipulator.svg');
+			$("#right-navigation-cross-img").attr('src', 'client/img/ui/right-krzyz-mani.svg');
+			$("#turtle-navigation-view-img").attr('src', 'client/img/ui/right-manipulator.svg');
 			amplify.publish("ui->controlCanvas", "set function to GRAB");
 			/*}
 			else {
@@ -530,8 +530,8 @@ var ui = (function () {
 			$("#camera-video-img").addClass("camera-video-drive-mode");
 			$("#right-navigation-cross-img").fadeIn();
 			$("#turtle-navigation-view-img").fadeIn();
-			$("#right-navigation-cross-img").attr('src', 'assets/img/ui/right-krzyz.svg');
-			$("#turtle-navigation-view-img").attr('src', 'assets/img/ui/right-lazik.svg');
+			$("#right-navigation-cross-img").attr('src', 'client/img/ui/right-krzyz.svg');
+			$("#turtle-navigation-view-img").attr('src', 'client/img/ui/right-lazik.svg');
 			amplify.publish("ui->controlCanvas", "set function to DRIVE");
 		}
 	}

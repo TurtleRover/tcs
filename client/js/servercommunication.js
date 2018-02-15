@@ -163,11 +163,11 @@ var serverCommunication = (function () {
                     /*
                      *  set icon according to signal strength
                      */
-                    if (signal > 95) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-4.svg");
-                    else if (signal > 90) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-3.svg");
-                    else if (signal > 85) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-2.svg");
-                    else if (signal > 80) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-1.svg");
-                    else $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-0.svg");
+                    if (signal > 95) $("#signal-level-indicator-img").attr("src", "client/img/ui/icon-zasieg-4.svg");
+                    else if (signal > 90) $("#signal-level-indicator-img").attr("src", "client/img/ui/icon-zasieg-3.svg");
+                    else if (signal > 85) $("#signal-level-indicator-img").attr("src", "client/img/ui/icon-zasieg-2.svg");
+                    else if (signal > 80) $("#signal-level-indicator-img").attr("src", "client/img/ui/icon-zasieg-1.svg");
+                    else $("#signal-level-indicator-img").attr("src", "client/img/ui/icon-zasieg-0.svg");
                 }
                 //  read processor temperature
                 else if (arr[0] == 0x61) {
