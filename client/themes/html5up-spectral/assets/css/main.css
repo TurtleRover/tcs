@@ -3825,7 +3825,7 @@
 
 	body.is-mobile.landing #banner,
 	body.is-mobile.landing .wrapper.style4 {
-		background-image: url("../../../../img/welcome-screen/kolko-lewe-dolne.svg"), url("../../../../client/img/welcome-screen/chmurka3-prawa-gorna.png"), url("../../../../client/img/welcome-screen/chmurka2-lewa-gorna.png"), url("../../../../client/img/welcome-screen/chmurka1-dolna.png"), url("../../../../client/img/welcome-screen/kolko-po-prawej.svg"), url("../../../../client/img/welcome-screen/background.png");
+		background-image: url("../../../../img/welcome-screen/kolko-lewe-dolne.svg"), url("../../../../img/welcome-screen/chmurka3-prawa-gorna.png"), url("../../../../img/welcome-screen/chmurka2-lewa-gorna.png"), url("../../../../img/welcome-screen/chmurka1-dolna.png"), url("../../../../client/img/welcome-screen/kolko-po-prawej.svg"), url("../../../../img/welcome-screen/background.png");
 		background-attachment: fixed;
 		background-position: 10% 80%, center center, center center, center center, 105% -10%, center center;
 		background-repeat: no-repeat;
