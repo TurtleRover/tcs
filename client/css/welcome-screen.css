@@ -100,7 +100,7 @@
  *  ANIMATIONS
  */
 
-.welcome-screen-background-circles {
+/* .welcome-screen-background-circles {
     background-attachment: fixed;
     background-position: center center;
     background-repeat: no-repeat;
@@ -115,9 +115,9 @@
     -webkit-animation-timing-function:linear;
     -moz-animation-iteration-count:infinite;
     -moz-animation-timing-function:linear;
-}
+} */
 
-#welcome-screen-background-circle-outer {
+/* #welcome-screen-background-circle-outer {
     background-image: url("../../client/img/welcome-screen/kolko-srednie.png");
 
     -webkit-animation-name: rotate-clockwise;
@@ -125,9 +125,9 @@
 
     -moz-animation-name: rotate-clockwise;
     -moz-animation-duration:30s;
-}
+} */
 
-#welcome-screen-background-circle-inner {
+/* #welcome-screen-background-circle-inner {
     background-image: url("../../client/img/welcome-screen/kolko-male.png");
 
     -webkit-animation-name: rotate-counter-clockwise;
@@ -135,9 +135,9 @@
 
     -moz-animation-name: rotate-counter-clockwise;
     -moz-animation-duration:45s;
-}
+} */
 
-@-webkit-keyframes rotate-clockwise {
+/* @-webkit-keyframes rotate-clockwise {
   from {-webkit-transform:rotate(0deg);}
   to {  -webkit-transform:rotate(360deg);}
 }
@@ -155,7 +155,7 @@
 @-moz-keyframes rotate-counter-clockwise {
   from {-moz-transform:rotate(360deg);}
   to {  -moz-transform:rotate(0deg);}
-}
+} */
 
 #welcome-screen-status-text {
     position:absolute;
@@ -174,7 +174,7 @@
         margin-left: 1vw;
         line-height: 100%;
 
-        color: rgb(115,115,115);
+        color: rgb(83, 59, 59);
         list-style: none;
 
         overflow: hidden;

@@ -1,0 +1,27 @@
+{
+  "name": "Turtle-Rover-Mission-Control",
+  "version": "1.0.0",
+  "description": "After several years of working on Mars rover prototypes, a team of four engineers decided to launch their own company and their own product.  Turtle Rover - as this is how they named their newest baby - is a remotely controlled four-wheeled robot designed for Earth exploration.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "parcel watch index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "git+https://github.com/TurtleRover/Turtle-Rover-Mission-Control.git",
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TurtleRover/Turtle-Rover-Mission-Control/issues"
+  },
+  "homepage": "https://github.com/TurtleRover/Turtle-Rover-Mission-Control#readme",
+  "devDependencies": {
+    "autoprefixer": "^8.0.0",
+    "node-sass": "^4.7.2",
+    "postcss-modules": "^1.1.0"
+  }
+}
