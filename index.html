@@ -1,160 +1,182 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Turtle</title>
 
-		<meta Http-Equiv="Cache-Control" Content="no-cache">
-		<meta Http-Equiv="Pragma" Content="no-cache">
-		<meta Http-Equiv="Expires" Content="0">
-		<meta Http-Equiv="Pragma-directive: no-cache">
-		<meta Http-Equiv="Cache-directive: no-cache">
+<head>
+	<title>Turtle</title>
 
-		<!-- favicon -->
-		<link rel="icon" type="image/png" href="client/img/hud/turtle.png">
+	<meta Http-Equiv="Cache-Control" Content="no-cache">
+	<meta Http-Equiv="Pragma" Content="no-cache">
+	<meta Http-Equiv="Expires" Content="0">
+	<meta Http-Equiv="Pragma-directive: no-cache">
+	<meta Http-Equiv="Cache-directive: no-cache">
 
-		<!-- tile icon for pinned websites in Windows 10 -->
-		<meta name="msapplication-config" content="ieconfig.xml" />
+	<!-- favicon -->
+	<link rel="icon" type="image/png" href="client/img/hud/turtle.png">
 
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="client/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="client/themes/html5up-spectral/assets/css/main.css" />
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		
-		<link href="client/vendors/jquery_flagstrap/css/flags.css" rel="stylesheet">
-		<!-- <link href="vendors/bootstrap/css/bootstrap.css" rel="stylesheet"> -->
+	<!-- tile icon for pinned websites in Windows 10 -->
+	<meta name="msapplication-config" content="ieconfig.xml" />
 
-		<!-- jQuery -->
-		<link href="client/css/jquery-ui.css" rel="stylesheet">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="client/themes/html5up-spectral/assets/css/main.css" />
 
-		<!-- vex dialogs CSS -->
-		<link href="client/vendors/vex/css/vex.css" rel="stylesheet">
-		<link href="client/vendors/vex/css/vex-theme-os.css" rel="stylesheet">
+	<link href="client/vendors/jquery_flagstrap/css/flags.css" rel="stylesheet">
 
-		<!-- mine CSS -->
-		<link href="client/css/custom.css" rel="stylesheet">
-		<link href="client/css/horizontal-slider.css" rel="stylesheet">
-		<link href="client/css/disable-text-select.css" rel="stylesheet">
-		<link href="client/css/welcome-screen.css" rel="stylesheet">
 
-	</head>
-	<body class="landing camera-body" oncontextmenu="return false;">
-		<div id="page-wrapper">
+	<!-- vex dialogs CSS -->
+	<link href="client/vendors/vex/css/vex.css" rel="stylesheet">
+	<link href="client/vendors/vex/css/vex-theme-os.css" rel="stylesheet">
 
-			<!-- Header -->
-			<header id="header" class="alt">
-				<div id="turtle-logo-div">
-					<img id="turtle-logo-img" src="client/img/hud/turtle-logo.png">
+	<!-- mine CSS -->
+	<link href="client/css/main.css" rel="stylesheet">
+	<link href="client/css/welcome-screen.css" rel="stylesheet">
+
+</head>
+
+<body class="landing camera-body" oncontextmenu="return false;">
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header" class="alt">
+			<div id="turtle-logo-div">
+				<img id="turtle-logo-img" src="client/img/hud/turtle-logo.png">
+			</div>
+
+			<div id="battery-level-indicator-div">
+				<img id="battery-level-indicator-img" src="client/img/ui/nav-bar-battery.svg">
+			</div>
+
+			<div id="signal-level-indicator-div">
+				<img id="signal-level-indicator-img" src="client/img/ui/icon-zasieg-4.svg">
+			</div>
+
+			<div id="main-header-buttons-div">
+				<div id="main-header-button-div" class="video-button-class">
+					<img class="main-header-button-img" id="record-button-img" src="client/img/ui/nav-bar-rec.svg">
 				</div>
-
-				<div id="battery-level-indicator-div">
-					<img id="battery-level-indicator-img" src="client/img/ui/nav-bar-battery.svg">
+				<div id="main-header-button-div" class="snap-button-class">
+					<a id="snap-download-a">
+						<img class="main-header-button-img" id="snap-button-img" src="client/img/ui/nav-bar-snap.svg">
+					</a>
 				</div>
-
-				<div id="signal-level-indicator-div">
-					<img id="signal-level-indicator-img" src="client/img/ui/icon-zasieg-4.svg">
+				<div id="main-header-button-div" class="fullscreen-button-class">
+					<img class="main-header-button-img fullscreen-button-img" src="client/img/ui/nav-bar-fullscreen.svg">
 				</div>
+			</div>
 
-				<div id="main-header-buttons-div">
-					<div id="main-header-button-div" class="video-button-class">
-						<img class="main-header-button-img" id="record-button-img" src="client/img/ui/nav-bar-rec.svg">
-					</div>
-					<div id="main-header-button-div" class="snap-button-class">
-						<a id="snap-download-a"><img class="main-header-button-img" id="snap-button-img" src="client/img/ui/nav-bar-snap.svg"></a>
-					</div>
-					<div id="main-header-button-div" class="fullscreen-button-class">
-						<img class="main-header-button-img fullscreen-button-img" src="client/img/ui/nav-bar-fullscreen.svg">
-					</div>
-				</div>
+			<nav id="nav">
 
-				<nav id="nav">
+				<ul>
 
-					<ul>	
-
-						<li class="special">
-							<a href="#menu" class="menuToggle"><span></span></a>
-							<div id="menu">
-								<ul>
-									<li>
-										<button class="accordion">Maximum Speed</button>
-										<div class="panel">
-											<div id="setting-menu-grid">
-												<div id="setting-menu-grid-element-left"><p>Left Front<p></div>
-												<div id="setting-menu-grid-element-right">
-													<input id="left-front-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
-												</div>
-												<div id="clear"></div>
+					<li class="special">
+						<a href="#menu" class="menuToggle">
+							<span></span>
+						</a>
+						<div id="menu">
+							<ul>
+								<li>
+									<button class="accordion">Maximum Speed</button>
+									<div class="panel">
+										<div id="setting-menu-grid">
+											<div id="setting-menu-grid-element-left">
+												<p>Left Front
+													<p>
 											</div>
-
-											<div id="setting-menu-grid">
-												<div id="setting-menu-grid-element-left"><p>Right Front</p></div>
-												<div id="setting-menu-grid-element-right">
-													<input id="right-front-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
-												</div>
-												<div id="clear"></div>
+											<div id="setting-menu-grid-element-right">
+												<input id="left-front-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
 											</div>
-
-											<div id="setting-menu-grid">
-												<div id="setting-menu-grid-element-left"><p>Left Rear</p></div>
-												<div id="setting-menu-grid-element-right">
-													<input id="left-rear-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
-												</div>
-												<div id="clear"></div>
-											</div>
-
-											<div id="setting-menu-grid">
-												<div id="setting-menu-grid-element-left"><p>Right Rear</p></div>
-												<div id="setting-menu-grid-element-right">
-													<input id="right-rear-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
-												</div>
-												<div id="clear"></div>
-											</div>
+											<div id="clear"></div>
 										</div>
-									</li>
 
-									<li>
-										<button class="accordion">Manipulator</button>
-										<div class="panel">
-											<div id="setting-menu-grid">
-												<div id="setting-menu-grid-element-left"><p>Axis 1<p></div>
-												<div id="setting-menu-grid-element-right">
-													<input id="mani-axis-1" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
-												</div>
-												<div id="clear"></div>
+										<div id="setting-menu-grid">
+											<div id="setting-menu-grid-element-left">
+												<p>Right Front</p>
 											</div>
-											<div id="setting-menu-grid">
-												<div id="setting-menu-grid-element-left"><p>Axis 2<p></div>
-												<div id="setting-menu-grid-element-right">
-													<input id="mani-axis-2" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
-												</div>
-												<div id="clear"></div>
+											<div id="setting-menu-grid-element-right">
+												<input id="right-front-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
 											</div>
-											<div id="setting-menu-grid">
-												<div id="setting-menu-grid-element-left"><p>Gripper<p></div>
-												<div id="setting-menu-grid-element-right">
-													<input id="mani-gripper" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
-												</div>
-												<div id="clear"></div>
-											</div>
-											<div id="setting-menu-grid">
-												<div id="setting-menu-grid-element-left"><p>X<p></div>
-												<div id="setting-menu-grid-element-right">
-													<input id="mani-x" type="number" max="249" min="0" width="2" step="1" value="0" style="background-color: gray">
-												</div>
-												<div id="clear"></div>
-											</div>
-											<div id="setting-menu-grid">
-												<div id="setting-menu-grid-element-left"><p>Y<p></div>
-												<div id="setting-menu-grid-element-right">
-													<input id="mani-y" type="number" max="249" min="0" width="2" step="1" value="180" style="background-color: gray">
-												</div>
-												<div id="clear"></div>
-											</div>
+											<div id="clear"></div>
 										</div>
-									</li>
 
-									<!--
+										<div id="setting-menu-grid">
+											<div id="setting-menu-grid-element-left">
+												<p>Left Rear</p>
+											</div>
+											<div id="setting-menu-grid-element-right">
+												<input id="left-rear-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
+											</div>
+											<div id="clear"></div>
+										</div>
+
+										<div id="setting-menu-grid">
+											<div id="setting-menu-grid-element-left">
+												<p>Right Rear</p>
+											</div>
+											<div id="setting-menu-grid-element-right">
+												<input id="right-rear-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
+											</div>
+											<div id="clear"></div>
+										</div>
+									</div>
+								</li>
+
+								<li>
+									<button class="accordion">Manipulator</button>
+									<div class="panel">
+										<div id="setting-menu-grid">
+											<div id="setting-menu-grid-element-left">
+												<p>Axis 1
+													<p>
+											</div>
+											<div id="setting-menu-grid-element-right">
+												<input id="mani-axis-1" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
+											</div>
+											<div id="clear"></div>
+										</div>
+										<div id="setting-menu-grid">
+											<div id="setting-menu-grid-element-left">
+												<p>Axis 2
+													<p>
+											</div>
+											<div id="setting-menu-grid-element-right">
+												<input id="mani-axis-2" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
+											</div>
+											<div id="clear"></div>
+										</div>
+										<div id="setting-menu-grid">
+											<div id="setting-menu-grid-element-left">
+												<p>Gripper
+													<p>
+											</div>
+											<div id="setting-menu-grid-element-right">
+												<input id="mani-gripper" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
+											</div>
+											<div id="clear"></div>
+										</div>
+										<div id="setting-menu-grid">
+											<div id="setting-menu-grid-element-left">
+												<p>X
+													<p>
+											</div>
+											<div id="setting-menu-grid-element-right">
+												<input id="mani-x" type="number" max="249" min="0" width="2" step="1" value="0" style="background-color: gray">
+											</div>
+											<div id="clear"></div>
+										</div>
+										<div id="setting-menu-grid">
+											<div id="setting-menu-grid-element-left">
+												<p>Y
+													<p>
+											</div>
+											<div id="setting-menu-grid-element-right">
+												<input id="mani-y" type="number" max="249" min="0" width="2" step="1" value="180" style="background-color: gray">
+											</div>
+											<div id="clear"></div>
+										</div>
+									</div>
+								</li>
+
+								<!--
 									<li>
 										<button class="accordion">camera settings</button>
 										<div class="panel">
@@ -195,35 +217,34 @@
 											</div>
 										</div>
 									</li>
-									-->																	
+									-->
 
-									<li>
-										<button class="accordion">Language</button>
-										<div class="panel">
-											<form>
+								<li>
+									<button class="accordion">Language</button>
+									<div class="panel">
+										<form>
 											<div class="form-group">
-												<div class="flagstrap"
-													id="languageSelector"
-													data-input-name="country"
-													data-selected-country="US">
+												<div class="flagstrap" id="languageSelector" data-input-name="country" data-selected-country="US">
 												</div>
 											</div>
-											</form>
-										</div>
-									</li>
+										</form>
+									</div>
+								</li>
 
-									<li>
-										<button class="accordion">Advanced Interface</button>
-										<div class="panel">
-											<div class="tg-list-description"><p id="settings.advanced-interface" class="localised">Advanced Interface</p></div>
-												<div class="tg-list-button">
-													<input id="advanced-interface-button" type="checkbox" class="tgl tgl-flat"/>
-													<label for="advanced-interface-button" class="tgl-btn"></label>
-												</div>
+								<li>
+									<button class="accordion">Advanced Interface</button>
+									<div class="panel">
+										<div class="tg-list-description">
+											<p id="settings.advanced-interface" class="localised">Advanced Interface</p>
 										</div>
-									</li>
+										<div class="tg-list-button">
+											<input id="advanced-interface-button" type="checkbox" class="tgl tgl-flat" />
+											<label for="advanced-interface-button" class="tgl-btn"></label>
+										</div>
+									</div>
+								</li>
 
-									<!-- <li>
+								<!-- <li>
 										<button class="accordion">Photography</button>
 										<div class="panel">
 											<div class="tg-list-description"><p id="settings.photography" class="localised">Photography</p></div>
@@ -234,252 +255,273 @@
 										</div>
 									</li> -->
 
-									<li>
-										<button class="accordion">Console</button>
-										<div class="panel">
-											<button id="open-console-button">open console</button>
-										</div>
-									</li>
+								<li>
+									<button class="accordion">Console</button>
+									<div class="panel">
+										<button id="open-console-button">open console</button>
+									</div>
+								</li>
 
-									<li>
-										<button class="accordion">About</button>
-										<div class="panel">
-											<p>something about us</p>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</li>
-					</ul>
-				</nav>
-			</header>
+								<li>
+									<button class="accordion">About</button>
+									<div class="panel">
+										<p>something about us</p>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</header>
 
-			<!-- Banner -->
-			<section id="banner">
+		<!-- Banner -->
+		<section id="banner">
 
-				<div class="inner">
-					<!-- <h2>turtle</h2>
+			<div class="inner">
+				<!-- <h2>turtle</h2>
 					<p class="localised" id="welcome-message">Your way to mars!</p>
 					<div id="loader"></div> -->
 
-					<div id="welcome-screen-status-text">
-						
-					</div>
-
-					<div class="welcome-screen-background-circles" id="welcome-screen-background-circle-outer">
-					</div>
-
-					<div class="welcome-screen-background-circles" id="welcome-screen-background-circle-inner">
-					</div>
-
-					<div class="welcome-screen-wrapper">
-
-						<div class="welcome-screen-horizontal-wrapper" id="welcome-screen-horizontal-wrapper-logo">
-						</div>
-
-						<div class="welcome-screen-horizontal-wrapper" id="welcome-screen-horizontal-wrapper-text">
-							<h1 id="welcome-screen-adventure-text">Let's start an adventure!</h1>
-						</div>
-						<div class="welcome-screen-horizontal-wrapper" id="welcome-screen-horizontal-wrapper-button">
-							<div id="welcome-screen-button-left" class="welcome-screen-button">&nbsp;</div>
-							<div id="welcome-screen-button-center" class="welcome-screen-button"><button id="go-button"></button></div>
-							<div id="welcome-screen-button-right" class="welcome-screen-button">&nbsp;</div>
-						</div>
-					
-					</div>
-				</div>
-
-				<div id="camera-video" hidden>
-					<!-- <img id="camera-video-img" src="client/img/marsyard-camera.jpg" draggable="false" onmousedown="return false" style="user-drag: none"> -->
-					<video id="camera-video-img" class="camera-video-drive-mode" 	draggable="false" onmousedown="return false" style="user-drag: none"></video>
-					<img id="hud-frame-img" src="client/img/ui/siatka kropy.svg" draggable="false" onmousedown="return false" style="user-drag: none">
-					<img id="circle-img" src="client/img/ui/kolo1.svg" draggable="false" onmousedown="return false" style="user-dgrag: none">
-					<div class="transparent-background-div" id="transparent-background-camera"></div>
-					<canvas style="opacity: 0.0; width: 100%; height:100%" id="snap-background-canvas"></canvas>
-
-					<div id="stats-view-div" class="advanced-interface">
-						<div id="signal-strength-div">
-							<!-- <img id="signal-strength-img" src="client/img/hud/signal/signal-bar-medium.png" draggable="false" onmousedown="return false" style="user-drag: none"> -->
-							<h2 id="signal-strength-text">0 %</h2>
-						</div>
-						<div id="battery-level-div">
-							<!-- <img id="battery-level-img" src="client/img/hud/batteries/battery-low.png" draggable="false" onmousedown="return false" style="user-drag: none"> -->
-							<h2 id="battery-level-text">0.0 V</h2>
-						</div>
-						<div id="session-time-div">
-							<h2 id="session-time-h1">0:00</h2>
-						</div>
-					</div>
+				<div id="welcome-screen-status-text">
 
 				</div>
-			</section>
 
-			<!-- footer -->
-			<div id="header" class="footer" hidden>
-				<div id="control-container-div">
-					<div id="right-navigation-div" draggable="false" style="user-drag: none">
-						<div class="transparent-background-div" id="transparent-background-navigation-right"></div>
-						<div id="right-navigation-cross-div" draggable="false" style="user-drag: none">
-						 	<img id="right-navigation-cross-img" src="client/img/ui/right-krzyz.svg" draggable="false" onmousedown="return false" style="user-drag:none">
-							<img id="turtle-navigation-view-img" src="client/img/ui/right-lazik.svg" draggable="false" onmousedown="return false" style="user-drag:none">
-
-							<canvas id="navigation-ring-canvas"></canvas>
-
-							<div id="turtle-top-view-left-top-div" class="advanced-interface"><p id="turtle-top-view-left-top-p" class="debug-text">0%</p></div>
-							<div id="turtle-top-view-right-top-div" class="advanced-interface"><p id="turtle-top-view-right-top-p" class="debug-text">0%</p></div>
-							<div id="turtle-top-view-left-bottom-div" class="advanced-interface"><p id="turtle-top-view-left-bottom-p" class="debug-text">0%</p></div>
-							<div id="turtle-top-view-right-bottom-div" class="advanced-interface"><p id="turtle-top-view-right-bottom-p" class="debug-text">0%</p></div> 
-
-
-							<div id="camera-slider-wrapper" hidden>
-								<div class="flat-slider-wrapper vranger">
-									<div class="flat-slider gripper-slider" id="camera-slider"><input type="range" class="flat-slider-horizontal" id="camera-slider-input" max="3900" min="3300" step="10" value="3600"/></div>
-									<div id="clear"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div id="left-navigation-div" draggable="false" style="user-drag: none">
-						
-						<div class="transparent-background-div" id="transparent-background-navigation-right"></div>
-						<div id="grab-drive-wrapper">
-							<div class="grab-drive-class" id="grab-div"><p class="grab-drive-text grab-drive-text-empty-dot" id="grab-text">grab</p></div>
-							<div class="grab-drive-class" id="drive-div"><p class="grab-drive-text grab-drive-text-empty-dot grab-drive-text-filled-dot" id="drive-text">drive</p></div>
-						</div>
-
-						<div id="gripper-wrapper">
-							<div id="gripper-slider-wrapper">
-								<div class="flat-slider-wrapper">
-									<div class="flat-slider gripper-slider" id="gripper-slider"><input type="range" class="flat-slider-horizontal" id="gripper-slider-input" max="3600" min="2400" step="10" value="3000" style="transform: rotateY(180deg);"/></div>
-									<div id="clear"></div>
-								</div>
-							</div>
-							<!-- <div id="gripper-images-wrapper">
-								<img src="" class="gripper-img" id="left-gripper-img">
-								<img src="" class="gripper-img" id="right-gripper-img">
-							</div> -->
-						</div>
-					</div>
+				<div class="welcome-screen-background-circles" id="welcome-screen-background-circle-outer">
 				</div>
-				<div id="footer-container-div">
-					<div id="footer-div" class="left-footer-div">
-						<img id="left-footer-button-img" class="footer-button-img" src="client/img/ui/menu-dolne-gora.svg">
+
+				<div class="welcome-screen-background-circles" id="welcome-screen-background-circle-inner">
+				</div>
+
+				<div class="welcome-screen-wrapper">
+
+					<div class="welcome-screen-horizontal-wrapper" id="welcome-screen-horizontal-wrapper-logo">
 					</div>
-					<div id="footer-div" class="center-footer-div">
-						<img id="center-footer-button-img" class="footer-button-img" src="client/img/ui/menu-dolne-stop.svg">
+
+					<div class="welcome-screen-horizontal-wrapper" id="welcome-screen-horizontal-wrapper-text">
+						<h1 id="welcome-screen-adventure-text">Let's start an adventure!</h1>
 					</div>
-					<div id="footer-div" class="right-footer-div">
-						<img id="show-hide-right-menu-img" class="footer-button-img" src="client/img/ui/menu-dolne-gora.svg">
+					<div class="welcome-screen-horizontal-wrapper" id="welcome-screen-horizontal-wrapper-button">
+						<div id="welcome-screen-button-left" class="welcome-screen-button">&nbsp;</div>
+						<div id="welcome-screen-button-center" class="welcome-screen-button">
+							<button id="go-button"></button>
+						</div>
+						<div id="welcome-screen-button-right" class="welcome-screen-button">&nbsp;</div>
 					</div>
+
 				</div>
 			</div>
 
-			
+			<div id="camera-video" hidden>
+				<!-- <img id="camera-video-img" src="client/img/marsyard-camera.jpg" draggable="false" onmousedown="return false" style="user-drag: none"> -->
+				<video id="camera-video-img" class="camera-video-drive-mode" draggable="false" onmousedown="return false" style="user-drag: none"></video>
+				<img id="hud-frame-img" src="client/img/ui/siatka kropy.svg" draggable="false" onmousedown="return false" style="user-drag: none">
+				<img id="circle-img" src="client/img/ui/kolo1.svg" draggable="false" onmousedown="return false" style="user-dgrag: none">
+				<div class="transparent-background-div" id="transparent-background-camera"></div>
+				<canvas style="opacity: 0.0; width: 100%; height:100%" id="snap-background-canvas"></canvas>
+
+				<div id="stats-view-div" class="advanced-interface">
+					<div id="signal-strength-div">
+						<!-- <img id="signal-strength-img" src="client/img/hud/signal/signal-bar-medium.png" draggable="false" onmousedown="return false" style="user-drag: none"> -->
+						<h2 id="signal-strength-text">0 %</h2>
+					</div>
+					<div id="battery-level-div">
+						<!-- <img id="battery-level-img" src="client/img/hud/batteries/battery-low.png" draggable="false" onmousedown="return false" style="user-drag: none"> -->
+						<h2 id="battery-level-text">0.0 V</h2>
+					</div>
+					<div id="session-time-div">
+						<h2 id="session-time-h1">0:00</h2>
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+		<!-- footer -->
+		<div id="header" class="footer" hidden>
+			<div id="control-container-div">
+				<div id="right-navigation-div" draggable="false" style="user-drag: none">
+					<div class="transparent-background-div" id="transparent-background-navigation-right"></div>
+					<div id="right-navigation-cross-div" draggable="false" style="user-drag: none">
+						<img id="right-navigation-cross-img" src="client/img/ui/right-krzyz.svg" draggable="false" onmousedown="return false" style="user-drag:none">
+						<img id="turtle-navigation-view-img" src="client/img/ui/right-lazik.svg" draggable="false" onmousedown="return false" style="user-drag:none">
+
+						<canvas id="navigation-ring-canvas"></canvas>
+
+						<div id="turtle-top-view-left-top-div" class="advanced-interface">
+							<p id="turtle-top-view-left-top-p" class="debug-text">0%</p>
+						</div>
+						<div id="turtle-top-view-right-top-div" class="advanced-interface">
+							<p id="turtle-top-view-right-top-p" class="debug-text">0%</p>
+						</div>
+						<div id="turtle-top-view-left-bottom-div" class="advanced-interface">
+							<p id="turtle-top-view-left-bottom-p" class="debug-text">0%</p>
+						</div>
+						<div id="turtle-top-view-right-bottom-div" class="advanced-interface">
+							<p id="turtle-top-view-right-bottom-p" class="debug-text">0%</p>
+						</div>
+
+
+						<div id="camera-slider-wrapper" hidden>
+							<div class="flat-slider-wrapper vranger">
+								<div class="flat-slider gripper-slider" id="camera-slider">
+									<input type="range" class="flat-slider-horizontal" id="camera-slider-input" max="3900" min="3300" step="10" value="3600"
+									/>
+								</div>
+								<div id="clear"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="left-navigation-div" draggable="false" style="user-drag: none">
+
+					<div class="transparent-background-div" id="transparent-background-navigation-right"></div>
+					<div id="grab-drive-wrapper">
+						<div class="grab-drive-class" id="grab-div">
+							<p class="grab-drive-text grab-drive-text-empty-dot" id="grab-text">grab</p>
+						</div>
+						<div class="grab-drive-class" id="drive-div">
+							<p class="grab-drive-text grab-drive-text-empty-dot grab-drive-text-filled-dot" id="drive-text">drive</p>
+						</div>
+					</div>
+
+					<div id="gripper-wrapper">
+						<div id="gripper-slider-wrapper">
+							<div class="flat-slider-wrapper">
+								<div class="flat-slider gripper-slider" id="gripper-slider">
+									<input type="range" class="flat-slider-horizontal" id="gripper-slider-input" max="3600" min="2400" step="10" value="3000"
+									 style="transform: rotateY(180deg);" />
+								</div>
+								<div id="clear"></div>
+							</div>
+						</div>
+						<!-- <div id="gripper-images-wrapper">
+								<img src="" class="gripper-img" id="left-gripper-img">
+								<img src="" class="gripper-img" id="right-gripper-img">
+							</div> -->
+					</div>
+				</div>
+			</div>
+			<div id="footer-container-div">
+				<div id="footer-div" class="left-footer-div">
+					<img id="left-footer-button-img" class="footer-button-img" src="client/img/ui/menu-dolne-gora.svg">
+				</div>
+				<div id="footer-div" class="center-footer-div">
+					<img id="center-footer-button-img" class="footer-button-img" src="client/img/ui/menu-dolne-stop.svg">
+				</div>
+				<div id="footer-div" class="right-footer-div">
+					<img id="show-hide-right-menu-img" class="footer-button-img" src="client/img/ui/menu-dolne-gora.svg">
+				</div>
+			</div>
 		</div>
-					
-															<!-- include all JavaScript files -->
-		
-		<!-- jQuery (disabled due to conflict with theme) -->
-		<!-- <script src='vendors/jquery/jquery-3.1.1.js'></script> -->
 
-		<!-- theme related -->
-		<script src='client/themes/html5up-spectral/assets/js/jquery.min.js'></script>
-		<script src="client/themes/html5up-spectral/assets/js/jquery.scrollex.min.js"></script>
-		<script src="client/themes/html5up-spectral/assets/js/jquery.scrolly.min.js"></script>
-		<script src="client/themes/html5up-spectral/assets/js/skel.min.js"></script>
-		<script src="client/themes/html5up-spectral/assets/js/util.js"></script>
-		<!--[if lte IE 8]><script src="client/js/ie/respond.min.js"></script><![endif]-->
-		<script src="client/themes/html5up-spectral/assets/js/main.js"></script>
 
-		<script src='client/vendors/jquery/jquery-ui.js'></script>
-		
-		<!-- js-Cookie -->
-		<script src='client/vendors/js_cookie/js.cookie.js'></script>
-		
-		<!-- Bootstrap -->
-		<script src="client/vendors/bootstrap/bootstrap.js"></script>
-		
-		<!-- jQuery Flagstrap -->
-		<script src='client/vendors/jquery_flagstrap/jquery.flagstrap.js'></script>
-		
-		<!-- Amplify JS -->
-		<script src='client/vendors/amplify_js/src/core.js'></script>
-		<script src='client/vendors/amplify_js/src/request.js'></script>
-		<script src='client/vendors/amplify_js/src/store.js'></script>
+	</div>
 
-		<!-- user interface -->
-		<script src='client/js/webrtc.js'></script>
-		
-		<!-- controller -->
-		<script src='client/js/controller.js'></script>
+	<!-- include all JavaScript files -->
 
-		<!-- linux communication -->
-		<script src='client/js/linux.js'></script>
+	<!-- jQuery (disabled due to conflict with theme) -->
+	<!-- <script src='vendors/jquery/jquery-3.1.1.js'></script> -->
 
-		<!-- i18next -->
-		<script src='client/vendors/i18next/i18next.js'></script>
-		<script src='client/vendors/i18next/i18nextXHRBackend.js'></script>
+	<!-- theme related -->
+	<script src='client/themes/html5up-spectral/assets/js/jquery.min.js'></script>
+	<script src="client/themes/html5up-spectral/assets/js/jquery.scrollex.min.js"></script>
+	<script src="client/themes/html5up-spectral/assets/js/jquery.scrolly.min.js"></script>
+	<script src="client/themes/html5up-spectral/assets/js/skel.min.js"></script>
+	<script src="client/themes/html5up-spectral/assets/js/util.js"></script>
+	<!--[if lte IE 8]><script src="client/js/ie/respond.min.js"></script><![endif]-->
+	<script src="client/themes/html5up-spectral/assets/js/main.js"></script>
 
-		<!-- noty -->
-		<script src="client/vendors/noty/packaged/jquery.noty.packaged.js"></script>
+	<script src='client/vendors/jquery/jquery-ui.js'></script>
 
-		<!-- manipulator -->
-		<script src='client/js/manipulator.js'></script>
+	<!-- js-Cookie -->
+	<script src='client/vendors/js_cookie/js.cookie.js'></script>
 
-		<!-- canvas controller -->
-		<script src='client/js/controlcanvas.js'></script>
+	<!-- Bootstrap -->
+	<script src="client/vendors/bootstrap/bootstrap.js"></script>
 
-		<!-- fullscreen plugin -->
-		<script src='client/vendors/jquery_fullscreen/jquery.fullscreen.js'></script>
+	<!-- jQuery Flagstrap -->
+	<script src='client/vendors/jquery_flagstrap/jquery.flagstrap.js'></script>
 
-		<!-- socket server communication -->
-		<script src='client/js/servercommunication.js'></script>
+	<!-- Amplify JS -->
+	<script src='client/vendors/amplify_js/src/core.js'></script>
+	<script src='client/vendors/amplify_js/src/request.js'></script>
+	<script src='client/vendors/amplify_js/src/store.js'></script>
 
-		<!-- vex dialogs -->
-		<script src='client/vendors/vex/js/vex.combined.js'></script>
-		
-		<!-- html2canvas -->
-		<script src='client/vendors/html2canvas/html2canvas.js'></script>
+	<!-- user interface -->
+	<script src='client/js/webrtc.js'></script>
 
-		<!-- canvas2image -->
-		<script src='client/vendors/canvas2image/canvas2image.js'></script>
+	<!-- controller -->
+	<script src='client/js/controller.js'></script>
 
-		<!-- FileSaver -->
-		<script src='client/vendors/file_saver/FileSaver.js'></script>
+	<!-- linux communication -->
+	<script src='client/js/linux.js'></script>
 
-		<!-- Keyboard support -->
-		<script src='client/vendors/keyboardjs/keyboard.min.js'></script>
-		
-		<!-- keboard controller -->
-		<script src='client/js/controlkeyboard.js'></script>
+	<!-- i18next -->
+	<script src='client/vendors/i18next/i18next.js'></script>
+	<script src='client/vendors/i18next/i18nextXHRBackend.js'></script>
 
-		<!-- transit - http://ricostacruz.com/jquery.transit/ -->
-		<script src='client/vendors/transit/jquery.transit.min.js'></script>
+	<!-- noty -->
+	<script src="client/vendors/noty/packaged/jquery.noty.packaged.js"></script>
 
-		<!-- user interface -->
-		<script src='client/js/ui.js'></script>
+	<!-- manipulator -->
+	<script src='client/js/manipulator.js'></script>
 
-		<script>
-/*	accordion buttons - the menu ones 	*/
+	<!-- canvas controller -->
+	<script src='client/js/controlcanvas.js'></script>
+
+	<!-- fullscreen plugin -->
+	<script src='client/vendors/jquery_fullscreen/jquery.fullscreen.js'></script>
+
+	<!-- socket server communication -->
+	<script src='client/js/servercommunication.js'></script>
+
+	<!-- vex dialogs -->
+	<script src='client/vendors/vex/js/vex.combined.js'></script>
+
+	<!-- html2canvas -->
+	<script src='client/vendors/html2canvas/html2canvas.js'></script>
+
+	<!-- canvas2image -->
+	<script src='client/vendors/canvas2image/canvas2image.js'></script>
+
+	<!-- FileSaver -->
+	<script src='client/vendors/file_saver/FileSaver.js'></script>
+
+	<!-- Keyboard support -->
+	<script src='client/vendors/keyboardjs/keyboard.min.js'></script>
+
+	<!-- keboard controller -->
+	<script src='client/js/controlkeyboard.js'></script>
+
+	<!-- transit - http://ricostacruz.com/jquery.transit/ -->
+	<script src='client/vendors/transit/jquery.transit.min.js'></script>
+
+	<!-- user interface -->
+	<script src='client/js/ui.js'></script>
+
+	<script>
+		/*	accordion buttons - the menu ones 	*/
+		/*	----------------------------------- */
+		var acc = document.getElementsByClassName("accordion");
+		var i;
+
+		for (i = 0; i < acc.length; i++) {
+			acc[i].onclick = function () {
+				this.classList.toggle("active");
+				var panel = this.nextElementSibling;
+				if (panel.style.maxHeight) {
+					panel.style.maxHeight = null;
+				} else {
+					panel.style.maxHeight = panel.scrollHeight + "px";
+				}
+			}
+		}
 /*	----------------------------------- */
-var acc = document.getElementsByClassName("accordion");
-var i;
 
-for (i = 0; i < acc.length; i++) {
-  acc[i].onclick = function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight){
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    } 
-  }
-}
-/*	----------------------------------- */
+	</script>
 
-</script>
-		
-	</body>
+</body>
+
 </html>

@@ -8,7 +8,7 @@ ieconfig.xml
 *.directory
 
 node_modules
-
+*.map
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

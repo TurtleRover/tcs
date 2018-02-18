@@ -8,7 +8,7 @@
     "test": "tests"
   },
   "scripts": {
-    "start": "parcel watch index.html",
+    "start": "postcss client/pcss/*.pcss --config .postcssrc -d client/css/ --ext '.css' -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "git+https://github.com/TurtleRover/Turtle-Rover-Mission-Control.git",
@@ -22,6 +22,11 @@
   "devDependencies": {
     "autoprefixer": "^8.0.0",
     "node-sass": "^4.7.2",
-    "postcss-modules": "^1.1.0"
+    "postcss-cli": "^5.0.0",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-modules": "^1.1.0",
+    "precss": "^3.1.0",
+    "stylelint": "^8.4.0",
+    "stylelint-config-standard": "^18.0.0"
   }
 }

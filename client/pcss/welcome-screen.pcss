@@ -16,7 +16,6 @@
 #go-button:hover {
   background-image: url("../img/welcome-screen/flash.png"),
     url("../img/welcome-screen/go-button-opacity-10.png");
-  -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   background-color: transparent;
   /*transform: scale(1.02);*/
@@ -94,7 +93,7 @@
   position: absolute;
   max-width: 50%;
   width: 129px;
-  margin-left: calc(50% - 64.5px);
+  margin-left: calc((100% - 129px) / 2);
   text-align: center;
 }
 
@@ -205,20 +204,9 @@
 }
 
 .animation-typewriter {
-  border-right: 5px solid rgba(255, 255, 255, .75);
-  -webkit-animation: typewriter 1s steps(20) 0.1s 1 normal both,
+  border-right: 5px solid rgba(255, 255, 255, 0.75);
+  animation: typewriter 1s steps(20) 0.1s 1 normal both,
     1s blinkTextCursor step-end infinite;
-          animation: typewriter 1s steps(20) 0.1s 1 normal both,
-    1s blinkTextCursor step-end infinite;
-}
-
-@-webkit-keyframes typewriter {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
 }
 
 @keyframes typewriter {
@@ -227,16 +215,6 @@
   }
   to {
     width: 100%;
-  }
-}
-
-@-webkit-keyframes blinkTextCursor {
-  from,
-  to {
-    border-right-color: transparent;
-  }
-  50% {
-    border-right-color: rgb(115, 115, 115);
   }
 }
 
@@ -249,5 +227,3 @@
     border-right-color: rgb(115, 115, 115);
   }
 }
-
-/*# sourceMappingURL=welcome-screen.css.map */

@@ -1,6 +1,15 @@
 {
   "modules": true,
+  "map": {"inline": false},
   "plugins": {
-    "autoprefixer": { }
+    "stylelint": {
+      "extends": "stylelint-config-standard",
+      "rules": {
+        "max-empty-lines": 2,
+        "selector-nested-pattern": "^&"
+      }
+    },
+    "precss": {},
+    "postcss-cssnext": {}
   }
 }
