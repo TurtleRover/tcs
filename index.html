@@ -1,527 +1,522 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	
-	<title>Turtle</title>
+		<title>Turtle</title>
 
-	<meta name="application-name" content="Turtle Rover Mission Control">
-	<meta name="apple-mobile-web-app-title" content="Turtle Rover Mission Control">
+		<meta name="application-name" content="Turtle Rover Mission Control">
+		<meta name="apple-mobile-web-app-title" content="Turtle Rover Mission Control">
 
-	<meta name="theme-color" content="#000000">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="theme-color" content="#000000">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-	<meta name="mobile-web-app-capable" content="yes">
+		<meta name="mobile-web-app-capable" content="yes">
 
-	<!-- icons -->
-	<link rel="shortcut icon" href="./client/img/icon/favicon.png">
-	<link rel="apple-touch-icon-precomposed" href="client/img/icon/launcher-4x.png">
+		<!-- icons -->
+		<link rel="shortcut icon" href="./client/img/icon/favicon.png">
+		<link rel="apple-touch-icon-precomposed" href="client/img/icon/launcher-4x.png">
 
-	<link rel="stylesheet" href="client/css/welcome-screen.css">
+		<link rel="stylesheet" href="client/css/welcome-screen.css">
 
-	<link rel="manifest" href="/manifest.json">
+		<link rel="manifest" href="/manifest.json">
 
-</head>
+	</head>
 
-<body class="landing camera-body" oncontextmenu="return false;">
-	<div id="page-wrapper">
+	<body class="landing camera-body" oncontextmenu="return false;">
+		<div id="page-wrapper">
 
-		<!-- Header -->
-		<header id="header" class="alt">
-			<div id="turtle-logo-div">
-				<img id="turtle-logo-img" src="client/img/hud/turtle-logo.png">
-			</div>
-
-			<div id="battery-level-indicator-div">
-				<img id="battery-level-indicator-img" src="client/img/ui/nav-bar-battery.svg">
-			</div>
-
-			<div id="signal-level-indicator-div">
-				<img id="signal-level-indicator-img" src="client/img/ui/icon-zasieg-4.svg">
-			</div>
-
-			<div id="main-header-buttons-div">
-				<div id="main-header-button-div" class="video-button-class">
-					<img class="main-header-button-img" id="record-button-img" src="client/img/ui/nav-bar-rec.svg">
+			<!-- Header -->
+			<header id="header" class="alt">
+				<div id="turtle-logo-div">
+					<img id="turtle-logo-img" src="client/img/hud/turtle-logo.png">
 				</div>
-				<div id="main-header-button-div" class="snap-button-class">
-					<a id="snap-download-a">
-						<img class="main-header-button-img" id="snap-button-img" src="client/img/ui/nav-bar-snap.svg">
-					</a>
+
+				<div id="battery-level-indicator-div">
+					<img id="battery-level-indicator-img" src="client/img/ui/nav-bar-battery.svg">
 				</div>
-				<div id="main-header-button-div" class="fullscreen-button-class">
-					<img class="main-header-button-img fullscreen-button-img" src="client/img/ui/nav-bar-fullscreen.svg">
+
+				<div id="signal-level-indicator-div">
+					<img id="signal-level-indicator-img" src="client/img/ui/icon-zasieg-4.svg">
 				</div>
-			</div>
 
-			<nav id="nav">
-
-				<ul>
-
-					<li class="special">
-						<a href="#menu" class="menuToggle">
-							<span></span>
+				<div id="main-header-buttons-div">
+					<div id="main-header-button-div" class="video-button-class">
+						<img class="main-header-button-img" id="record-button-img" src="client/img/ui/nav-bar-rec.svg">
+					</div>
+					<div id="main-header-button-div" class="snap-button-class">
+						<a id="snap-download-a">
+							<img class="main-header-button-img" id="snap-button-img" src="client/img/ui/nav-bar-snap.svg">
 						</a>
-						<div id="menu">
-							<ul>
-								<li>
-									<button class="accordion">Maximum Speed</button>
-									<div class="panel">
-										<div id="setting-menu-grid">
-											<div id="setting-menu-grid-element-left">
-												<p>Left Front
-													<p>
-											</div>
-											<div id="setting-menu-grid-element-right">
-												<input id="left-front-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
-											</div>
-											<div id="clear"></div>
-										</div>
+					</div>
+					<div id="main-header-button-div" class="fullscreen-button-class">
+						<img class="main-header-button-img fullscreen-button-img" src="client/img/ui/nav-bar-fullscreen.svg">
+					</div>
+				</div>
 
-										<div id="setting-menu-grid">
-											<div id="setting-menu-grid-element-left">
-												<p>Right Front</p>
-											</div>
-											<div id="setting-menu-grid-element-right">
-												<input id="right-front-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
-											</div>
-											<div id="clear"></div>
-										</div>
+				<nav id="nav">
 
-										<div id="setting-menu-grid">
-											<div id="setting-menu-grid-element-left">
-												<p>Left Rear</p>
-											</div>
-											<div id="setting-menu-grid-element-right">
-												<input id="left-rear-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
-											</div>
-											<div id="clear"></div>
-										</div>
+					<ul>
 
-										<div id="setting-menu-grid">
-											<div id="setting-menu-grid-element-left">
-												<p>Right Rear</p>
-											</div>
-											<div id="setting-menu-grid-element-right">
-												<input id="right-rear-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
-											</div>
-											<div id="clear"></div>
-										</div>
-									</div>
-								</li>
-
-								<li>
-									<button class="accordion">Manipulator</button>
-									<div class="panel">
-										<div id="setting-menu-grid">
-											<div id="setting-menu-grid-element-left">
-												<p>Axis 1
-													<p>
-											</div>
-											<div id="setting-menu-grid-element-right">
-												<input id="mani-axis-1" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
-											</div>
-											<div id="clear"></div>
-										</div>
-										<div id="setting-menu-grid">
-											<div id="setting-menu-grid-element-left">
-												<p>Axis 2
-													<p>
-											</div>
-											<div id="setting-menu-grid-element-right">
-												<input id="mani-axis-2" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
-											</div>
-											<div id="clear"></div>
-										</div>
-										<div id="setting-menu-grid">
-											<div id="setting-menu-grid-element-left">
-												<p>Gripper
-													<p>
-											</div>
-											<div id="setting-menu-grid-element-right">
-												<input id="mani-gripper" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
-											</div>
-											<div id="clear"></div>
-										</div>
-										<div id="setting-menu-grid">
-											<div id="setting-menu-grid-element-left">
-												<p>X
-													<p>
-											</div>
-											<div id="setting-menu-grid-element-right">
-												<input id="mani-x" type="number" max="249" min="0" width="2" step="1" value="0" style="background-color: gray">
-											</div>
-											<div id="clear"></div>
-										</div>
-										<div id="setting-menu-grid">
-											<div id="setting-menu-grid-element-left">
-												<p>Y
-													<p>
-											</div>
-											<div id="setting-menu-grid-element-right">
-												<input id="mani-y" type="number" max="249" min="0" width="2" step="1" value="180" style="background-color: gray">
-											</div>
-											<div id="clear"></div>
-										</div>
-									</div>
-								</li>
-
-								<!--
+						<li class="special">
+							<a href="#menu" class="menuToggle">
+								<span></span>
+							</a>
+							<div id="menu">
+								<ul>
 									<li>
-										<button class="accordion">camera settings</button>
+										<button class="accordion">Maximum Speed</button>
 										<div class="panel">
-											<div class="flat-slider-wrapper">
-												<div class="flat-slider-description"><p>brightness</p></div>
-												<div class="flat-slider" id="brightness-slider"><input type="range" class="flat-slider-horizontal" id="brightness-slider-input" max="64" min="-64" step="1" value="0"/></div>
+											<div id="setting-menu-grid">
+												<div id="setting-menu-grid-element-left">
+													<p>Left Front
+														<p>
+												</div>
+												<div id="setting-menu-grid-element-right">
+													<input id="left-front-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
+												</div>
 												<div id="clear"></div>
 											</div>
-											<div class="flat-slider-wrapper">
-												<div class="flat-slider-description"><p>contrast</p></div>
-												<div class="flat-slider" id="contrast-slider"><input type="range" class="flat-slider-horizontal" id="contrast-slider-input" max="64" min="0" step="1" value="32"/></div>
+
+											<div id="setting-menu-grid">
+												<div id="setting-menu-grid-element-left">
+													<p>Right Front</p>
+												</div>
+												<div id="setting-menu-grid-element-right">
+													<input id="right-front-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
+												</div>
 												<div id="clear"></div>
 											</div>
-											<div class="flat-slider-wrapper">
-												<div class="flat-slider-description"><p>saturation</p></div>
-												<div class="flat-slider" id="saturation-slider"><input type="range" class="flat-slider-horizontal" id="saturation-slider-input" max="128" min="0" step="1" value="60"/></div>
+
+											<div id="setting-menu-grid">
+												<div id="setting-menu-grid-element-left">
+													<p>Left Rear</p>
+												</div>
+												<div id="setting-menu-grid-element-right">
+													<input id="left-rear-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
+												</div>
 												<div id="clear"></div>
 											</div>
-											<div class="flat-slider-wrapper">
-												<div class="flat-slider-description"><p>hue</p></div>
-												<div class="flat-slider" id="hue-slider"><input type="range" class="flat-slider-horizontal" id="hue-slider-input" max="40" min="-40" step="1" value="0"/></div>
-												<div id="clear"></div>
-											</div>
-											<div class="flat-slider-wrapper">
-												<div class="flat-slider-description"><p>gamma</p></div>
-												<div class="flat-slider" id="gamma-slider"><input type="range" class="flat-slider-horizontal" id="gamma-slider-input" max="500" min="72" step="1" value="100"/></div>
-												<div id="clear"></div>
-											</div>
-											<div class="flat-slider-wrapper">
-												<div class="flat-slider-description"><p>gain</p></div>
-												<div class="flat-slider" id="gain-slider"><input type="range" class="flat-slider-horizontal" id="gain-slider-input" max="100" min="0" step="1" value="0"/></div>
-												<div id="clear"></div>
-											</div>
-											<div class="flat-slider-wrapper">
-												<div class="flat-slider-description"><p>sharpness</p></div>
-												<div class="flat-slider" id="sharpness-slider"><input type="range" class="flat-slider-horizontal" id="sharpness-slider-input" max="6" min="0" step="1" value="2"/></div>
+
+											<div id="setting-menu-grid">
+												<div id="setting-menu-grid-element-left">
+													<p>Right Rear</p>
+												</div>
+												<div id="setting-menu-grid-element-right">
+													<input id="right-rear-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
+												</div>
 												<div id="clear"></div>
 											</div>
 										</div>
 									</li>
-									-->
 
-								<li>
-									<button class="accordion">Language</button>
-									<div class="panel">
-										<form>
-											<div class="form-group">
-												<div class="flagstrap" id="languageSelector" data-input-name="country" data-selected-country="US">
+									<li>
+										<button class="accordion">Manipulator</button>
+										<div class="panel">
+											<div id="setting-menu-grid">
+												<div id="setting-menu-grid-element-left">
+													<p>Axis 1
+														<p>
+												</div>
+												<div id="setting-menu-grid-element-right">
+													<input id="mani-axis-1" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
+												</div>
+												<div id="clear"></div>
+											</div>
+											<div id="setting-menu-grid">
+												<div id="setting-menu-grid-element-left">
+													<p>Axis 2
+														<p>
+												</div>
+												<div id="setting-menu-grid-element-right">
+													<input id="mani-axis-2" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
+												</div>
+												<div id="clear"></div>
+											</div>
+											<div id="setting-menu-grid">
+												<div id="setting-menu-grid-element-left">
+													<p>Gripper
+														<p>
+												</div>
+												<div id="setting-menu-grid-element-right">
+													<input id="mani-gripper" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
+												</div>
+												<div id="clear"></div>
+											</div>
+											<div id="setting-menu-grid">
+												<div id="setting-menu-grid-element-left">
+													<p>X
+														<p>
+												</div>
+												<div id="setting-menu-grid-element-right">
+													<input id="mani-x" type="number" max="249" min="0" width="2" step="1" value="0" style="background-color: gray">
+												</div>
+												<div id="clear"></div>
+											</div>
+											<div id="setting-menu-grid">
+												<div id="setting-menu-grid-element-left">
+													<p>Y
+														<p>
+												</div>
+												<div id="setting-menu-grid-element-right">
+													<input id="mani-y" type="number" max="249" min="0" width="2" step="1" value="180" style="background-color: gray">
+												</div>
+												<div id="clear"></div>
+											</div>
+										</div>
+									</li>
+
+									<!--
+										<li>
+											<button class="accordion">camera settings</button>
+											<div class="panel">
+												<div class="flat-slider-wrapper">
+													<div class="flat-slider-description"><p>brightness</p></div>
+													<div class="flat-slider" id="brightness-slider"><input type="range" class="flat-slider-horizontal" id="brightness-slider-input" max="64" min="-64" step="1" value="0"/></div>
+													<div id="clear"></div>
+												</div>
+												<div class="flat-slider-wrapper">
+													<div class="flat-slider-description"><p>contrast</p></div>
+													<div class="flat-slider" id="contrast-slider"><input type="range" class="flat-slider-horizontal" id="contrast-slider-input" max="64" min="0" step="1" value="32"/></div>
+													<div id="clear"></div>
+												</div>
+												<div class="flat-slider-wrapper">
+													<div class="flat-slider-description"><p>saturation</p></div>
+													<div class="flat-slider" id="saturation-slider"><input type="range" class="flat-slider-horizontal" id="saturation-slider-input" max="128" min="0" step="1" value="60"/></div>
+													<div id="clear"></div>
+												</div>
+												<div class="flat-slider-wrapper">
+													<div class="flat-slider-description"><p>hue</p></div>
+													<div class="flat-slider" id="hue-slider"><input type="range" class="flat-slider-horizontal" id="hue-slider-input" max="40" min="-40" step="1" value="0"/></div>
+													<div id="clear"></div>
+												</div>
+												<div class="flat-slider-wrapper">
+													<div class="flat-slider-description"><p>gamma</p></div>
+													<div class="flat-slider" id="gamma-slider"><input type="range" class="flat-slider-horizontal" id="gamma-slider-input" max="500" min="72" step="1" value="100"/></div>
+													<div id="clear"></div>
+												</div>
+												<div class="flat-slider-wrapper">
+													<div class="flat-slider-description"><p>gain</p></div>
+													<div class="flat-slider" id="gain-slider"><input type="range" class="flat-slider-horizontal" id="gain-slider-input" max="100" min="0" step="1" value="0"/></div>
+													<div id="clear"></div>
+												</div>
+												<div class="flat-slider-wrapper">
+													<div class="flat-slider-description"><p>sharpness</p></div>
+													<div class="flat-slider" id="sharpness-slider"><input type="range" class="flat-slider-horizontal" id="sharpness-slider-input" max="6" min="0" step="1" value="2"/></div>
+													<div id="clear"></div>
 												</div>
 											</div>
-										</form>
-									</div>
-								</li>
+										</li>
+										-->
 
-								<li>
-									<button class="accordion">Advanced Interface</button>
-									<div class="panel">
-										<div class="tg-list-description">
-											<p id="settings.advanced-interface" class="localised">Advanced Interface</p>
-										</div>
-										<div class="tg-list-button">
-											<input id="advanced-interface-button" type="checkbox" class="tgl tgl-flat" />
-											<label for="advanced-interface-button" class="tgl-btn"></label>
-										</div>
-									</div>
-								</li>
-
-								<!-- <li>
-										<button class="accordion">Photography</button>
+									<li>
+										<button class="accordion">Language</button>
 										<div class="panel">
-											<div class="tg-list-description"><p id="settings.photography" class="localised">Photography</p></div>
-												<div class="tg-list-button">
-													<input id="photography-button" type="checkbox" class="tgl tgl-flat"/>
-													<label for="photography-button" class="tgl-btn"></label>
+											<form>
+												<div class="form-group">
+													<div class="flagstrap" id="languageSelector" data-input-name="country" data-selected-country="US">
+													</div>
 												</div>
+											</form>
 										</div>
-									</li> -->
+									</li>
 
-								<li>
-									<button class="accordion">Console</button>
-									<div class="panel">
-										<button id="open-console-button">open console</button>
+									<li>
+										<button class="accordion">Advanced Interface</button>
+										<div class="panel">
+											<div class="tg-list-description">
+												<p id="settings.advanced-interface" class="localised">Advanced Interface</p>
+											</div>
+											<div class="tg-list-button">
+												<input id="advanced-interface-button" type="checkbox" class="tgl tgl-flat" />
+												<label for="advanced-interface-button" class="tgl-btn"></label>
+											</div>
+										</div>
+									</li>
+
+									<!-- <li>
+											<button class="accordion">Photography</button>
+											<div class="panel">
+												<div class="tg-list-description"><p id="settings.photography" class="localised">Photography</p></div>
+													<div class="tg-list-button">
+														<input id="photography-button" type="checkbox" class="tgl tgl-flat"/>
+														<label for="photography-button" class="tgl-btn"></label>
+													</div>
+											</div>
+										</li> -->
+
+									<li>
+										<button class="accordion">Console</button>
+										<div class="panel">
+											<button id="open-console-button">open console</button>
+										</div>
+									</li>
+
+									<li>
+										<button class="accordion">About</button>
+										<div class="panel">
+											<p>something about us</p>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</nav>
+			</header>
+
+			<!-- Banner -->
+			<section id="banner">
+
+				<div class="inner">
+					<!-- <h2>turtle</h2>
+						<p class="localised" id="welcome-message">Your way to mars!</p>
+						<div id="loader"></div> -->
+
+					<div id="welcome-screen-status-text">
+
+					</div>
+
+					<div class="welcome-screen-background-circles" id="welcome-screen-background-circle-outer">
+					</div>
+
+					<div class="welcome-screen-background-circles" id="welcome-screen-background-circle-inner">
+					</div>
+
+					<div class="welcome-screen-wrapper">
+
+						<div class="welcome-screen-horizontal-wrapper" id="welcome-screen-horizontal-wrapper-logo">
+						</div>
+
+						<div class="welcome-screen-horizontal-wrapper" id="welcome-screen-horizontal-wrapper-text">
+							<h1 id="welcome-screen-adventure-text">Let's start an adventure!</h1>
+						</div>
+						<div class="welcome-screen-horizontal-wrapper" id="welcome-screen-horizontal-wrapper-button">
+							<div id="welcome-screen-button-left" class="welcome-screen-button">&nbsp;</div>
+							<div id="welcome-screen-button-center" class="welcome-screen-button">
+								<button id="go-button"></button>
+							</div>
+							<div id="welcome-screen-button-right" class="welcome-screen-button">&nbsp;</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div id="camera-video" hidden>
+					<!-- <img id="camera-video-img" src="client/img/marsyard-camera.jpg" draggable="false" onmousedown="return false" style="user-drag: none"> -->
+					<video id="camera-video-img" class="camera-video-drive-mode" draggable="false" onmousedown="return false" style="user-drag: none"></video>
+					<img id="hud-frame-img" src="client/img/ui/siatka kropy.svg" draggable="false" onmousedown="return false" style="user-drag: none">
+					<img id="circle-img" src="client/img/ui/kolo1.svg" draggable="false" onmousedown="return false" style="user-dgrag: none">
+					<div class="transparent-background-div" id="transparent-background-camera"></div>
+					<canvas style="opacity: 0.0; width: 100%; height:100%" id="snap-background-canvas"></canvas>
+
+					<div id="stats-view-div" class="advanced-interface">
+						<div id="signal-strength-div">
+							<!-- <img id="signal-strength-img" src="client/img/hud/signal/signal-bar-medium.png" draggable="false" onmousedown="return false" style="user-drag: none"> -->
+							<h2 id="signal-strength-text">0 %</h2>
+						</div>
+						<div id="battery-level-div">
+							<!-- <img id="battery-level-img" src="client/img/hud/batteries/battery-low.png" draggable="false" onmousedown="return false" style="user-drag: none"> -->
+							<h2 id="battery-level-text">0.0 V</h2>
+						</div>
+						<div id="session-time-div">
+							<h2 id="session-time-h1">0:00</h2>
+						</div>
+					</div>
+
+				</div>
+			</section>
+
+			<!-- footer -->
+			<div id="header" class="footer" hidden>
+				<div id="control-container-div">
+					<div id="right-navigation-div" draggable="false" style="user-drag: none">
+						<div class="transparent-background-div" id="transparent-background-navigation-right"></div>
+						<div id="right-navigation-cross-div" draggable="false" style="user-drag: none">
+							<img id="right-navigation-cross-img" src="client/img/ui/right-krzyz.svg" draggable="false" onmousedown="return false" style="user-drag:none">
+							<img id="turtle-navigation-view-img" src="client/img/ui/right-lazik.svg" draggable="false" onmousedown="return false" style="user-drag:none">
+
+							<canvas id="navigation-ring-canvas"></canvas>
+
+							<div id="turtle-top-view-left-top-div" class="advanced-interface">
+								<p id="turtle-top-view-left-top-p" class="debug-text">0%</p>
+							</div>
+							<div id="turtle-top-view-right-top-div" class="advanced-interface">
+								<p id="turtle-top-view-right-top-p" class="debug-text">0%</p>
+							</div>
+							<div id="turtle-top-view-left-bottom-div" class="advanced-interface">
+								<p id="turtle-top-view-left-bottom-p" class="debug-text">0%</p>
+							</div>
+							<div id="turtle-top-view-right-bottom-div" class="advanced-interface">
+								<p id="turtle-top-view-right-bottom-p" class="debug-text">0%</p>
+							</div>
+
+
+							<div id="camera-slider-wrapper" hidden>
+								<div class="flat-slider-wrapper vranger">
+									<div class="flat-slider gripper-slider" id="camera-slider">
+										<input type="range" class="flat-slider-horizontal" id="camera-slider-input" max="3900" min="3300" step="10" value="3600"
+										/>
 									</div>
-								</li>
-
-								<li>
-									<button class="accordion">About</button>
-									<div class="panel">
-										<p>something about us</p>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</li>
-				</ul>
-			</nav>
-		</header>
-
-		<!-- Banner -->
-		<section id="banner">
-
-			<div class="inner">
-				<!-- <h2>turtle</h2>
-					<p class="localised" id="welcome-message">Your way to mars!</p>
-					<div id="loader"></div> -->
-
-				<div id="welcome-screen-status-text">
-
-				</div>
-
-				<div class="welcome-screen-background-circles" id="welcome-screen-background-circle-outer">
-				</div>
-
-				<div class="welcome-screen-background-circles" id="welcome-screen-background-circle-inner">
-				</div>
-
-				<div class="welcome-screen-wrapper">
-
-					<div class="welcome-screen-horizontal-wrapper" id="welcome-screen-horizontal-wrapper-logo">
-					</div>
-
-					<div class="welcome-screen-horizontal-wrapper" id="welcome-screen-horizontal-wrapper-text">
-						<h1 id="welcome-screen-adventure-text">Let's start an adventure!</h1>
-					</div>
-					<div class="welcome-screen-horizontal-wrapper" id="welcome-screen-horizontal-wrapper-button">
-						<div id="welcome-screen-button-left" class="welcome-screen-button">&nbsp;</div>
-						<div id="welcome-screen-button-center" class="welcome-screen-button">
-							<button id="go-button"></button>
-						</div>
-						<div id="welcome-screen-button-right" class="welcome-screen-button">&nbsp;</div>
-					</div>
-
-				</div>
-			</div>
-
-			<div id="camera-video" hidden>
-				<!-- <img id="camera-video-img" src="client/img/marsyard-camera.jpg" draggable="false" onmousedown="return false" style="user-drag: none"> -->
-				<video id="camera-video-img" class="camera-video-drive-mode" draggable="false" onmousedown="return false" style="user-drag: none"></video>
-				<img id="hud-frame-img" src="client/img/ui/siatka kropy.svg" draggable="false" onmousedown="return false" style="user-drag: none">
-				<img id="circle-img" src="client/img/ui/kolo1.svg" draggable="false" onmousedown="return false" style="user-dgrag: none">
-				<div class="transparent-background-div" id="transparent-background-camera"></div>
-				<canvas style="opacity: 0.0; width: 100%; height:100%" id="snap-background-canvas"></canvas>
-
-				<div id="stats-view-div" class="advanced-interface">
-					<div id="signal-strength-div">
-						<!-- <img id="signal-strength-img" src="client/img/hud/signal/signal-bar-medium.png" draggable="false" onmousedown="return false" style="user-drag: none"> -->
-						<h2 id="signal-strength-text">0 %</h2>
-					</div>
-					<div id="battery-level-div">
-						<!-- <img id="battery-level-img" src="client/img/hud/batteries/battery-low.png" draggable="false" onmousedown="return false" style="user-drag: none"> -->
-						<h2 id="battery-level-text">0.0 V</h2>
-					</div>
-					<div id="session-time-div">
-						<h2 id="session-time-h1">0:00</h2>
-					</div>
-				</div>
-
-			</div>
-		</section>
-
-		<!-- footer -->
-		<div id="header" class="footer" hidden>
-			<div id="control-container-div">
-				<div id="right-navigation-div" draggable="false" style="user-drag: none">
-					<div class="transparent-background-div" id="transparent-background-navigation-right"></div>
-					<div id="right-navigation-cross-div" draggable="false" style="user-drag: none">
-						<img id="right-navigation-cross-img" src="client/img/ui/right-krzyz.svg" draggable="false" onmousedown="return false" style="user-drag:none">
-						<img id="turtle-navigation-view-img" src="client/img/ui/right-lazik.svg" draggable="false" onmousedown="return false" style="user-drag:none">
-
-						<canvas id="navigation-ring-canvas"></canvas>
-
-						<div id="turtle-top-view-left-top-div" class="advanced-interface">
-							<p id="turtle-top-view-left-top-p" class="debug-text">0%</p>
-						</div>
-						<div id="turtle-top-view-right-top-div" class="advanced-interface">
-							<p id="turtle-top-view-right-top-p" class="debug-text">0%</p>
-						</div>
-						<div id="turtle-top-view-left-bottom-div" class="advanced-interface">
-							<p id="turtle-top-view-left-bottom-p" class="debug-text">0%</p>
-						</div>
-						<div id="turtle-top-view-right-bottom-div" class="advanced-interface">
-							<p id="turtle-top-view-right-bottom-p" class="debug-text">0%</p>
-						</div>
-
-
-						<div id="camera-slider-wrapper" hidden>
-							<div class="flat-slider-wrapper vranger">
-								<div class="flat-slider gripper-slider" id="camera-slider">
-									<input type="range" class="flat-slider-horizontal" id="camera-slider-input" max="3900" min="3300" step="10" value="3600"
-									/>
+									<div id="clear"></div>
 								</div>
-								<div id="clear"></div>
 							</div>
 						</div>
 					</div>
-				</div>
 
-				<div id="left-navigation-div" draggable="false" style="user-drag: none">
+					<div id="left-navigation-div" draggable="false" style="user-drag: none">
 
-					<div class="transparent-background-div" id="transparent-background-navigation-right"></div>
-					<div id="grab-drive-wrapper">
-						<div class="grab-drive-class" id="grab-div">
-							<p class="grab-drive-text grab-drive-text-empty-dot" id="grab-text">grab</p>
-						</div>
-						<div class="grab-drive-class" id="drive-div">
-							<p class="grab-drive-text grab-drive-text-empty-dot grab-drive-text-filled-dot" id="drive-text">drive</p>
-						</div>
-					</div>
-
-					<div id="gripper-wrapper">
-						<div id="gripper-slider-wrapper">
-							<div class="flat-slider-wrapper">
-								<div class="flat-slider gripper-slider" id="gripper-slider">
-									<input type="range" class="flat-slider-horizontal" id="gripper-slider-input" max="3600" min="2400" step="10" value="3000"
-									 style="transform: rotateY(180deg);" />
-								</div>
-								<div id="clear"></div>
+						<div class="transparent-background-div" id="transparent-background-navigation-right"></div>
+						<div id="grab-drive-wrapper">
+							<div class="grab-drive-class" id="grab-div">
+								<p class="grab-drive-text grab-drive-text-empty-dot" id="grab-text">grab</p>
+							</div>
+							<div class="grab-drive-class" id="drive-div">
+								<p class="grab-drive-text grab-drive-text-empty-dot grab-drive-text-filled-dot" id="drive-text">drive</p>
 							</div>
 						</div>
-						<!-- <div id="gripper-images-wrapper">
-								<img src="" class="gripper-img" id="left-gripper-img">
-								<img src="" class="gripper-img" id="right-gripper-img">
-							</div> -->
+
+						<div id="gripper-wrapper">
+							<div id="gripper-slider-wrapper">
+								<div class="flat-slider-wrapper">
+									<div class="flat-slider gripper-slider" id="gripper-slider">
+										<input type="range" class="flat-slider-horizontal" id="gripper-slider-input" max="3600" min="2400" step="10" value="3000"
+										style="transform: rotateY(180deg);" />
+									</div>
+									<div id="clear"></div>
+								</div>
+							</div>
+							<!-- <div id="gripper-images-wrapper">
+									<img src="" class="gripper-img" id="left-gripper-img">
+									<img src="" class="gripper-img" id="right-gripper-img">
+								</div> -->
+						</div>
+					</div>
+				</div>
+				<div id="footer-container-div">
+					<div id="footer-div" class="left-footer-div">
+						<img id="left-footer-button-img" class="footer-button-img" src="client/img/ui/menu-dolne-gora.svg">
+					</div>
+					<div id="footer-div" class="center-footer-div">
+						<img id="center-footer-button-img" class="footer-button-img" src="client/img/ui/menu-dolne-stop.svg">
+					</div>
+					<div id="footer-div" class="right-footer-div">
+						<img id="show-hide-right-menu-img" class="footer-button-img" src="client/img/ui/menu-dolne-gora.svg">
 					</div>
 				</div>
 			</div>
-			<div id="footer-container-div">
-				<div id="footer-div" class="left-footer-div">
-					<img id="left-footer-button-img" class="footer-button-img" src="client/img/ui/menu-dolne-gora.svg">
-				</div>
-				<div id="footer-div" class="center-footer-div">
-					<img id="center-footer-button-img" class="footer-button-img" src="client/img/ui/menu-dolne-stop.svg">
-				</div>
-				<div id="footer-div" class="right-footer-div">
-					<img id="show-hide-right-menu-img" class="footer-button-img" src="client/img/ui/menu-dolne-gora.svg">
-				</div>
-			</div>
+
+
 		</div>
 
 
-	</div>
+		<link rel="stylesheet" href="client/themes/html5up-spectral/assets/css/main.css" />
+		<link href="client/vendors/jquery_flagstrap/css/flags.css" rel="stylesheet">
+		<link href="client/vendors/vex/css/vex.css" rel="stylesheet">
+		<link href="client/vendors/vex/css/vex-theme-os.css" rel="stylesheet">
+		<link href="client/css/main.css" rel="stylesheet">
 
+		<!-- include all JavaScript files -->
 
-	<link rel="stylesheet" href="client/themes/html5up-spectral/assets/css/main.css" />
-	<link href="client/vendors/jquery_flagstrap/css/flags.css" rel="stylesheet">
-	<link href="client/vendors/vex/css/vex.css" rel="stylesheet">
-	<link href="client/vendors/vex/css/vex-theme-os.css" rel="stylesheet">
-	<link href="client/css/main.css" rel="stylesheet">
+		<!-- theme related -->
+		<script src='client/themes/html5up-spectral/assets/js/jquery.min.js'></script>
+		<script src="client/themes/html5up-spectral/assets/js/jquery.scrollex.min.js"></script>
+		<script src="client/themes/html5up-spectral/assets/js/jquery.scrolly.min.js"></script>
+		<script src="client/themes/html5up-spectral/assets/js/skel.min.js"></script>
+		<script src="client/themes/html5up-spectral/assets/js/util.js"></script>
+		<script src="client/themes/html5up-spectral/assets/js/main.js"></script>
 
-	<!-- include all JavaScript files -->
+		<script src='client/vendors/jquery/jquery-ui.js'></script>
 
-	<!-- jQuery (disabled due to conflict with theme) -->
-	<!-- <script src='vendors/jquery/jquery-3.1.1.js'></script> -->
+		<!-- js-Cookie -->
+		<script src='client/vendors/js_cookie/js.cookie.js'></script>
 
-	<!-- theme related -->
-	<script src='client/themes/html5up-spectral/assets/js/jquery.min.js'></script>
-	<script src="client/themes/html5up-spectral/assets/js/jquery.scrollex.min.js"></script>
-	<script src="client/themes/html5up-spectral/assets/js/jquery.scrolly.min.js"></script>
-	<script src="client/themes/html5up-spectral/assets/js/skel.min.js"></script>
-	<script src="client/themes/html5up-spectral/assets/js/util.js"></script>
-	<!--[if lte IE 8]><script src="client/js/ie/respond.min.js"></script><![endif]-->
-	<script src="client/themes/html5up-spectral/assets/js/main.js"></script>
+		<!-- Bootstrap -->
+		<script src="client/vendors/bootstrap/bootstrap.js"></script>
 
-	<script src='client/vendors/jquery/jquery-ui.js'></script>
+		<!-- jQuery Flagstrap -->
+		<script src='client/vendors/jquery_flagstrap/jquery.flagstrap.js'></script>
 
-	<!-- js-Cookie -->
-	<script src='client/vendors/js_cookie/js.cookie.js'></script>
+		<!-- Amplify JS -->
+		<script src='client/vendors/amplify_js/src/core.js'></script>
+		<script src='client/vendors/amplify_js/src/request.js'></script>
+		<script src='client/vendors/amplify_js/src/store.js'></script>
 
-	<!-- Bootstrap -->
-	<script src="client/vendors/bootstrap/bootstrap.js"></script>
+		<!-- user interface -->
+		<script src='client/js/webrtc.js'></script>
 
-	<!-- jQuery Flagstrap -->
-	<script src='client/vendors/jquery_flagstrap/jquery.flagstrap.js'></script>
+		<!-- controller -->
+		<script src='client/js/controller.js'></script>
 
-	<!-- Amplify JS -->
-	<script src='client/vendors/amplify_js/src/core.js'></script>
-	<script src='client/vendors/amplify_js/src/request.js'></script>
-	<script src='client/vendors/amplify_js/src/store.js'></script>
+		<!-- linux communication -->
+		<script src='client/js/linux.js'></script>
 
-	<!-- user interface -->
-	<script src='client/js/webrtc.js'></script>
+		<!-- i18next -->
+		<script src='client/vendors/i18next/i18next.js'></script>
+		<script src='client/vendors/i18next/i18nextXHRBackend.js'></script>
 
-	<!-- controller -->
-	<script src='client/js/controller.js'></script>
+		<!-- noty -->
+		<script src="client/vendors/noty/packaged/jquery.noty.packaged.js"></script>
 
-	<!-- linux communication -->
-	<script src='client/js/linux.js'></script>
+		<!-- manipulator -->
+		<script src='client/js/manipulator.js'></script>
 
-	<!-- i18next -->
-	<script src='client/vendors/i18next/i18next.js'></script>
-	<script src='client/vendors/i18next/i18nextXHRBackend.js'></script>
+		<!-- canvas controller -->
+		<script src='client/js/controlcanvas.js'></script>
 
-	<!-- noty -->
-	<script src="client/vendors/noty/packaged/jquery.noty.packaged.js"></script>
+		<!-- fullscreen plugin -->
+		<script src='client/vendors/jquery_fullscreen/jquery.fullscreen.js'></script>
 
-	<!-- manipulator -->
-	<script src='client/js/manipulator.js'></script>
+		<!-- socket server communication -->
+		<script src='client/js/servercommunication.js'></script>
 
-	<!-- canvas controller -->
-	<script src='client/js/controlcanvas.js'></script>
+		<!-- vex dialogs -->
+		<script src='client/vendors/vex/js/vex.combined.js'></script>
 
-	<!-- fullscreen plugin -->
-	<script src='client/vendors/jquery_fullscreen/jquery.fullscreen.js'></script>
+		<!-- html2canvas -->
+		<script src='client/vendors/html2canvas/html2canvas.js'></script>
 
-	<!-- socket server communication -->
-	<script src='client/js/servercommunication.js'></script>
+		<!-- canvas2image -->
+		<script src='client/vendors/canvas2image/canvas2image.js'></script>
 
-	<!-- vex dialogs -->
-	<script src='client/vendors/vex/js/vex.combined.js'></script>
+		<!-- FileSaver -->
+		<script src='client/vendors/file_saver/FileSaver.js'></script>
 
-	<!-- html2canvas -->
-	<script src='client/vendors/html2canvas/html2canvas.js'></script>
+		<!-- Keyboard support -->
+		<script src='client/vendors/keyboardjs/keyboard.min.js'></script>
 
-	<!-- canvas2image -->
-	<script src='client/vendors/canvas2image/canvas2image.js'></script>
+		<!-- keboard controller -->
+		<script src='client/js/controlkeyboard.js'></script>
 
-	<!-- FileSaver -->
-	<script src='client/vendors/file_saver/FileSaver.js'></script>
+		<!-- transit - http://ricostacruz.com/jquery.transit/ -->
+		<script src='client/vendors/transit/jquery.transit.min.js'></script>
 
-	<!-- Keyboard support -->
-	<script src='client/vendors/keyboardjs/keyboard.min.js'></script>
+		<!-- user interface -->
+		<script src='client/js/ui.js'></script>
 
-	<!-- keboard controller -->
-	<script src='client/js/controlkeyboard.js'></script>
+		<script>
+			/*	accordion buttons - the menu ones 	*/
+			/*	----------------------------------- */
+			var acc = document.getElementsByClassName("accordion");
+			var i;
 
-	<!-- transit - http://ricostacruz.com/jquery.transit/ -->
-	<script src='client/vendors/transit/jquery.transit.min.js'></script>
-
-	<!-- user interface -->
-	<script src='client/js/ui.js'></script>
-
-	<script>
-		/*	accordion buttons - the menu ones 	*/
-		/*	----------------------------------- */
-		var acc = document.getElementsByClassName("accordion");
-		var i;
-
-		for (i = 0; i < acc.length; i++) {
-			acc[i].onclick = function () {
-				this.classList.toggle("active");
-				var panel = this.nextElementSibling;
-				if (panel.style.maxHeight) {
-					panel.style.maxHeight = null;
-				} else {
-					panel.style.maxHeight = panel.scrollHeight + "px";
+			for (i = 0; i < acc.length; i++) {
+				acc[i].onclick = function () {
+					this.classList.toggle("active");
+					var panel = this.nextElementSibling;
+					if (panel.style.maxHeight) {
+						panel.style.maxHeight = null;
+					} else {
+						panel.style.maxHeight = panel.scrollHeight + "px";
+					}
 				}
 			}
-		}
-/*	----------------------------------- */
+	/*	----------------------------------- */
 
-	</script>
+		</script>
 
-</body>
+	</body>
 
 </html>

@@ -37,6 +37,7 @@
   height: 40%;
   width: 100%;
   bottom: 45%;
+  visibility: visible;
 }
 
 .welcome-screen-horizontal-wrapper {
