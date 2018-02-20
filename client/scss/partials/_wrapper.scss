@@ -1,0 +1,32 @@
+#page-wrapper {
+    background-image: url("../img/welcome-screen/kolko-lewe-dolne.svg"), url("../img/welcome-screen/chmurka3-prawa-gorna.png"), url("../img/welcome-screen/chmurka2-lewa-gorna.png"), url("../img/welcome-screen/chmurka1-dolna.png"), url("../img/welcome-screen/kolko-po-prawej.svg"), url("../img/welcome-screen/background.png");
+    background-attachment: fixed;
+    background-position: 10% 80%, center center, center center, center center, 105% -10%, center center;
+    background-repeat: no-repeat;
+    background-size: auto 15%, auto 100%, auto 100%, auto 100%, auto 40%, auto 100%;
+    padding-top: 0;
+}
+
+body.landing #footer {
+    background-color: rgba(29, 36, 42, 0.9);
+}
+
+body.is-mobile.landing #page-wrapper {
+    background: none;
+    height: 100%;
+}
+
+body.is-mobile.landing #banner,
+body.is-mobile.landing .wrapper.style4 {
+    background-image: url("../img/welcome-screen/kolko-lewe-dolne.svg"),
+     url("../img/welcome-screen/chmurka3-prawa-gorna.png"), url("../img/welcome-screen/chmurka2-lewa-gorna.png"), url("../img/welcome-screen/chmurka1-dolna.png"), url("../img/welcome-screen/kolko-po-prawej.svg"), url("../img/welcome-screen/background.png");
+    background-attachment: fixed;
+    background-position: 10% 80%, center center, center center, center center, 105% -10%, center center;
+    background-repeat: no-repeat;
+    background-size: auto 15%, auto 100%, auto 100%, auto 100%, auto 40%, auto 100%;
+    min-height: 100%;
+}
+
+body.is-mobile.landing #footer {
+    background-color: #1d242a;
+}
