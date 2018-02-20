@@ -6,8 +6,9 @@ var gulp = require('gulp'),
     plumber = require('gulp-plumber'),
     notify = require('gulp-notify'),
     sassLint = require('gulp-sass-lint'),
-    sourcemaps = require('gulp-sourcemaps');
-injectPartials = require('gulp-inject-partials');
+    sourcemaps = require('gulp-sourcemaps'),
+    injectPartials = require('gulp-inject-partials'),
+    htmlbeautify = require('gulp-html-beautify');
 // Temporary solution until gulp 4
 // https://github.com/gulpjs/gulp/issues/355
 runSequence = require('run-sequence');
@@ -96,6 +97,7 @@ gulp.task('html', function() {
             errorHandler: onError
         }))
         .pipe(injectPartials())
+        .pipe(htmlbeautify({indentSize: 2}))
         .pipe(gulp.dest('./'));
 });
 
