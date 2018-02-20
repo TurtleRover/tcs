@@ -1,0 +1,77 @@
+<div id="header" class="footer" hidden>
+    <div id="control-container-div">
+        <div id="right-navigation-div" draggable="false" style="user-drag: none">
+            <div class="transparent-background-div" id="transparent-background-navigation-right"></div>
+            <div id="right-navigation-cross-div" draggable="false" style="user-drag: none">
+                <img id="right-navigation-cross-img" src="client/img/ui/right-krzyz.svg" draggable="false" onmousedown="return false" style="user-drag:none">
+                <img id="turtle-navigation-view-img" src="client/img/ui/right-lazik.svg" draggable="false" onmousedown="return false" style="user-drag:none">
+
+                <canvas id="navigation-ring-canvas"></canvas>
+
+                <div id="turtle-top-view-left-top-div" class="advanced-interface">
+                    <p id="turtle-top-view-left-top-p" class="debug-text">0%</p>
+                </div>
+                <div id="turtle-top-view-right-top-div" class="advanced-interface">
+                    <p id="turtle-top-view-right-top-p" class="debug-text">0%</p>
+                </div>
+                <div id="turtle-top-view-left-bottom-div" class="advanced-interface">
+                    <p id="turtle-top-view-left-bottom-p" class="debug-text">0%</p>
+                </div>
+                <div id="turtle-top-view-right-bottom-div" class="advanced-interface">
+                    <p id="turtle-top-view-right-bottom-p" class="debug-text">0%</p>
+                </div>
+
+
+                <div id="camera-slider-wrapper" hidden>
+                    <div class="flat-slider-wrapper vranger">
+                        <div class="flat-slider gripper-slider" id="camera-slider">
+                            <input type="range" class="flat-slider-horizontal" id="camera-slider-input" max="3900" min="3300" step="10" value="3600"
+                            />
+                        </div>
+                        <div id="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="left-navigation-div" draggable="false" style="user-drag: none">
+
+            <div class="transparent-background-div" id="transparent-background-navigation-right"></div>
+            <div id="grab-drive-wrapper">
+                <div class="grab-drive-class" id="grab-div">
+                    <p class="grab-drive-text grab-drive-text-empty-dot" id="grab-text">grab</p>
+                </div>
+                <div class="grab-drive-class" id="drive-div">
+                    <p class="grab-drive-text grab-drive-text-empty-dot grab-drive-text-filled-dot" id="drive-text">drive</p>
+                </div>
+            </div>
+
+            <div id="gripper-wrapper">
+                <div id="gripper-slider-wrapper">
+                    <div class="flat-slider-wrapper">
+                        <div class="flat-slider gripper-slider" id="gripper-slider">
+                            <input type="range" class="flat-slider-horizontal" id="gripper-slider-input" max="3600" min="2400" step="10" value="3000"
+                            style="transform: rotateY(180deg);" />
+                        </div>
+                        <div id="clear"></div>
+                    </div>
+                </div>
+                <!-- <div id="gripper-images-wrapper">
+                        <img src="" class="gripper-img" id="left-gripper-img">
+                        <img src="" class="gripper-img" id="right-gripper-img">
+                    </div> -->
+            </div>
+        </div>
+    </div>
+    <div id="footer-container-div">
+        <div id="footer-div" class="left-footer-div">
+            <img id="left-footer-button-img" class="footer-button-img" src="client/img/ui/menu-dolne-gora.svg">
+        </div>
+        <div id="footer-div" class="center-footer-div">
+            <img id="center-footer-button-img" class="footer-button-img" src="client/img/ui/menu-dolne-stop.svg">
+        </div>
+        <div id="footer-div" class="right-footer-div">
+            <img id="show-hide-right-menu-img" class="footer-button-img" src="client/img/ui/menu-dolne-gora.svg">
+        </div>
+    </div>
+</div>

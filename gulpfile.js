@@ -7,6 +7,7 @@ var gulp = require('gulp'),
     notify = require('gulp-notify'),
     sassLint = require('gulp-sass-lint'),
     sourcemaps = require('gulp-sourcemaps');
+injectPartials = require('gulp-inject-partials');
 // Temporary solution until gulp 4
 // https://github.com/gulpjs/gulp/issues/355
 runSequence = require('run-sequence');
@@ -74,11 +75,7 @@ gulp.task('styles', function() {
         // .pipe(cssmin())
         // .pipe(rename({ suffix: '.min' }))
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('client/css'))
-        .pipe(notify({
-            onLast: true,
-            message: 'styles done'
-        }));
+        .pipe(gulp.dest('client/css'));
 });
 
 gulp.task('sass-lint', function() {
@@ -90,13 +87,23 @@ gulp.task('sass-lint', function() {
 
 gulp.task('watch', function() {
     gulp.watch('client/scss/**/*.scss', ['styles']);
+    gulp.watch('client/html/**/*.html', ['html']);
+});
+
+gulp.task('html', function() {
+    return gulp.src('client/html/index.html')
+        .pipe(plumber({
+            errorHandler: onError
+        }))
+        .pipe(injectPartials())
+        .pipe(gulp.dest('./'));
 });
 
 // BUILD TASKS
 // ------------
 
 gulp.task('default', function(done) {
-    runSequence('styles', 'watch', done);
+    runSequence('styles', 'html', 'watch', done);
 });
 
 gulp.task('build', function(done) {

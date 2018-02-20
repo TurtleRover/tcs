@@ -3144,15 +3144,6 @@
 
 /* Page Wrapper + Menu */
 
-	#page-wrapper {
-		-moz-transition: opacity 0.5s ease;
-		-webkit-transition: opacity 0.5s ease;
-		-ms-transition: opacity 0.5s ease;
-		transition: opacity 0.5s ease;
-		opacity: 1;
-		padding-top: 3em;
-		visibility: visible;
-	}
 
 	#camera-video-img{
 		-moz-transition: opacity 0.5s ease;
@@ -3162,18 +3153,6 @@
 		opacity: 1;
 	}
 
-		#page-wrapper:before {
-			background: transparent;
-			content: '';
-			display: block;
-			display: none;
-			height: 100%;
-			left: 0;
-			position: fixed;
-			top: 0;
-			width: 100%;
-			z-index: 10001;
-		}
 
 	#menu {
 		-moz-transform: translateX(25em);
@@ -3267,10 +3246,6 @@
 	body.is-menu-visible #transparent-background-camera {
 		opacity: 0.3;
 	}
-
-		body.is-menu-visible #page-wrapper:before {
-			display: block;
-		}
 
 	body.is-menu-visible #menu {
 		-moz-transform: translateX(0);
