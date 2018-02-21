@@ -1,6 +1,9 @@
 var controlkeyboard = (function () {
 
-    var interval;
+    var intervalUp,
+        intervalDown,
+        intervalLeft,
+        intervalRight;
     const UPDATE_INTERVAL = 100;
     const INC = 10;
 
@@ -17,13 +20,13 @@ var controlkeyboard = (function () {
         console.log("Keyboard: UP");
         movement.type = "run";
         movement.direction = [0, 0, 0, 0];
-        interval = setInterval(function () {
+        intervalUp = setInterval(function () {
             amplify.publish("controlkeyboard->servercommunication", movement);
-            movement.speed = movement.speed + INC;  
-            movement.interval = interval;
+            movement.speed = movement.speed + INC;
+            movement.interval = intervalUp;
         }, UPDATE_INTERVAL);
     }, function (e) {
-        clearInterval(interval);
+        clearInterval(intervalUp);
         movement.type = "stop";
         movement.speed = 0;
         amplify.publish("controlkeyboard->servercommunication", movement);
@@ -35,14 +38,14 @@ var controlkeyboard = (function () {
         movement.type = "run";
         movement.direction = [1, 1, 1, 1];
         console.log("Keyboard: DOWN");
-        interval = setInterval(function () {
+        intervalDown = setInterval(function () {
             amplify.publish("controlkeyboard->servercommunication", movement);
-            movement.speed = movement.speed + INC;  
-            movement.interval = interval;
+            movement.speed = movement.speed + INC;
+            movement.interval = intervalDown;
         }, UPDATE_INTERVAL);
 
     }, function (e) {
-        clearInterval(interval);
+        clearInterval(intervalDown);
         movement.type = "stop";
         movement.speed = 0;
         amplify.publish("controlkeyboard->servercommunication", movement);
@@ -54,14 +57,14 @@ var controlkeyboard = (function () {
         movement.type = "run";
         movement.direction = [1, 0, 1, 0];
         console.log("Keyboard: LEFT");
-        interval = setInterval(function () {
+        intervalLeft = setInterval(function () {
             amplify.publish("controlkeyboard->servercommunication", movement);
-            movement.speed = movement.speed + INC;  
-            movement.interval = interval;
+            movement.speed = movement.speed + INC;
+            movement.interval = intervalLeft;
         }, UPDATE_INTERVAL);
 
     }, function (e) {
-        clearInterval(interval);
+        clearInterval(intervalLeft);
         movement.type = "stop";
         movement.speed = 0;
         amplify.publish("controlkeyboard->servercommunication", movement);
@@ -73,17 +76,16 @@ var controlkeyboard = (function () {
         movement.type = "run";
         movement.direction = [0, 1, 0, 1];
         console.log("Keyboard: RIGHT");
-        interval = setInterval(function () {
+        intervalRight = setInterval(function () {
             amplify.publish("controlkeyboard->servercommunication", movement);
-            movement.speed = movement.speed + INC;  
-            movement.interval = interval;
+            movement.speed = movement.speed + INC;
+            movement.interval = intervalRight;
         }, UPDATE_INTERVAL);
 
     }, function (e) {
-        clearInterval(interval);
+        clearInterval(intervalRight);
         movement.type = "stop";
         movement.speed = 0;
         amplify.publish("controlkeyboard->servercommunication", movement);
     });
 })();
-

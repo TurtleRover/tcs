@@ -2,7 +2,7 @@
  * controlCanvas is used for controlling Turtle
  * It uses the Revealing Module Pattern
  * https://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript
- * 
+ *
  * For drawing and touch applications it uses CREATEJS set of libraries
  *  + EaselJS
  *  + TweenJS
