@@ -1,9 +1,10 @@
 @import "helpers/vars";
-@import "helpers/reset";
+@import "helpers/lato-font";
+@import "helpers/normalize";
 
 @import "partials/body";
 @import "partials/wrapper";
-@import "partials/welcome-screen";
+@import "partials/bootscreen";
 @import "partials/custom";
 @import "partials/disable-text-select";
 @import "partials/horizontal-slider";
