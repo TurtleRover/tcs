@@ -64,8 +64,8 @@ var prefixerOptions = {
 // BUILD SUBTASKS
 // ---------------
 
-gulp.task('styles', function() {
-    return gulp.src('client/scss/*.scss')
+gulp.task('main-style', function() {
+    return gulp.src(['client/scss/main.scss'])
         .pipe(plumber({
             errorHandler: onError
         }))
@@ -73,6 +73,21 @@ gulp.task('styles', function() {
         .pipe(sass(sassOptions))
         .pipe(prefix(prefixerOptions))
         .pipe(rename('main.css'))
+        // .pipe(cssmin())
+        // .pipe(rename({ suffix: '.min' }))
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest('client/css'));
+});
+
+gulp.task('critical-style', function() {
+    return gulp.src(['client/scss/bootscreen.scss'])
+        .pipe(plumber({
+            errorHandler: onError
+        }))
+        .pipe(sourcemaps.init())
+        .pipe(sass(sassOptions))
+        .pipe(prefix(prefixerOptions))
+        .pipe(rename('bootscreen.css'))
         // .pipe(cssmin())
         // .pipe(rename({ suffix: '.min' }))
         .pipe(sourcemaps.write('./'))
@@ -87,7 +102,7 @@ gulp.task('sass-lint', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch('client/scss/**/*.scss', ['styles']);
+    gulp.watch('client/scss/**/*.scss', ['critical-style', 'main-style']);
     gulp.watch('client/html/**/*.html', ['html']);
 });
 
@@ -105,7 +120,7 @@ gulp.task('html', function() {
 // ------------
 
 gulp.task('default', function(done) {
-    runSequence('styles', 'html', 'watch', done);
+    runSequence('critical-style', 'main-style', 'html', 'watch', done);
 });
 
 gulp.task('build', function(done) {

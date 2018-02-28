@@ -1,0 +1,33 @@
+/* Primary colors */
+/* Main Font */
+/* Log Font */
+.bootscreen {
+  background: linear-gradient(113.05297deg, #7fffa0 13.89583%, #4a9b60 55.9184%, #214d2e 89.71528%);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.bootscreen_logo {
+  display: inline-flex;
+  height: auto;
+  width: 20em;
+}
+
+.bootscreen_logo_svg {
+  height: 100%;
+  width: 100%;
+}
+
+.bootscreen_bootlog_message {
+  font-family: monospace;
+  font-size: 9pt;
+  line-height: 1.5;
+}
+
+/*# sourceMappingURL=bootscreen.css.map */

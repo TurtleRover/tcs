@@ -553,7 +553,6 @@ body {
   padding-top: 0;
   transition: opacity 0.5s ease;
   opacity: 1;
-  padding-top: 3em;
   visibility: visible;
 }
 
@@ -595,30 +594,6 @@ body.is-mobile.landing .wrapper.style4 {
 
 body.is-mobile.landing #footer {
   background-color: #1d242a;
-}
-
-.bootscreen {
-  background-color: #000000;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-wrap: nowrap;
-  justify-content: center;
-}
-
-.bootscreen_logo {
-  display: inline-flex;
-  width: 30%;
-  height: auto;
-}
-
-.bootscreen_bootlog {
-  font-family: monospace;
-  font-size: 9pt;
-  line-height: 1.5;
 }
 
 @keyframes fadein {

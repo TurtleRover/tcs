@@ -86,15 +86,15 @@ var ui = (function () {
 			unsafeMessage: message
 		})
 	};
-	
+
 	/*
 	 *																	MULTILANGUAGE
 	 */
-	
+
 	function languageChanged(lng) {
 		var newLanguage = lng;
 		console.log("new language: " + newLanguage);
-		
+
 		//	set cookie for the next visit
 		Cookies.set("language", newLanguage);
 
@@ -102,7 +102,7 @@ var ui = (function () {
 		newLanguage = newLanguage.toLowerCase();
 		setLanguage(newLanguage);
 	}
-	
+
 	/*
 	 * 	display language selector - user can choose user interface language
 	 */
@@ -111,14 +111,14 @@ var ui = (function () {
 		 * read language used in previous session
 		 * if undefined set to English
 		 */
-		
+
 		var previousSessionLanguage = Cookies.get("language");
 		if (previousSessionLanguage == undefined) previousSessionLanguage = "US";
-		
+
 		$("#languageSelector").attr({
 			"data-selected-country"	:	previousSessionLanguage
 		});
-		
+
 		$("#languageSelector").flagStrap({
 	        countries: {
 	            "PL": "Poland",
@@ -169,7 +169,7 @@ var ui = (function () {
 		i18next.use(window.i18nextXHRBackend);
 		setLanguage(lng);
 	}
-	
+
 	/*
 	 *																	OTHER
 	 */
@@ -193,7 +193,7 @@ var ui = (function () {
 		else if (camera) $("#camera-video-img").attr("src", "http://192.168.10.1:8090/?action=stream");
 		else $("#camera-video-img").attr("src", "client/img/marsyard-camera.jpg");
 
-		if (camera) {	
+		if (camera) {
 			//	rotate camera
 			var deg = 0;
 			var rotate = 'rotate(' + deg + 'deg)';
@@ -203,7 +203,7 @@ var ui = (function () {
 					'-moz-transform': rotate,
 					'-o-transform': rotate,
 					'-ms-transform': rotate,
-					'transform': rotate 
+					'transform': rotate
 				});
 			});
 		} */
@@ -241,7 +241,7 @@ var ui = (function () {
 	function toggleFullScreen() {
 		//	for internet explorer use body as full screen, not the document
 		if (isInternetExplorer()) $('.landing').toggleFullScreen();
-		else $(document).toggleFullScreen();		
+		else $(document).toggleFullScreen();
 	}
 
 	/*
@@ -275,7 +275,7 @@ var ui = (function () {
 
 		img.src = 'client/img/hud/turtle-logo.png';
 
-		
+
 			var logoWidth = video.clientWidth / 12;
 			var logoHeight = logoWidth * 0.265;
 			context.drawImage(img, 25, 10, logoWidth, logoHeight);
@@ -291,7 +291,7 @@ var ui = (function () {
 
 	/*
 	 *	full screen mode has been changed
-	 */ 
+	 */
 	function changedFullScreen() {
 		if ($(document).fullScreen()) {
 			//$("#full-screen-button-img").attr("src", "client/img/navigation/fullscreen-exit.png");
@@ -351,13 +351,13 @@ var ui = (function () {
 	 */
 	amplify.subscribe("controller->ui", controllerMessageCallback);
 	amplify.subscribe("all->ui", allMessageCallback);
-	
+
 	/*
 	 * 																		CALLBACK functions
 	 */
 	function controllerMessageCallback(message) {
 		if (DEBUG) console.log("controller->ui: " + message);
-		
+
 		//	choose action
 		switch(message) {
 			case "hide welcome screen":
@@ -393,11 +393,11 @@ var ui = (function () {
 			default:
 				console.log("unknown command: " + message);
 		}
-	};
+	}
 
 	function allMessageCallback(message) {
 		//if (DEBUG) console.log("all->ui: " + message);
-		
+
 		//	choose action
 		switch(message) {
 			case "notifications.working-on":
@@ -436,11 +436,11 @@ var ui = (function () {
 			case "set battery level to 0":
 				setBatteryLevel(0);
 				break;
-			
+
 			default:
 				console.log("unknown command: " + message);
 		}
-	};
+	}
 
 	/*
 	 * 																		EVENT functions
@@ -477,7 +477,7 @@ var ui = (function () {
 	$("#gripper-slider").on("mouseup touchend", function(e, data) {gripperSliderUp();});
 	$("#camera-slider").on("mouseup touchend", function(e, data) {cameraSliderUp();});
 	*/
-	
+
 	$("#mani-axis-1").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
 	$("#mani-axis-2").change(function(e, data) {amplify.publish("ui->port8080", "set new mani position");});
 
@@ -545,21 +545,21 @@ var ui = (function () {
 	$("#welcome-screen-status-text").children().last().attr('data-content', '[ ]');
 
 	function setLastStatusDone(stat) {
-		if (stat == true) {
+		if (stat === true) {
 			$("#welcome-screen-status-text").children().last().attr('data-content', '[*]');
 			$("#welcome-screen-status-text").children().last().removeClass('animation-typewriter');
 		}
 		else {
 			$("#welcome-screen-status-text").children().last().attr('data-content', '[!]');
 		}
-	};
+	}
 
 	function addNewStatus(status, id, before) {
 		$("#welcome-screen-status-text").append("<p class='animation-typewriter' id='" + id + "'>" + status + "</p>");
-		if (before != false) $("#welcome-screen-status-text").children().last().attr('data-content', '[ ]');
+		if (before !== false) $("#welcome-screen-status-text").children().last().attr('data-content', '[ ]');
 		else $("#welcome-screen-status-text").children().last().attr('data-content', "\00 \00");
-	};
-	
+	}
+
 	/*
 	 * 																		SEND information to controller
 	 */
@@ -569,14 +569,14 @@ var ui = (function () {
 	 *																		LOADING area
 	 *	things to do while the page is loaded
 	 */
-	
+
 	/*
 	 *	this function enables jquery flagstrap form drop-down menu in #menu
 	 */
 	$(function() {
 		// Setup drop down menu
 		$('.dropdown-toggle').dropdown();
-		
+
 		// Fix input element click problem
 		$('.dropdown input, .dropdown label').click(function(e) {
 			e.stopPropagation();
@@ -602,7 +602,7 @@ var ui = (function () {
 	 *	configure vex dialogs
 	 */
 	vex.defaultOptions.className='vex-theme-os';
-	
+
 	/*
 	 * 																		PUBLIC area
 	 * Reveal public pointers to private functions and properties.
