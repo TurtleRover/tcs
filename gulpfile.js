@@ -116,13 +116,6 @@ gulp.task('html', function() {
         .pipe(gulp.dest('./'));
 });
 
-// BUILD TASKS
-// ------------
-
-gulp.task('default', function(done) {
+gulp.task('run', function(done) {
     runSequence('critical-style', 'main-style', 'html', 'watch', done);
-});
-
-gulp.task('build', function(done) {
-    runSequence('styles', done);
 });
