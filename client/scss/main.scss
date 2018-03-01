@@ -1,4 +1,5 @@
 @import "helpers/vars";
+@import "helpers/mixins";
 @import "helpers/lato-font";
 @import "helpers/normalize";
 
@@ -9,4 +10,5 @@
 @import "partials/horizontal-slider";
 @import "partials/jquery-ui";
 @import "partials/statusbar";
+@import "partials/menu";
 @import "partials/controls";

@@ -6,71 +6,6 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
-/* Reset */
-
-	/* @font-face {
-		font-family: turtleFont;
-		src: url("../../../../fonts/turtle-font.ttf");
-	}
-
-	@font-face {
-		font-family: turtleFontLight;
-		src: url("../../../../fonts/turtle-font-light.ttf");
-	}
-
-	@font-face {
-		font-family: turtleFontMono;
-		src: url("../../../../fonts/turtle-font-mono.ttf");
-	} */
-
-	 @import url('https://fonts.googleapis.com/css?family=Lato:300,400');
-
-
-	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, statusbar, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-		margin: 0;
-		padding: 0;
-		border: 0;
-		font-size: 100%;
-		font: inherit;
-		vertical-align: top;
-		/* font-family: turtleFont; */
-		/* font-family: 'Lato', sans-serif; */
-	}
-
-	html {
-		height: 100%;
-	}
-
-	article, aside, details, figcaption, figure, footer, statusbar, hgroup, menu, nav, section {
-		display: block;
-	}
-
-	body {
-		line-height: 1;
-	}
-
-	ol, ul {
-		list-style: none;
-	}
-
-	blockquote, q {
-		quotes: none;
-	}
-
-	blockquote:before, blockquote:after, q:before, q:after {
-		content: '';
-		content: none;
-	}
-
-	table {
-		border-collapse: collapse;
-		border-spacing: 0;
-	}
-
-	body {
-		-webkit-text-size-adjust: none;
-		min-height: 100%;
-	}
 
 /* Box Model */
 
@@ -1421,54 +1356,7 @@
 		width: device-width;
 	}
 
-	body {
-		background:black;
-	}
 
-		body.is-loading *, body.is-loading *:before, body.is-loading *:after {
-			-moz-animation: none !important;
-			-webkit-animation: none !important;
-			-ms-animation: none !important;
-			animation: none !important;
-			-moz-transition: none !important;
-			-webkit-transition: none !important;
-			-ms-transition: none !important;
-			transition: none !important;
-		}
-
-	body, input, select, textarea {
-		color: #fff;
-		font-size: 15pt;
-		font-weight: 400;
-		letter-spacing: 0.075em;
-		line-height: 1.65em;
-	}
-
-		@media screen and (max-width: 1680px) {
-
-			body, input, select, textarea {
-				font-size: 13pt;
-			}
-
-		}
-
-		@media screen and (max-width: 1280px) {
-
-			body, input, select, textarea {
-				font-size: 12pt;
-			}
-
-		}
-
-		@media screen and (max-width: 736px) {
-
-			body, input, select, textarea {
-				font-size: 11pt;
-				letter-spacing: 0.0375em;
-				height: 100%;
-			}
-
-		}
 
 	a {
 		-moz-transition: color 0.2s ease, border-bottom-color 0.2s ease;
@@ -2728,16 +2616,7 @@
 
 		}
 
-	body.is-menu-visible #transparent-background-camera {
-		opacity: 0.3;
-	}
 
-	body.is-menu-visible #menu {
-		-moz-transform: translateX(0);
-		-webkit-transform: translateX(0);
-		-ms-transform: translateX(0);
-		transform: translateX(0);
-	}
 
 /* Header */
 
@@ -2895,29 +2774,6 @@
 
 		}
 
-	body.is-loading #banner h2 {
-		-moz-transform: scale(0.95);
-		-webkit-transform: scale(0.95);
-		-ms-transform: scale(0.95);
-		transform: scale(0.95);
-		opacity: 0;
-	}
-
-		body.is-loading #banner h2:before, body.is-loading #banner h2:after {
-			width: 0;
-		}
-
-	body.is-loading #banner .more {
-		-moz-transform: translateY(8.5em);
-		-webkit-transform: translateY(8.5em);
-		-ms-transform: translateY(8.5em);
-		transform: translateY(8.5em);
-		opacity: 0;
-	}
-
-	body.is-loading #banner:after {
-		opacity: 1;
-	}
 
 /* CTA */
 
@@ -3043,9 +2899,7 @@
 
 		}
 
-	body.is-mobile #main > statusbar {
-		background-attachment: scroll;
-	}
+
 
 /* Footer */
 

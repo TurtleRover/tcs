@@ -52,9 +52,7 @@
     <div id="wrapper" class="wrapper">
         <!-- partial:partials/_statusbar.html -->
         <section id="statusbar" class="statusbar">
-            <div id="turtle-logo-div">
-                <img id="turtle-logo-img" src="client/img/hud/turtle-logo.png">
-            </div>
+            <img class="statusbar_logo" src="client/img/ui/turtle-logo.svg">
 
             <div id="battery-level-indicator-div">
                 <img id="battery-level-indicator-img" src="client/img/ui/nav-bar-battery.svg">
@@ -78,119 +76,119 @@
                 </div>
             </div>
 
-            <nav id="nav">
+            <!-- <nav id="nav">
 
-                <ul>
+        <ul>
 
-                    <li class="special">
-                        <a href="#menu" class="menuToggle">
+            <li class="special">
+                <a href="#menu" class="menuToggle">
                     <span></span>
                 </a>
-                        <div id="menu">
-                            <ul>
-                                <li>
-                                    <button class="accordion">Maximum Speed</button>
-                                    <div class="panel">
-                                        <div id="setting-menu-grid">
-                                            <div id="setting-menu-grid-element-left">
-                                                <p>Left Front
-                                                    <p>
-                                            </div>
-                                            <div id="setting-menu-grid-element-right">
-                                                <input id="left-front-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
-                                            </div>
-                                            <div id="clear"></div>
-                                        </div>
-
-                                        <div id="setting-menu-grid">
-                                            <div id="setting-menu-grid-element-left">
-                                                <p>Right Front</p>
-                                            </div>
-                                            <div id="setting-menu-grid-element-right">
-                                                <input id="right-front-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
-                                            </div>
-                                            <div id="clear"></div>
-                                        </div>
-
-                                        <div id="setting-menu-grid">
-                                            <div id="setting-menu-grid-element-left">
-                                                <p>Left Rear</p>
-                                            </div>
-                                            <div id="setting-menu-grid-element-right">
-                                                <input id="left-rear-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
-                                            </div>
-                                            <div id="clear"></div>
-                                        </div>
-
-                                        <div id="setting-menu-grid">
-                                            <div id="setting-menu-grid-element-left">
-                                                <p>Right Rear</p>
-                                            </div>
-                                            <div id="setting-menu-grid-element-right">
-                                                <input id="right-rear-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
-                                            </div>
-                                            <div id="clear"></div>
-                                        </div>
+                <div id="menu">
+                    <ul>
+                        <li>
+                            <button class="accordion">Maximum Speed</button>
+                            <div class="panel">
+                                <div id="setting-menu-grid">
+                                    <div id="setting-menu-grid-element-left">
+                                        <p>Left Front
+                                            <p>
                                     </div>
-                                </li>
-
-                                <li>
-                                    <button class="accordion">Manipulator</button>
-                                    <div class="panel">
-                                        <div id="setting-menu-grid">
-                                            <div id="setting-menu-grid-element-left">
-                                                <p>Axis 1
-                                                    <p>
-                                            </div>
-                                            <div id="setting-menu-grid-element-right">
-                                                <input id="mani-axis-1" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
-                                            </div>
-                                            <div id="clear"></div>
-                                        </div>
-                                        <div id="setting-menu-grid">
-                                            <div id="setting-menu-grid-element-left">
-                                                <p>Axis 2
-                                                    <p>
-                                            </div>
-                                            <div id="setting-menu-grid-element-right">
-                                                <input id="mani-axis-2" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
-                                            </div>
-                                            <div id="clear"></div>
-                                        </div>
-                                        <div id="setting-menu-grid">
-                                            <div id="setting-menu-grid-element-left">
-                                                <p>Gripper
-                                                    <p>
-                                            </div>
-                                            <div id="setting-menu-grid-element-right">
-                                                <input id="mani-gripper" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
-                                            </div>
-                                            <div id="clear"></div>
-                                        </div>
-                                        <div id="setting-menu-grid">
-                                            <div id="setting-menu-grid-element-left">
-                                                <p>X
-                                                    <p>
-                                            </div>
-                                            <div id="setting-menu-grid-element-right">
-                                                <input id="mani-x" type="number" max="249" min="0" width="2" step="1" value="0" style="background-color: gray">
-                                            </div>
-                                            <div id="clear"></div>
-                                        </div>
-                                        <div id="setting-menu-grid">
-                                            <div id="setting-menu-grid-element-left">
-                                                <p>Y
-                                                    <p>
-                                            </div>
-                                            <div id="setting-menu-grid-element-right">
-                                                <input id="mani-y" type="number" max="249" min="0" width="2" step="1" value="180" style="background-color: gray">
-                                            </div>
-                                            <div id="clear"></div>
-                                        </div>
+                                    <div id="setting-menu-grid-element-right">
+                                        <input id="left-front-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
                                     </div>
-                                </li>
+                                    <div id="clear"></div>
+                                </div>
 
-                                <!--
+                                <div id="setting-menu-grid">
+                                    <div id="setting-menu-grid-element-left">
+                                        <p>Right Front</p>
+                                    </div>
+                                    <div id="setting-menu-grid-element-right">
+                                        <input id="right-front-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
+                                    </div>
+                                    <div id="clear"></div>
+                                </div>
+
+                                <div id="setting-menu-grid">
+                                    <div id="setting-menu-grid-element-left">
+                                        <p>Left Rear</p>
+                                    </div>
+                                    <div id="setting-menu-grid-element-right">
+                                        <input id="left-rear-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
+                                    </div>
+                                    <div id="clear"></div>
+                                </div>
+
+                                <div id="setting-menu-grid">
+                                    <div id="setting-menu-grid-element-left">
+                                        <p>Right Rear</p>
+                                    </div>
+                                    <div id="setting-menu-grid-element-right">
+                                        <input id="right-rear-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
+                                    </div>
+                                    <div id="clear"></div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <button class="accordion">Manipulator</button>
+                            <div class="panel">
+                                <div id="setting-menu-grid">
+                                    <div id="setting-menu-grid-element-left">
+                                        <p>Axis 1
+                                            <p>
+                                    </div>
+                                    <div id="setting-menu-grid-element-right">
+                                        <input id="mani-axis-1" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
+                                    </div>
+                                    <div id="clear"></div>
+                                </div>
+                                <div id="setting-menu-grid">
+                                    <div id="setting-menu-grid-element-left">
+                                        <p>Axis 2
+                                            <p>
+                                    </div>
+                                    <div id="setting-menu-grid-element-right">
+                                        <input id="mani-axis-2" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
+                                    </div>
+                                    <div id="clear"></div>
+                                </div>
+                                <div id="setting-menu-grid">
+                                    <div id="setting-menu-grid-element-left">
+                                        <p>Gripper
+                                            <p>
+                                    </div>
+                                    <div id="setting-menu-grid-element-right">
+                                        <input id="mani-gripper" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
+                                    </div>
+                                    <div id="clear"></div>
+                                </div>
+                                <div id="setting-menu-grid">
+                                    <div id="setting-menu-grid-element-left">
+                                        <p>X
+                                            <p>
+                                    </div>
+                                    <div id="setting-menu-grid-element-right">
+                                        <input id="mani-x" type="number" max="249" min="0" width="2" step="1" value="0" style="background-color: gray">
+                                    </div>
+                                    <div id="clear"></div>
+                                </div>
+                                <div id="setting-menu-grid">
+                                    <div id="setting-menu-grid-element-left">
+                                        <p>Y
+                                            <p>
+                                    </div>
+                                    <div id="setting-menu-grid-element-right">
+                                        <input id="mani-y" type="number" max="249" min="0" width="2" step="1" value="180" style="background-color: gray">
+                                    </div>
+                                    <div id="clear"></div>
+                                </div>
+                            </div>
+                        </li>
+
+
                             <li>
                                 <button class="accordion">camera settings</button>
                                 <div class="panel">
@@ -231,34 +229,34 @@
                                     </div>
                                 </div>
                             </li>
-                            -->
 
-                                <li>
-                                    <button class="accordion">Language</button>
-                                    <div class="panel">
-                                        <form>
-                                            <div class="form-group">
-                                                <div class="flagstrap" id="languageSelector" data-input-name="country" data-selected-country="US">
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </li>
 
-                                <li>
-                                    <button class="accordion">Advanced Interface</button>
-                                    <div class="panel">
-                                        <div class="tg-list-description">
-                                            <p id="settings.advanced-interface" class="localised">Advanced Interface</p>
-                                        </div>
-                                        <div class="tg-list-button">
-                                            <input id="advanced-interface-button" type="checkbox" class="tgl tgl-flat" />
-                                            <label for="advanced-interface-button" class="tgl-btn"></label>
+                        <li>
+                            <button class="accordion">Language</button>
+                            <div class="panel">
+                                <form>
+                                    <div class="form-group">
+                                        <div class="flagstrap" id="languageSelector" data-input-name="country" data-selected-country="US">
                                         </div>
                                     </div>
-                                </li>
+                                </form>
+                            </div>
+                        </li>
 
-                                <!-- <li>
+                        <li>
+                            <button class="accordion">Advanced Interface</button>
+                            <div class="panel">
+                                <div class="tg-list-description">
+                                    <p id="settings.advanced-interface" class="localised">Advanced Interface</p>
+                                </div>
+                                <div class="tg-list-button">
+                                    <input id="advanced-interface-button" type="checkbox" class="tgl tgl-flat" />
+                                    <label for="advanced-interface-button" class="tgl-btn"></label>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
                                 <button class="accordion">Photography</button>
                                 <div class="panel">
                                     <div class="tg-list-description"><p id="settings.photography" class="localised">Photography</p></div>
@@ -267,26 +265,26 @@
                                             <label for="photography-button" class="tgl-btn"></label>
                                         </div>
                                 </div>
-                            </li> -->
+                            </li>
 
-                                <li>
-                                    <button class="accordion">Console</button>
-                                    <div class="panel">
-                                        <button id="open-console-button">open console</button>
-                                    </div>
-                                </li>
+                        <li>
+                            <button class="accordion">Console</button>
+                            <div class="panel">
+                                <button id="open-console-button">open console</button>
+                            </div>
+                        </li>
 
-                                <li>
-                                    <button class="accordion">About</button>
-                                    <div class="panel">
-                                        <p>something about us</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
+                        <li>
+                            <button class="accordion">About</button>
+                            <div class="panel">
+                                <p>something about us</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </nav> -->
         </section>
 
         <!-- partial -->
@@ -399,6 +397,20 @@
 
         <!-- partial -->
 
+        <!-- partial:partials/_menu.html -->
+        <div class="nav-toggle">
+            <div class="nav-toggle-bar"></div>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- partial -->
+
 
 
     </div>
@@ -413,6 +425,7 @@
     <!-- include all JavaScript files -->
 
     <script src="client/js/ui/bootscreen.js"></script>
+    <script src="client/js/ui/menu.js"></script>
 
     <!-- theme related -->
     <script src='client/themes/html5up-spectral/assets/js/jquery.min.js'></script>

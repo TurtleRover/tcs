@@ -764,24 +764,6 @@ body {
   width: auto;
 }
 
-#turtle-logo-div {
-  position: absolute;
-  left: 2%;
-  top: 10%;
-  height: 100%;
-  width: 20%;
-  z-index: 10;
-  opacity: 1;
-}
-
-#turtle-logo-img {
-  margin-top: 3%;
-  max-height: 50%;
-  top: 0;
-  left: 0;
-  width: auto;
-}
-
 #main-statusbar-buttons-div {
   position: absolute;
   left: 42%;
@@ -3542,89 +3524,143 @@ a.ui-button:active,
 }
 
 .statusbar {
-  transition: background-color 0.2s ease;
-  opacity: 1;
-  height: 6%;
-  left: 0;
-  line-height: 3em;
+  height: 34px;
   position: fixed;
   top: 0;
   width: 100%;
   background-color: #000000;
   z-index: 2;
+  padding: 12px 0;
 }
 
-.statusbar nav {
-  height: 100%;
-  line-height: inherit;
+@media (min-width: 481px) and (max-width: 767px) {
+  .statusbar {
+    height: 34px;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+  .statusbar {
+    height: 68px;
+  }
+}
+
+.statusbar_logo {
   position: absolute;
-  right: 0;
-  top: 20%;
+  left: 10px;
+  width: auto;
 }
 
-.statusbar nav > ul {
+@media (min-width: 481px) and (max-width: 767px) {
+  .statusbar_logo {
+    top: 8px;
+    bottom: 8px;
+    height: 18px;
+  }
+}
+
+/* colors */
+/* variables */
+/* mixins */
+a {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/* nav toggle */
+.nav-toggle {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+      user-select: none;
+  cursor: pointer;
+  height: 2rem;
+  right: 2rem;
+  position: fixed;
+  top: 2rem;
+  width: 3.6rem;
+  z-index: 2;
+}
+
+.nav-toggle:hover {
+  opacity: 0.8;
+}
+
+.nav-toggle .nav-toggle-bar,
+.nav-toggle .nav-toggle-bar::after,
+.nav-toggle .nav-toggle-bar::before {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.5s ease;
+  background: white;
+  content: '';
+  height: 0.4rem;
+  width: 100%;
+}
+
+.nav-toggle .nav-toggle-bar {
+  margin-top: 0;
+}
+
+.nav-toggle .nav-toggle-bar::after {
+  margin-top: 0.8rem;
+}
+
+.nav-toggle .nav-toggle-bar::before {
+  margin-top: -0.8rem;
+}
+
+.nav-toggle.expanded .nav-toggle-bar {
+  background: transparent;
+}
+
+.nav-toggle.expanded .nav-toggle-bar::after,
+.nav-toggle.expanded .nav-toggle-bar::before {
+  background: white;
+  margin-top: 0;
+}
+
+.nav-toggle.expanded .nav-toggle-bar::after {
+  transform: rotate(45deg);
+}
+
+.nav-toggle.expanded .nav-toggle-bar::before {
+  transform: rotate(-45deg);
+}
+
+/* nav */
+.nav {
+  transition: left 0.5s ease;
+  background: #28dde0;
+  color: white;
+  cursor: pointer;
+  font-size: 2rem;
+  height: 100vh;
+  left: -20rem;
+  padding: 6rem 2rem 2rem 2rem;
+  position: fixed;
+  top: 0;
+  width: 20rem;
+  z-index: 1;
+}
+
+.nav.expanded {
+  left: 0;
+}
+
+.nav ul {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   list-style: none;
   margin: 0;
   padding: 0;
-  white-space: nowrap;
-}
-
-.statusbar nav > ul > li {
-  display: inline-block;
-  padding: 0;
-}
-
-.statusbar nav > ul > li > a {
-  border: 0;
-  color: #fff;
-  display: block;
-  font-size: 0.8em;
-  letter-spacing: 0.225em;
-  padding: 0 1.5em;
-  text-transform: uppercase;
-}
-
-.statusbar nav > ul > li > a.menuToggle {
-  outline: 0;
-  position: relative;
-}
-
-.statusbar nav > ul > li > a.menuToggle:after {
-  background-image: url("../img/ui/nav-bar-menu.svg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: auto 2vw;
-  content: '';
-  display: inline-block;
-  height: 2vw;
-  vertical-align: top;
-  width: 3vw;
-  opacity: 1;
-}
-
-body.is-menu-visible nav > ul > li {
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s 0.5s, opacity 0.5s linear;
-}
-
-@media screen and (max-width: 736px) {
-  #statusbar nav > ul > li > a.menuToggle {
-    padding: 0 1.5em;
-  }
-  #statusbar nav > ul > li > a.menuToggle span {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 736px) {
-  #statusbar nav > ul > li > a {
-    padding: 0 0 0 1.5em;
-  }
-}
-
-#statusbar nav > ul > li:first-child {
-  margin-left: 0;
 }
 
 .footer {
