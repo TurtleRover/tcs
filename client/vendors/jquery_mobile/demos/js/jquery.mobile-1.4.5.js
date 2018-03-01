@@ -346,12 +346,12 @@ $.ui.plugin = {
 				return !( widgetOptions.position === "fixed" &&
 					widgetOptions.updatePagePadding === true );
 			},
-			externalHeaders = pageParent.children( ":jqmData(role='header')" ).filter( noPadders ),
-			internalHeaders = page.children( ":jqmData(role='header')" ),
+			externalHeaders = pageParent.children( ":jqmData(role='statusbar')" ).filter( noPadders ),
+			internalHeaders = page.children( ":jqmData(role='statusbar')" ),
 			externalFooters = pageParent.children( ":jqmData(role='footer')" ).filter( noPadders ),
 			internalFooters = page.children( ":jqmData(role='footer')" );
 
-		// If we have no internal headers, but we do have external headers, then their height
+		// If we have no internal statusbars, but we do have external statusbars, then their height
 		// reduces the page height
 		if ( internalHeaders.length === 0 && externalHeaders.length > 0 ) {
 			toolbarsAffectingHeight = toolbarsAffectingHeight.concat( externalHeaders.toArray() );
@@ -5632,7 +5632,7 @@ $.widget( "mobile.page", {
 			// If this is a deep-link or a reload ( active === undefined ) then just
 			// use pageTitle
 			newPageTitle = ( !active ) ? pageTitle : toPage.jqmData( "title" ) ||
-				toPage.children( ":jqmData(role='header')" ).find( ".ui-title" ).text();
+				toPage.children( ":jqmData(role='statusbar')" ).find( ".ui-title" ).text();
 			if ( !!newPageTitle && pageTitle === document.title ) {
 				pageTitle = newPageTitle;
 			}
@@ -6567,7 +6567,7 @@ $.widget( "mobile.page", $.mobile.page, {
 
 			$.extend( this, {
 				_inner: this.element.children(),
-				_headerCloseButton: null
+				_statusbarCloseButton: null
 			});
 
 			if ( !this.options.enhanced ) {
@@ -6634,7 +6634,7 @@ $.widget( "mobile.page", $.mobile.page, {
 
 	_setCloseBtn: function( location, text ) {
 		var dst,
-			btn = this._headerCloseButton;
+			btn = this._statusbarCloseButton;
 
 		// Sanitize value
 		location = "left" === location ? "left" : "right" === location ? "right" : "none";
@@ -6650,7 +6650,7 @@ $.widget( "mobile.page", $.mobile.page, {
 				btn.text( text );
 			}
 		} else {
-			dst = this._inner.find( ":jqmData(role='header')" ).first();
+			dst = this._inner.find( ":jqmData(role='statusbar')" ).first();
 			btn = $( "<a></a>", {
 					"href": "#",
 					"class": "ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-" + location
@@ -6660,7 +6660,7 @@ $.widget( "mobile.page", $.mobile.page, {
 				.prependTo( dst );
 		}
 
-		this._headerCloseButton = btn;
+		this._statusbarCloseButton = btn;
 	}
 });
 
@@ -6728,7 +6728,7 @@ $.widget( "mobile.dialog", {
 		$.extend( this, {
 			_isCloseable: false,
 			_inner: elem.children(),
-			_headerCloseButton: null
+			_statusbarCloseButton: null
 		});
 
 		this._on( elem, {
@@ -6774,7 +6774,7 @@ $.widget( "mobile.dialog", {
 
 	_setCloseBtn: function( location, text ) {
 		var dst,
-			btn = this._headerCloseButton;
+			btn = this._statusbarCloseButton;
 
 		// Sanitize value
 		location = "left" === location ? "left" : "right" === location ? "right" : "none";
@@ -6790,7 +6790,7 @@ $.widget( "mobile.dialog", {
 				btn.text( text );
 			}
 		} else {
-			dst = this._inner.find( ":jqmData(role='header')" ).first();
+			dst = this._inner.find( ":jqmData(role='statusbar')" ).first();
 			btn = $( "<a></a>", {
 					"role": "button",
 					"href": "#",
@@ -6801,7 +6801,7 @@ $.widget( "mobile.dialog", {
 			this._on( btn, { click: "close" } );
 		}
 
-		this._headerCloseButton = btn;
+		this._statusbarCloseButton = btn;
 	},
 
 	// Close method goes back in history
@@ -11400,8 +11400,8 @@ $.widget( "mobile.selectmenu", $.mobile.selectmenu, {
 	build: function() {
 		var selectId, popupId, dialogId, label, thisPage, isMultiple, menuId,
 			themeAttr, overlayTheme, overlayThemeAttr, dividerThemeAttr,
-			menuPage, listbox, list, header, headerTitle, menuPageContent,
-			menuPageClose, headerClose,
+			menuPage, listbox, list, statusbar, statusbarTitle, menuPageContent,
+			menuPageClose, statusbarClose,
 			o = this.options;
 
 		if ( o.nativeMenu ) {
@@ -11421,7 +11421,7 @@ $.widget( "mobile.selectmenu", $.mobile.selectmenu, {
 			"overlay-theme='" + overlayTheme + "'" ) : "";
 		dividerThemeAttr = ( o.dividerTheme && isMultiple ) ? ( " data-" + $.mobile.ns + "divider-theme='" + o.dividerTheme + "'" ) : "";
 		menuPage = $( "<div data-" + $.mobile.ns + "role='dialog' class='ui-selectmenu' id='" + dialogId + "'" + themeAttr + overlayThemeAttr + ">" +
-			"<div data-" + $.mobile.ns + "role='header'>" +
+			"<div data-" + $.mobile.ns + "role='statusbar'>" +
 			"<div class='ui-title'></div>"+
 			"</div>"+
 			"<div data-" + $.mobile.ns + "role='content'></div>"+
@@ -11431,16 +11431,16 @@ $.widget( "mobile.selectmenu", $.mobile.selectmenu, {
 			.insertAfter( this.select )
 			.popup();
 		list = $( "<ul class='ui-selectmenu-list' id='" + menuId + "' role='listbox' aria-labelledby='" + this.buttonId + "'" + themeAttr + dividerThemeAttr + "></ul>" ).appendTo( listbox );
-		header = $( "<div class='ui-header ui-bar-" + ( o.theme ? o.theme : "inherit" ) + "'></div>" ).prependTo( listbox );
-		headerTitle = $( "<h1 class='ui-title'></h1>" ).appendTo( header );
+		statusbar = $( "<div class='ui-statusbar ui-bar-" + ( o.theme ? o.theme : "inherit" ) + "'></div>" ).prependTo( listbox );
+		statusbarTitle = $( "<h1 class='ui-title'></h1>" ).appendTo( statusbar );
 
 		if ( this.isMultiple ) {
-			headerClose = $( "<a>", {
+			statusbarClose = $( "<a>", {
 				"role": "button",
 				"text": o.closeText,
 				"href": "#",
 				"class": "ui-btn ui-corner-all ui-btn-left ui-btn-icon-notext ui-icon-delete"
-			}).appendTo( header );
+			}).appendTo( statusbar );
 		}
 
 		$.extend( this, {
@@ -11455,9 +11455,9 @@ $.widget( "mobile.selectmenu", $.mobile.selectmenu, {
 			theme: o.theme,
 			listbox: listbox,
 			list: list,
-			header: header,
-			headerTitle: headerTitle,
-			headerClose: headerClose,
+			statusbar: statusbar,
+			statusbarTitle: statusbarTitle,
+			statusbarClose: statusbarClose,
 			menuPageContent: menuPageContent,
 			menuPageClose: menuPageClose,
 			placeholder: ""
@@ -11500,7 +11500,7 @@ $.widget( "mobile.selectmenu", $.mobile.selectmenu, {
 
 		// Close button on small overlays
 		if ( this.isMultiple ) {
-			this._on( this.headerClose, { click: "_handleHeaderCloseClick" } );
+			this._on( this.statusbarClose, { click: "_handleHeaderCloseClick" } );
 		}
 
 		return this;
@@ -11619,7 +11619,7 @@ $.widget( "mobile.selectmenu", $.mobile.selectmenu, {
 
 			self.menuPage.appendTo( $.mobile.pageContainer ).page();
 			self.menuPageContent = self.menuPage.find( ".ui-content" );
-			self.menuPageClose = self.menuPage.find( ".ui-header a" );
+			self.menuPageClose = self.menuPage.find( ".ui-statusbar a" );
 
 			// prevent the parent page from being removed from the DOM,
 			// otherwise the results of selecting a list item in the dialog
@@ -11752,11 +11752,11 @@ $.widget( "mobile.selectmenu", $.mobile.selectmenu, {
 
 		self.list[0].appendChild( fragment );
 
-		// Hide header if it's not a multiselect and there's no placeholder
+		// Hide statusbar if it's not a multiselect and there's no placeholder
 		if ( !this.isMultiple && !placeholder.length ) {
-			this.header.addClass( "ui-screen-hidden" );
+			this.statusbar.addClass( "ui-screen-hidden" );
 		} else {
-			this.headerTitle.text( this.placeholder );
+			this.statusbarTitle.text( this.placeholder );
 		}
 
 		// Now populated, create listview
@@ -12247,7 +12247,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 (function( $, undefined ) {
 
 	$.widget( "mobile.toolbar", {
-		initSelector: ":jqmData(role='footer'), :jqmData(role='header')",
+		initSelector: ":jqmData(role='footer'), :jqmData(role='statusbar')",
 
 		options: {
 			theme: null,
@@ -12258,7 +12258,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 
 		_create: function() {
 			var leftbtn, rightbtn,
-				role =  this.element.is( ":jqmData(role='header')" ) ? "header" : "footer",
+				role =  this.element.is( ":jqmData(role='statusbar')" ) ? "statusbar" : "footer",
 				page = this.element.closest( ".ui-page" );
 			if ( page.length === 0 ) {
 				page = false;
@@ -12272,7 +12272,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 				leftbtn: leftbtn,
 				rightbtn: rightbtn
 			});
-			this.element.attr( "role", role === "header" ? "banner" : "contentinfo" ).addClass( "ui-" + role );
+			this.element.attr( "role", role === "statusbar" ? "banner" : "contentinfo" ).addClass( "ui-" + role );
 			this.refresh();
 			this._setOptions( this.options );
 		},
@@ -12298,14 +12298,14 @@ $.widget( "mobile.controlgroup", $.extend( {
 			this._super( o );
 		},
 		refresh: function() {
-			if ( this.role === "header" ) {
+			if ( this.role === "statusbar" ) {
 				this._addHeaderButtonClasses();
 			}
 			if ( !this.page ) {
 				this._setRelative();
 				if ( this.role === "footer" ) {
 					this.element.appendTo( "body" );
-				} else if ( this.role === "header" ) {
+				} else if ( this.role === "statusbar" ) {
 					this._updateBackButton();
 				}
 			}
@@ -12328,22 +12328,22 @@ $.widget( "mobile.controlgroup", $.extend( {
 		},
 		// Deprecated in 1.4. As from 1.5 ui-btn-left/right classes have to be present in the markup.
 		_addHeaderButtonClasses: function() {
-			var headerAnchors = this.element.children( "a, button" );
+			var statusbarAnchors = this.element.children( "a, button" );
 
 			// Do not mistake a back button for a left toolbar button
-			this.leftbtn = headerAnchors.hasClass( "ui-btn-left" ) &&
-				!headerAnchors.hasClass( "ui-toolbar-back-btn" );
+			this.leftbtn = statusbarAnchors.hasClass( "ui-btn-left" ) &&
+				!statusbarAnchors.hasClass( "ui-toolbar-back-btn" );
 
-			this.rightbtn = headerAnchors.hasClass( "ui-btn-right" );
+			this.rightbtn = statusbarAnchors.hasClass( "ui-btn-right" );
 
 			// Filter out right buttons and back buttons
 			this.leftbtn = this.leftbtn ||
-				headerAnchors.eq( 0 )
+				statusbarAnchors.eq( 0 )
 					.not( ".ui-btn-right,.ui-toolbar-back-btn" )
 					.addClass( "ui-btn-left" )
 					.length;
 
-			this.rightbtn = this.rightbtn || headerAnchors.eq( 1 ).addClass( "ui-btn-right" ).length;
+			this.rightbtn = this.rightbtn || statusbarAnchors.eq( 1 ).addClass( "ui-btn-right" ).length;
 		},
 		_updateBackButton: function() {
 			var backButton,
@@ -12356,8 +12356,8 @@ $.widget( "mobile.controlgroup", $.extend( {
 			// We add a back button only if the option to do so is on
 			if ( this.options.addBackBtn &&
 
-					// This must also be a header toolbar
-					this.role === "header" &&
+					// This must also be a statusbar toolbar
+					this.role === "statusbar" &&
 
 					// There must be multiple pages in the DOM
 					$( ".ui-page" ).length > 1 &&
@@ -12411,7 +12411,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 				.removeAttr( "role" )
 				.removeAttr( "aria-level" );
 
-			if ( this.role === "header" ) {
+			if ( this.role === "statusbar" ) {
 				this.element.children( "a, button" )
 					.removeClass( "ui-btn-left ui-btn-right ui-btn ui-shadow ui-corner-all" );
 				if ( this.backButton) {
@@ -12438,7 +12438,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 			transition: "slide", //can be none, fade, slide (slide maps to slideup or slidedown)
 			fullscreen: false,
 			tapToggle: true,
-			tapToggleBlacklist: "a, button, input, select, textarea, .ui-header-fixed, .ui-footer-fixed, .ui-flipswitch, .ui-popup, .ui-panel, .ui-panel-dismiss-open",
+			tapToggleBlacklist: "a, button, input, select, textarea, .ui-statusbar-fixed, .ui-footer-fixed, .ui-flipswitch, .ui-popup, .ui-panel, .ui-panel-dismiss-open",
 			hideDuringFocus: "input, textarea, select",
 			updatePagePadding: true,
 			trackPersistentToolbars: true,
@@ -12496,9 +12496,9 @@ $.widget( "mobile.controlgroup", $.extend( {
 			var tclass = this.options.transition;
 
 			if ( tclass && tclass !== "none" ) {
-				// use appropriate slide for header or footer
+				// use appropriate slide for statusbar or footer
 				if ( tclass === "slide" ) {
-					tclass = this.element.hasClass( "ui-header" ) ? "slidedown" : "slideup";
+					tclass = this.element.hasClass( "ui-statusbar" ) ? "slidedown" : "slideup";
 				}
 
 				this.element.addClass( tclass );
@@ -12556,9 +12556,9 @@ $.widget( "mobile.controlgroup", $.extend( {
 
 			if ( o.trackPersistentToolbars ) {
 				thisFooter = $( ".ui-footer-fixed:jqmData(id)", this.page );
-				thisHeader = $( ".ui-header-fixed:jqmData(id)", this.page );
+				thisHeader = $( ".ui-statusbar-fixed:jqmData(id)", this.page );
 				nextFooter = thisFooter.length && ui.nextPage && $( ".ui-footer-fixed:jqmData(id='" + thisFooter.jqmData( "id" ) + "')", ui.nextPage ) || $();
-				nextHeader = thisHeader.length && ui.nextPage && $( ".ui-header-fixed:jqmData(id='" + thisHeader.jqmData( "id" ) + "')", ui.nextPage ) || $();
+				nextHeader = thisHeader.length && ui.nextPage && $( ".ui-statusbar-fixed:jqmData(id='" + thisHeader.jqmData( "id" ) + "')", ui.nextPage ) || $();
 
 				if ( nextFooter.length || nextHeader.length ) {
 
@@ -12577,15 +12577,15 @@ $.widget( "mobile.controlgroup", $.extend( {
 		// This will set the content element's top or bottom padding equal to the toolbar's height
 		updatePagePadding: function( tbPage ) {
 			var $el = this.element,
-				header = ( this.role ==="header" ),
-				pos = parseFloat( $el.css( header ? "top" : "bottom" ) );
+				statusbar = ( this.role ==="statusbar" ),
+				pos = parseFloat( $el.css( statusbar ? "top" : "bottom" ) );
 
 			// This behavior only applies to "fixed", not "fullscreen"
 			if ( this.options.fullscreen ) { return; }
 			// tbPage argument can be a Page object or an event, if coming from throttled resize.
 			tbPage = ( tbPage && tbPage.type === undefined && tbPage ) || this.page || $el.closest( ".ui-page" );
 			tbPage = ( !!this.page )? this.page: ".ui-page-active";
-			$( tbPage ).css( "padding-" + ( header ? "top" : "bottom" ), $el.outerHeight() + pos );
+			$( tbPage ).css( "padding-" + ( statusbar ? "top" : "bottom" ), $el.outerHeight() + pos );
 		},
 
 		_useTransition: function( notransition ) {
@@ -12599,7 +12599,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 			return !notransition &&
 				( this.options.transition && this.options.transition !== "none" &&
 				(
-					( this.role === "header" && !this.options.fullscreen && scroll > elHeight ) ||
+					( this.role === "statusbar" && !this.options.fullscreen && scroll > elHeight ) ||
 					( this.role === "footer" && !this.options.fullscreen && scroll + viewportHeight < pHeight - elHeight )
 				) || this.options.fullscreen
 				);
@@ -12667,7 +12667,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 					//bottom of the screen addresses issues #4410 Footer navbar moves up when clicking on a textbox in an Android environment
 					//and issue #4113 Header and footer change their position after keyboard popup - iOS
 					//and issue #4410 Footer navbar moves up when clicking on a textbox in an Android environment
-					if ( screen.width < 1025 && $( e.target ).is( o.hideDuringFocus ) && !$( e.target ).closest( ".ui-header-fixed, .ui-footer-fixed" ).length ) {
+					if ( screen.width < 1025 && $( e.target ).is( o.hideDuringFocus ) && !$( e.target ).closest( ".ui-statusbar-fixed, .ui-footer-fixed" ).length ) {
 						//Fix for issue #4724 Moving through form in Mobile Safari with "Next" and "Previous" system
 						//controls causes fixed position, tap-toggle false Header to reveal itself
 						// isVisible instead of self._visible because the focusin and focusout events fire twice at the same time
@@ -12699,7 +12699,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 		},
 
 		_destroy: function() {
-			var pageClasses, toolbarClasses, hasFixed, header, hasFullscreen,
+			var pageClasses, toolbarClasses, hasFixed, statusbar, hasFullscreen,
 				page = this.pagecontainer.pagecontainer( "getActivePage" );
 
 			this._super();
@@ -12710,16 +12710,16 @@ $.widget( "mobile.controlgroup", $.extend( {
 				hasFullscreen = $(  "body>.ui-" + this.role + "-fixed" )
 							.add( page.find( ".ui-" + this.options.role + "-fullscreen" ) )
 							.not( this.element ).length > 0;
-				toolbarClasses =  "ui-header-fixed ui-footer-fixed ui-header-fullscreen in out" +
+				toolbarClasses =  "ui-statusbar-fixed ui-footer-fixed ui-statusbar-fullscreen in out" +
 					" ui-footer-fullscreen fade slidedown slideup ui-fixed-hidden";
 				this.element.removeClass( toolbarClasses );
 				if ( !hasFullscreen ) {
 					pageClasses = "ui-page-" + this.role + "-fullscreen";
 				}
 				if ( !hasFixed ) {
-					header = this.role === "header";
+					statusbar = this.role === "statusbar";
 					pageClasses += " ui-page-" + this.role + "-fixed";
-					page.css( "padding-" + ( header ? "top" : "bottom" ), "" );
+					page.css( "padding-" + ( statusbar ? "top" : "bottom" ), "" );
 				}
 				page.removeClass( pageClasses );
 			}
@@ -12766,12 +12766,12 @@ $.widget( "mobile.controlgroup", $.extend( {
 			}
 		},
 
-		//Utility class for checking header and footer positions relative to viewport
+		//Utility class for checking statusbar and footer positions relative to viewport
 		_viewportOffset: function() {
 			var $el = this.element,
-				header = $el.hasClass( "ui-header" ),
+				statusbar = $el.hasClass( "ui-statusbar" ),
 				offset = Math.abs( $el.offset().top - this.window.scrollTop() );
-			if ( !header ) {
+			if ( !statusbar ) {
 				offset = Math.round( offset - this.window.height() + $el.outerHeight() ) - 60;
 			}
 			return offset;
@@ -12783,7 +12783,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 			//bind to scrollstop and check if the toolbars are correctly positioned
 			this._on( this.window, { scrollstop: function() {
 				var viewportOffset = self._viewportOffset();
-				//check if the header is visible and if its in the right place
+				//check if the statusbar is visible and if its in the right place
 				if ( viewportOffset > 2 && self._visible ) {
 					self._triggerRedraw();
 				}
@@ -12798,7 +12798,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 		_bindListThumbWorkaround: function() {
 			this.element.closest( ".ui-page" ).addClass( "ui-android-2x-fixed" );
 		},
-		//this addresses issues #4337 Fixed header problem after scrolling content on iOS and Android
+		//this addresses issues #4337 Fixed statusbar problem after scrolling content on iOS and Android
 		//and device bugs project issue #1 Form elements can lose click hit area in position: fixed containers.
 		//this also addresses not on fixed toolbars page in docs
 		//adding 1px of padding to the bottom then removing it causes a "redraw"
@@ -13153,7 +13153,7 @@ $.widget( "mobile.panel", {
 	_getWrapper: function() {
 		var wrapper = this._page().find( "." + this.options.classes.pageWrapper );
 		if ( wrapper.length === 0 ) {
-			wrapper = this._page().children( ".ui-header:not(.ui-header-fixed), .ui-content:not(.ui-popup), .ui-footer:not(.ui-footer-fixed)" )
+			wrapper = this._page().children( ".ui-statusbar:not(.ui-statusbar-fixed), .ui-content:not(.ui-popup), .ui-footer:not(.ui-footer-fixed)" )
 				.wrapAll( "<div class='" + this.options.classes.pageWrapper + "'></div>" )
 				.parent();
 		}
@@ -13162,8 +13162,8 @@ $.widget( "mobile.panel", {
 	},
 
 	_getFixedToolbars: function() {
-		var extFixedToolbars = $( "body" ).children( ".ui-header-fixed, .ui-footer-fixed" ),
-			intFixedToolbars = this._page().find( ".ui-header-fixed, .ui-footer-fixed" ),
+		var extFixedToolbars = $( "body" ).children( ".ui-statusbar-fixed, .ui-footer-fixed" ),
+			intFixedToolbars = this._page().find( ".ui-statusbar-fixed, .ui-footer-fixed" ),
 			fixedToolbars = extFixedToolbars.add( intFixedToolbars ).addClass( this.options.classes.pageFixedToolbar );
 
 		return fixedToolbars;
@@ -13565,11 +13565,11 @@ $.widget( "mobile.table", {
 		// extend here, assign on refresh > _setHeaders
 		$.extend( this, {
 
-			// Expose headers and allHeaders properties on the widget
-			// headers references the THs within the first TR in the table
-			headers: undefined,
+			// Expose statusbars and allHeaders properties on the widget
+			// statusbars references the THs within the first TR in the table
+			statusbars: undefined,
 
-			// allHeaders references headers, plus all THs in the thead, which may
+			// allHeaders references statusbars, plus all THs in the thead, which may
 			// include several rows, or not
 			allHeaders: undefined
 		});
@@ -13580,8 +13580,8 @@ $.widget( "mobile.table", {
 	_setHeaders: function() {
 		var trs = this.element.find( "thead tr" );
 
-		this.headers = this.element.find( "tr:eq(0)" ).children();
-		this.allHeaders = this.headers.add( trs.children() );
+		this.statusbars = this.element.find( "tr:eq(0)" ).children();
+		this.allHeaders = this.statusbars.add( trs.children() );
 	},
 
 	refresh: function() {
@@ -13594,7 +13594,7 @@ $.widget( "mobile.table", {
 		var table = this.element,
 			trs = table.find( "thead tr" );
 
-		// updating headers on refresh (fixes #5880)
+		// updating statusbars on refresh (fixes #5880)
 		this._setHeaders();
 
 		// Iterate over the trs
@@ -13616,7 +13616,7 @@ $.widget( "mobile.table", {
 					}
 				}
 
-				// Store "cells" data on header as a reference to all cells in the
+				// Store "cells" data on statusbar as a reference to all cells in the
 				// same column as this TH
 				$( this ).jqmData( "cells", table.find( "tr" ).not( trs.eq( 0 ) ).not( this ).children( selector ) );
 
@@ -13700,21 +13700,21 @@ $.widget( "mobile.table", $.mobile.table, {
 		}
 
 		// create the hide/show toggles
-		this.headers.not( "td" ).each( function() {
+		this.statusbars.not( "td" ).each( function() {
 			var input, cells,
-				header = $( this ),
+				statusbar = $( this ),
 				priority = $.mobile.getAttribute( this, "priority" );
 
 			if ( priority ) {
-				cells = header.add( header.jqmData( "cells" ) );
+				cells = statusbar.add( statusbar.jqmData( "cells" ) );
 				cells.addClass( opts.classes.priorityPrefix + priority );
 
-				// Make sure the (new?) checkbox is associated with its header via .jqmData() and
-				// that, vice versa, the header is also associated with the checkbox
+				// Make sure the (new?) checkbox is associated with its statusbar via .jqmData() and
+				// that, vice versa, the statusbar is also associated with the checkbox
 				input = ( keep ? inputs.eq( checkboxIndex++ ) :
 					$("<label><input type='checkbox' checked />" +
-						( header.children( "abbr" ).first().attr( "title" ) ||
-							header.text() ) +
+						( statusbar.children( "abbr" ).first().attr( "title" ) ||
+							statusbar.text() ) +
 						"</label>" )
 						.appendTo( container )
 						.children( 0 )
@@ -13722,12 +13722,12 @@ $.widget( "mobile.table", $.mobile.table, {
 							theme: opts.columnPopupTheme
 						}) )
 
-						// Associate the header with the checkbox
-						.jqmData( "header", header )
+						// Associate the statusbar with the checkbox
+						.jqmData( "statusbar", statusbar )
 						.jqmData( "cells", cells );
 
-				// Associate the checkbox with the header
-				header.jqmData( "input", input );
+				// Associate the checkbox with the statusbar
+				statusbar.jqmData( "input", input );
 			}
 		});
 
@@ -13793,29 +13793,29 @@ $.widget( "mobile.table", $.mobile.table, {
 	},
 
 	_refresh: function( create ) {
-		var headers, hiddenColumns, index;
+		var statusbars, hiddenColumns, index;
 
-		// Calling _super() here updates this.headers
+		// Calling _super() here updates this.statusbars
 		this._super( create );
 
 		if ( !create && this.options.mode === "columntoggle" ) {
-			headers = this.headers;
+			statusbars = this.statusbars;
 			hiddenColumns = [];
 
-			// Find the index of the column header associated with each old checkbox among the
-			// post-refresh headers and, if the header is still there, make sure the corresponding
+			// Find the index of the column statusbar associated with each old checkbox among the
+			// post-refresh statusbars and, if the statusbar is still there, make sure the corresponding
 			// column will be hidden if the pre-refresh checkbox indicates that the column is
 			// hidden by recording its index in the array of hidden columns.
 			this._menu.find( "input" ).each( function() {
 				var input = $( this ),
-					header = input.jqmData( "header" ),
-					index = headers.index( header[ 0 ] );
+					statusbar = input.jqmData( "statusbar" ),
+					index = statusbars.index( statusbar[ 0 ] );
 
 				if ( index > -1 && !input.prop( "checked" ) ) {
 
-					// The column header associated with /this/ checkbox is still present in the
+					// The column statusbar associated with /this/ checkbox is still present in the
 					// post-refresh table and the checkbox is not checked, so the column associated
-					// with this column header is currently hidden. Let's record that.
+					// with this column statusbar is currently hidden. Let's record that.
 					hiddenColumns.push( index );
 				}
 			});
@@ -13830,7 +13830,7 @@ $.widget( "mobile.table", $.mobile.table, {
 			// At this point all columns are visible, so uncheck the checkboxes that correspond to
 			// those columns we've found to be hidden
 			for ( index = hiddenColumns.length - 1 ; index > -1 ; index-- ) {
-				headers.eq( hiddenColumns[ index ] ).jqmData( "input" )
+				statusbars.eq( hiddenColumns[ index ] ).jqmData( "input" )
 					.prop( "checked", false )
 					.checkboxradio( "refresh" )
 					.trigger( "change" );
@@ -13899,7 +13899,7 @@ $.widget( "mobile.table", $.mobile.table, {
 		var table = this,
 			opts = this.options;
 
-		// get headers in reverse order so that top-level headers are appended last
+		// get statusbars in reverse order so that top-level statusbars are appended last
 		$( table.allHeaders.get().reverse() ).each( function() {
 			var cells = $( this ).jqmData( "cells" ),
 				colstart = $.mobile.getAttribute( this, "colstart" ),
@@ -14769,7 +14769,7 @@ $.widget( "ui.tabs", {
 		var that = this;
 
 		this.tablist = this._getList()
-			.addClass( "ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" )
+			.addClass( "ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-statusbar ui-corner-all" )
 			.attr( "role", "tablist" );
 
 		this.tabs = this.tablist.find( "> li:has(a[href])" )
@@ -14946,7 +14946,7 @@ $.widget( "ui.tabs", {
 				tab.hasClass( "ui-tabs-loading" ) ||
 				// can't switch durning an animation
 				this.running ||
-				// click on active header, but not collapsible
+				// click on active statusbar, but not collapsible
 				( clickedIsActive && !options.collapsible ) ||
 				// allow canceling activation
 				( this._trigger( "beforeActivate", event, eventData ) === false ) ) {
@@ -15042,7 +15042,7 @@ $.widget( "ui.tabs", {
 			return;
 		}
 
-		// trying to collapse, simulate a click on the current active header
+		// trying to collapse, simulate a click on the current active statusbar
 		if ( !active.length ) {
 			active = this.active;
 		}
@@ -15076,7 +15076,7 @@ $.widget( "ui.tabs", {
 		this.element.removeClass( "ui-tabs ui-widget ui-widget-content ui-corner-all ui-tabs-collapsible" );
 
 		this.tablist
-			.removeClass( "ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" )
+			.removeClass( "ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-statusbar ui-corner-all" )
 			.removeAttr( "role" );
 
 		this.anchors

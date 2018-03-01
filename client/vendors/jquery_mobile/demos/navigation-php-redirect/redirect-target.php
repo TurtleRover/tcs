@@ -16,7 +16,7 @@
 </head>
 <body>
 <div data-role="page">
-	<div data-role="header">
+	<div data-role="statusbar">
 		<h1>Redirect Target</h1>
 	</div>
 	<div role="main" class="ui-content">

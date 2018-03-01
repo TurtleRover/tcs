@@ -1,0 +1,87 @@
+.statusbar {
+    -moz-transition: background-color 0.2s ease;
+    -webkit-transition: background-color 0.2s ease;
+    -ms-transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease;
+    opacity: 1;
+    height: 6%;
+    left: 0;
+    line-height: 3em;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: $background-color;
+    z-index: 2;
+
+    nav {
+        height: 100%;
+        line-height: inherit;
+        position: absolute;
+        right: 0;
+        top: 20%;
+
+        & > ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            white-space: nowrap;
+
+            & > li {
+                display: inline-block;
+                padding: 0;
+
+                & > a {
+                    border: 0;
+                    color: #fff;
+                    display: block;
+                    font-size: 0.8em;
+                    letter-spacing: 0.225em;
+                    padding: 0 1.5em;
+                    text-transform: uppercase;
+
+                    &.menuToggle {
+                        outline: 0;
+                        position: relative;
+
+                        &:after {
+                            background-image: url("../img/ui/nav-bar-menu.svg");
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            background-size: auto 2vw;
+                            content: '';
+                            display: inline-block;
+                            height: 2vw;
+                            vertical-align: top;
+                            width: 3vw;
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+body.is-menu-visible nav > ul > li {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.5s, opacity 0.5s linear;
+}
+@media screen and (max-width: 736px) {
+    #statusbar nav > ul > li > a.menuToggle {
+        padding: 0 1.5em;
+    }
+
+    #statusbar nav > ul > li > a.menuToggle span {
+        display: none;
+    }
+}
+@media screen and (max-width: 736px) {
+    #statusbar nav > ul > li > a {
+        padding: 0 0 0 1.5em;
+    }
+}
+
+#statusbar nav > ul > li:first-child {
+    margin-left: 0;
+}

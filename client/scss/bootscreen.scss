@@ -10,14 +10,16 @@
     align-items: center;
     flex-wrap: nowrap;
     justify-content: center;
+    z-index: 10;
 
     &_logo {
         display: inline-flex;
         height: auto;
         width: 20em;
+
         &_svg {
             height: 100%;
-             width: 100%;
+            width: 100%;
         }
     }
 
@@ -27,5 +29,9 @@
             font-size: $log-font-size;
             line-height: $log-line-height;
         }
+    }
+
+    &-hide {
+        visibility: hidden;
     }
 }

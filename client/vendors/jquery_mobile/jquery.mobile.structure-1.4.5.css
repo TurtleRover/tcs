@@ -177,17 +177,17 @@ div.ui-mobile-viewport {
 	font-size: 1em;
 	display: inline-block;
 }
-.ui-header,
+.ui-statusbar,
 .ui-footer {
 	border-width: 1px 0;
 	border-style: solid;
 	position: relative;
 }
-.ui-header:empty,
+.ui-statusbar:empty,
 .ui-footer:empty {
 	min-height: 2.6875em;
 }
-.ui-header .ui-title,
+.ui-statusbar .ui-title,
 .ui-footer .ui-title {
 	font-size: 1em;
 	min-height: 1.1em;
@@ -210,7 +210,7 @@ div.ui-mobile-viewport {
 	padding: 1em;
 }
 /* Corner styling for dialogs and popups */
-.ui-corner-all > .ui-header:first-child,
+.ui-corner-all > .ui-statusbar:first-child,
 .ui-corner-all > .ui-content:first-child,
 .ui-corner-all > .ui-footer:first-child {
 	-webkit-border-top-left-radius: inherit;
@@ -218,7 +218,7 @@ div.ui-mobile-viewport {
 	-webkit-border-top-right-radius: inherit;
 	border-top-right-radius: inherit;
 }
-.ui-corner-all > .ui-header:last-child,
+.ui-corner-all > .ui-statusbar:last-child,
 .ui-corner-all > .ui-content:last-child,
 .ui-corner-all > .ui-footer:last-child {
 	-webkit-border-bottom-left-radius: inherit;
@@ -244,7 +244,7 @@ div.ui-mobile-viewport {
 	user-select: none;
 }
 .ui-btn-icon-notext,
-.ui-header button.ui-btn.ui-btn-icon-notext,
+.ui-statusbar button.ui-btn.ui-btn-icon-notext,
 .ui-footer button.ui-btn.ui-btn-icon-notext {
 	padding: 0;
 	width: 1.75em;
@@ -259,24 +259,24 @@ div.ui-mobile-viewport {
 	font-size: inherit;
 }
 /* Make buttons in toolbars default to mini and inline. */
-.ui-header .ui-btn,
+.ui-statusbar .ui-btn,
 .ui-footer .ui-btn {
 	font-size: 12.5px;
 	display: inline-block;
 	vertical-align: middle;
 }
-.ui-header .ui-controlgroup .ui-btn-icon-notext,
+.ui-statusbar .ui-controlgroup .ui-btn-icon-notext,
 .ui-footer .ui-controlgroup .ui-btn-icon-notext {
     font-size: 12.5px;
 }
 /* To ensure same top and left/right position when ui-btn-left/right are added to something other than buttons. */
-.ui-header .ui-btn-left,
-.ui-header .ui-btn-right {
+.ui-statusbar .ui-btn-left,
+.ui-statusbar .ui-btn-right {
 	font-size: 12.5px;
 }
 .ui-mini.ui-btn-icon-notext,
 .ui-mini .ui-btn-icon-notext,
-.ui-header .ui-btn-icon-notext,
+.ui-statusbar .ui-btn-icon-notext,
 .ui-footer .ui-btn-icon-notext {
 	font-size: 16px;	
 	padding: 0;
@@ -298,9 +298,9 @@ div.ui-mobile-viewport {
 .ui-btn-icon-bottom {
 	padding-bottom: 2.5em;
 }
-.ui-header .ui-btn-icon-top,
+.ui-statusbar .ui-btn-icon-top,
 .ui-footer .ui-btn-icon-top,
-.ui-header .ui-btn-icon-bottom,
+.ui-statusbar .ui-btn-icon-bottom,
 .ui-footer .ui-btn-icon-bottom {
 	padding-left: .3125em;
 	padding-right: .3125em;
@@ -330,13 +330,13 @@ div.ui-mobile-viewport {
 }
 .ui-mini.ui-btn-icon-left:after,
 .ui-mini .ui-btn-icon-left:after,
-.ui-header .ui-btn-icon-left:after,
+.ui-statusbar .ui-btn-icon-left:after,
 .ui-footer .ui-btn-icon-left:after {
 	left: .37em;
 }
 .ui-mini.ui-btn-icon-right:after,
 .ui-mini .ui-btn-icon-right:after,
-.ui-header .ui-btn-icon-right:after,
+.ui-statusbar .ui-btn-icon-right:after,
 .ui-footer .ui-btn-icon-right:after {
 	right: .37em;
 }
@@ -353,9 +353,9 @@ div.ui-mobile-viewport {
 	top: auto;
 	bottom: .5625em;
 }
-/* Buttons in header position classes */
-.ui-header .ui-btn-left,
-.ui-header .ui-btn-right,
+/* Buttons in statusbar position classes */
+.ui-statusbar .ui-btn-left,
+.ui-statusbar .ui-btn-right,
 .ui-btn-left > [class*="ui-"],
 .ui-btn-right > [class*="ui-"] {
 	margin: 0;
@@ -390,7 +390,7 @@ button.ui-btn,
 	width: 100%;
 }
 button.ui-btn-inline,
-.ui-header button.ui-btn,
+.ui-statusbar button.ui-btn,
 .ui-footer button.ui-btn {
 	width: auto;
 }
@@ -1302,7 +1302,7 @@ li.ui-block-e {
 [class*="ui-block-"] > .ui-radio,
 [class*="ui-block-"] > button.ui-btn-inline,
 [class*="ui-block-"] > button.ui-btn-icon-notext,
-.ui-header [class*="ui-block-"] > button.ui-btn,
+.ui-statusbar [class*="ui-block-"] > button.ui-btn,
 .ui-footer [class*="ui-block-"] > button.ui-btn {
 	margin-right: .3125em;
 	margin-left: .3125em;
@@ -1351,8 +1351,8 @@ li.ui-block-e {
 		float: none; 
 	}
 }
-/* fixed page header & footer configuration */
-.ui-header-fixed,
+/* fixed page statusbar & footer configuration */
+.ui-statusbar-fixed,
 .ui-footer-fixed {
 	left: 0;
 	right: 0;
@@ -1360,20 +1360,20 @@ li.ui-block-e {
 	position: fixed;
 	z-index: 1000;
 }
-.ui-header-fixed {
+.ui-statusbar-fixed {
 	top: -1px;
 	padding-top: 1px;
 }
-.ui-header-fixed.ui-fixed-hidden {
+.ui-statusbar-fixed.ui-fixed-hidden {
 	top: 0;
 	padding-top: 0;
 }
-.ui-header-fixed .ui-btn-left,
-.ui-header-fixed .ui-btn-right {
+.ui-statusbar-fixed .ui-btn-left,
+.ui-statusbar-fixed .ui-btn-right {
 	margin-top: 1px;
 }
-.ui-header-fixed.ui-fixed-hidden .ui-btn-left,
-.ui-header-fixed.ui-fixed-hidden .ui-btn-right {
+.ui-statusbar-fixed.ui-fixed-hidden .ui-btn-left,
+.ui-statusbar-fixed.ui-fixed-hidden .ui-btn-right {
 	margin-top: 0;
 }
 .ui-footer-fixed {
@@ -1384,19 +1384,19 @@ li.ui-block-e {
 	bottom: 0;
 	padding-bottom: 0;
 }
-.ui-header-fullscreen,
+.ui-statusbar-fullscreen,
 .ui-footer-fullscreen {
 	filter: Alpha(Opacity=90);
 	opacity: .9;
 }
-/* updatePagePadding() will update the padding to actual height of header and footer. */
-.ui-page-header-fixed {
+/* updatePagePadding() will update the padding to actual height of statusbar and footer. */
+.ui-page-statusbar-fixed {
 	padding-top: 2.8125em;
 }
 .ui-page-footer-fixed {
 	padding-bottom: 2.8125em;
 }
-.ui-page-header-fullscreen > .ui-content,
+.ui-page-statusbar-fullscreen > .ui-content,
 .ui-page-footer-fullscreen > .ui-content {
 	padding: 0;
 }
@@ -1410,7 +1410,7 @@ li.ui-block-e {
 .ui-page .ui-footer-fixed.ui-fixed-hidden {
   display: block
 }
-.ui-page-header-fullscreen .ui-fixed-hidden,
+.ui-page-statusbar-fullscreen .ui-fixed-hidden,
 .ui-page-footer-fullscreen .ui-fixed-hidden {
 	position: absolute !important;
 	height: 1px;
@@ -1418,7 +1418,7 @@ li.ui-block-e {
 	overflow: hidden;
 	clip: rect(1px,1px,1px,1px);
 }
-.ui-header-fixed .ui-btn,
+.ui-statusbar-fixed .ui-btn,
 .ui-footer-fixed .ui-btn { 
 	z-index: 10;
 }
@@ -1453,7 +1453,7 @@ li.ui-block-e {
 	margin: 0;
 	border-right-width: 0;
 }
-.ui-header .ui-navbar li button.ui-btn,
+.ui-statusbar .ui-navbar li button.ui-btn,
 .ui-footer .ui-navbar li button.ui-btn {
 	margin: 0;
 	width: 100%;
@@ -1491,24 +1491,24 @@ li.ui-block-e {
 .ui-navbar .ui-grid-duo .ui-block-a:first-child + .ui-block-b .ui-btn {
 	border-top-width: 1px;
 }
-.ui-header .ui-navbar .ui-btn,
+.ui-statusbar .ui-navbar .ui-btn,
 .ui-footer .ui-navbar .ui-btn {
 	border-top-width: 0;
 	border-bottom-width: 0;
 }
-.ui-header .ui-navbar .ui-grid-duo .ui-block-a:first-child .ui-btn,
+.ui-statusbar .ui-navbar .ui-grid-duo .ui-block-a:first-child .ui-btn,
 .ui-footer .ui-navbar .ui-grid-duo .ui-block-a:first-child .ui-btn,
-.ui-header .ui-navbar .ui-grid-duo .ui-block-a:first-child + .ui-block-b .ui-btn,
+.ui-statusbar .ui-navbar .ui-grid-duo .ui-block-a:first-child + .ui-block-b .ui-btn,
 .ui-footer .ui-navbar .ui-grid-duo .ui-block-a:first-child + .ui-block-b .ui-btn {
 	border-top-width: 0;
 }
-.ui-header .ui-title ~ .ui-navbar .ui-btn,
+.ui-statusbar .ui-title ~ .ui-navbar .ui-btn,
 .ui-footer .ui-title ~ .ui-navbar .ui-btn,
-.ui-header .ui-navbar .ui-grid-duo .ui-btn,
+.ui-statusbar .ui-navbar .ui-grid-duo .ui-btn,
 .ui-footer .ui-navbar .ui-grid-duo .ui-btn,
-.ui-header .ui-title ~ .ui-navbar .ui-grid-duo .ui-block-a:first-child .ui-btn,
+.ui-statusbar .ui-title ~ .ui-navbar .ui-grid-duo .ui-block-a:first-child .ui-btn,
 .ui-footer .ui-title ~ .ui-navbar .ui-grid-duo .ui-block-a:first-child .ui-btn,
-.ui-header .ui-title ~ .ui-navbar .ui-grid-duo .ui-block-a:first-child + .ui-block-b .ui-btn,
+.ui-statusbar .ui-title ~ .ui-navbar .ui-grid-duo .ui-block-a:first-child + .ui-block-b .ui-btn,
 .ui-footer .ui-title ~ .ui-navbar .ui-grid-duo .ui-block-a:first-child + .ui-block-b .ui-btn {
 	border-top-width: 1px;
 }
@@ -1781,7 +1781,7 @@ fieldset.ui-controlgroup {
 	position: relative;
 	top: -1em;
 }
-.ui-dialog-contain > .ui-header, 
+.ui-dialog-contain > .ui-statusbar, 
 .ui-dialog-contain > .ui-content, 
 .ui-dialog-contain > .ui-footer { 
 	display: block;
@@ -1789,7 +1789,7 @@ fieldset.ui-controlgroup {
 	width: auto;
 	margin: 0;
 }
-.ui-dialog-contain > .ui-header {
+.ui-dialog-contain > .ui-statusbar {
 	overflow: hidden;
 	z-index: 10; 
 	padding: 0;
@@ -1800,7 +1800,7 @@ fieldset.ui-controlgroup {
 	padding: 0 1em; 
 	border-bottom-width: 0;
 }
-.ui-popup-open .ui-header-fixed,
+.ui-popup-open .ui-statusbar-fixed,
 .ui-popup-open .ui-footer-fixed {
 	position: absolute !important; /* See issues #4816, #4844 and #4874 and popup.js */
 }
@@ -1854,7 +1854,7 @@ fieldset.ui-controlgroup {
 .ui-popup .ui-content {
 	overflow: visible;
 }
-.ui-popup > .ui-header {
+.ui-popup > .ui-statusbar {
 	border-top-width: 0;
 }
 .ui-popup > .ui-footer {
@@ -2217,27 +2217,27 @@ fieldset.ui-controlgroup {
 .ui-selectmenu .ui-dialog-contain {
 	overflow: hidden;
 }
-.ui-selectmenu .ui-header {
+.ui-selectmenu .ui-statusbar {
 	margin: 0;
 	padding: 0;
 	border-width: 0;
 }
-.ui-selectmenu.ui-dialog .ui-header {
+.ui-selectmenu.ui-dialog .ui-statusbar {
 	z-index: 1;
 	position: relative;
 }
-.ui-selectmenu.ui-popup .ui-header {
+.ui-selectmenu.ui-popup .ui-statusbar {
 	-webkit-border-bottom-right-radius: 0;
 	border-bottom-right-radius: 0;
 	-webkit-border-bottom-left-radius: 0;
 	border-bottom-left-radius: 0;
 }
-/* when no placeholder is defined in a multiple select, the header height doesn't even extend past the close button.  this shim's content in there */
-.ui-selectmenu.ui-popup .ui-header h1:after {
+/* when no placeholder is defined in a multiple select, the statusbar height doesn't even extend past the close button.  this shim's content in there */
+.ui-selectmenu.ui-popup .ui-statusbar h1:after {
 	content: '.';
 	visibility: hidden;
 }
-.ui-selectmenu .ui-header .ui-title {
+.ui-selectmenu .ui-statusbar .ui-title {
 	margin: 0 2.875em;
 }
 .ui-selectmenu.ui-dialog .ui-content {
@@ -2249,13 +2249,13 @@ fieldset.ui-controlgroup {
 	-webkit-border-radius: inherit;
 	border-radius: inherit;	
 }
-.ui-header:not(.ui-screen-hidden) + .ui-selectmenu-list {
+.ui-statusbar:not(.ui-screen-hidden) + .ui-selectmenu-list {
 	-webkit-border-top-right-radius: 0;
 	border-top-right-radius: 0;
 	-webkit-border-top-left-radius: 0;
 	border-top-left-radius: 0;
 }
-.ui-header.ui-screen-hidden + .ui-selectmenu-list li.ui-first-child .ui-btn {
+.ui-statusbar.ui-screen-hidden + .ui-selectmenu-list li.ui-first-child .ui-btn {
 	border-top-width: 0;
 }
 .ui-selectmenu .ui-selectmenu-list li.ui-last-child .ui-btn {
@@ -3137,7 +3137,7 @@ html .ui-popup .ui-field-contain > label + .ui-flipswitch {
 }
 /* Mobile first styles: Begin with the stacked presentation at narrow widths */ 
 @media only all {
-	/* Hide the table headers */ 
+	/* Hide the table statusbars */ 
 	.ui-table-reflow thead td, 
 	.ui-table-reflow thead th {
 		display: none;
@@ -3160,7 +3160,7 @@ html .ui-popup .ui-field-contain > label + .ui-flipswitch {
 		display: inline-block;
 		margin: -.4em 1em -.4em -.4em;
 	}
-	/* For grouped headers, have a different style to visually separate the levels by classing the first label in each col group */ 
+	/* For grouped statusbars, have a different style to visually separate the levels by classing the first label in each col group */ 
 	.ui-table-reflow th .ui-table-cell-label-top,
 	.ui-table-reflow td .ui-table-cell-label-top {
 		display: block;
@@ -3173,7 +3173,7 @@ html .ui-popup .ui-field-contain > label + .ui-flipswitch {
 }
 /* Breakpoint to show as a standard table at 560px (35em x 16px) or wider */ 
 @media ( min-width: 35em ) {
-	/* Show the table header rows */ 
+	/* Show the table statusbar rows */ 
 	.ui-table-reflow.ui-responsive td,
 	.ui-table-reflow.ui-responsive th,
 	.ui-table-reflow.ui-responsive tbody th,
@@ -3277,7 +3277,7 @@ html .ui-popup .ui-field-contain > label + .ui-flipswitch {
 }
 /* Fix for Windows Phone issue #6349: unset the transition for transforms in case of fixed toolbars. */
 @media screen and ( max-device-width: 768px ) {
-	.ui-page-header-fixed .ui-panel-animate.ui-panel-wrapper,
+	.ui-page-statusbar-fixed .ui-panel-animate.ui-panel-wrapper,
 	.ui-page-footer-fixed .ui-panel-animate.ui-panel-wrapper,
 	.ui-panel-animate.ui-panel-fixed-toolbar {
 		-ms-transition: none;

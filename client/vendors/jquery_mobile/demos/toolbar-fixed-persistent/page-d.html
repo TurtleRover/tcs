@@ -14,7 +14,7 @@
 	<script>
 		$(function() {
 			$( "[data-role='navbar']" ).navbar();
-			$( "[data-role='header'], [data-role='footer']" ).toolbar();
+			$( "[data-role='statusbar'], [data-role='footer']" ).toolbar();
 		});
 		// Update the contents of the toolbars
 		$( document ).on( "pagecontainerchange", function() {
@@ -23,7 +23,7 @@
 			// For example, on first page: <div data-role="page" data-title="Info">
 			var current = $( ".ui-page-active" ).jqmData( "title" );
 			// Change the heading
-			$( "[data-role='header'] h1" ).text( current );
+			$( "[data-role='statusbar'] h1" ).text( current );
 			// Remove active class from nav buttons
 			$( "[data-role='navbar'] a.ui-btn-active" ).removeClass( "ui-btn-active" );
 			// Add active class to current nav button
@@ -36,10 +36,10 @@
 	</script>
 </head>
 <body>
-    <div data-role="header" data-position="fixed" data-theme="a">
+    <div data-role="statusbar" data-position="fixed" data-theme="a">
 		<a href="../toolbar/" data-rel="back" class="ui-btn ui-btn-left ui-alt-icon ui-nodisc-icon ui-corner-all ui-btn-icon-notext ui-icon-carat-l">Back</a>
         <h1>Emails</h1>
-    </div><!-- /header -->
+    </div><!-- /statusbar -->
 
 	<div data-role="page" data-title="Emails">
 

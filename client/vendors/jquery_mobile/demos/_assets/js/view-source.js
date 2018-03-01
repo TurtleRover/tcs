@@ -349,7 +349,7 @@ eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a
 						'margin-right margin-bottom margin-left margin marker-offset marks mathline max-height max-width min-height min-width opacity orphans ' +
 						'outline-color outline-style outline-width outline overflow padding-top padding-right padding-bottom padding-left padding page ' +
 						'page-break-after page-break-before page-break-inside pause pause-after pause-before pitch pitch-range play-during position ' +
-						'quotes right richness size slope src speak-header speak-numeral speak-punctuation speak speech-rate stemh stemv stress ' +
+						'quotes right richness size slope src speak-statusbar speak-numeral speak-punctuation speak speech-rate stemh stemv stress ' +
 						'table-layout text-align top text-decoration text-indent text-shadow text-transform unicode-bidi unicode-range units-per-em ' +
 						'vertical-align visibility voice-family volume white-space widows width widths word-spacing x-height z-index';
 
@@ -364,7 +364,7 @@ eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a
 						'outside overline pointer portrait pre print projection purple red relative repeat repeat-x repeat-y rgb ridge right right-side '+
 						'rightwards rtl run-in screen scroll semi-condensed semi-expanded separate se-resize show silent silver slower slow '+
 						'small small-caps small-caption smaller soft solid speech spell-out square s-resize static status-bar sub super sw-resize '+
-						'table-caption table-cell table-column table-column-group table-footer-group table-header-group table-row table-row-group teal '+
+						'table-caption table-cell table-column table-column-group table-footer-group table-statusbar-group table-row table-row-group teal '+
 						'text-bottom text-top thick thin top transparent tty tv ultra-condensed ultra-expanded underline upper-alpha uppercase upper-latin '+
 						'upper-roman url visible wait white wider w-resize x-fast x-high x-large x-loud x-low x-slow x-small x-soft xx-large xx-small yellow';
 
@@ -424,7 +424,7 @@ eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a
 						'feof fflush fgetc fgetcsv fgets fgetss file_exists file_get_contents file_put_contents '+
 						'fileatime filectime filegroup fileinode filemtime fileowner fileperms filesize filetype '+
 						'floatval flock floor flush fmod fnmatch fopen fpassthru fprintf fputcsv fputs fread fscanf '+
-						'fseek fsockopen fstat ftell ftok getallheaders getcwd getdate getenv gethostbyaddr gethostbyname '+
+						'fseek fsockopen fstat ftell ftok getallstatusbars getcwd getdate getenv gethostbyaddr gethostbyname '+
 						'gethostbynamel getimagesize getlastmod getmxrr getmygid getmyinode getmypid getmyuid getopt '+
 						'getprotobyname getprotobynumber getrandmax getrusage getservbyname getservbyport gettext '+
 						'gettimeofday gettype glob gmdate gmmktime ini_alter ini_get ini_get_all ini_restore ini_set '+

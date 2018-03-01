@@ -14,8 +14,8 @@
 			$( "body > [data-role='panel'] [data-role='listview']" ).listview();
 		});
 		$( document ).one( "pageshow", function() {
-			$( "body > [data-role='header']" ).toolbar();
-			$( "body > [data-role='header'] [data-role='navbar']" ).navbar();
+			$( "body > [data-role='statusbar']" ).toolbar();
+			$( "body > [data-role='statusbar'] [data-role='navbar']" ).navbar();
 		});
 	</script>
 </head>
@@ -30,8 +30,8 @@
 		</ul>
 	</div>
 
-	<div data-role="header" data-position="fixed" data-theme="a">
-		<h1>External header Page C</h1>
+	<div data-role="statusbar" data-position="fixed" data-theme="a">
+		<h1>External statusbar Page C</h1>
 		<a href="#outside" data-icon="bars" data-iconpos="notext">Menu</a>
 		<div data-role="navbar">
 			<ul>
@@ -40,7 +40,7 @@
 				<li><a href="page-c.html">Page C</a></li>
 			</ul>
 		</div>
-	</div><!-- /header -->
+	</div><!-- /statusbar -->
 
 	<div data-role="page" id="c">
 
@@ -59,7 +59,7 @@
 
 		<p>Content</p>
 
-			<p>The left panel and fixed header are outside the page. The right panel and fixed footer are inside the page.</p>
+			<p>The left panel and fixed statusbar are outside the page. The right panel and fixed footer are inside the page.</p>
 
 			<a href="#inside-c" class="ui-btn ui-shadow ui-corner-all ui-btn-inline">Open right panel</a>
 
@@ -73,7 +73,7 @@
 					<li><a href="page-c.html" class="ui-btn-active ui-state-persist">Page C</a></li>
 				</ul>
 			</div>
-		</div><!-- /header -->
+		</div><!-- /statusbar -->
 
 	</div><!-- /page -->
 

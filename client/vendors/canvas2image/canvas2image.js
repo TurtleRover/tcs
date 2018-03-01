@@ -94,7 +94,7 @@ var Canvas2Image = function () {
 		var biWidth  = oData.width;
 		var biHeight	= oData.height;
 		var biSizeImage = biWidth * biHeight * 3;
-		var bfSize  = biSizeImage + 54; // total header size = 54 bytes
+		var bfSize  = biSizeImage + 54; // total statusbar size = 54 bytes
 
 		//
 		//  typedef struct tagBITMAPFILEHEADER {

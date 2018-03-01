@@ -110,8 +110,8 @@
   cursor: url("../img/cursor.png") 12 12, url("client/img/cursor.cur") 12 12,
     auto;
   /* background-image: url("../img/marsyard-camera.jpg"); */
-  display: none;
-  z-index: 2;
+  display: block;
+  z-index: 1;
 }
 
 #servo-control-div {
@@ -252,7 +252,7 @@
   width: auto;
 }
 
-#main-header-buttons-div {
+#main-statusbar-buttons-div {
   position: absolute;
   left: 42%;
   width: 16%;
@@ -260,25 +260,25 @@
   top: 20%;
 }
 
-#main-header-button-div {
+#main-statusbar-button-div {
   width: 33%;
   height: 100%;
   text-align: center;
 }
 
-#main-header-button-div.video-button-class {
+#main-statusbar-button-div.video-button-class {
   float: left;
 }
 
-#main-header-button-div.snap-button-class {
+#main-statusbar-button-div.snap-button-class {
   display: inline-block;
 }
 
-#main-header-button-div.fullscreen-button-class {
+#main-statusbar-button-div.fullscreen-button-class {
   float: right;
 }
 
-.main-header-button-img {
+.main-statusbar-button-img {
   margin-top: 3%;
   max-height: 50%;
   top: 0;
@@ -287,7 +287,7 @@
   transition: all 0.2s ease-in-out;
 }
 
-.main-header-button-img:hover {
+.main-statusbar-button-img:hover {
   transform: scale(1.4);
 }
 

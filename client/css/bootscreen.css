@@ -11,6 +11,7 @@
   align-items: center;
   flex-wrap: nowrap;
   justify-content: center;
+  z-index: 10;
 }
 
 .bootscreen_logo {
@@ -28,6 +29,10 @@
   font-family: monospace;
   font-size: 9pt;
   line-height: 1.5;
+}
+
+.bootscreen-hide {
+  visibility: hidden;
 }
 
 /*# sourceMappingURL=bootscreen.css.map */

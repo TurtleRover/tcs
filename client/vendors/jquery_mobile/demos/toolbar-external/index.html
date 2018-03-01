@@ -13,15 +13,15 @@
 	<script src="../js/jquery.mobile-1.4.5.min.js"></script>
 	<script>
 		$(function(){
-			$( "[data-role='header'], [data-role='footer']" ).toolbar();
+			$( "[data-role='statusbar'], [data-role='footer']" ).toolbar();
 		});
 	</script>
 </head>
 <body>
-	<div data-role="header" data-theme="a">
+	<div data-role="statusbar" data-theme="a">
 			<a href="../toolbar/" data-rel="back" class="ui-btn ui-btn-left ui-alt-icon ui-nodisc-icon ui-corner-all ui-btn-icon-notext ui-icon-carat-l">Back</a>
-		<h1>External header</h1>
-	</div><!-- /header -->
+		<h1>External statusbar</h1>
+	</div><!-- /statusbar -->
 
 	<div data-role="page" class="jqm-demos" data-quicklinks="true">
 
@@ -29,7 +29,7 @@
 
 			<h1>External toolbars</h1>
 
-			<p>The header and footer on this page are positioned outside the page. They are before and after the page within the body. These Toolbars will remain in the dom until manually removed.</p>
+			<p>The statusbar and footer on this page are positioned outside the page. They are before and after the page within the body. These Toolbars will remain in the dom until manually removed.</p>
 
 			<h2>Markup</h2>
 
@@ -41,7 +41,7 @@
 
 <pre><code>
 $(function(){
-	$( "[data-role='header'], [data-role='footer']" ).toolbar();
+	$( "[data-role='statusbar'], [data-role='footer']" ).toolbar();
 });
 </code></pre>
 
@@ -51,7 +51,7 @@ $(function(){
 
 <pre><code>
 $(function(){
-	$( "[data-role='header']" ).toolbar({ theme: "a" });
+	$( "[data-role='statusbar']" ).toolbar({ theme: "a" });
 });
 </code></pre>
 

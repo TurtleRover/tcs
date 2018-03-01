@@ -57,7 +57,7 @@ $( document ).on( "pagecreate", ".jqm-demos", function( event ) {
 		str = words[1] || "",
 		text = ver;
 
-	// Insert jqm version in header
+	// Insert jqm version in statusbar
 	if ( str.indexOf( "rc" ) == -1 ) {
 		str = str.charAt( 0 ).toUpperCase() + str.slice( 1 );
 	} else {

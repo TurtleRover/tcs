@@ -146,7 +146,7 @@ var controlCanvas = (function () {
         canvas[0].dispatchEvent(mouseEvent);
     });
 
-    $("#page-wrapper").mouseup(function(event) {stop(event); });
+    $("#wrapper").mouseup(function(event) {stop(event); });
     canvas.mouseup(function(event) { console.log("mouseup"); stop(event); });
     canvas[0].addEventListener("touchend", function(event) { event.preventDefault(); stop(event); });
 

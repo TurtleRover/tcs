@@ -2848,10 +2848,10 @@ function appendToolbar() {
 }
 
 function appendHeader() {
-	var header = id( "qunit-header" );
+	var statusbar = id( "qunit-statusbar" );
 
-	if ( header ) {
-		header.innerHTML = "<a href='" + escapeText( unfilteredUrl ) + "'>" + header.innerHTML +
+	if ( statusbar ) {
+		statusbar.innerHTML = "<a href='" + escapeText( unfilteredUrl ) + "'>" + statusbar.innerHTML +
 			"</a> ";
 	}
 }
@@ -2912,7 +2912,7 @@ function appendInterface() {
 
 	if ( qunit ) {
 		qunit.innerHTML =
-			"<h1 id='qunit-header'>" + escapeText( document.title ) + "</h1>" +
+			"<h1 id='qunit-statusbar'>" + escapeText( document.title ) + "</h1>" +
 			"<h2 id='qunit-banner'></h2>" +
 			"<div id='qunit-testrunner-toolbar'></div>" +
 			appendFilteredTest() +

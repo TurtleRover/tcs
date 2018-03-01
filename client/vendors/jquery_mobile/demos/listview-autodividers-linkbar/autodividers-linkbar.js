@@ -1,5 +1,5 @@
 $.mobile.document.on( "pagecreate", "#demo-page", function(){
-	var head = $( ".ui-page-active [data-role='header']" );
+	var head = $( ".ui-page-active [data-role='statusbar']" );
 
 	$.mobile.document.on( "click", "#sorter li", function() {
 		var top,
@@ -23,16 +23,16 @@ $( function(){
 	$.mobile.window.on( "scroll", function( e ) {
 		var headTop = $(window).scrollTop(),
 			foot = $( ".ui-page-active [data-role='footer']" ),
-			head = $( ".ui-page-active [data-role='header']" ),
-			headerheight = head.outerHeight();
+			head = $( ".ui-page-active [data-role='statusbar']" ),
+			statusbarheight = head.outerHeight();
 
-		if( headTop < headerheight && headTop > 0 ) {
+		if( headTop < statusbarheight && headTop > 0 ) {
 			$( "#sorter" ).css({
-				"top": headerheight + 15 - headTop,
+				"top": statusbarheight + 15 - headTop,
 				"height": window.innerHeight - head[ 0 ].offsetHeight + window.pageYOffset - 10
 			});
 			$("#sorter li").height( "3.7%" );
-		} else if ( headTop >= headerheight && headTop > 0 && parseInt( headTop +
+		} else if ( headTop >= statusbarheight && headTop > 0 && parseInt( headTop +
 			$.mobile.window.height( )) < parseInt( foot.offset().top ) ) {
 
 			$( "#sorter" ).css({
@@ -54,15 +54,15 @@ $( function(){
 				"top": "15px"
 			});
 		} else {
-			$( "#sorter" ).css( "top", headerheight + 15 );
+			$( "#sorter" ).css( "top", statusbarheight + 15 );
 		}
 	});
 });
 $.mobile.window.on( "throttledresize", function() {
-	$( "#sorter" ).height( window.innerHeight - headerheight - 20 ).css( "top", headerheight + 18 );
+	$( "#sorter" ).height( window.innerHeight - statusbarheight - 20 ).css( "top", statusbarheight + 18 );
 });
 $.mobile.document.on( "pageshow", "#demo-page", function() {
-	var headerheight = $( ".ui-page-active [data-role='header']" ).outerHeight();
+	var statusbarheight = $( ".ui-page-active [data-role='statusbar']" ).outerHeight();
 
-	$( "#sorter" ).height( window.innerHeight - headerheight - 20 ).css( "top", headerheight + 18 );
+	$( "#sorter" ).height( window.innerHeight - statusbarheight - 20 ).css( "top", statusbarheight + 18 );
 });

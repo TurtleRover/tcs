@@ -90,7 +90,7 @@
 	width: 100%;
 	height: 100%;
 }
-.ui-accordion .ui-accordion-header {
+.ui-accordion .ui-accordion-statusbar {
 	display: block;
 	cursor: pointer;
 	position: relative;
@@ -317,7 +317,7 @@ button.ui-button::-moz-focus-inner {
 	padding: .2em .2em 0;
 	display: none;
 }
-.ui-datepicker .ui-datepicker-header {
+.ui-datepicker .ui-datepicker-statusbar {
 	position: relative;
 	padding: .2em 0;
 }
@@ -429,8 +429,8 @@ button.ui-button::-moz-focus-inner {
 .ui-datepicker-multi-4 .ui-datepicker-group {
 	width: 25%;
 }
-.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header,
-.ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header {
+.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-statusbar,
+.ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-statusbar {
 	border-left-width: 0;
 }
 .ui-datepicker-multi .ui-datepicker-buttonpane {
@@ -472,8 +472,8 @@ button.ui-button::-moz-focus-inner {
 .ui-datepicker-rtl .ui-datepicker-group {
 	float: right;
 }
-.ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header,
-.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header {
+.ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-statusbar,
+.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-statusbar {
 	border-right-width: 0;
 	border-left-width: 1px;
 }
@@ -908,13 +908,13 @@ body .ui-tooltip {
 .ui-widget-content a {
 	color: #333333;
 }
-.ui-widget-header {
+.ui-widget-statusbar {
 	border: 1px solid #dddddd;
 	background: #e9e9e9;
 	color: #333333;
 	font-weight: bold;
 }
-.ui-widget-header a {
+.ui-widget-statusbar a {
 	color: #333333;
 }
 
@@ -922,7 +922,7 @@ body .ui-tooltip {
 ----------------------------------*/
 .ui-state-default,
 .ui-widget-content .ui-state-default,
-.ui-widget-header .ui-state-default,
+.ui-widget-statusbar .ui-state-default,
 .ui-button,
 
 /* We use html here because we need a greater specificity to make sure disabled
@@ -946,10 +946,10 @@ a:visited.ui-button,
 }
 .ui-state-hover,
 .ui-widget-content .ui-state-hover,
-.ui-widget-header .ui-state-hover,
+.ui-widget-statusbar .ui-state-hover,
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,
-.ui-widget-header .ui-state-focus,
+.ui-widget-statusbar .ui-state-focus,
 .ui-button:hover,
 .ui-button:focus {
 	border: 1px solid #cccccc;
@@ -976,7 +976,7 @@ a.ui-button:focus {
 }
 .ui-state-active,
 .ui-widget-content .ui-state-active,
-.ui-widget-header .ui-state-active,
+.ui-widget-statusbar .ui-state-active,
 a.ui-button:active,
 .ui-button:active,
 .ui-button.ui-state-active:hover {
@@ -1001,7 +1001,7 @@ a.ui-button:active,
 ----------------------------------*/
 .ui-state-highlight,
 .ui-widget-content .ui-state-highlight,
-.ui-widget-header .ui-state-highlight {
+.ui-widget-statusbar .ui-state-highlight {
 	border: 1px solid #dad55e;
 	background: #fffa90;
 	color: #777620;
@@ -1012,41 +1012,41 @@ a.ui-button:active,
 }
 .ui-state-highlight a,
 .ui-widget-content .ui-state-highlight a,
-.ui-widget-header .ui-state-highlight a {
+.ui-widget-statusbar .ui-state-highlight a {
 	color: #777620;
 }
 .ui-state-error,
 .ui-widget-content .ui-state-error,
-.ui-widget-header .ui-state-error {
+.ui-widget-statusbar .ui-state-error {
 	border: 1px solid #f1a899;
 	background: #fddfdf;
 	color: #5f3f3f;
 }
 .ui-state-error a,
 .ui-widget-content .ui-state-error a,
-.ui-widget-header .ui-state-error a {
+.ui-widget-statusbar .ui-state-error a {
 	color: #5f3f3f;
 }
 .ui-state-error-text,
 .ui-widget-content .ui-state-error-text,
-.ui-widget-header .ui-state-error-text {
+.ui-widget-statusbar .ui-state-error-text {
 	color: #5f3f3f;
 }
 .ui-priority-primary,
 .ui-widget-content .ui-priority-primary,
-.ui-widget-header .ui-priority-primary {
+.ui-widget-statusbar .ui-priority-primary {
 	font-weight: bold;
 }
 .ui-priority-secondary,
 .ui-widget-content .ui-priority-secondary,
-.ui-widget-header .ui-priority-secondary {
+.ui-widget-statusbar .ui-priority-secondary {
 	opacity: .7;
 	filter:Alpha(Opacity=70); /* support: IE8 */
 	font-weight: normal;
 }
 .ui-state-disabled,
 .ui-widget-content .ui-state-disabled,
-.ui-widget-header .ui-state-disabled {
+.ui-widget-statusbar .ui-state-disabled {
 	opacity: .35;
 	filter:Alpha(Opacity=35); /* support: IE8 */
 	background-image: none;
@@ -1067,7 +1067,7 @@ a.ui-button:active,
 .ui-widget-content .ui-icon {
 	background-image: url("images/ui-icons_444444_256x240.png");
 }
-.ui-widget-header .ui-icon {
+.ui-widget-statusbar .ui-icon {
 	background-image: url("images/ui-icons_444444_256x240.png");
 }
 .ui-state-hover .ui-icon,

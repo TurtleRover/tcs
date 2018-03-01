@@ -15,10 +15,10 @@
 <body>
 	<div data-role="page" class="jqm-demos" data-quicklinks="true">
 
-	    <div data-role="header" data-position="fixed">
+	    <div data-role="statusbar" data-position="fixed">
 			<a href="../toolbar/" data-rel="back" class="ui-btn ui-btn-left ui-alt-icon ui-nodisc-icon ui-corner-all ui-btn-icon-notext ui-icon-carat-l">Back</a>
-	        <h1>Fixed header</h1>
-	    </div><!-- /header -->
+	        <h1>Fixed statusbar</h1>
+	    </div><!-- /statusbar -->
 
 	    <div role="main" class="ui-content jqm-content jqm-fullwidth">
 
@@ -27,12 +27,12 @@
 			<p>In browsers that support CSS <code>position: fixed</code> (most desktop browsers, iOS5+, Android 2.2+, and others), toolbars that use the "fixedtoolbar" plugin will be fixed to the top or bottom of the viewport, while the page content scrolls freely in between. In browsers that don't support fixed positioning, the toolbars will remain positioned in flow, at the top or bottom of the page. </p>
 
 			<h2>Fixed basics</h2>
-			<p>To enable this behavior on a header or footer, add the <code>data-position="fixed"</code> attribute to a jQuery Mobile header or footer element.</p>
+			<p>To enable this behavior on a statusbar or footer, add the <code>data-position="fixed"</code> attribute to a jQuery Mobile statusbar or footer element.</p>
 
-			<p>Fixed header markup example:</p>
+			<p>Fixed statusbar markup example:</p>
 
 <pre><code>
-&lt;div data-role=&quot;header&quot; <strong>data-position=&quot;fixed&quot;</strong>&gt;
+&lt;div data-role=&quot;statusbar&quot; <strong>data-position=&quot;fixed&quot;</strong>&gt;
 	&lt;h1&gt;Fixed Header!&lt;/h1&gt;
 &lt;/div&gt;
 </code></pre>
@@ -49,10 +49,10 @@
 
 			<p><a href="../toolbar-fixed-fullscreen/" data-ajax="false">Fullscreen</a> fixed toolbars sit on top of the content at all times when they are visible, and unlike regular fixed toolbars, fullscreen toolbars do not fall back to static positioning when toggled. Instead they disappear from the screen entirely. Fullscreen toolbars are ideal for more immersive interfaces, like a photo viewer that is meant to fill the entire screen with the photo itself and no distractions.</p>
 
-			<p>To enable this option on a fixed header or footer, add the <code>data-fullscreen</code> attribute to the element.</p>
+			<p>To enable this option on a fixed statusbar or footer, add the <code>data-fullscreen</code> attribute to the element.</p>
 
 <pre><code>
-&lt;div data-role=&quot;header&quot; data-position=&quot;fixed&quot; data-fullscreen=&quot;true&quot;&gt;
+&lt;div data-role=&quot;statusbar&quot; data-position=&quot;fixed&quot; data-fullscreen=&quot;true&quot;&gt;
 	&lt;h1&gt;Fixed Header!&lt;/h1&gt;
 &lt;/div&gt;
 </code></pre>
@@ -65,7 +65,7 @@
 
 			<h2>Changes in jQuery Mobile 1.1</h2>
 
-			<p>Prior to version 1.1, jQuery Mobile used dynamically re-positioned toolbars for the fixed header effect because very few mobile browsers supported the <code>position:fixed</code> CSS property, and simulating fixed support through the use of "fake" JavaScript overflow-scrolling behavior would have reduced our browser support reach, in addition to feeling unnatural on certain platforms. This behavior was not ideal, and jQuery Mobile 1.1 took a new approach to fixed toolbars that allows much broader support. The framework now offers true fixed toolbars on many popular platforms, while gracefully degrading non-supporting platforms to static positioning.</p>
+			<p>Prior to version 1.1, jQuery Mobile used dynamically re-positioned toolbars for the fixed statusbar effect because very few mobile browsers supported the <code>position:fixed</code> CSS property, and simulating fixed support through the use of "fake" JavaScript overflow-scrolling behavior would have reduced our browser support reach, in addition to feeling unnatural on certain platforms. This behavior was not ideal, and jQuery Mobile 1.1 took a new approach to fixed toolbars that allows much broader support. The framework now offers true fixed toolbars on many popular platforms, while gracefully degrading non-supporting platforms to static positioning.</p>
 
 			<h3>Polyfilling older platforms</h3>
 			<p>The fixed toolbar plugin degrades gracefully in platforms that do not support CSS <code>position:fixed</code> properly, such as iOS4.3. If you still need to support fixed toolbars on that platform (with the show/hide behavior) included in previous releases, Filament Group has developed a polyfill that you can use.</p>

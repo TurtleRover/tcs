@@ -668,7 +668,7 @@ var i,
 	},
 
 	rinputs = /^(?:input|select|textarea|button)$/i,
-	rheader = /^h\d$/i,
+	rstatusbar = /^h\d$/i,
 
 	rnative = /^[^{]+\{\s*\[native \w/,
 
@@ -2088,8 +2088,8 @@ Expr = Sizzle.selectors = {
 		},
 
 		// Element/input types
-		"header": function( elem ) {
-			return rheader.test( elem.nodeName );
+		"statusbar": function( elem ) {
+			return rstatusbar.test( elem.nodeName );
 		},
 
 		"input": function( elem ) {
@@ -8467,7 +8467,7 @@ var
 	r20 = /%20/g,
 	rhash = /#.*$/,
 	rantiCache = /([?&])_=[^&]*/,
-	rheaders = /^(.*?):[ \t]*([^\r\n]*)$/mg,
+	rstatusbars = /^(.*?):[ \t]*([^\r\n]*)$/mg,
 
 	// #7653, #8125, #8152: local protocol detection
 	rlocalProtocol = /^(?:about|app|app-storage|.+-extension|file|res|widget):$/,
@@ -8742,7 +8742,7 @@ jQuery.extend( {
 	// Counter for holding the number of active queries
 	active: 0,
 
-	// Last-Modified header cache for next request
+	// Last-Modified statusbar cache for next request
 	lastModified: {},
 	etag: {},
 
@@ -8764,7 +8764,7 @@ jQuery.extend( {
 		cache: null,
 		throws: false,
 		traditional: false,
-		headers: {},
+		statusbars: {},
 		*/
 
 		accepts: {
@@ -8847,7 +8847,7 @@ jQuery.extend( {
 			// URL without anti-cache param
 			cacheURL,
 
-			// Response headers
+			// Response statusbars
 			responseHeadersString,
 			responseHeaders,
 
@@ -8899,13 +8899,13 @@ jQuery.extend( {
 			jqXHR = {
 				readyState: 0,
 
-				// Builds headers hashtable if needed
+				// Builds statusbars hashtable if needed
 				getResponseHeader: function( key ) {
 					var match;
 					if ( completed ) {
 						if ( !responseHeaders ) {
 							responseHeaders = {};
-							while ( ( match = rheaders.exec( responseHeadersString ) ) ) {
+							while ( ( match = rstatusbars.exec( responseHeadersString ) ) ) {
 								responseHeaders[ match[ 1 ].toLowerCase() ] = match[ 2 ];
 							}
 						}
@@ -8919,7 +8919,7 @@ jQuery.extend( {
 					return completed ? responseHeadersString : null;
 				},
 
-				// Caches the header
+				// Caches the statusbar
 				setRequestHeader: function( name, value ) {
 					if ( completed == null ) {
 						name = requestHeadersNames[ name.toLowerCase() ] =
@@ -8929,7 +8929,7 @@ jQuery.extend( {
 					return this;
 				},
 
-				// Overrides response content-type header
+				// Overrides response content-type statusbar
 				overrideMimeType: function( type ) {
 					if ( completed == null ) {
 						s.mimeType = type;
@@ -9034,7 +9034,7 @@ jQuery.extend( {
 		s.hasContent = !rnoContent.test( s.type );
 
 		// Save the URL in case we're toying with the If-Modified-Since
-		// and/or If-None-Match header later on
+		// and/or If-None-Match statusbar later on
 		// Remove hash to simplify url manipulation
 		cacheURL = s.url.replace( rhash, "" );
 
@@ -9067,7 +9067,7 @@ jQuery.extend( {
 			s.data = s.data.replace( r20, "+" );
 		}
 
-		// Set the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
+		// Set the If-Modified-Since and/or If-None-Match statusbar, if in ifModified mode.
 		if ( s.ifModified ) {
 			if ( jQuery.lastModified[ cacheURL ] ) {
 				jqXHR.setRequestHeader( "If-Modified-Since", jQuery.lastModified[ cacheURL ] );
@@ -9077,12 +9077,12 @@ jQuery.extend( {
 			}
 		}
 
-		// Set the correct header, if data is being sent
+		// Set the correct statusbar, if data is being sent
 		if ( s.data && s.hasContent && s.contentType !== false || options.contentType ) {
 			jqXHR.setRequestHeader( "Content-Type", s.contentType );
 		}
 
-		// Set the Accepts header for the server, depending on the dataType
+		// Set the Accepts statusbar for the server, depending on the dataType
 		jqXHR.setRequestHeader(
 			"Accept",
 			s.dataTypes[ 0 ] && s.accepts[ s.dataTypes[ 0 ] ] ?
@@ -9091,12 +9091,12 @@ jQuery.extend( {
 				s.accepts[ "*" ]
 		);
 
-		// Check for headers option
-		for ( i in s.headers ) {
-			jqXHR.setRequestHeader( i, s.headers[ i ] );
+		// Check for statusbars option
+		for ( i in s.statusbars ) {
+			jqXHR.setRequestHeader( i, s.statusbars[ i ] );
 		}
 
-		// Allow custom headers/mimetypes and early abort
+		// Allow custom statusbars/mimetypes and early abort
 		if ( s.beforeSend &&
 			( s.beforeSend.call( callbackContext, jqXHR, s ) === false || completed ) ) {
 
@@ -9154,7 +9154,7 @@ jQuery.extend( {
 		}
 
 		// Callback for when everything is done
-		function done( status, nativeStatusText, responses, headers ) {
+		function done( status, nativeStatusText, responses, statusbars ) {
 			var isSuccess, success, error, response, modified,
 				statusText = nativeStatusText;
 
@@ -9174,8 +9174,8 @@ jQuery.extend( {
 			// (no matter how long the jqXHR object will be used)
 			transport = undefined;
 
-			// Cache response headers
-			responseHeadersString = headers || "";
+			// Cache response statusbars
+			responseHeadersString = statusbars || "";
 
 			// Set readyState
 			jqXHR.readyState = status > 0 ? 4 : 0;
@@ -9194,7 +9194,7 @@ jQuery.extend( {
 			// If successful, handle type chaining
 			if ( isSuccess ) {
 
-				// Set the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
+				// Set the If-Modified-Since and/or If-None-Match statusbar, if in ifModified mode.
 				if ( s.ifModified ) {
 					modified = jqXHR.getResponseHeader( "Last-Modified" );
 					if ( modified ) {
@@ -9418,7 +9418,7 @@ jQuery.ajaxTransport( function( options ) {
 	// Cross domain only allowed if supported through XMLHttpRequest
 	if ( support.cors || xhrSupported && !options.crossDomain ) {
 		return {
-			send: function( headers, complete ) {
+			send: function( statusbars, complete ) {
 				var i,
 					xhr = options.xhr();
 
@@ -9442,18 +9442,18 @@ jQuery.ajaxTransport( function( options ) {
 					xhr.overrideMimeType( options.mimeType );
 				}
 
-				// X-Requested-With header
+				// X-Requested-With statusbar
 				// For cross-domain requests, seeing as conditions for a preflight are
 				// akin to a jigsaw puzzle, we simply never set it to be sure.
 				// (it can always be set on a per-request basis or even using ajaxSetup)
-				// For same-domain requests, won't change header if already provided.
-				if ( !options.crossDomain && !headers[ "X-Requested-With" ] ) {
-					headers[ "X-Requested-With" ] = "XMLHttpRequest";
+				// For same-domain requests, won't change statusbar if already provided.
+				if ( !options.crossDomain && !statusbars[ "X-Requested-With" ] ) {
+					statusbars[ "X-Requested-With" ] = "XMLHttpRequest";
 				}
 
-				// Set headers
-				for ( i in headers ) {
-					xhr.setRequestHeader( i, headers[ i ] );
+				// Set statusbars
+				for ( i in statusbars ) {
+					xhr.setRequestHeader( i, statusbars[ i ] );
 				}
 
 				// Callback

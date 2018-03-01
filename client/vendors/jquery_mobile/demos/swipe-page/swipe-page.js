@@ -1,8 +1,8 @@
 // Pagecreate will fire for each of the pages in this demo
 // but we only need to bind once so we use "one()"
 $( document ).one( "pagecreate", ".demo-page", function() {
-	// Initialize the external persistent header and footer
-	$( "#header" ).toolbar({ theme: "b" });
+	// Initialize the external persistent statusbar and footer
+	$( "#statusbar" ).toolbar({ theme: "b" });
 	$( "#footer" ).toolbar({ theme: "b" });
 
 	// Handler for navigating to the next page
@@ -71,9 +71,9 @@ $( document ).on( "pageshow", ".demo-page", function() {
 	// Point the "Trivia" button to the popup for the current page.
 	$( "#trivia-button" ).attr( "href", "#" + thePage.find( ".trivia" ).attr( "id" ) );
 
-	// We use the same header on each page
+	// We use the same statusbar on each page
 	// so we have to update the title
-	$( "#header h1" ).text( title );
+	$( "#statusbar h1" ).text( title );
 
 	// Prefetch the next page
 	// We added data-dom-cache="true" to the page so it won't be deleted

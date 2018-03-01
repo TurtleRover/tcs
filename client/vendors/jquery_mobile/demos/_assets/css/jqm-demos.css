@@ -1,29 +1,29 @@
 /* JQM Demos custom CSS */
 
 /* Header */
-.jqm-demos .jqm-header {
+.jqm-demos .jqm-statusbar {
 	background: #fff;
 	border-top: 4px solid #3eb249;
 	border-bottom-color: #eee;
 }
-.jqm-demos .jqm-header h2 {
+.jqm-demos .jqm-statusbar h2 {
 	padding: .4em 0 .1em;
 	margin: 0 3em;
 }
-.jqm-demos .jqm-header h2 a {
+.jqm-demos .jqm-statusbar h2 a {
 	display: inline-block;
 	text-decoration: none;
 	min-height: 40px;
 }
-.jqm-demos .jqm-header h2 img {
+.jqm-demos .jqm-statusbar h2 img {
 	display: block;
 	width: 140px;
 	height: auto;
 }
-.jqm-demos .jqm-header h2 > img {
+.jqm-demos .jqm-statusbar h2 > img {
 	display: inline-block;
 }
-.jqm-demos .jqm-header p {
+.jqm-demos .jqm-statusbar p {
 	position: absolute;
 	bottom: -2em;
 	left: 1em;
@@ -33,7 +33,7 @@
 	font-weight: 300;
 	text-transform: uppercase;
 }
-.jqm-demos .jqm-header .ui-btn {
+.jqm-demos .jqm-statusbar .ui-btn {
 	width: 2em;
 	height: 2em;
 	background: none;
@@ -317,16 +317,16 @@
 }
 
 @media (min-width: 60em) {
-	.jqm-demos .jqm-header h2 {
+	.jqm-demos .jqm-statusbar h2 {
 		padding: 1em 0 .7em;
 		margin: 0 1em 0 3%;
 		text-align: left;
 	}
-	.jqm-demos .jqm-header h2 img {
+	.jqm-demos .jqm-statusbar h2 img {
 		width: 275px;
 		height: 78px;
 	}
-	.jqm-demos .jqm-header p {
+	.jqm-demos .jqm-statusbar p {
 		bottom: auto;
 		left: auto;
 		top: 50%;

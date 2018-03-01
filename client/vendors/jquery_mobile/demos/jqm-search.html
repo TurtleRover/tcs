@@ -127,7 +127,7 @@
 	</div>
 </li>
 <li data-filtertext="loader widget page loading navigation overlay spinner"><a href="../loader/" data-ajax="false">Loader widget</a></li>
-<li data-filtertext="navbar widget navmenu toolbars header footer"><a href="../navbar/" data-ajax="false">Navbar widget</a></li>
+<li data-filtertext="navbar widget navmenu toolbars statusbar footer"><a href="../navbar/" data-ajax="false">Navbar widget</a></li>
 <li data-role="collapsible" data-enhanced="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right" data-inset="false" class="ui-collapsible ui-collapsible-themed-content ui-collapsible-collapsed">
 	<h3 class="ui-collapsible-heading ui-collapsible-heading-collapsed">
 		<a href="#" class="ui-collapsible-heading-toggle ui-btn ui-btn-icon-right ui-btn-inherit ui-icon-carat-d">
@@ -267,15 +267,15 @@
 	</h3>
 	<div class="ui-collapsible-content ui-body-inherit ui-collapsible-content-collapsed" aria-hidden="true">
 		<ul>
-			<li data-filtertext="toolbar widget header footer toolbars fixed fullscreen external sections"><a href="../toolbar/" data-ajax="false">Toolbar</a></li>
-			<li data-filtertext="dynamic toolbars dynamically add toolbar header footer"><a href="../toolbar-dynamic/" data-ajax="false">Dynamic toolbars</a></li>
-			<li data-filtertext="external toolbars header footer"><a href="../toolbar-external/" data-ajax="false">External toolbars</a></li>
-			<li data-filtertext="fixed toolbars header footer"><a href="../toolbar-fixed/" data-ajax="false">Fixed toolbars</a></li>
-			<li data-filtertext="fixed fullscreen toolbars header footer"><a href="../toolbar-fixed-fullscreen/" data-ajax="false">Fullscreen toolbars</a></li>
-			<li data-filtertext="external fixed toolbars header footer"><a href="../toolbar-fixed-external/" data-ajax="false">Fixed external toolbars</a></li>
-			<li data-filtertext="external persistent toolbars header footer navbar navmenu"><a href="../toolbar-fixed-persistent/" data-ajax="false">Persistent toolbars</a></li>
-			<li data-filtertext="external ajax optimized toolbars persistent toolbars header footer navbar"><a href="../toolbar-fixed-persistent-optimized/" data-ajax="false">Ajax optimized toolbars</a></li>
-			<li data-filtertext="form in toolbars header footer"><a href="../toolbar-fixed-forms/" data-ajax="false">Form in toolbar</a></li>
+			<li data-filtertext="toolbar widget statusbar footer toolbars fixed fullscreen external sections"><a href="../toolbar/" data-ajax="false">Toolbar</a></li>
+			<li data-filtertext="dynamic toolbars dynamically add toolbar statusbar footer"><a href="../toolbar-dynamic/" data-ajax="false">Dynamic toolbars</a></li>
+			<li data-filtertext="external toolbars statusbar footer"><a href="../toolbar-external/" data-ajax="false">External toolbars</a></li>
+			<li data-filtertext="fixed toolbars statusbar footer"><a href="../toolbar-fixed/" data-ajax="false">Fixed toolbars</a></li>
+			<li data-filtertext="fixed fullscreen toolbars statusbar footer"><a href="../toolbar-fixed-fullscreen/" data-ajax="false">Fullscreen toolbars</a></li>
+			<li data-filtertext="external fixed toolbars statusbar footer"><a href="../toolbar-fixed-external/" data-ajax="false">Fixed external toolbars</a></li>
+			<li data-filtertext="external persistent toolbars statusbar footer navbar navmenu"><a href="../toolbar-fixed-persistent/" data-ajax="false">Persistent toolbars</a></li>
+			<li data-filtertext="external ajax optimized toolbars persistent toolbars statusbar footer navbar"><a href="../toolbar-fixed-persistent-optimized/" data-ajax="false">Ajax optimized toolbars</a></li>
+			<li data-filtertext="form in toolbars statusbar footer"><a href="../toolbar-fixed-forms/" data-ajax="false">Form in toolbar</a></li>
 		</ul>
 	</div>
 </li>

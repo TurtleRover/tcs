@@ -1,4 +1,4 @@
-#page-wrapper {
+.wrapper {
     background-image: url("../img/welcome-screen/kolko-lewe-dolne.svg"), url("../img/welcome-screen/chmurka3-prawa-gorna.png"), url("../img/welcome-screen/chmurka2-lewa-gorna.png"), url("../img/welcome-screen/chmurka1-dolna.png"), url("../img/welcome-screen/kolko-po-prawej.svg"), url("../img/welcome-screen/background.png");
     background-attachment: fixed;
     background-position: 10% 80%, center center, center center, center center, 105% -10%, center center;
@@ -9,22 +9,23 @@
     transition: opacity 0.5s ease;
     opacity: 1;
     visibility: visible;
+    z-index: 1;
+
+    &:before {
+        background: transparent;
+        content: '';
+        display: block;
+        display: none;
+        height: 100%;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 10001;
+    }
 }
 
-#page-wrapper:before {
-    background: transparent;
-    content: '';
-    display: block;
-    display: none;
-    height: 100%;
-    left: 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 10001;
-}
-
-body.is-menu-visible #page-wrapper:before {
+body.is-menu-visible #wrapper:before {
     display: block;
 }
 
@@ -33,7 +34,7 @@ body.landing #footer {
     background-color: rgba(29, 36, 42, 0.9);
 }
 
-body.is-mobile.landing #page-wrapper {
+body.is-mobile.landing #wrapper {
     background: none;
     height: 100%;
 }

@@ -1,5 +1,9 @@
 (function() {
-    document.addEventListener("DOMContentLoaded",function(){
-        console.log("LOADED");
-});
+    let bootscreen = document.getElementById("bootscreen");
+
+    document.onreadystatechange = function() {
+        if (document.readyState === "complete") {
+            bootscreen.classList.add("bootscreen-hide");
+        }
+    };
 })();

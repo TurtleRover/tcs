@@ -13,15 +13,15 @@
 	<script src="../js/jquery.mobile-1.4.5.min.js"></script>
 	<script>
 		$(function(){
-			$( "[data-role='header'], [data-role='footer']" ).toolbar();
+			$( "[data-role='statusbar'], [data-role='footer']" ).toolbar();
 		});
 	</script>
 </head>
 <body>
-	<div data-role="header" data-position="fixed" data-theme="a">
+	<div data-role="statusbar" data-position="fixed" data-theme="a">
 			<a href="../toolbar/" data-rel="back" class="ui-btn ui-btn-left ui-alt-icon ui-nodisc-icon ui-corner-all ui-btn-icon-notext ui-icon-carat-l">Back</a>
-		<h1>External fixed header</h1>
-	</div><!-- /header -->
+		<h1>External fixed statusbar</h1>
+	</div><!-- /statusbar -->
 
 	<div data-role="page" class="jqm-demos">
 
@@ -29,7 +29,7 @@
 
 			<h1>Fixed external toolbars</h1>
 
-			<p>The header and footer on this page are outside of the page within the body. They have been set to position fixed.</p>
+			<p>The statusbar and footer on this page are outside of the page within the body. They have been set to position fixed.</p>
 
 			<h2>Auto init</h2>
 
@@ -37,7 +37,7 @@
 
 <pre><code>
 $(function(){
-	$( "[data-role='header'], [data-role='footer']" ).toolbar();
+	$( "[data-role='statusbar'], [data-role='footer']" ).toolbar();
 });
 </code></pre>
 
@@ -47,7 +47,7 @@ $(function(){
 
 <pre><code>
 $(function(){
-	$( "[data-role='header'], [data-role='footer']" ).toolbar({ theme: "a" });
+	$( "[data-role='statusbar'], [data-role='footer']" ).toolbar({ theme: "a" });
 });
 </code></pre>
 

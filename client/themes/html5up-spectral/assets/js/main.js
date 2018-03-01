@@ -19,9 +19,9 @@
 
 		var	$window = $(window),
 			$body = $('body'),
-			$wrapper = $('#page-wrapper'),
+			$wrapper = $('#wrapper'),
 			$banner = $('#banner'),
-			$header = $('#header');
+			$statusbar = $('#statusbar');
 
 		// Disable animations/transitions until the page has loaded.
 			$body.addClass('is-loading');
@@ -59,7 +59,7 @@
 			$('.scrolly')
 				.scrolly({
 					speed: 1500,
-					offset: $header.outerHeight()
+					offset: $statusbar.outerHeight()
 				});
 
 		// Menu.
@@ -79,18 +79,18 @@
 
 		// Header.
 			if (skel.vars.IEVersion < 9)
-				$header.removeClass('alt');
+				$statusbar.removeClass('alt');
 
 			if ($banner.length > 0
-			&&	$header.hasClass('alt')) {
+			&&	$statusbar.hasClass('alt')) {
 
 				$window.on('resize', function() { $window.trigger('scroll'); });
 
 				$banner.scrollex({
-					bottom:		$header.outerHeight() + 1,
-					terminate:	function() { $header.removeClass('alt'); },
-					enter:		function() { $header.addClass('alt'); },
-					leave:		function() { $header.removeClass('alt'); }
+					bottom:		$statusbar.outerHeight() + 1,
+					terminate:	function() { $statusbar.removeClass('alt'); },
+					enter:		function() { $statusbar.addClass('alt'); },
+					leave:		function() { $statusbar.removeClass('alt'); }
 				});
 
 			}
