@@ -1,5 +1,5 @@
 @mixin small {
-    @media (min-width: 481px) and (max-width: 767px) {
+    @media (min-width: 481px) {
         @content;
     }
 }
@@ -17,4 +17,9 @@
     @media (min-width: 1800px) {
         @content;
     }
+}
+
+@mixin vertical-align() {
+	top: 50%;
+	transform: translateY(-50%);
 }

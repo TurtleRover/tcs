@@ -3533,7 +3533,7 @@ a.ui-button:active,
   padding: 12px 0;
 }
 
-@media (min-width: 481px) and (max-width: 767px) {
+@media (min-width: 481px) {
   .statusbar {
     height: 34px;
   }
@@ -3549,13 +3549,19 @@ a.ui-button:active,
   position: absolute;
   left: 10px;
   width: auto;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-@media (min-width: 481px) and (max-width: 767px) {
+@media (min-width: 481px) {
   .statusbar_logo {
-    top: 8px;
-    bottom: 8px;
     height: 18px;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+  .statusbar_logo {
+    height: 36px;
   }
 }
 

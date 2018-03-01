@@ -17,10 +17,12 @@
         position: absolute;
         left: 10px;
         width: auto;
+        @include vertical-align();
         @include small {
-            top: 8px;
-            bottom: 8px;
             height: 18px;
+        }
+        @include medium {
+            height: 36px;
         }
     }
 }
