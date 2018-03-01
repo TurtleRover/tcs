@@ -5,7 +5,6 @@
     width: 100%;
     background-color: $background-color;
     z-index: 2;
-    padding: 12px 0;
     @include small {
         height: 34px;
     }
@@ -23,6 +22,30 @@
         }
         @include medium {
             height: 36px;
+        }
+    }
+
+    &_indicators {
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+
+        &_indicator {
+            @include vertical-align();
+            position: relative;
+            width: auto;
+            @include small {
+                height: 10px;
+                margin: 0 10px;
+            }
+
+            @include medium {
+                height: 20px;
+                margin: 0 15px;
+            }
         }
     }
 }
