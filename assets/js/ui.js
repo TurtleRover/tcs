@@ -471,6 +471,8 @@ var ui = (function () {
 	$("#sharpness-slider").change(function(e, data) {amplify.publish("ui->port8080", "update camera settings");});
 
 	$("#gripper-slider").on("input", function(e, data) {amplify.publish("ui->port8080", "set new gripper position");});
+	$("#axis1-slider").on("input", function(e, data) {amplify.publish("ui->port8080", "set new axis1 position");});
+	$("#axis2-slider").on("input", function(e, data) {amplify.publish("ui->port8080", "set new axis2 position");});
 	//$("#camera-slider").on("input", function(e, data) {amplify.publish("ui->port8080", "set new camera position");});
 	/*
 	 * TBD: is it better to have it back to the center or not?
@@ -508,8 +510,11 @@ var ui = (function () {
 			$("#camera-video-img").addClass("camera-video-grab-mode");
 			$("#right-navigation-cross-img").fadeIn();
 			$("#turtle-navigation-view-img").fadeIn();
-			$("#right-navigation-cross-img").attr('src', 'assets/img/ui/right-krzyz-mani.svg');
-			$("#turtle-navigation-view-img").attr('src', 'assets/img/ui/right-manipulator.svg');
+			$("#navigation-ring-canvas").fadeOut();
+			$("#axis1-slider-wrapper").fadeIn();
+			$("#axis2-slider-wrapper").fadeIn();
+			$("#right-navigation-cross-img").attr('src', '');
+			$("#turtle-navigation-view-img").attr('src', '');
 			amplify.publish("ui->controlCanvas", "set function to GRAB");
 			/*}
 			else {
@@ -530,6 +535,9 @@ var ui = (function () {
 			$("#camera-video-img").addClass("camera-video-drive-mode");
 			$("#right-navigation-cross-img").fadeIn();
 			$("#turtle-navigation-view-img").fadeIn();
+			$("#navigation-ring-canvas").fadeIn();
+			$("#axis1-slider-wrapper").fadeOut();
+			$("#axis2-slider-wrapper").fadeOut();
 			$("#right-navigation-cross-img").attr('src', 'assets/img/ui/right-krzyz.svg');
 			$("#turtle-navigation-view-img").attr('src', 'assets/img/ui/right-lazik.svg');
 			amplify.publish("ui->controlCanvas", "set function to DRIVE");

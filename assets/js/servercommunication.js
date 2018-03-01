@@ -98,6 +98,10 @@ var serverCommunication = (function () {
                 case "set new gripper position":
                     setNewGripperPosition();
                     break;
+                case "set new axis1 position":
+                case "set new axis2 position":
+                    updateAxisPositions();
+                    break;
                 case "set new camera position":
                     setNewCameraPosition();
                     break;
@@ -186,6 +190,12 @@ var serverCommunication = (function () {
 
             setTimeout(function () { connect8080() }, 1000);
         };
+
+        function updateAxisPositions() {
+            $("#mani-axis-1").val($("#axis1-slider-input").val());
+            $("#mani-axis-2").val($("#axis2-slider-input").val());
+            setNewManiPosition();   
+        }
 
         /*
          *  set new position of servo

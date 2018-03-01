@@ -119,14 +119,14 @@
 											<div id="setting-menu-grid">
 												<div id="setting-menu-grid-element-left"><p>Axis 1<p></div>
 												<div id="setting-menu-grid-element-right">
-													<input id="mani-axis-1" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
+													<input id="mani-axis-1" type="number" max="4800" min="2700" width="6" step="50" value="4600" style="background-color: gray">
 												</div>
 												<div id="clear"></div>
 											</div>
 											<div id="setting-menu-grid">
 												<div id="setting-menu-grid-element-left"><p>Axis 2<p></div>
 												<div id="setting-menu-grid-element-right">
-													<input id="mani-axis-2" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
+													<input id="mani-axis-2" type="number" max="4800" min="4000" width="6" step="50" value="4000" style="background-color: gray">
 												</div>
 												<div id="clear"></div>
 											</div>
@@ -321,7 +321,22 @@
 						<div class="transparent-background-div" id="transparent-background-navigation-right"></div>
 						<div id="right-navigation-cross-div" draggable="false" style="user-drag: none">
 						 	<img id="right-navigation-cross-img" src="assets/img/ui/right-krzyz.svg" draggable="false" onmousedown="return false" style="user-drag:none">
-							<img id="turtle-navigation-view-img" src="assets/img/ui/right-lazik.svg" draggable="false" onmousedown="return false" style="user-drag:none">
+							
+							<div id="axis1-slider-wrapper" hidden>
+								<div class="flat-slider-wrapper axis-slider-wrapper">
+									<div class="flat-slider gripper-slider" id="axis1-slider"><input type="range" class="flat-slider-horizontal" id="axis1-slider-input" max="3600" min="2400" step="10" value="3000" style="transform: rotateY(180deg);"/></div>
+									<div id="clear"></div>
+								</div>
+							</div>
+
+							<div id="axis2-slider-wrapper" hidden>
+								<div class="flat-slider-wrapper axis-slider-wrapper">
+									<div class="flat-slider gripper-slider" id="axis2-slider"><input type="range" class="flat-slider-horizontal" id="axis2-slider-input" max="3600" min="2400" step="10" value="3000" style="transform: rotateY(180deg);"/></div>
+									<div id="clear"></div>
+								</div>
+							</div>
+
+							 <img id="turtle-navigation-view-img" src="assets/img/ui/right-lazik.svg" draggable="false" onmousedown="return false" style="user-drag:none">
 
 							<canvas id="navigation-ring-canvas"></canvas>
 
