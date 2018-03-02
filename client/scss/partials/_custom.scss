@@ -201,44 +201,7 @@
 }
 
 
-#main-statusbar-buttons-div {
-  position: absolute;
-  left: 42%;
-  width: 16%;
-  height: 100%;
-  top: 20%;
-}
 
-#main-statusbar-button-div {
-  width: 33%;
-  height: 100%;
-  text-align: center;
-}
-
-#main-statusbar-button-div.video-button-class {
-  float: left;
-}
-
-#main-statusbar-button-div.snap-button-class {
-  display: inline-block;
-}
-
-#main-statusbar-button-div.fullscreen-button-class {
-  float: right;
-}
-
-.main-statusbar-button-img {
-  margin-top: 3%;
-  max-height: 50%;
-  top: 0;
-  left: 0;
-  width: auto;
-  transition: all 0.2s ease-in-out;
-}
-
-.main-statusbar-button-img:hover {
-  transform: scale(1.4);
-}
 
 #control-container-div {
   position: absolute;

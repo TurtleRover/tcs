@@ -42,6 +42,31 @@
                 margin: 0 10px;
             }
 
+
+            @include medium {
+                height: 20px;
+                margin: 0 15px;
+            }
+        }
+    }
+
+    &_actions {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+
+        &_action {
+            @include vertical-align();
+            position: relative;
+            width: auto;
+            @include small {
+                height: 10px;
+                margin: 0 10px;
+            }
+
             @include medium {
                 height: 20px;
                 margin: 0 15px;

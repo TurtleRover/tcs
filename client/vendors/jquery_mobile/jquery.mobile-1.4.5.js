@@ -12436,7 +12436,7 @@ $.widget( "mobile.controlgroup", $.extend( {
 			visibleOnPageShow: true,
 			disablePageZoom: true,
 			transition: "slide", //can be none, fade, slide (slide maps to slideup or slidedown)
-			fullscreen: false,
+			button-fullscreen: false,
 			tapToggle: true,
 			tapToggleBlacklist: "a, button, input, select, textarea, .ui-statusbar-fixed, .ui-footer-fixed, .ui-flipswitch, .ui-popup, .ui-panel, .ui-panel-dismiss-open",
 			hideDuringFocus: "input, textarea, select",
@@ -12477,15 +12477,15 @@ $.widget( "mobile.controlgroup", $.extend( {
 			if ( this.options.position === "fixed" && !this.options.supportBlacklist() ) {
 				var $page = ( !!this.page )? this.page: ( $(".ui-page-active").length > 0 )? $(".ui-page-active"): $(".ui-page").eq(0);
 
-				if ( o.fullscreen !== undefined) {
-					if ( o.fullscreen ) {
-						this.element.addClass( "ui-"+ this.role +"-fullscreen" );
-						$page.addClass( "ui-page-" + this.role + "-fullscreen" );
+				if ( o.button-fullscreen !== undefined) {
+					if ( o.button-fullscreen ) {
+						this.element.addClass( "ui-"+ this.role +"-button-fullscreen" );
+						$page.addClass( "ui-page-" + this.role + "-button-fullscreen" );
 					}
-					// If not fullscreen, add class to page to set top or bottom padding
+					// If not button-fullscreen, add class to page to set top or bottom padding
 					else {
-						this.element.removeClass( "ui-"+ this.role +"-fullscreen" );
-						$page.removeClass( "ui-page-" + this.role + "-fullscreen" ).addClass( "ui-page-" + this.role+ "-fixed" );
+						this.element.removeClass( "ui-"+ this.role +"-button-fullscreen" );
+						$page.removeClass( "ui-page-" + this.role + "-button-fullscreen" ).addClass( "ui-page-" + this.role+ "-fixed" );
 					}
 				}
 			}
@@ -12580,8 +12580,8 @@ $.widget( "mobile.controlgroup", $.extend( {
 				statusbar = ( this.role ==="statusbar" ),
 				pos = parseFloat( $el.css( statusbar ? "top" : "bottom" ) );
 
-			// This behavior only applies to "fixed", not "fullscreen"
-			if ( this.options.fullscreen ) { return; }
+			// This behavior only applies to "fixed", not "button-fullscreen"
+			if ( this.options.button-fullscreen ) { return; }
 			// tbPage argument can be a Page object or an event, if coming from throttled resize.
 			tbPage = ( tbPage && tbPage.type === undefined && tbPage ) || this.page || $el.closest( ".ui-page" );
 			tbPage = ( !!this.page )? this.page: ".ui-page-active";
@@ -12599,9 +12599,9 @@ $.widget( "mobile.controlgroup", $.extend( {
 			return !notransition &&
 				( this.options.transition && this.options.transition !== "none" &&
 				(
-					( this.role === "statusbar" && !this.options.fullscreen && scroll > elHeight ) ||
-					( this.role === "footer" && !this.options.fullscreen && scroll + viewportHeight < pHeight - elHeight )
-				) || this.options.fullscreen
+					( this.role === "statusbar" && !this.options.button-fullscreen && scroll > elHeight ) ||
+					( this.role === "footer" && !this.options.button-fullscreen && scroll + viewportHeight < pHeight - elHeight )
+				) || this.options.button-fullscreen
 				);
 		},
 
@@ -12708,13 +12708,13 @@ $.widget( "mobile.controlgroup", $.extend( {
 							.add( page.find( ".ui-" + this.options.role + "-fixed" ) )
 							.not( this.element ).length > 0;
 				hasFullscreen = $(  "body>.ui-" + this.role + "-fixed" )
-							.add( page.find( ".ui-" + this.options.role + "-fullscreen" ) )
+							.add( page.find( ".ui-" + this.options.role + "-button-fullscreen" ) )
 							.not( this.element ).length > 0;
-				toolbarClasses =  "ui-statusbar-fixed ui-footer-fixed ui-statusbar-fullscreen in out" +
-					" ui-footer-fullscreen fade slidedown slideup ui-fixed-hidden";
+				toolbarClasses =  "ui-statusbar-fixed ui-footer-fixed ui-statusbar-button-fullscreen in out" +
+					" ui-footer-button-fullscreen fade slidedown slideup ui-fixed-hidden";
 				this.element.removeClass( toolbarClasses );
 				if ( !hasFullscreen ) {
-					pageClasses = "ui-page-" + this.role + "-fullscreen";
+					pageClasses = "ui-page-" + this.role + "-button-fullscreen";
 				}
 				if ( !hasFixed ) {
 					statusbar = this.role === "statusbar";

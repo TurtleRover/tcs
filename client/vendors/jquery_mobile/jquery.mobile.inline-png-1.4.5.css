@@ -2308,8 +2308,8 @@ li.ui-block-e {
 	bottom: 0;
 	padding-bottom: 0;
 }
-.ui-statusbar-fullscreen,
-.ui-footer-fullscreen {
+.ui-statusbar-button-fullscreen,
+.ui-footer-button-fullscreen {
 	filter: Alpha(Opacity=90);
 	opacity: .9;
 }
@@ -2320,8 +2320,8 @@ li.ui-block-e {
 .ui-page-footer-fixed {
 	padding-bottom: 2.8125em;
 }
-.ui-page-statusbar-fullscreen > .ui-content,
-.ui-page-footer-fullscreen > .ui-content {
+.ui-page-statusbar-button-fullscreen > .ui-content,
+.ui-page-footer-button-fullscreen > .ui-content {
 	padding: 0;
 }
 .ui-fixed-hidden {
@@ -2334,8 +2334,8 @@ li.ui-block-e {
 .ui-page .ui-footer-fixed.ui-fixed-hidden {
   display: block
 }
-.ui-page-statusbar-fullscreen .ui-fixed-hidden,
-.ui-page-footer-fullscreen .ui-fixed-hidden {
+.ui-page-statusbar-button-fullscreen .ui-fixed-hidden,
+.ui-page-footer-button-fullscreen .ui-fixed-hidden {
 	position: absolute !important;
 	height: 1px;
 	width: 1px;

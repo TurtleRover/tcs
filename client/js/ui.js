@@ -236,7 +236,7 @@ var ui = (function () {
 	}
 
 	/*
-	 *	switch to fullscreen mode
+	 *	switch to button-fullscreen mode
 	 */
 	function toggleFullScreen() {
 		//	for internet explorer use body as full screen, not the document
@@ -294,10 +294,10 @@ var ui = (function () {
 	 */
 	function changedFullScreen() {
 		if ($(document).fullScreen()) {
-			//$("#full-screen-button-img").attr("src", "client/img/navigation/fullscreen-exit.png");
+			//$("#full-screen-button-img").attr("src", "client/img/navigation/button-fullscreen-exit.png");
 		}
 		else {
-			//$("#full-screen-button-img").attr("src", "client/img/navigation/fullscreen.png");
+			//$("#full-screen-button-img").attr("src", "client/img/navigation/button-fullscreen.png");
 		}
 	}
 
@@ -446,9 +446,9 @@ var ui = (function () {
 	 * 																		EVENT functions
 	 */
 	$("#languageSelector").change(function(e, data) {languageChanged(data);});
-	$(".fullscreen-button-img").click(function() {toggleFullScreen();});
-	$("#snap-button-img").click(function() {takeScreenShot();});
-	$("#record-button-img").click(function() {recordVideo();});
+	$("#button-fullscreen").click(function() {toggleFullScreen();});
+	$("#button-screenshot").click(function() {takeScreenShot();});
+	$("#button-screenrecord").click(function() {recordVideo();});
 	$(document).bind("fullscreenchange", function() {changedFullScreen();});
 	$("#advanced-interface-button").change(function(e, data) {advancedInterfaceChanged();});
 	//$("#photography-button").change(function(e, data) {photographyChanged();});

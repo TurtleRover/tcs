@@ -57,19 +57,12 @@
                 <img id="indicator-battery" class="statusbar_indicators_indicator" src="client/img/ui/nav-bar-battery.svg">
                 <img id="indicator-signal" class="statusbar_indicators_indicator" src="client/img/ui/icon-zasieg-4.svg">
             </div>
-
-            <div id="main-statusbar-buttons-div">
-                <div id="main-statusbar-button-div" class="video-button-class">
-                    <img class="main-statusbar-button-img" id="record-button-img" src="client/img/ui/nav-bar-rec.svg">
-                </div>
-                <div id="main-statusbar-button-div" class="snap-button-class">
-                    <a id="snap-download-a">
-                <img class="main-statusbar-button-img" id="snap-button-img" src="client/img/ui/nav-bar-snap.svg">
-            </a>
-                </div>
-                <div id="main-statusbar-button-div" class="fullscreen-button-class">
-                    <img class="main-statusbar-button-img fullscreen-button-img" src="client/img/ui/nav-bar-fullscreen.svg">
-                </div>
+            <div id="statusbar_actions" class="statusbar_actions">
+                <img class="statusbar_actions_action" id="button-screenrecord" src="client/img/ui/nav-bar-rec.svg">
+                <!-- <a id="snap-download-a"> -->
+                <img class="statusbar_actions_action" id="button-screenshot" src="client/img/ui/nav-bar-snap.svg">
+                <!-- </a> -->
+                <img class="statusbar_actions_action" id="button-fullscreen" src="client/img/ui/nav-bar-fullscreen.svg">
             </div>
 
             <!-- <nav id="nav">
@@ -469,8 +462,8 @@
     <!-- canvas controller -->
     <script src='client/js/controlcanvas.js'></script>
 
-    <!-- fullscreen plugin -->
-    <script src='client/vendors/jquery_fullscreen/jquery.fullscreen.js'></script>
+    <!-- button-fullscreen plugin -->
+    <script src='client/vendors/jquery_fullscreen/jquery.button-fullscreen.js'></script>
 
     <!-- socket server communication -->
     <script src='client/js/servercommunication.js'></script>

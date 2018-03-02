@@ -552,7 +552,7 @@ th {
 .glyphicon-info-sign:before {
   content: "\e086";
 }
-.glyphicon-screenshot:before {
+.glyphicon-button-screenshot:before {
   content: "\e087";
 }
 .glyphicon-remove-circle:before {
@@ -702,7 +702,7 @@ th {
 .glyphicon-briefcase:before {
   content: "\e139";
 }
-.glyphicon-fullscreen:before {
+.glyphicon-button-fullscreen:before {
   content: "\e140";
 }
 .glyphicon-dashboard:before {

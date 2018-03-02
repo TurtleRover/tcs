@@ -1,6 +1,6 @@
 /**
- * @preserve jquery.fullscreen 1.1.5
- * https://github.com/kayahr/jquery-fullscreen-plugin
+ * @preserve jquery.button-fullscreen 1.1.5
+ * https://github.com/kayahr/jquery-button-fullscreen-plugin
  * Copyright (C) 2012-2013 Klaus Reimer <k@ailis.de>
  * Licensed under the MIT license
  * (See http://www.opensource.org/licenses/mit-license)
@@ -9,18 +9,18 @@
 (function(jQuery) {
 
 /**
- * Sets or gets the fullscreen state.
+ * Sets or gets the button-fullscreen state.
  * 
  * @param {boolean=} state
- *            True to enable fullscreen mode, false to disable it. If not
- *            specified then the current fullscreen state is returned.
+ *            True to enable button-fullscreen mode, false to disable it. If not
+ *            specified then the current button-fullscreen state is returned.
  * @return {boolean|Element|jQuery|null}
- *            When querying the fullscreen state then the current fullscreen
+ *            When querying the button-fullscreen state then the current button-fullscreen
  *            element (or true if browser doesn't support it) is returned
  *            when browser is currently in full screen mode. False is returned
  *            if browser is not in full screen mode. Null is returned if 
- *            browser doesn't support fullscreen mode at all. When setting 
- *            the fullscreen state then the current jQuery selection is 
+ *            browser doesn't support button-fullscreen mode at all. When setting 
+ *            the button-fullscreen state then the current jQuery selection is 
  *            returned for chaining.
  * @this {jQuery}
  */
@@ -32,7 +32,7 @@ function fullScreen(state)
     if (!this.length) return this;
     
     // We only use the first selected element because it doesn't make sense
-    // to fullscreen multiple elements.
+    // to button-fullscreen multiple elements.
     e = (/** @type {Element} */ this[0]);
     
     // Find the real element and the document (Depends on whether the
@@ -50,7 +50,7 @@ function fullScreen(state)
     // When no state was specified then return the current state.
     if (state == null)
     {
-        // When fullscreen mode is not supported then return null
+        // When button-fullscreen mode is not supported then return null
         if (!((/** @type {?Function} */ doc["exitFullscreen"])
             || (/** @type {?Function} */ doc["webkitExitFullscreen"])
             || (/** @type {?Function} */ doc["webkitCancelFullScreen"])
@@ -60,14 +60,14 @@ function fullScreen(state)
             return null;
         }
         
-        // Check fullscreen state
+        // Check button-fullscreen state
         state = !!doc["fullscreenElement"]
             || !!doc["msFullscreenElement"]
             || !!doc["webkitIsFullScreen"]
             || !!doc["mozFullScreen"];
         if (!state) return state;
         
-        // Return current fullscreen element or "true" if browser doesn't
+        // Return current button-fullscreen element or "true" if browser doesn't
         // support this
         return (/** @type {?Element} */ doc["fullscreenElement"])
             || (/** @type {?Element} */ doc["webkitFullscreenElement"])
@@ -77,10 +77,10 @@ function fullScreen(state)
             || state;
     }
     
-    // When state was specified then enter or exit fullscreen mode.
+    // When state was specified then enter or exit button-fullscreen mode.
     if (state)
     {
-        // Enter fullscreen
+        // Enter button-fullscreen
         func = (/** @type {?Function} */ e["requestFullscreen"])
             || (/** @type {?Function} */ e["webkitRequestFullscreen"])
             || (/** @type {?Function} */ e["webkitRequestFullScreen"])
@@ -94,7 +94,7 @@ function fullScreen(state)
     }
     else
     {
-        // Exit fullscreen
+        // Exit button-fullscreen
         func = (/** @type {?Function} */ doc["exitFullscreen"])
             || (/** @type {?Function} */ doc["webkitExitFullscreen"])
             || (/** @type {?Function} */ doc["webkitCancelFullScreen"])
@@ -106,7 +106,7 @@ function fullScreen(state)
 }
 
 /**
- * Toggles the fullscreen mode.
+ * Toggles the button-fullscreen mode.
  * 
  * @return {!jQuery}
  *            The jQuery selection for chaining.
