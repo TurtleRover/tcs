@@ -39,7 +39,7 @@ var linux = (function () {
         function(data) {
             if (DEBUG) console.log("AJAX request sent");
             data = data.split("\r\n");
-            
+
             /*
              *  data received from the run_server.php
              *  0   -   amount of connected clients (only 1 at a time is allowed)
@@ -59,7 +59,7 @@ var linux = (function () {
                 mjpegStreamPID = data[2];
                 //  if the returned value is numeric (pid of the process) continue with camera
                 if ($.isNumeric(serverProcessPID) || $.isNumeric(mjpegStreamPID)) {
-                    isCameraAvailable = true; 
+                    isCameraAvailable = true;
                     if (DEBUG) console.log("serverProcessPID: " + serverProcessPID);
                     if (DEBUG) console.log("mjpegStreamPID: " + mjpegStreamPID);
 
@@ -110,7 +110,7 @@ var linux = (function () {
 
 		switch(message) {
 			case "start python server":
-                startPythonServer();
+                // startPythonServer();
 				break;
             case "stop python server":
                 stopPythonServer();
@@ -124,7 +124,7 @@ var linux = (function () {
 		if (DEBUG) console.log("webrtcMessageCallback: " + message);
 
 		switch(message) {
-			case "camera stream is ready": 
+			case "camera stream is ready":
                 //  wait until communication channel is ready
                 while (communicationEstablished == false && !document.domain.includes("localhost")) setTimeout(function() { }, 1000);
                 amplify.publish("linux->controller", "communication established");
