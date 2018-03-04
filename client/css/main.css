@@ -547,7 +547,7 @@ body {
 }
 
 .wrapper {
-  background-image: url("../img/welcome-screen/background.png");
+  background-image: url("https://i2-prod.mirror.co.uk/incoming/article10530897.ece/ALTERNATES/s1200/PROD-135557139.jpg");
   background-attachment: fixed;
   background-position: center center;
   background-repeat: no-repeat;
@@ -3467,7 +3467,7 @@ a.ui-button:active,
   }
 }
 
-@media (min-width: 900px) and (max-width: 1199px) {
+@media (min-width: 900px) {
   .statusbar {
     height: 68px;
   }
@@ -3487,7 +3487,7 @@ a.ui-button:active,
   }
 }
 
-@media (min-width: 900px) and (max-width: 1199px) {
+@media (min-width: 900px) {
   .statusbar_logo {
     height: 36px;
   }
@@ -3516,7 +3516,7 @@ a.ui-button:active,
   }
 }
 
-@media (min-width: 900px) and (max-width: 1199px) {
+@media (min-width: 900px) {
   .statusbar_indicators_indicator {
     height: 20px;
     margin: 0 15px;
@@ -3546,7 +3546,7 @@ a.ui-button:active,
   }
 }
 
-@media (min-width: 900px) and (max-width: 1199px) {
+@media (min-width: 900px) {
   .statusbar_actions_action {
     height: 20px;
     margin: 0 15px;
@@ -3643,11 +3643,23 @@ a.ui-button:active,
   color: white;
   height: 100vh;
   right: -30%;
-  padding-top: 34px;
   position: fixed;
   top: 0;
   width: 30%;
   z-index: 3;
+  overflow-y: scroll;
+}
+
+@media (min-width: 481px) {
+  .nav {
+    padding-top: 34px;
+  }
+}
+
+@media (min-width: 900px) {
+  .nav {
+    padding-top: 68px;
+  }
 }
 
 .nav.expanded {

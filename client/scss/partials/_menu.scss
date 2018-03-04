@@ -5,11 +5,18 @@
 	color: $nav-color;
 	height: 100vh;
 	right: -30%;
-	padding-top: $statusbar-height-small;
 	position: fixed;
 	top: 0;
 	width: 30%;
 	z-index: 3;
+	overflow-y: scroll;
+
+	@include small {
+        padding-top: $statusbar-height-small;
+    }
+    @include medium {
+        padding-top: $statusbar-height-medium;
+    }
 
 	&.expanded {
 		right: 0;
