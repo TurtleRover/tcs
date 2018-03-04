@@ -1,3 +1,11 @@
+#camera-video-img{
+    -moz-transition: opacity 0.5s ease;
+    -webkit-transition: opacity 0.5s ease;
+    -ms-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
+    opacity: 1;
+}
+
 @keyframes fadein {
   from {
     opacity: 0;

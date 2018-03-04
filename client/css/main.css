@@ -546,10 +546,19 @@ body {
   cursor: url("../img/cursor.png") 12 12, url("../img/cursor.cur") 12 12, auto;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.225em;
+  line-height: 1em;
+  margin: 0 0 1em 0;
+  text-transform: uppercase;
+}
+
 .wrapper {
   background-image: url("../img/ui/dot.svg"), url("https://i2-prod.mirror.co.uk/incoming/article10530897.ece/ALTERNATES/s1200/PROD-135557139.jpg");
   background-attachment: fixed;
-  background-position: top left, center center;
+  background-position: center center;
   background-repeat: repeat, no-repeat;
   background-size: auto, cover;
   padding-top: 0;
@@ -573,6 +582,11 @@ body {
   top: 0;
   width: 100%;
   z-index: 10001;
+}
+
+#camera-video-img {
+  transition: opacity 0.5s ease;
+  opacity: 1;
 }
 
 @keyframes fadein {
@@ -3691,6 +3705,37 @@ a.ui-button:active,
   width: 100%;
   position: absolute;
   z-index: 2;
+}
+
+.crosshair {
+  position: absolute;
+  display: block;
+  height: 300px;
+  width: 300px;
+  background-image: url("../img/ui/crosshair.svg");
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+@media (min-width: 481px) {
+  .crosshair {
+    height: 200px;
+    width: 200px;
+  }
+}
+
+@media (min-width: 900px) {
+  .crosshair {
+    height: 300px;
+    width: 300px;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
