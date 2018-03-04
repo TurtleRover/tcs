@@ -3637,38 +3637,49 @@ a.ui-button:active,
 }
 
 /* nav */
-.nav {
+.settings {
   transition: right 0.5s ease;
   background: #000000;
-  color: white;
-  height: 100vh;
-  right: -30%;
+  color: #ffffff;
+  height: 100%;
   position: fixed;
   top: 0;
-  width: 30%;
   z-index: 3;
   overflow-y: scroll;
 }
 
 @media (min-width: 481px) {
-  .nav {
+  .settings {
+    right: -50%;
+    width: 50%;
+  }
+}
+
+@media (min-width: 900px) {
+  .settings {
+    right: -30%;
+    width: 30%;
+  }
+}
+
+@media (min-width: 481px) {
+  .settings {
     padding-top: 34px;
   }
 }
 
 @media (min-width: 900px) {
-  .nav {
+  .settings {
     padding-top: 68px;
   }
 }
 
-.nav.expanded {
+.settings-expanded {
   right: 0;
 }
 
-.nav ul {
+.settings ul {
   list-style: none;
-  position: absolute;
   margin: 0;
   padding: 0;
 }

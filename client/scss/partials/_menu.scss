@@ -1,15 +1,22 @@
 /* nav */
-.nav {
+.settings {
 	@include transition(right 0.5s ease);
-	background: $nav-background;
-	color: $nav-color;
-	height: 100vh;
-	right: -30%;
+	background: $background-color;
+	color: #ffffff;
+	height: 100%;
 	position: fixed;
 	top: 0;
-	width: 30%;
 	z-index: 3;
 	overflow-y: scroll;
+
+	@include small {
+		right: -50%;
+		width: 50%;
+    }
+    @include medium {
+        right: -30%;
+		width: 30%;
+    }
 
 	@include small {
         padding-top: $statusbar-height-small;
@@ -18,13 +25,12 @@
         padding-top: $statusbar-height-medium;
     }
 
-	&.expanded {
+	&-expanded {
 		right: 0;
 	}
 
 	ul {
 		list-style: none;
-		position: absolute;
 		margin: 0;
 		padding: 0;
 	}

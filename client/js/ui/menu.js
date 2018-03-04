@@ -7,7 +7,7 @@
 		doToggle: function(e) {
 			e.preventDefault();
 			this.navToggle.classList.toggle('statusbar_menu_bar-expanded');
-			this.nav.classList.toggle('expanded');
+			this.nav.classList.toggle('settings-expanded');
 		}
 	};
 
