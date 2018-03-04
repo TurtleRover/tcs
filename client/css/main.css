@@ -1,6 +1,7 @@
 /* Primary colors */
 /* Main Font */
 /* Log Font */
+/* Statusbar */
 /* Menu */
 /* Webfont: Lato-Black */
 @font-face {
@@ -3640,13 +3641,12 @@ a.ui-button:active,
   transition: right 0.5s ease;
   background: #000000;
   color: white;
-  font-size: 2rem;
   height: 100vh;
-  right: -40%;
-  padding: 6rem 2rem 2rem;
+  right: -30%;
+  padding-top: 34px;
   position: fixed;
   top: 0;
-  width: 40%;
+  width: 30%;
   z-index: 3;
 }
 
@@ -3655,8 +3655,6 @@ a.ui-button:active,
 }
 
 .nav ul {
-  top: 50%;
-  transform: translateY(-50%);
   list-style: none;
   position: absolute;
   margin: 0;

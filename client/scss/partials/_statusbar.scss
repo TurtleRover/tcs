@@ -6,10 +6,10 @@
     background-color: $background-color;
     z-index: 9;
     @include small {
-        height: 34px;
+        height: $statusbar-height-small;
     }
     @include medium {
-        height: 68px;
+        height: $statusbar-height-medium;
     }
 
     &_logo {

@@ -3,13 +3,12 @@
 	@include transition(right 0.5s ease);
 	background: $nav-background;
 	color: $nav-color;
-	font-size: 2rem;
 	height: 100vh;
-	right: -40%;
-	padding: 6rem 2rem 2rem;
+	right: -30%;
+	padding-top: $statusbar-height-small;
 	position: fixed;
 	top: 0;
-	width: 40%;
+	width: 30%;
 	z-index: 3;
 
 	&.expanded {
@@ -17,7 +16,6 @@
 	}
 
 	ul {
-		@include vertical-align();
 		list-style: none;
 		position: absolute;
 		margin: 0;
