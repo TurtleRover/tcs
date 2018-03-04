@@ -3475,7 +3475,7 @@ a.ui-button:active,
   z-index: 9;
 }
 
-@media (min-width: 481px) {
+@media (min-device-width: 320px) {
   .statusbar {
     height: 34px;
   }
@@ -3495,7 +3495,7 @@ a.ui-button:active,
   transform: translateY(-50%);
 }
 
-@media (min-width: 481px) {
+@media (min-device-width: 320px) {
   .statusbar_logo {
     height: 18px;
   }
@@ -3523,7 +3523,7 @@ a.ui-button:active,
   width: auto;
 }
 
-@media (min-width: 481px) {
+@media (min-device-width: 320px) {
   .statusbar_indicators_indicator {
     height: 10px;
     margin: 0 10px;
@@ -3553,7 +3553,7 @@ a.ui-button:active,
   width: auto;
 }
 
-@media (min-width: 481px) {
+@media (min-device-width: 320px) {
   .statusbar_actions_action {
     height: 10px;
     margin: 0 10px;
@@ -3662,7 +3662,7 @@ a.ui-button:active,
   overflow-y: scroll;
 }
 
-@media (min-width: 481px) {
+@media (min-device-width: 320px) {
   .settings {
     right: -50%;
     width: 50%;
@@ -3676,7 +3676,7 @@ a.ui-button:active,
   }
 }
 
-@media (min-width: 481px) {
+@media (min-device-width: 320px) {
   .settings {
     padding-top: 34px;
   }
@@ -3724,7 +3724,7 @@ a.ui-button:active,
   margin: 0 auto;
 }
 
-@media (min-width: 481px) {
+@media (min-device-width: 320px) {
   .crosshair {
     height: 200px;
     width: 200px;
