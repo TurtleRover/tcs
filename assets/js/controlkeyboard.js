@@ -15,7 +15,7 @@ var controlkeyboard = (function () {
     };
 
     // FORWARD
-    keyboardJS.bind('up', function (e) {
+    keyboardJS.bind('w', function (e) {
         e.preventRepeat();
         console.log("Keyboard: UP");
         movement.type = "run";
@@ -33,7 +33,7 @@ var controlkeyboard = (function () {
     });
 
     // BACKWARD
-    keyboardJS.bind('down', function (e) {
+    keyboardJS.bind('s', function (e) {
         e.preventRepeat();
         movement.type = "run";
         movement.direction = [1, 1, 1, 1];
@@ -52,7 +52,7 @@ var controlkeyboard = (function () {
     });
 
     // LEFT
-    keyboardJS.bind('left', function (e) {
+    keyboardJS.bind('a', function (e) {
         e.preventRepeat();
         movement.type = "run";
         movement.direction = [1, 0, 1, 0];
@@ -71,7 +71,7 @@ var controlkeyboard = (function () {
     });
 
     // RIGHT
-    keyboardJS.bind('right', function (e) {
+    keyboardJS.bind('d', function (e) {
         e.preventRepeat();
         movement.type = "run";
         movement.direction = [0, 1, 0, 1];
