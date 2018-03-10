@@ -1,5 +1,10 @@
 @mixin small {
-    @media (min-device-width: 320px) {
+    @media screen and (min-device-width: 320px) {
+        @content;
+    }
+}
+@mixin small2x {
+    @media only screen and (min-resolution: 2dppx) and (min-device-width: 320px) {
         @content;
     }
 }

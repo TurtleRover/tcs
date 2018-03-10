@@ -4,7 +4,6 @@
     height: 300px;
     width: 300px;
     background-image: url("../img/ui/crosshair.svg");
-    background-attachment: fixed;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -14,9 +13,16 @@
     margin: 0 auto;
 
     @include small {
-        height: 200px;
-        width: 200px;
+        height: 150px;
+        width: 150px;
     }
+
+    @include small2x {
+        height: 150px;
+        width: 150px;
+    }
+
+
     @include medium {
         height: 300px;
         width: 300px;

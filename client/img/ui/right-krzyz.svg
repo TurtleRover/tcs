@@ -1,30 +1,129 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_11" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="1555.549px" height="1555.549px" viewBox="0 0 1555.549 1555.549" enable-background="new 0 0 1555.549 1555.549"
-	 xml:space="preserve">
-<line fill="none" stroke="#22B14C" stroke-width="10" stroke-miterlimit="10" x1="777.774" y1="0" x2="777.774" y2="1555.549"/>
-<line fill="none" stroke="#22B14C" stroke-width="10" stroke-miterlimit="10" x1="0" y1="777.775" x2="1555.549" y2="777.775"/>
-<path fill="none" stroke="#00C800" stroke-width="45" stroke-miterlimit="10" d="M777.773,1555.549"/>
-<path opacity="0.25" fill="none" stroke="#00C800" stroke-width="10" stroke-miterlimit="10" d="M777.774,1555.549"/>
-<path opacity="0.25" fill="none" stroke="#00C800" stroke-width="10" stroke-miterlimit="10" d="M0,777.774
-	C0,348.221,348.222,0,777.774,0c429.553,0,777.774,348.221,777.774,777.774"/>
-<path opacity="0.25" fill="none" stroke="#00C800" stroke-width="10" stroke-miterlimit="10" d="M87.084,777.774
-	c0-381.458,309.233-690.69,690.69-690.69c381.458,0,690.69,309.232,690.69,690.69"/>
-<path opacity="0.25" fill="none" stroke="#00C800" stroke-width="10" stroke-miterlimit="10" d="M174.169,777.774
-	c0-333.362,270.244-603.605,603.605-603.605c333.362,0,603.605,270.243,603.605,603.605"/>
-<path opacity="0.25" fill="none" stroke="#00C800" stroke-width="10" stroke-miterlimit="10" d="M261.254,777.774
-	c0-285.267,231.254-516.521,516.521-516.521c285.267,0,516.521,231.254,516.521,516.521"/>
-<path opacity="0.25" fill="none" stroke="#00C800" stroke-width="10" stroke-miterlimit="10" d="M348.338,777.774
-	c0-237.171,192.265-429.437,429.437-429.437s429.437,192.266,429.437,429.437"/>
-<path opacity="0.25" fill="none" stroke="#00C800" stroke-width="10" stroke-miterlimit="10" d="M432.429,777.774
-	c0-190.729,154.616-345.345,345.345-345.345s345.345,154.616,345.345,345.345"/>
-<path opacity="0.25" fill="none" stroke="#00C800" stroke-width="10" stroke-miterlimit="10" d="M519.459,777.774
-	c0-142.663,115.651-258.315,258.315-258.315s258.315,115.652,258.315,258.315"/>
-<path opacity="0.25" fill="none" stroke="#00C800" stroke-width="10" stroke-miterlimit="10" d="M609.592,777.774
-	c0-92.884,75.298-168.183,168.182-168.183c92.885,0,168.183,75.299,168.183,168.183"/>
-<path opacity="0.25" fill="none" stroke="#00C800" stroke-width="10" stroke-miterlimit="10" d="M698.173,777.774
-	c0-43.962,35.639-79.602,79.601-79.602s79.602,35.64,79.602,79.602"/>
-<path opacity="0.25" fill="none" stroke="#00C800" stroke-width="10" stroke-miterlimit="10" d="M777.774,1555.549"/>
-</svg>
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Layer_11"
+   x="0px"
+   y="0px"
+   width="1565.548"
+   height="1560.549"
+   viewBox="0 0 1565.548 1560.549"
+   enable-background="new 0 0 1555.549 1555.549"
+   xml:space="preserve"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="right-krzyz.svg"><metadata
+     id="metadata35"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+     id="defs33" /><sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1440"
+     inkscape:window-height="837"
+     id="namedview31"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:snap-page="true"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-paths="true"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-bbox-edge-midpoints="true"
+     inkscape:snap-bbox-midpoints="true"
+     inkscape:zoom="0.21455731"
+     inkscape:cx="741.21123"
+     inkscape:cy="1208.803"
+     inkscape:window-x="0"
+     inkscape:window-y="30"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Layer_11" /><line
+     stroke-miterlimit="10"
+     x1="782.77399"
+     y1="5"
+     x2="782.77399"
+     y2="1560.549"
+     id="line3"
+     style="fill:none;stroke:#22b14c;stroke-width:10;stroke-miterlimit:10" /><line
+     stroke-miterlimit="10"
+     x1="-2.1088686e-13"
+     y1="782.77502"
+     x2="1565.548"
+     y2="782.77502"
+     id="line5"
+     style="fill:none;stroke:#22b14c;stroke-width:10.03208733;stroke-miterlimit:10" /><path
+     stroke-miterlimit="10"
+     d="M 782.773,1560.549"
+     id="path7"
+     inkscape:connector-curvature="0"
+     style="fill:none;stroke:#00c800;stroke-width:45;stroke-miterlimit:10" /><path
+     stroke-miterlimit="10"
+     d="M 782.774,1560.549"
+     id="path9"
+     inkscape:connector-curvature="0"
+     style="opacity:0.25;fill:none;stroke:#00c800;stroke-width:10;stroke-miterlimit:10" /><path
+     stroke-miterlimit="10"
+     d="M 5,782.774 C 5,353.221 353.222,5 782.774,5 C 1212.327,5 1560.548,353.221 1560.548,782.774"
+     id="path11"
+     inkscape:connector-curvature="0"
+     style="opacity:0.25;fill:none;stroke:#00c800;stroke-width:10;stroke-miterlimit:10" /><path
+     stroke-miterlimit="10"
+     d="M 92.084,782.774 C 92.084,401.316 401.317,92.084 782.774,92.084 C 1164.232,92.084 1473.464,401.316 1473.464,782.774"
+     id="path13"
+     inkscape:connector-curvature="0"
+     style="opacity:0.25;fill:none;stroke:#00c800;stroke-width:10;stroke-miterlimit:10" /><path
+     stroke-miterlimit="10"
+     d="M 179.169,782.774 C 179.169,449.412 449.413,179.169 782.774,179.169 C 1116.136,179.169 1386.379,449.412 1386.379,782.774"
+     id="path15"
+     inkscape:connector-curvature="0"
+     style="opacity:0.25;fill:none;stroke:#00c800;stroke-width:10;stroke-miterlimit:10" /><path
+     stroke-miterlimit="10"
+     d="M 266.254,782.774 C 266.254,497.507 497.508,266.253 782.775,266.253 C 1068.042,266.253 1299.296,497.507 1299.296,782.774"
+     id="path17"
+     inkscape:connector-curvature="0"
+     style="opacity:0.25;fill:none;stroke:#00c800;stroke-width:10;stroke-miterlimit:10" /><path
+     stroke-miterlimit="10"
+     d="M 353.338,782.774 C 353.338,545.603 545.603,353.337 782.775,353.337 C 1019.947,353.337 1212.212,545.603 1212.212,782.774"
+     id="path19"
+     inkscape:connector-curvature="0"
+     style="opacity:0.25;fill:none;stroke:#00c800;stroke-width:10;stroke-miterlimit:10" /><path
+     stroke-miterlimit="10"
+     d="M 437.429,782.774 C 437.429,592.045 592.045,437.429 782.774,437.429 C 973.503,437.429 1128.119,592.045 1128.119,782.774"
+     id="path21"
+     inkscape:connector-curvature="0"
+     style="opacity:0.25;fill:none;stroke:#00c800;stroke-width:10;stroke-miterlimit:10" /><path
+     stroke-miterlimit="10"
+     d="M 524.459,782.774 C 524.459,640.111 640.11,524.459 782.774,524.459 C 925.438,524.459 1041.089,640.111 1041.089,782.774"
+     id="path23"
+     inkscape:connector-curvature="0"
+     style="opacity:0.25;fill:none;stroke:#00c800;stroke-width:10;stroke-miterlimit:10" /><path
+     stroke-miterlimit="10"
+     d="M 614.592,782.774 C 614.592,689.89 689.89,614.591 782.774,614.591 C 875.659,614.591 950.957,689.89 950.957,782.774"
+     id="path25"
+     inkscape:connector-curvature="0"
+     style="opacity:0.25;fill:none;stroke:#00c800;stroke-width:10;stroke-miterlimit:10" /><path
+     stroke-miterlimit="10"
+     d="M 703.173,782.774 C 703.173,738.812 738.812,703.172 782.774,703.172 C 826.736,703.172 862.376,738.812 862.376,782.774"
+     id="path27"
+     inkscape:connector-curvature="0"
+     style="opacity:0.25;fill:none;stroke:#00c800;stroke-width:10;stroke-miterlimit:10" /><path
+     stroke-miterlimit="10"
+     d="M 782.774,1560.549"
+     id="path29"
+     inkscape:connector-curvature="0"
+     style="opacity:0.25;fill:none;stroke:#00c800;stroke-width:10;stroke-miterlimit:10" /></svg>

@@ -3475,7 +3475,7 @@ a.ui-button:active,
   z-index: 9;
 }
 
-@media (min-device-width: 320px) {
+@media screen and (min-device-width: 320px) {
   .statusbar {
     height: 34px;
   }
@@ -3495,7 +3495,7 @@ a.ui-button:active,
   transform: translateY(-50%);
 }
 
-@media (min-device-width: 320px) {
+@media screen and (min-device-width: 320px) {
   .statusbar_logo {
     height: 18px;
   }
@@ -3523,7 +3523,7 @@ a.ui-button:active,
   width: auto;
 }
 
-@media (min-device-width: 320px) {
+@media screen and (min-device-width: 320px) {
   .statusbar_indicators_indicator {
     height: 10px;
     margin: 0 10px;
@@ -3553,7 +3553,7 @@ a.ui-button:active,
   width: auto;
 }
 
-@media (min-device-width: 320px) {
+@media screen and (min-device-width: 320px) {
   .statusbar_actions_action {
     height: 10px;
     margin: 0 10px;
@@ -3662,7 +3662,7 @@ a.ui-button:active,
   overflow-y: scroll;
 }
 
-@media (min-device-width: 320px) {
+@media screen and (min-device-width: 320px) {
   .settings {
     right: -50%;
     width: 50%;
@@ -3676,7 +3676,7 @@ a.ui-button:active,
   }
 }
 
-@media (min-device-width: 320px) {
+@media screen and (min-device-width: 320px) {
   .settings {
     padding-top: 34px;
   }
@@ -3713,7 +3713,6 @@ a.ui-button:active,
   height: 300px;
   width: 300px;
   background-image: url("../img/ui/crosshair.svg");
-  background-attachment: fixed;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -3724,10 +3723,17 @@ a.ui-button:active,
   margin: 0 auto;
 }
 
-@media (min-device-width: 320px) {
+@media screen and (min-device-width: 320px) {
   .crosshair {
-    height: 200px;
-    width: 200px;
+    height: 150px;
+    width: 150px;
+  }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-device-width: 320px), only screen and (min-resolution: 2dppx) and (min-device-width: 320px) {
+  .crosshair {
+    height: 150px;
+    width: 150px;
   }
 }
 
@@ -3736,6 +3742,42 @@ a.ui-button:active,
     height: 300px;
     width: 300px;
   }
+}
+
+.joystick {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-device-width: 320px) {
+  .joystick {
+    width: 30vw;
+    height: 30vw;
+  }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-device-width: 320px), only screen and (min-resolution: 2dppx) and (min-device-width: 320px) {
+  .joystick {
+    width: 60vw;
+    height: 60vw;
+  }
+}
+
+@media (min-width: 900px) {
+  .joystick {
+    width: 25vw;
+    height: 25vw;
+  }
+}
+
+.joystick_image {
+  width: 80%;
+  height: auto;
 }
 
 /*# sourceMappingURL=main.css.map */

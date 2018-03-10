@@ -20,6 +20,7 @@
         @include small {
             height: 18px;
         }
+
         @include medium {
             height: 36px;
         }
@@ -64,6 +65,7 @@
                 height: 10px;
                 margin: 0 10px;
             }
+
             @include medium {
                 height: 20px;
                 margin: 0 15px;

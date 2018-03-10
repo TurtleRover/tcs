@@ -101,303 +101,302 @@
 
         <!-- partial -->
 
-
-        <!-- partial:partials/_footer.html -->
-        <div id="statusbar" class="footer">
-            <div id="control-container-div">
-                <div id="right-navigation-div" draggable="false" style="user-drag: none">
-                    <div class="transparent-background-div" id="transparent-background-navigation-right"></div>
-                    <div id="right-navigation-cross-div" draggable="false" style="user-drag: none">
-                        <img id="right-navigation-cross-img" src="client/img/ui/right-krzyz.svg" draggable="false" onmousedown="return false" style="user-drag:none">
-                        <img id="turtle-navigation-view-img" src="client/img/ui/right-lazik.svg" draggable="false" onmousedown="return false" style="user-drag:none">
-
-                        <canvas id="navigation-ring-canvas"></canvas>
-
-                        <div id="turtle-top-view-left-top-div" class="advanced-interface">
-                            <p id="turtle-top-view-left-top-p" class="debug-text">0%</p>
-                        </div>
-                        <div id="turtle-top-view-right-top-div" class="advanced-interface">
-                            <p id="turtle-top-view-right-top-p" class="debug-text">0%</p>
-                        </div>
-                        <div id="turtle-top-view-left-bottom-div" class="advanced-interface">
-                            <p id="turtle-top-view-left-bottom-p" class="debug-text">0%</p>
-                        </div>
-                        <div id="turtle-top-view-right-bottom-div" class="advanced-interface">
-                            <p id="turtle-top-view-right-bottom-p" class="debug-text">0%</p>
-                        </div>
+        <!-- partial:partials/_virtual-joystick.html -->
+        <div class="joystick">
+            <canvas id="navigation-ring-canvas"></canvas>
+            <img class="joystick_image" src="client/img/ui/right-krzyz.svg">
 
 
-                        <!-- <div id="camera-slider-wrapper">
-                    <div class="flat-slider-wrapper vranger">
-                        <div class="flat-slider gripper-slider" id="camera-slider">
-                            <input type="range" class="flat-slider-horizontal" id="camera-slider-input" max="3900" min="3300" step="10" value="3600"
-                            />
-                        </div>
-                        <div id="clear"></div>
-                    </div>
-                </div> -->
-                    </div>
-                </div>
-
-                <div id="left-navigation-div" draggable="false" style="user-drag: none">
-
-                    <div class="transparent-background-div" id="transparent-background-navigation-right"></div>
-                    <div id="grab-drive-wrapper">
-                        <div class="grab-drive-class" id="grab-div">
-                            <p class="grab-drive-text grab-drive-text-empty-dot" id="grab-text">grab</p>
-                        </div>
-                        <div class="grab-drive-class" id="drive-div">
-                            <p class="grab-drive-text grab-drive-text-empty-dot grab-drive-text-filled-dot" id="drive-text">drive</p>
-                        </div>
-                    </div>
-
-                    <div id="gripper-wrapper">
-                        <div id="gripper-slider-wrapper">
-                            <div class="flat-slider-wrapper">
-                                <div class="flat-slider gripper-slider" id="gripper-slider">
-                                    <input type="range" class="flat-slider-horizontal" id="gripper-slider-input" max="3600" min="2400" step="10" value="3000" style="transform: rotateY(180deg);" />
-                                </div>
-                                <div id="clear"></div>
-                            </div>
-                        </div>
-                        <!-- <div id="gripper-images-wrapper">
-                        <img src="" class="gripper-img" id="left-gripper-img">
-                        <img src="" class="gripper-img" id="right-gripper-img">
-                    </div> -->
-                    </div>
-                </div>
+            <div id="turtle-top-view-left-top-div" class="advanced-interface">
+                <p id="turtle-top-view-left-top-p" class="debug-text">0%</p>
             </div>
-            <div id="footer-container-div">
-                <div id="footer-div" class="left-footer-div">
-                    <img id="left-footer-button-img" class="footer-button-img" src="client/img/ui/menu-dolne-gora.svg">
-                </div>
-                <div id="footer-div" class="center-footer-div">
-                    <img id="center-footer-button-img" class="footer-button-img" src="client/img/ui/menu-dolne-stop.svg">
-                </div>
-                <div id="footer-div" class="right-footer-div">
-                    <img id="show-hide-right-menu-img" class="footer-button-img" src="client/img/ui/menu-dolne-gora.svg">
-                </div>
+            <div id="turtle-top-view-right-top-div" class="advanced-interface">
+                <p id="turtle-top-view-right-top-p" class="debug-text">0%</p>
             </div>
+            <div id="turtle-top-view-left-bottom-div" class="advanced-interface">
+                <p id="turtle-top-view-left-bottom-p" class="debug-text">0%</p>
+            </div>
+            <div id="turtle-top-view-right-bottom-div" class="advanced-interface">
+                <p id="turtle-top-view-right-bottom-p" class="debug-text">0%</p>
+            </div>
+
+
+            <!-- <div id="camera-slider-wrapper">
+            <div class="flat-slider-wrapper vranger">
+                <div class="flat-slider gripper-slider" id="camera-slider">
+                    <input type="range" class="flat-slider-horizontal" id="camera-slider-input" max="3900" min="3300" step="10" value="3600"
+                    />
+                </div>
+                <div id="clear"></div>
+            </div>
+        </div> -->
         </div>
 
         <!-- partial -->
 
-        <!-- partial:partials/_menu.html -->
-        <nav class="settings">
-            <ul>
-                <li>
-                    <button class="accordion">Maximum Speed</button>
-                    <div class="panel">
-                        <div id="setting-menu-grid">
-                            <div id="setting-menu-grid-element-left">
-                                <p>Left Front</p>
-                            </div>
-                            <div id="setting-menu-grid-element-right">
-                                <input id="left-front-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
-                            </div>
-                            <div id="clear"></div>
-                        </div>
+        <!-- partial:partials/_footer.html -->
+        <!-- <div id="statusbar" class="footer">
+    <div id="control-container-div">
+        <div id="left-navigation-div" draggable="false" style="user-drag: none">
 
-                        <div id="setting-menu-grid">
-                            <div id="setting-menu-grid-element-left">
-                                <p>Right Front</p>
-                            </div>
-                            <div id="setting-menu-grid-element-right">
-                                <input id="right-front-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
-                            </div>
-                            <div id="clear"></div>
-                        </div>
+            <div class="transparent-background-div" id="transparent-background-navigation-right"></div>
+            <div id="grab-drive-wrapper">
+                <div class="grab-drive-class" id="grab-div">
+                    <p class="grab-drive-text grab-drive-text-empty-dot" id="grab-text">grab</p>
+                </div>
+                <div class="grab-drive-class" id="drive-div">
+                    <p class="grab-drive-text grab-drive-text-empty-dot grab-drive-text-filled-dot" id="drive-text">drive</p>
+                </div>
+            </div>
 
-                        <div id="setting-menu-grid">
-                            <div id="setting-menu-grid-element-left">
-                                <p>Left Rear</p>
-                            </div>
-                            <div id="setting-menu-grid-element-right">
-                                <input id="left-rear-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
-                            </div>
-                            <div id="clear"></div>
+            <div id="gripper-wrapper">
+                <div id="gripper-slider-wrapper">
+                    <div class="flat-slider-wrapper">
+                        <div class="flat-slider gripper-slider" id="gripper-slider">
+                            <input type="range" class="flat-slider-horizontal" id="gripper-slider-input" max="3600" min="2400" step="10" value="3000"
+                            style="transform: rotateY(180deg);" />
                         </div>
-
-                        <div id="setting-menu-grid">
-                            <div id="setting-menu-grid-element-left">
-                                <p>Right Rear</p>
-                            </div>
-                            <div id="setting-menu-grid-element-right">
-                                <input id="right-rear-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
-                            </div>
-                            <div id="clear"></div>
-                        </div>
+                        <div id="clear"></div>
                     </div>
-                </li>
+                </div>
+                <!-- <div id="gripper-images-wrapper">
+                        <img src="" class="gripper-img" id="left-gripper-img">
+                        <img src="" class="gripper-img" id="right-gripper-img">
+                    </div> -->
+    </div>
+    </div>
+    </div>
+    <div id="footer-container-div">
+        <div id="footer-div" class="left-footer-div">
+            <img id="left-footer-button-img" class="footer-button-img" src="client/img/ui/menu-dolne-gora.svg">
+        </div>
+        <div id="footer-div" class="center-footer-div">
+            <img id="center-footer-button-img" class="footer-button-img" src="client/img/ui/menu-dolne-stop.svg">
+        </div>
+        <div id="footer-div" class="right-footer-div">
+            <img id="show-hide-right-menu-img" class="footer-button-img" src="client/img/ui/menu-dolne-gora.svg">
+        </div>
+    </div>
+    </div> -->
 
-                <li>
-                    <button class="accordion">Manipulator</button>
-                    <div class="panel">
-                        <div id="setting-menu-grid">
-                            <div id="setting-menu-grid-element-left">
-                                <p>Axis 1
-                                    <p>
-                            </div>
-                            <div id="setting-menu-grid-element-right">
-                                <input id="mani-axis-1" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
-                            </div>
-                            <div id="clear"></div>
+    <!-- partial -->
+
+    <!-- partial:partials/_menu.html -->
+    <nav class="settings">
+        <ul>
+            <li>
+                <button class="accordion">Maximum Speed</button>
+                <div class="panel">
+                    <div id="setting-menu-grid">
+                        <div id="setting-menu-grid-element-left">
+                            <p>Left Front</p>
                         </div>
-                        <div id="setting-menu-grid">
-                            <div id="setting-menu-grid-element-left">
-                                <p>Axis 2
-                                    <p>
-                            </div>
-                            <div id="setting-menu-grid-element-right">
-                                <input id="mani-axis-2" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
-                            </div>
-                            <div id="clear"></div>
+                        <div id="setting-menu-grid-element-right">
+                            <input id="left-front-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
                         </div>
-                        <div id="setting-menu-grid">
-                            <div id="setting-menu-grid-element-left">
-                                <p>Gripper
-                                    <p>
-                            </div>
-                            <div id="setting-menu-grid-element-right">
-                                <input id="mani-gripper" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
-                            </div>
-                            <div id="clear"></div>
-                        </div>
-                        <div id="setting-menu-grid">
-                            <div id="setting-menu-grid-element-left">
-                                <p>X
-                                    <p>
-                            </div>
-                            <div id="setting-menu-grid-element-right">
-                                <input id="mani-x" type="number" max="249" min="0" width="2" step="1" value="0" style="background-color: gray">
-                            </div>
-                            <div id="clear"></div>
-                        </div>
-                        <div id="setting-menu-grid">
-                            <div id="setting-menu-grid-element-left">
-                                <p>Y
-                                    <p>
-                            </div>
-                            <div id="setting-menu-grid-element-right">
-                                <input id="mani-y" type="number" max="249" min="0" width="2" step="1" value="180" style="background-color: gray">
-                            </div>
-                            <div id="clear"></div>
-                        </div>
+                        <div id="clear"></div>
                     </div>
-                </li>
 
-
-                <li>
-                    <button class="accordion">camera settings</button>
-                    <div class="panel">
-                        <div class="flat-slider-wrapper">
-                            <div class="flat-slider-description">
-                                <p>brightness</p>
-                            </div>
-                            <div class="flat-slider" id="brightness-slider"><input type="range" class="flat-slider-horizontal" id="brightness-slider-input" max="64" min="-64" step="1" value="0" /></div>
-                            <div id="clear"></div>
+                    <div id="setting-menu-grid">
+                        <div id="setting-menu-grid-element-left">
+                            <p>Right Front</p>
                         </div>
-                        <div class="flat-slider-wrapper">
-                            <div class="flat-slider-description">
-                                <p>contrast</p>
-                            </div>
-                            <div class="flat-slider" id="contrast-slider"><input type="range" class="flat-slider-horizontal" id="contrast-slider-input" max="64" min="0" step="1" value="32" /></div>
-                            <div id="clear"></div>
+                        <div id="setting-menu-grid-element-right">
+                            <input id="right-front-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
                         </div>
-                        <div class="flat-slider-wrapper">
-                            <div class="flat-slider-description">
-                                <p>saturation</p>
-                            </div>
-                            <div class="flat-slider" id="saturation-slider"><input type="range" class="flat-slider-horizontal" id="saturation-slider-input" max="128" min="0" step="1" value="60" /></div>
-                            <div id="clear"></div>
-                        </div>
-                        <div class="flat-slider-wrapper">
-                            <div class="flat-slider-description">
-                                <p>hue</p>
-                            </div>
-                            <div class="flat-slider" id="hue-slider"><input type="range" class="flat-slider-horizontal" id="hue-slider-input" max="40" min="-40" step="1" value="0" /></div>
-                            <div id="clear"></div>
-                        </div>
-                        <div class="flat-slider-wrapper">
-                            <div class="flat-slider-description">
-                                <p>gamma</p>
-                            </div>
-                            <div class="flat-slider" id="gamma-slider"><input type="range" class="flat-slider-horizontal" id="gamma-slider-input" max="500" min="72" step="1" value="100" /></div>
-                            <div id="clear"></div>
-                        </div>
-                        <div class="flat-slider-wrapper">
-                            <div class="flat-slider-description">
-                                <p>gain</p>
-                            </div>
-                            <div class="flat-slider" id="gain-slider"><input type="range" class="flat-slider-horizontal" id="gain-slider-input" max="100" min="0" step="1" value="0" /></div>
-                            <div id="clear"></div>
-                        </div>
-                        <div class="flat-slider-wrapper">
-                            <div class="flat-slider-description">
-                                <p>sharpness</p>
-                            </div>
-                            <div class="flat-slider" id="sharpness-slider"><input type="range" class="flat-slider-horizontal" id="sharpness-slider-input" max="6" min="0" step="1" value="2" /></div>
-                            <div id="clear"></div>
-                        </div>
+                        <div id="clear"></div>
                     </div>
-                </li>
+
+                    <div id="setting-menu-grid">
+                        <div id="setting-menu-grid-element-left">
+                            <p>Left Rear</p>
+                        </div>
+                        <div id="setting-menu-grid-element-right">
+                            <input id="left-rear-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
+                        </div>
+                        <div id="clear"></div>
+                    </div>
+
+                    <div id="setting-menu-grid">
+                        <div id="setting-menu-grid-element-left">
+                            <p>Right Rear</p>
+                        </div>
+                        <div id="setting-menu-grid-element-right">
+                            <input id="right-rear-wheel" type="number" max="1" min="-1" width="6" step="0.1" value="1" style="background-color: gray">
+                        </div>
+                        <div id="clear"></div>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <button class="accordion">Manipulator</button>
+                <div class="panel">
+                    <div id="setting-menu-grid">
+                        <div id="setting-menu-grid-element-left">
+                            <p>Axis 1
+                                <p>
+                        </div>
+                        <div id="setting-menu-grid-element-right">
+                            <input id="mani-axis-1" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
+                        </div>
+                        <div id="clear"></div>
+                    </div>
+                    <div id="setting-menu-grid">
+                        <div id="setting-menu-grid-element-left">
+                            <p>Axis 2
+                                <p>
+                        </div>
+                        <div id="setting-menu-grid-element-right">
+                            <input id="mani-axis-2" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
+                        </div>
+                        <div id="clear"></div>
+                    </div>
+                    <div id="setting-menu-grid">
+                        <div id="setting-menu-grid-element-left">
+                            <p>Gripper
+                                <p>
+                        </div>
+                        <div id="setting-menu-grid-element-right">
+                            <input id="mani-gripper" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
+                        </div>
+                        <div id="clear"></div>
+                    </div>
+                    <div id="setting-menu-grid">
+                        <div id="setting-menu-grid-element-left">
+                            <p>X
+                                <p>
+                        </div>
+                        <div id="setting-menu-grid-element-right">
+                            <input id="mani-x" type="number" max="249" min="0" width="2" step="1" value="0" style="background-color: gray">
+                        </div>
+                        <div id="clear"></div>
+                    </div>
+                    <div id="setting-menu-grid">
+                        <div id="setting-menu-grid-element-left">
+                            <p>Y
+                                <p>
+                        </div>
+                        <div id="setting-menu-grid-element-right">
+                            <input id="mani-y" type="number" max="249" min="0" width="2" step="1" value="180" style="background-color: gray">
+                        </div>
+                        <div id="clear"></div>
+                    </div>
+                </div>
+            </li>
 
 
-                <li>
-                    <button class="accordion">Language</button>
-                    <div class="panel">
-                        <form>
-                            <div class="form-group">
-                                <div class="flagstrap" id="languageSelector" data-input-name="country" data-selected-country="US">
-                                </div>
+            <li>
+                <button class="accordion">camera settings</button>
+                <div class="panel">
+                    <div class="flat-slider-wrapper">
+                        <div class="flat-slider-description">
+                            <p>brightness</p>
+                        </div>
+                        <div class="flat-slider" id="brightness-slider"><input type="range" class="flat-slider-horizontal" id="brightness-slider-input" max="64" min="-64" step="1" value="0" /></div>
+                        <div id="clear"></div>
+                    </div>
+                    <div class="flat-slider-wrapper">
+                        <div class="flat-slider-description">
+                            <p>contrast</p>
+                        </div>
+                        <div class="flat-slider" id="contrast-slider"><input type="range" class="flat-slider-horizontal" id="contrast-slider-input" max="64" min="0" step="1" value="32" /></div>
+                        <div id="clear"></div>
+                    </div>
+                    <div class="flat-slider-wrapper">
+                        <div class="flat-slider-description">
+                            <p>saturation</p>
+                        </div>
+                        <div class="flat-slider" id="saturation-slider"><input type="range" class="flat-slider-horizontal" id="saturation-slider-input" max="128" min="0" step="1" value="60" /></div>
+                        <div id="clear"></div>
+                    </div>
+                    <div class="flat-slider-wrapper">
+                        <div class="flat-slider-description">
+                            <p>hue</p>
+                        </div>
+                        <div class="flat-slider" id="hue-slider"><input type="range" class="flat-slider-horizontal" id="hue-slider-input" max="40" min="-40" step="1" value="0" /></div>
+                        <div id="clear"></div>
+                    </div>
+                    <div class="flat-slider-wrapper">
+                        <div class="flat-slider-description">
+                            <p>gamma</p>
+                        </div>
+                        <div class="flat-slider" id="gamma-slider"><input type="range" class="flat-slider-horizontal" id="gamma-slider-input" max="500" min="72" step="1" value="100" /></div>
+                        <div id="clear"></div>
+                    </div>
+                    <div class="flat-slider-wrapper">
+                        <div class="flat-slider-description">
+                            <p>gain</p>
+                        </div>
+                        <div class="flat-slider" id="gain-slider"><input type="range" class="flat-slider-horizontal" id="gain-slider-input" max="100" min="0" step="1" value="0" /></div>
+                        <div id="clear"></div>
+                    </div>
+                    <div class="flat-slider-wrapper">
+                        <div class="flat-slider-description">
+                            <p>sharpness</p>
+                        </div>
+                        <div class="flat-slider" id="sharpness-slider"><input type="range" class="flat-slider-horizontal" id="sharpness-slider-input" max="6" min="0" step="1" value="2" /></div>
+                        <div id="clear"></div>
+                    </div>
+                </div>
+            </li>
+
+
+            <li>
+                <button class="accordion">Language</button>
+                <div class="panel">
+                    <form>
+                        <div class="form-group">
+                            <div class="flagstrap" id="languageSelector" data-input-name="country" data-selected-country="US">
                             </div>
-                        </form>
-                    </div>
-                </li>
-
-                <li>
-                    <button class="accordion">Advanced Interface</button>
-                    <div class="panel">
-                        <div class="tg-list-description">
-                            <p id="settings.advanced-interface" class="localised">Advanced Interface</p>
                         </div>
-                        <div class="tg-list-button">
-                            <input id="advanced-interface-button" type="checkbox" class="tgl tgl-flat" />
-                            <label for="advanced-interface-button" class="tgl-btn"></label>
-                        </div>
-                    </div>
-                </li>
+                    </form>
+                </div>
+            </li>
 
-                <li>
-                    <button class="accordion">Photography</button>
-                    <div class="panel">
-                        <div class="tg-list-description">
-                            <p id="settings.photography" class="localised">Photography</p>
-                        </div>
-                        <div class="tg-list-button">
-                            <input id="photography-button" type="checkbox" class="tgl tgl-flat" />
-                            <label for="photography-button" class="tgl-btn"></label>
-                        </div>
+            <li>
+                <button class="accordion">Advanced Interface</button>
+                <div class="panel">
+                    <div class="tg-list-description">
+                        <p id="settings.advanced-interface" class="localised">Advanced Interface</p>
                     </div>
-                </li>
-
-                <li>
-                    <button class="accordion">Console</button>
-                    <div class="panel">
-                        <button id="open-console-button">open console</button>
+                    <div class="tg-list-button">
+                        <input id="advanced-interface-button" type="checkbox" class="tgl tgl-flat" />
+                        <label for="advanced-interface-button" class="tgl-btn"></label>
                     </div>
-                </li>
+                </div>
+            </li>
 
-                <li>
-                    <button class="accordion">About</button>
-                    <div class="panel">
-                        <p>something about us</p>
+            <li>
+                <button class="accordion">Photography</button>
+                <div class="panel">
+                    <div class="tg-list-description">
+                        <p id="settings.photography" class="localised">Photography</p>
                     </div>
-                </li>
-            </ul>
-        </nav>
+                    <div class="tg-list-button">
+                        <input id="photography-button" type="checkbox" class="tgl tgl-flat" />
+                        <label for="photography-button" class="tgl-btn"></label>
+                    </div>
+                </div>
+            </li>
 
-        <!-- partial -->
+            <li>
+                <button class="accordion">Console</button>
+                <div class="panel">
+                    <button id="open-console-button">open console</button>
+                </div>
+            </li>
+
+            <li>
+                <button class="accordion">About</button>
+                <div class="panel">
+                    <p>something about us</p>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- partial -->
 
 
 
