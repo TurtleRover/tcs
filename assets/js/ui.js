@@ -660,13 +660,32 @@ var ui = (function() {
 
     // GRIPPER range
     $(function() {
-        var axis1_max = $('#axis1-slider-input').attr('max');
-        var axis1_min = $('#axis1-slider-input').attr('min');
+        var axis1_max = Cookies.get("mani-axis-1-max") ||  $('#axis1-slider-input').attr('max');
+        var axis1_min =  Cookies.get("mani-axis-1-min") ||  $('#axis1-slider-input').attr('min');
 
-        var axis2_max = $('#axis2-slider-input').attr('max');
-        var axis2_min = $('#axis2-slider-input').attr('min');
+        var axis2_max =  Cookies.get("mani-axis-2-max") ||   $('#axis2-slider-input').attr('max');
+        var axis2_min =  Cookies.get("mani-axis-2-min") ||   $('#axis2-slider-input').attr('min');
 
-        console.log(axis1_max, axis1_min, axis2_max, axis2_min);
+		if (Cookies.get("mani-axis-1-max")) {
+			$("#axis1-slider-input").attr({
+				"max": axis1_max
+			});
+		}
+		if (Cookies.get("mani-axis-1-min")) {
+			$("#axis1-slider-input").attr({
+				"min": axis1_max
+			});
+		}
+		if (Cookies.get("mani-axis-2-max")) {
+			$("#axis2-slider-input").attr({
+				"max": axis2_max
+			});
+		}
+		if (Cookies.get("mani-axis-2-min")) {
+			$("#axis2-slider-input").attr({
+				"min": axis2_min
+			});
+		}
 
         $('#mani-axis-1-max').val(axis1_max);
         $('#mani-axis-1-min').val(axis1_min);
@@ -679,6 +698,7 @@ var ui = (function() {
                 $("#axis1-slider-input").attr({
                     "max": $('#mani-axis-1-max').val()
                 });
+				Cookies.set("mani-axis-1-max", $('#mani-axis-1-max').val());
             }
         });
         $("#mani-axis-1-min").on("change", function() {
@@ -686,6 +706,7 @@ var ui = (function() {
                 $("#axis1-slider-input").attr({
                     "min": $('#mani-axis-1-min').val()
                 });
+				Cookies.set("mani-axis-1-min", $('#mani-axis-1-min').val());
             }
         });
         $("#mani-axis-2-max").on("change", function() {
@@ -693,6 +714,7 @@ var ui = (function() {
                 $("#axis2-slider-input").attr({
                     "max": $('#mani-axis-2-max').val()
                 });
+				Cookies.set("mani-axis-2-max", $('#mani-axis-2-max').val());
             }
         });
         $("#mani-axis-2-min").on("change", function() {
@@ -700,6 +722,7 @@ var ui = (function() {
                 $("#axis2-slider-input").attr({
                     "min": $('#mani-axis-2-min').val()
                 });
+				Cookies.set("mani-axis-2-min", $('#mani-axis-2-min').val());
             }
         });
     });
