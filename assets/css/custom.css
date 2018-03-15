@@ -52,7 +52,7 @@
 /*
  *                                                  LOADER
  */
- 
+
 #loader {
     display: block;
     position: relative;
@@ -679,7 +679,7 @@ body.is-menu-visible #control-container-div {
 
  #full-screen-button-img {
      width: 80%;
-     height: 80%; 
+     height: 80%;
      max-width: 100%;
      z-index: 2;
      display: inline-block;
@@ -870,4 +870,11 @@ div.panel {
         width: 100vh;
         height: 100vw;
     }
+}
+.gripper-axis-label{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -30px;
+    display: block;
 }
