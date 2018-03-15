@@ -119,25 +119,31 @@
 											<div id="setting-menu-grid">
 												<div id="setting-menu-grid-element-left"><p>Axis 1<p></div>
 												<div id="setting-menu-grid-element-right">
-													<input id="mani-axis-1" type="number" max="4800" min="2700" width="6" step="50" value="4600" style="background-color: gray">
+													<span>min</span>
+													<input id="mani-axis-1-min" type="number" max="9000" min="0" width="6" step="50" value="4600" style ="color:black">
+													<span>max</span>
+													<input id="mani-axis-1-max" type="number" max="9000" min="0" width="6" step="50" value="4600" style ="color:black">
 												</div>
 												<div id="clear"></div>
 											</div>
 											<div id="setting-menu-grid">
 												<div id="setting-menu-grid-element-left"><p>Axis 2<p></div>
 												<div id="setting-menu-grid-element-right">
-													<input id="mani-axis-2" type="number" max="4800" min="4000" width="6" step="50" value="4000" style="background-color: gray">
+													<span>min</span>
+													<input id="mani-axis-2-min" type="number" max="9000" min="0" width="6" step="50" value="4000" style ="color:black">
+													<span>max</span>
+													<input id="mani-axis-2-max" type="number" max="9000" min="0" width="6" step="50" value="4000" style ="color:black">
 												</div>
 												<div id="clear"></div>
 											</div>
-											<div id="setting-menu-grid">
+											<!-- <div id="setting-menu-grid">
 												<div id="setting-menu-grid-element-left"><p>Gripper<p></div>
 												<div id="setting-menu-grid-element-right">
 													<input id="mani-gripper" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
 												</div>
 												<div id="clear"></div>
-											</div>
-											<div id="setting-menu-grid">
+											</div> -->
+											<!-- <div id="setting-menu-grid">
 												<div id="setting-menu-grid-element-left"><p>X<p></div>
 												<div id="setting-menu-grid-element-right">
 													<input id="mani-x" type="number" max="249" min="0" width="2" step="1" value="0" style="background-color: gray">
@@ -150,7 +156,7 @@
 													<input id="mani-y" type="number" max="249" min="0" width="2" step="1" value="180" style="background-color: gray">
 												</div>
 												<div id="clear"></div>
-											</div>
+											</div> -->
 										</div>
 									</li>
 
@@ -236,6 +242,12 @@
 
 									<li>
 										<button class="accordion">Console</button>
+										<div class="panel">
+											<button id="open-console-button">open console</button>
+										</div>
+									</li>
+									<li>
+										<button class="accordion">Gripper range</button>
 										<div class="panel">
 											<button id="open-console-button">open console</button>
 										</div>
