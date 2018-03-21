@@ -7,7 +7,7 @@ import os
 import time
 import serial
 
-ser = serial.Serial("/dev/serial0")
+ser = serial.Serial("/dev/ttyAMA0")
 ser.baudrate = 115200
 
 def sendSerial (message):

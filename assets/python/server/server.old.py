@@ -53,7 +53,7 @@ class MyServerProtocol(WebSocketServerProtocol):
 
         if isBinary:
             print("Binary message received from client: {0} bytes: ".format(len(payload)) + hexdump.dump(payload, sep=" "))
-            
+
             try:
                 if payload[0] == 0x10:
                     received = updateMotors(payload[1], payload[2], payload[3], payload[4])
@@ -94,7 +94,7 @@ class MyServerProtocol(WebSocketServerProtocol):
 
         else:
             print("Text message received: {0}".format(payload.decode('utf8')))
-        
+
         # echo back message verbatim
         if received != None:
             self.sendMessage(bytes(received), True)
@@ -112,9 +112,9 @@ if __name__ == '__main__':
     except ImportError:
         # Trollius >= 0.3 was renamed
         import trollius as asyncio
-        
+
     print("Working")
-    factory = WebSocketServerFactory(u"ws://127.0.0.1:8080")
+    factory = WebSocketServerFactory(u"ws://10.0.0.1:8080")
     factory.protocol = MyServerProtocol
 
     loop = asyncio.get_event_loop()
