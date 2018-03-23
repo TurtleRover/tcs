@@ -1,20 +1,35 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>WebSocket demo</title>
-    </head>
-    <body>
-        <script>
-            var ws = new WebSocket("ws://10.0.0.1:5678/"),
-                messages = document.createElement('ul');
-            ws.onmessage = function (event) {
-                var messages = document.getElementsByTagName('ul')[0],
-                    message = document.createElement('li'),
-                    content = document.createTextNode(event.data);
-                message.appendChild(content);
-                messages.appendChild(message);
-            };
-            document.body.appendChild(messages);
-        </script>
-    </body>
+
+<head>
+    <title>WebSocket demo</title>
+</head>
+
+<body>
+    <script src="./vendors/socket.io.js"></script>
+    <script>
+        var socket = io.connect('http://' + document.domain + ':' + 5000, {
+            transports: ['websocket']
+        });
+        var buf = new ArrayBuffer(5);
+        var arr = new Uint8Array(buf);
+        namespace = '/test';
+            socket.on('connect', function() {
+                console.log("Connected");
+                //  command to send
+                arr[0] = 0x30;
+                /*	Multiplying by this value should make possible to write directly to PWM
+                    Current range is 0 - 127 with first bit as direction	*/
+                var k = 1.27;
+                arr[1] = Math.round(Math.abs(30 * k) | (30 & 0x80));	//	Left front
+                arr[2] = Math.round(Math.abs(30 * k) | (30 & 0x80));	//	Right front
+                arr[3] = Math.round(Math.abs(30 * k) | (30 & 0x80));	//	Left rear
+                arr[4] = Math.round(Math.abs(30 * k) | (30 & 0x80));	//	Right rear
+                console.log(arr);
+                socket.emit('motors', buf);
+            });
+    </script>
+    </script>
+</body>
+
 </html>
