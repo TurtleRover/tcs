@@ -2,16 +2,18 @@ import asyncio
 from aiohttp import web
 import socketio
 import hexdump
-sio =  socketio.AsyncServer(async_mode='aiohttp',
-                           engineio_logger=True,
-                           logger=True)
+from log import logname
+
+logger = logname("TurtleServer")
+
+sio =  socketio.AsyncServer(async_mode='aiohttp')
 app = web.Application()
 sio.attach(app)
 
 
 @sio.on('connect')
 async def test_connect(sid, environ):
-    print ("connect")
+    logger.info("connect")
 
 
 @sio.on('motors')
