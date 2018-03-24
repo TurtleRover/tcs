@@ -15,7 +15,7 @@ var serverCommunication = (function () {
     /*
 	 * 																		PRIVATE area
 	 */
-
+     let sockets = new window.turtle.sockets();
     /*
 	 * 																		SUBSCRIBE to all topics
 	 */
@@ -43,11 +43,11 @@ var serverCommunication = (function () {
     /*
      *  class for every new socket communication
      */
-    function socket(ref, open, process) {
-        this.socket = ref;  //  reference to connection
-        this.isOpen = open; //  indicates whether the connection is open or not
-        this.pid = process; //  process identifier indicates identifier of Python application. Should be killed while page leaving
-    }
+    // function socket(ref, open, process) {
+    //     this.socket = ref;  //  reference to connection
+    //     this.isOpen = open; //  indicates whether the connection is open or not
+    //     this.pid = process; //  process identifier indicates identifier of Python application. Should be killed while page leaving
+    // }
 
     /*
      *  connects with port 8080
@@ -114,82 +114,80 @@ var serverCommunication = (function () {
         }
 
         //  for 3G used service ngrok
-        if (location.host == "bentos.eu.ngrok.io")
-            var socket8080 = new socket(new WebSocket("ws://" + "bentossocket.eu.ngrok.io"), false, -1);
-        else {
-            var socket8080 = new socket(new WebSocket("ws://" + location.hostname + ":8080"), false, -1);
-        }
-
-        socket8080.socket.binaryType = "arraybuffer";
+        // if (location.host == "bentos.eu.ngrok.io")
+        //     var socket8080 = new socket(new WebSocket("ws://" + "bentossocket.eu.ngrok.io"), false, -1);
+        // else {
+        //     var socket8080 = new socket(new WebSocket("ws://" + location.hostname + ":8080"), false, -1);
+        // }
+        //
+        // socket8080.socket.binaryType = "arraybuffer";
 
         /*
          *                                                              EVENT functions for socket
          */
-
-        socket8080.socket.onopen = function () {
+        if (sockets.io.connected) {
             console.log("Connected with port 8080");
-            socket8080.isOpen = true;
             amplify.publish("all->ui", "set last status done");
             amplify.publish("all->ui", "initialize camera...");
-        };
+        }
 
-        socket8080.socket.onmessage = function (e) {
-            if (typeof e.data == "string") {
-                //  string is only if CRC is NOK
-                console.log("Wrong CRC of received message: " + e.data);
-            }
-            else {
-                var arr = new Uint8Array(e.data);
-                var hex = '';
-                for (var i = 0; i < arr.length; i++)
-                    hex += ('00' + arr[i].toString(16)).substr(-2);
+        // socket8080.socket.onmessage = function (e) {
+        //     if (typeof e.data == "string") {
+        //         //  string is only if CRC is NOK
+        //         console.log("Wrong CRC of received message: " + e.data);
+        //     }
+        //     else {
+        //         var arr = new Uint8Array(e.data);
+        //         var hex = '';
+        //         for (var i = 0; i < arr.length; i++)
+        //             hex += ('00' + arr[i].toString(16)).substr(-2);
+        //
+        //         //  read battery voltage
+        //         if (arr[0] == 0x31) {
+        //             var voltage = arr[1];
+        //             // console.log("voltage: " + voltage);
+        //             voltage = voltage * 0.1 + 7.6 // voltage divider
+        //             var str_voltage = voltage.toString();
+        //             $("#battery-level-text").text("battery voltage: " + str_voltage.substr(0, 4) + " V");
+        //
+        //             if (voltage > 24) amplify.publish("all->ui", "set battery level to full");
+        //             else if (voltage > 23) amplify.publish("all->ui", "set battery level to 3");
+        //             else if (voltage > 21.5) amplify.publish("all->ui", "set battery level to 2");
+        //             else if (voltage > 19.5) amplify.publish("all->ui", "set battery level to 1");
+        //             else amplify.publish("all->ui", "set battery level to 0");
+        //         }
+        //         //  read signal strength
+        //         else if (arr[0] == 0x41) {
+        //             var signal = parseInt(arr[1]);
+        //             // $("#signal-strength-text").text("signal strength: -" + signal.toString() + " dBm");
+        //             //console.log("signal" + signal);
+        //
+        //             /*
+        //              *  set icon according to signal strength
+        //              */
+        //             if (signal > 95) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-4.svg");
+        //             else if (signal > 90) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-3.svg");
+        //             else if (signal > 85) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-2.svg");
+        //             else if (signal > 80) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-1.svg");
+        //             else $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-0.svg");
+        //         }
+        //         //  read processor temperature
+        //         else if (arr[0] == 0x61) {
+        //             var temperature = arr[1];
+        //             $("#processor-temperature-text").text("processor temp.: " + temperature.toString() + " °C");
+        //         }
+        //     }
+        // };
 
-                //  read battery voltage
-                if (arr[0] == 0x31) {
-                    var voltage = arr[1];
-                    // console.log("voltage: " + voltage);
-                    voltage = voltage * 0.1 + 7.6 // voltage divider
-                    var str_voltage = voltage.toString();
-                    $("#battery-level-text").text("battery voltage: " + str_voltage.substr(0, 4) + " V");
-
-                    if (voltage > 24) amplify.publish("all->ui", "set battery level to full");
-                    else if (voltage > 23) amplify.publish("all->ui", "set battery level to 3");
-                    else if (voltage > 21.5) amplify.publish("all->ui", "set battery level to 2");
-                    else if (voltage > 19.5) amplify.publish("all->ui", "set battery level to 1");
-                    else amplify.publish("all->ui", "set battery level to 0");
-                }
-                //  read signal strength
-                else if (arr[0] == 0x41) {
-                    var signal = parseInt(arr[1]);
-                    // $("#signal-strength-text").text("signal strength: -" + signal.toString() + " dBm");
-                    //console.log("signal" + signal);
-
-                    /*
-                     *  set icon according to signal strength
-                     */
-                    if (signal > 95) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-4.svg");
-                    else if (signal > 90) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-3.svg");
-                    else if (signal > 85) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-2.svg");
-                    else if (signal > 80) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-1.svg");
-                    else $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-0.svg");
-                }
-                //  read processor temperature
-                else if (arr[0] == 0x61) {
-                    var temperature = arr[1];
-                    $("#processor-temperature-text").text("processor temp.: " + temperature.toString() + " °C");
-                }
-            }
-        };
-
-        socket8080.socket.onclose = function (e) {
-            console.log("Connection closed. Log: " + e.data);
-            socket8080.socket = null;
-            socket8080.isOpen = null;
-
-            amplify.publish("all->ui", "set last status error");
-
-            setTimeout(function () { connect8080() }, 1000);
-        };
+        // socket8080.socket.onclose = function (e) {
+        //     console.log("Connection closed. Log: " + e.data);
+        //     socket8080.socket = null;
+        //     socket8080.isOpen = null;
+        //
+        //     amplify.publish("all->ui", "set last status error");
+        //
+        //     setTimeout(function () { connect8080() }, 1000);
+        // };
 
         function updateAxisPositions() {
             $("#mani-axis-1").val($("#axis1-slider-input").val());
@@ -202,7 +200,7 @@ var serverCommunication = (function () {
          */
         function setNewManiPosition() {
             //var newPosition = manipulator.getCurrentPosition();
-            if (socket8080.isOpen) {
+            if (sockets.io.connected) {
                 /*var alphaValue = newPosition.alpha * 4;   //  in quarter of microseconds
                 var betaValue = newPosition.beta * 4;*/
                 var buf = new ArrayBuffer(5);
@@ -219,7 +217,7 @@ var serverCommunication = (function () {
                 arr[3] = (axis_2 >> 8) & 0xFF;
                 arr[4] = axis_2 & 0xFF;
 
-                socket8080.socket.send(buf);
+                // socket8080.socket.send(buf);
             }
         }
 
@@ -227,7 +225,7 @@ var serverCommunication = (function () {
             //var gripperPosition = manipulator.getGripperPosition();
             var gripperPosition = $("#gripper-slider-input").val();
             console.log("New gripper position: " + gripperPosition);
-            if (socket8080.isOpen) {
+            if (sockets.io.connected) {
                 var buf = new ArrayBuffer(3);
                 var arr = new Uint8Array(buf);
 
@@ -235,14 +233,14 @@ var serverCommunication = (function () {
                 arr[1] = (gripperPosition >> 8) & 0xFF;
                 arr[2] = gripperPosition & 0xFF;
 
-                socket8080.socket.send(buf);
+                // socket8080.socket.send(buf);
             }
         }
 
         function setNewCameraPosition() {
             var cameraPosition = $("#camera-slider-input").val();
             console.log("New camera position: " + cameraPosition);
-            if (socket8080.isOpen) {
+            if (sockets.io.connected) {
                 var buf = new ArrayBuffer(3);
                 var arr = new Uint8Array(buf);
 
@@ -250,7 +248,7 @@ var serverCommunication = (function () {
                 arr[1] = (cameraPosition >> 8) & 0xFF;
                 arr[2] = cameraPosition & 0xFF;
 
-                socket8080.socket.send(buf);
+                // socket8080.socket.send(buf);
             }
         }
 
@@ -258,7 +256,7 @@ var serverCommunication = (function () {
         *  set all motors values
         */
         function setMotors() {
-            if (socket8080.isOpen) {
+            if (sockets.io.connected) {
                 var motorsSpeed = controlCanvas.getMotorsSpeed();
                 var buf = new ArrayBuffer(5);
                 var arr = new Uint8Array(buf);
@@ -272,7 +270,7 @@ var serverCommunication = (function () {
                 arr[2] = Math.round(Math.abs(motorsSpeed.motor_2 * k) | (motorsSpeed.motor_2 & 0x80));	//	Right front
                 arr[3] = Math.round(Math.abs(motorsSpeed.motor_3 * k) | (motorsSpeed.motor_3 & 0x80));	//	Left rear
                 arr[4] = Math.round(Math.abs(motorsSpeed.motor_4 * k) | (motorsSpeed.motor_4 & 0x80));	//	Right rear
-                socket8080.socket.send(buf);
+                sockets.sendMotors(buf);
 
                 // Convert to readable form
                 var hex = '';
@@ -290,7 +288,7 @@ var serverCommunication = (function () {
         function setMotorKeyboard(movement) {
             console.log(movement);
 
-            if (socket8080.isOpen) {
+            if (sockets.io.connected) {
                 if (movement.type == "run") {
                     var buf = new ArrayBuffer(5);
                     var arr = new Uint8Array(buf);
@@ -304,7 +302,7 @@ var serverCommunication = (function () {
                         arr[2] = Math.round(Math.abs(movement.speed + 80) | (movement.direction[1] << 7));	//	Right front
                         arr[3] = Math.round(Math.abs(movement.speed + 80) | (movement.direction[2] << 7));	//	Left rear
                         arr[4] = Math.round(Math.abs(movement.speed + 80) | (movement.direction[3] << 7));	//	Right rear
-                        socket8080.socket.send(buf);
+                        sockets.sendMotors(buf);
                         // Convert to readable form
                         var hex = '';
                         for (var i = 0; i < arr.length; i++) {
@@ -328,7 +326,7 @@ var serverCommunication = (function () {
          *  stop all motors immediately
          */
         function stopMotors() {
-            if (socket8080.isOpen) {
+            if (sockets.io.connected) {
                 var buf = new ArrayBuffer(5);
                 var arr = new Uint8Array(buf);
 
@@ -339,7 +337,7 @@ var serverCommunication = (function () {
                 arr[2] = 0;
                 arr[3] = 0;
                 arr[4] = 0;
-                socket8080.socket.send(buf);
+                // socket8080.socket.send(buf);
 
                 // Convert to readable form
                 var hex = '';
@@ -355,11 +353,11 @@ var serverCommunication = (function () {
          *  get battery level
          */
         function getBatteryLevel() {
-            if (socket8080.isOpen) {
+            if (sockets.io.connected) {
                 var buf = new ArrayBuffer(1);
                 var arr = new Uint8Array(buf);
                 arr[0] = 0x30;
-                socket8080.socket.send(buf);
+                sockets.sendMotors(buf);
 
                 // Convert to readable form
                 var hex = '';
@@ -375,11 +373,11 @@ var serverCommunication = (function () {
          *  get signal level
          */
         function getSignalLevel() {
-            if (socket8080.isOpen) {
+            if (sockets.io.connected) {
                 var buf = new ArrayBuffer(1);
                 var arr = new Uint8Array(buf);
                 arr[0] = 0x40;
-                socket8080.socket.send(buf);
+                // socket8080.socket.send(buf);
 
                 // Convert to readable form
                 var hex = '';
@@ -395,11 +393,11 @@ var serverCommunication = (function () {
          *  get processor temperature
          */
         function getProcessorTemperature() {
-            if (socket8080.isOpen) {
+            if (sockets.io.connected) {
                 var buf = new ArrayBuffer(1);
                 var arr = new Uint8Array(buf);
                 arr[0] = 0x60;
-                socket8080.socket.send(buf);
+                // socket8080.socket.send(buf);
 
                 // Convert to readable form
                 var hex = '';
@@ -415,7 +413,7 @@ var serverCommunication = (function () {
          *  update all camera settings
          */
         function updateCameraSettings() {
-            if (socket8080.isOpen) {
+            if (sockets.io.connected) {
                 var buf = new ArrayBuffer(9);
                 var arr = new Uint8Array(buf);
                 arr[0] = 0x50;
@@ -428,7 +426,7 @@ var serverCommunication = (function () {
                 arr[7] = $("#gain-slider-input").val();
                 arr[8] = $("#sharpness-slider-input").val();
 
-                socket8080.socket.send(buf);
+                // socket8080.socket.send(buf);
 
                 // Convert to readable form
                 var hex = '';
@@ -445,7 +443,7 @@ var serverCommunication = (function () {
          *  take care to not overload CPU
          */
         setInterval(function () {
-            if (socket8080.isOpen && controlCanvas.isCoordinatesClicked())
+            if (sockets.io.connected && controlCanvas.isCoordinatesClicked())
                 setMotors();
         }, INTERVAL);
 
@@ -453,7 +451,7 @@ var serverCommunication = (function () {
          *  read battery value
          */
         setInterval(function () {
-            if (socket8080.isOpen) {
+            if (sockets.io.connected) {
                 getBatteryLevel();
                 setTimeout(function () { getSignalLevel() }, 500);
                 setTimeout(function () { getProcessorTemperature() }, 1000);

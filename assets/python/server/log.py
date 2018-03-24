@@ -7,6 +7,7 @@ os.environ['COLOREDLOGS_LOG_FORMAT'] ='%(asctime)s.%(msecs)03d %(name)s - %(mess
 os.environ['COLOREDLOGS_DATE_FORMAT'] ='%H:%M:%S'
 
 logging.getLogger("engineio").setLevel(logging.WARNING)
+logging.getLogger("aiohttp").setLevel(logging.WARNING)
 coloredlogs.install(level='DEBUG')
 
 def logname(name='Turtle'):

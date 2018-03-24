@@ -13,27 +13,27 @@ var controller = (function () {
 
 	/*
 	 *	called when main page is loaded and camera video should be displayed
-	 */ 
+	 */
 	function mainPageLoaded() {
-		setTimeout(function() { 
+		setTimeout(function() {
 			amplify.publish("controller->ui", "hide welcome screen");
 			if (linux.getIsCameraAvailable() == true) amplify.publish("controller->ui", "change image source to camera");
 			else amplify.publish("controller->ui", "change image source to default background");
 			amplify.publish("controller->ui", "display camera video");
 		}, 500)
 	};
-	
+
 	/*
 	 * 																		EVENTS triggers
 	 */
 	$(window).bind('beforeunload', function(){closePage();});
-	
+
 	/*
 	 * 																		SUBSCRIBE to all topics
 	 */
 	amplify.subscribe("ui->controller", uiMessageCallback);
 	amplify.subscribe("linux->controller", linuxMessageCallback);
-	
+
 	/*
 	 * 																		CALLBACK functions
 	 */
@@ -67,7 +67,7 @@ var controller = (function () {
 
 	/*
 	 *	called when ui send ready message
-	 */ 
+	 */
 	function documentReadyCallback() {
 		if (DEBUG) console.log("document ready callback");
 
@@ -86,9 +86,9 @@ var controller = (function () {
 	 */
 	function closePage() {
 		if (linux.getIsCameraAvailable())
-			amplify.publish("controller->linux", "stop python server");	
+			amplify.publish("controller->linux", "stop python server");
 	};
-	
+
 	/*
 	 * 																		PUBLIC area
 	 * Reveal public pointers to private functions and properties.
