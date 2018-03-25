@@ -271,29 +271,13 @@ var serverCommunication = (function () {
 
         amplify.subscribe("controlkeyboard->servercommunication", setMotorKeyboard);
         function setMotorKeyboard(movement) {
-            console.log(movement);
-
             if (sockets.io.connected) {
                 if (movement.type == "run") {
-                    var buf = new ArrayBuffer(5);
-                    var arr = new Uint8Array(buf);
-                    let speed = 0;
-                    //  command to send
-                    arr[0] = 0x10;
-                    /*	Multiplying by this value should make possible to write directly to PWM
-                        Current range is 0 - 127 with first bit as direction	*/
-                    if (movement.speed <= (127 - 80) && (movement.speed + 80) >= 0) {
-                        arr[1] = Math.round(Math.abs(movement.speed + 80) | (movement.direction[0] << 7));	//	Left front
-                        arr[2] = Math.round(Math.abs(movement.speed + 80) | (movement.direction[1] << 7));	//	Right front
-                        arr[3] = Math.round(Math.abs(movement.speed + 80) | (movement.direction[2] << 7));	//	Left rear
-                        arr[4] = Math.round(Math.abs(movement.speed + 80) | (movement.direction[3] << 7));	//	Right rear
-                        sockets.sendMotors(buf);
+                    if (movement.speed <= 100 && movement.speed >= -100) {
+                        let frame = frameBuilder.motorsKeyboard(movement);
+                        sockets.sendMotors(frame);
                         // Convert to readable form
-                        var hex = '';
-                        for (var i = 0; i < arr.length; i++) {
-                            hex += ('00' + arr[i].toString(16)).substr(-2);
-                        }
-                        if (DEBUG) console.log("Binary message sent. " + hex);
+                        console.log(utils.arrayToHex(frameBuilder.motorsArr));
                     } else {
                         clearInterval(movement.interval);
                     }
