@@ -1,7 +1,3 @@
-#	Module for controling motors
-
-import numpy as np	# Library with data types
-
 #	Add path to import functions
 import sys
 import time
@@ -69,4 +65,3 @@ def setNewManiPosition(axis_1_msb, axis_1_lsb, axis_2_msb, axis_2_lsb):
 	command.append(0x0D)
 	command.append(0x0A)
 	sendSerial(command)
-

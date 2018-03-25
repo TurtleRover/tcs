@@ -11,9 +11,9 @@ ser = serial.Serial("/dev/ttyAMA0")
 ser.baudrate = 115200
 
 def sendSerial (message):
-    print(message)
+    print("SERIAL", message)
     #message = [chr(i) for i in message]     # convert to integers
     #message = ''.join(message)
     #print(message)
-    ser.write(bytearray(message))
-    return
+    # ser.write(bytearray(message))
+    # return

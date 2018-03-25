@@ -3,10 +3,11 @@ from aiohttp import web
 import socketio
 import hexdump
 from log import logname
+from frame import updateMotors
 
 logger = logname("sockets")
 
-sio =  socketio.AsyncServer(async_mode='aiohttp')
+sio = socketio.AsyncServer(async_mode='aiohttp')
 app = web.Application()
 sio.attach(app)
 
@@ -17,9 +18,6 @@ async def connect(sid, environ):
 
 
 @sio.on('motors')
-async def test_message(sid, payload):
-    print(payload)
+async def motors(sid, payload):
     if payload[0] == 0x10:
-        print ("motors")
-    if payload[0] == 0x30:
-        print ("battery")
+        received = updateMotors(payload[1], payload[2], payload[3], payload[4])

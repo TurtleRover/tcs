@@ -20,7 +20,7 @@
         return this.motorsBuf;
     };
 
-    // THIS IS NOT OK. TODO MERGE THESE TWO MOTORS FUNCTIONS !!!
+    // THIS IS NOT OK. TODO: MERGE THESE TWO MOTORS FUNCTIONS !!!
     // Probably canvas also should return array of directions, not minus value
 
     frameBuilder.prototype.motorKeyboard = function(value) {
