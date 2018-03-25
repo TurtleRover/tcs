@@ -7,7 +7,7 @@
     background-position: -18% 0%, center;
     height: 100%;
     width: 100%;
-    display: none;
+    /* display: none; */
     border: none;
     outline: none;
 }

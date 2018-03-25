@@ -16,6 +16,8 @@ var serverCommunication = (function () {
 	 * 																		PRIVATE area
 	 */
      let sockets = new window.turtle.sockets();
+     let utils = new window.turtle.utils();
+     let frameBuilder = new window.turtle.frameBuilder();
     /*
 	 * 																		SUBSCRIBE to all topics
 	 */
@@ -258,26 +260,9 @@ var serverCommunication = (function () {
         function setMotors() {
             if (sockets.io.connected) {
                 var motorsSpeed = controlCanvas.getMotorsSpeed();
-                var buf = new ArrayBuffer(5);
-                var arr = new Uint8Array(buf);
-
-                //  command to send
-                arr[0] = 0x10;
-                /*	Multiplying by this value should make possible to write directly to PWM
-                    Current range is 0 - 127 with first bit as direction	*/
-                var k = 1.27;
-                arr[1] = Math.round(Math.abs(motorsSpeed.motor_1 * k) | (motorsSpeed.motor_1 & 0x80));	//	Left front
-                arr[2] = Math.round(Math.abs(motorsSpeed.motor_2 * k) | (motorsSpeed.motor_2 & 0x80));	//	Right front
-                arr[3] = Math.round(Math.abs(motorsSpeed.motor_3 * k) | (motorsSpeed.motor_3 & 0x80));	//	Left rear
-                arr[4] = Math.round(Math.abs(motorsSpeed.motor_4 * k) | (motorsSpeed.motor_4 & 0x80));	//	Right rear
-                sockets.sendMotors(buf);
-
-                // Convert to readable form
-                var hex = '';
-                for (var i = 0; i < arr.length; i++)
-                    hex += ('00' + arr[i].toString(16)).substr(-2);
-
-                // if(DEBUG) console.log("Binary message sent. " + hex);
+                let frame = frameBuilder.motors(motorsSpeed);
+                console.log(utils.arrayToHex(frameBuilder.motorsArr));
+                sockets.sendMotors(frame);
             }
             else {
                 console.log("Connection not opened.");
