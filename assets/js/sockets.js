@@ -6,6 +6,9 @@
         this.io.on('connect', function() {
             console.info("[sockets] Connection established via WebSockets");
         });
+        this.io.on('response', function(msg) {
+            console.info("[sockets] Response:", msg);
+        });
     };
 
     sockets.prototype.sendMotors = function (data) {

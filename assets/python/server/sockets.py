@@ -3,14 +3,14 @@ from aiohttp import web
 import socketio
 import hexdump
 from log import logname
-from frame import updateMotors, setNewManiPosition, setNewGripperPosition
+import frame
+from Hardware_Communication.turtleSerial import *
 
 logger = logname("sockets")
 
 sio = socketio.AsyncServer(async_mode='aiohttp')
 app = web.Application()
 sio.attach(app)
-
 
 @sio.on('connect')
 async def connect(sid, environ):
@@ -19,9 +19,8 @@ async def connect(sid, environ):
 
 @sio.on('motors')
 async def motors(sid, payload):
-    if payload[0] == 0x10:
-        received = updateMotors(payload[1], payload[2], payload[3], payload[4])
-        await sio.emit('response', received)
+    received = frame.motors(payload)
+    await sio.emit('response', received)
 
 @sio.on('manipulator')
 async def motors(sid, payload):

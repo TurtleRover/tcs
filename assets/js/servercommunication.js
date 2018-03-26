@@ -286,23 +286,15 @@ var serverCommunication = (function () {
                 var arr = new Uint8Array(buf);
 
                 //  command to send
-                arr[0] = 0x10;
-
                 arr[1] = 0;
                 arr[2] = 0;
                 arr[3] = 0;
                 arr[4] = 0;
-                // socket8080.socket.send(buf);
-
-                // Convert to readable form
-                var hex = '';
-                for (var i = 0; i < arr.length; i++)
-                    hex += ('00' + arr[i].toString(16)).substr(-2);
-
-                // if(DEBUG) console.log("Binary message sent. " + hex);
+                console.log("Halt!");
+                sockets.sendMotors(buf);
             }
             else console.log("Connection not opened.");
-        };
+        }
 
         /*
          *  get battery level

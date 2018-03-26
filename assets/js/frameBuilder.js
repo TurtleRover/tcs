@@ -1,6 +1,6 @@
 (function() {
     const frameBuilder = function() {
-        this.motorsBuf = new ArrayBuffer(5);
+        this.motorsBuf = new ArrayBuffer(4);
         this.motorsArr = new Uint8Array(this.motorsBuf);
 
         this.gripperBuf = new ArrayBuffer(3);
@@ -15,29 +15,27 @@
     };
 
     frameBuilder.prototype.motors = function(motorsSpeed) {
-        this.motorsArr[0] = 0x10;
-        this.motorsArr[1] = this.motor(motorsSpeed.motor_1); //	Left front
-        this.motorsArr[2] = this.motor(motorsSpeed.motor_2); //	Right front
-        this.motorsArr[3] = this.motor(motorsSpeed.motor_3); //	Left rear
-        this.motorsArr[4] = this.motor(motorsSpeed.motor_4); //	Right rear
+        this.motorsArr[0] = this.motor(motorsSpeed.motor_1); //	Left front
+        this.motorsArr[1] = this.motor(motorsSpeed.motor_2); //	Right front
+        this.motorsArr[2] = this.motor(motorsSpeed.motor_3); //	Left rear
+        this.motorsArr[3] = this.motor(motorsSpeed.motor_4); //	Right rear
         return this.motorsBuf;
     };
 
     // THIS IS NOT OK. TODO: MERGE THESE TWO MOTORS FUNCTIONS !!!
     // Probably canvas also should return array of directions, not minus value
 
-    frameBuilder.prototype.motorKeyboard = function(value) {
+    frameBuilder.prototype.motorKeyboard = function(value, motor_number) {
         let k = 1.27;
-        return Math.round(Math.abs(value.speed * k) | (value.direction[1] << 7));
+        return Math.round(Math.abs(value.speed * k) | (value.direction[motor_number]  << 7));
     };
 
     frameBuilder.prototype.motorsKeyboard = function(mov) {
-        this.motorsArr[0] = 0x10;
         console.log(mov);
-        this.motorsArr[1] = this.motorKeyboard(mov); //	Left front
-        this.motorsArr[2] = this.motorKeyboard(mov); //	Right front
-        this.motorsArr[3] = this.motorKeyboard(mov); //	Left rear
-        this.motorsArr[4] = this.motorKeyboard(mov); //	Right rear
+        this.motorsArr[0] = this.motorKeyboard(mov, 0); //	Left front
+        this.motorsArr[1] = this.motorKeyboard(mov, 1); //	Right front
+        this.motorsArr[2] = this.motorKeyboard(mov, 2); //	Left rear
+        this.motorsArr[3] = this.motorKeyboard(mov, 3); //	Right rear
         return this.motorsBuf;
     };
 
