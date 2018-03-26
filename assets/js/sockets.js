@@ -11,6 +11,12 @@
     sockets.prototype.sendMotors = function (data) {
          this.io.emit('motors', data);
     };
-    
+    sockets.prototype.sendManipulator = function (data) {
+         this.io.emit('manipulator', data);
+    };
+    sockets.prototype.sendGripper = function (data) {
+         this.io.emit('gripper', data);
+    };
+
     window.turtle.sockets = sockets;
 })();

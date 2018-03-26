@@ -211,31 +211,17 @@ var serverCommunication = (function () {
                 var axis_1 = $("#mani-axis-1").val();
                 var axis_2 = $("#mani-axis-2").val();
 
-                console.log("New mani position: " + axis_1 + "\t" + axis_2);
-
-                arr[0] = 0x84;
-                arr[1] = (axis_1 >> 8) & 0xFF;
-                arr[2] = axis_1 & 0xFF;
-                arr[3] = (axis_2 >> 8) & 0xFF;
-                arr[4] = axis_2 & 0xFF;
-
-                // socket8080.socket.send(buf);
+                let frame = frameBuilder.manipulator(axis_1, axis_2);
+                sockets.sendManipulator(frame);
             }
         }
 
         function setNewGripperPosition() {
             //var gripperPosition = manipulator.getGripperPosition();
             var gripperPosition = $("#gripper-slider-input").val();
-            console.log("New gripper position: " + gripperPosition);
             if (sockets.io.connected) {
-                var buf = new ArrayBuffer(3);
-                var arr = new Uint8Array(buf);
-
-                arr[0] = 0x94;
-                arr[1] = (gripperPosition >> 8) & 0xFF;
-                arr[2] = gripperPosition & 0xFF;
-
-                // socket8080.socket.send(buf);
+                let frame = frameBuilder.gripper(gripperPosition);
+                sockets.sendGripper(frame);
             }
         }
 
@@ -421,7 +407,7 @@ var serverCommunication = (function () {
          */
         setInterval(function () {
             if (sockets.io.connected) {
-                getBatteryLevel();
+                // getBatteryLevel();
                 setTimeout(function () { getSignalLevel() }, 500);
                 setTimeout(function () { getProcessorTemperature() }, 1000);
             }
