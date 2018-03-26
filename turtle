@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec "sudo" "python3" "./assets/python/server/server.new.py"
