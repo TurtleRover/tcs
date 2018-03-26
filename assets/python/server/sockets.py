@@ -4,13 +4,14 @@ import socketio
 import hexdump
 from log import logname
 import frame
-from Hardware_Communication.turtleSerial import *
+from hardware import Hardware
 
 logger = logname("sockets")
 
 sio = socketio.AsyncServer(async_mode='aiohttp')
 app = web.Application()
 sio.attach(app)
+hardware = Hardware()
 
 @sio.on('connect')
 async def connect(sid, environ):
@@ -19,8 +20,8 @@ async def connect(sid, environ):
 
 @sio.on('motors')
 async def motors(sid, payload):
-    received = frame.motors(payload)
-    await sio.emit('response', received)
+    hardware.setMotors(payload)
+    await sio.emit('response', "motors set")
 
 @sio.on('manipulator')
 async def motors(sid, payload):
