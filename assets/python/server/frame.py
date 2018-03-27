@@ -13,7 +13,8 @@ POSTFIX = [0x0D, 0x0A]
 
 def motors(data):
     print (data)
-    command = [MOTORS_PREFIX]
+    command = bytearray()
+    command.append(MOTORS_PREFIX)
     command.extend(data)
     command.extend(POSTFIX)
     return command

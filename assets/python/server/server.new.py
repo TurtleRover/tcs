@@ -12,4 +12,7 @@ if __name__ == '__main__':
 
     logger.info('Starting new server instance...')
     # logger.info('Battery: %s', frame.readBatteryVoltage())
-    web.run_app(app, host='0.0.0.0', port=5000)
+    try:
+        web.run_app(app, host='0.0.0.0', port=5000)
+    except OSError as e:
+        logger.error(e)

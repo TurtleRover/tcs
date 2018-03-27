@@ -1,9 +1,15 @@
 import frame
-import uart
+from uart import Uart
+
 
 class Hardware():
+    def __init__(self):
+        self.uart = Uart()
+
+        self.uart.start()
+
     def setMotors(self, payload):
-        uart.send(frame.motors(payload))
+        self.uart.send(frame.motors(payload))
 
     def setManipulator(self, payload):
         pass
