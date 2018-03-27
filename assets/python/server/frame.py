@@ -12,7 +12,6 @@ POSTFIX = [0x0D, 0x0A]
 
 
 def motors(data):
-    print (data)
     command = bytearray()
     command.append(MOTORS_PREFIX)
     command.extend(data)
