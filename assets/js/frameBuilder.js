@@ -3,7 +3,7 @@
         this.motorsBuf = new ArrayBuffer(4);
         this.motorsArr = new Uint8Array(this.motorsBuf);
 
-        this.gripperBuf = new ArrayBuffer(3);
+        this.gripperBuf = new ArrayBuffer(2);
         this.gripperArr = new Uint8Array(this.gripperBuf);
     };
 
@@ -40,10 +40,9 @@
     };
 
     frameBuilder.prototype.gripper = function(gripperPosition) {
-        this.gripperArr[0] = 0x94;
         console.log("Gripper position: " + gripperPosition);
-        this.gripperArr[1] = (gripperPosition >> 8) & 0xFF;
-        this.gripperArr[2] = gripperPosition & 0xFF;
+        this.gripperArr[0] = (gripperPosition >> 8) & 0xFF;
+        this.gripperArr[1] = gripperPosition & 0xFF;
         return this.gripperBuf;
     };
 

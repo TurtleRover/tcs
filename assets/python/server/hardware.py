@@ -16,7 +16,8 @@ class Hardware():
         pass
 
     def setGripper(self, payload):
-        pass
+        print (frame.gripper(payload))
+        # self.uart.send(frame.gripper(payload))
 
     def setCameraPosition(self, payload):
         pass

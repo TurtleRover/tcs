@@ -200,7 +200,7 @@ var serverCommunication = (function () {
         function updateAxisPositions() {
             $("#mani-axis-1").val($("#axis1-slider-input").val());
             $("#mani-axis-2").val($("#axis2-slider-input").val());
-            setNewManiPosition();   
+            setNewManiPosition();
         }
 
         /*
@@ -227,6 +227,7 @@ var serverCommunication = (function () {
             var gripperPosition = $("#gripper-slider-input").val();
             if (sockets.io.connected) {
                 let frame = frameBuilder.gripper(gripperPosition);
+                console.log(utils.arrayToHex(frameBuilder.gripperArr));
                 sockets.sendGripper(frame);
             }
         }
