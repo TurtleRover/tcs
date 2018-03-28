@@ -16,7 +16,7 @@ class Uart(Thread):
         self.daemon = True
         # self.events = Events()
         self.BAUD = 115200
-        self.TIMEOUT = 0
+        self.TIMEOUT = None
         self.serial = None
         self.port = "AMA"
 

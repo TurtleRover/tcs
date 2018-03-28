@@ -9,6 +9,7 @@ class Hardware():
         self.uart.start()
 
     def setMotors(self, payload):
+        print (frame.motors(payload))
         self.uart.send(frame.motors(payload))
 
     def setManipulator(self, payload):

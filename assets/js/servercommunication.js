@@ -282,15 +282,15 @@ var serverCommunication = (function () {
          */
         function stopMotors() {
             if (sockets.io.connected) {
-                var buf = new ArrayBuffer(5);
+                var buf = new ArrayBuffer(4);
                 var arr = new Uint8Array(buf);
 
                 //  command to send
+                arr[0] = 0;
                 arr[1] = 0;
                 arr[2] = 0;
                 arr[3] = 0;
-                arr[4] = 0;
-                console.log("Halt!");
+                console.log("Halt!", buf);
                 sockets.sendMotors(buf);
             }
             else console.log("Connection not opened.");
