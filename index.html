@@ -119,24 +119,30 @@
 											<div id="setting-menu-grid">
 												<div id="setting-menu-grid-element-left"><p>Axis 1<p></div>
 												<div id="setting-menu-grid-element-right">
-													<input id="mani-axis-1" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
+													<span>min</span>
+													<input id="mani-axis-1-min" type="number" max="4600" min="3400" width="6" step="50" value="4600" style ="color:black">
+													<span>max</span>
+													<input id="mani-axis-1-max" type="number" max="4600" min="3000" width="6" step="50" value="4600" style ="color:black">
 												</div>
 												<div id="clear"></div>
 											</div>
 											<div id="setting-menu-grid">
 												<div id="setting-menu-grid-element-left"><p>Axis 2<p></div>
 												<div id="setting-menu-grid-element-right">
-													<input id="mani-axis-2" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
+													<span>min</span>
+													<input id="mani-axis-2-min" type="number" max="9000" min="0" width="6" step="50" value="4000" style ="color:black">
+													<span>max</span>
+													<input id="mani-axis-2-max" type="number" max="9000" min="0" width="6" step="50" value="4000" style ="color:black">
 												</div>
 												<div id="clear"></div>
 											</div>
-											<div id="setting-menu-grid">
+											<!-- <div id="setting-menu-grid">
 												<div id="setting-menu-grid-element-left"><p>Gripper<p></div>
 												<div id="setting-menu-grid-element-right">
 													<input id="mani-gripper" type="number" max="4800" min="2400" width="6" step="50" value="3600" style="background-color: gray">
 												</div>
 												<div id="clear"></div>
-											</div>
+											</div> -->
 											<div id="setting-menu-grid">
 												<div id="setting-menu-grid-element-left"><p>X<p></div>
 												<div id="setting-menu-grid-element-right">
@@ -240,6 +246,12 @@
 											<button id="open-console-button">open console</button>
 										</div>
 									</li>
+									<li>
+										<button class="accordion">Gripper range</button>
+										<div class="panel">
+											<button id="open-console-button">open console</button>
+										</div>
+									</li>
 
 									<li>
 										<button class="accordion">About</button>
@@ -321,7 +333,28 @@
 						<div class="transparent-background-div" id="transparent-background-navigation-right"></div>
 						<div id="right-navigation-cross-div" draggable="false" style="user-drag: none">
 						 	<img id="right-navigation-cross-img" src="assets/img/ui/right-krzyz.svg" draggable="false" onmousedown="return false" style="user-drag:none">
-							<img id="turtle-navigation-view-img" src="assets/img/ui/right-lazik.svg" draggable="false" onmousedown="return false" style="user-drag:none">
+
+							<div id="axis1-slider-wrapper" hidden>
+								<span class="gripper-axis-label">AXIS 1</span>
+								<div class="flat-slider-wrapper axis-slider-wrapper">
+									<span style="position:absolute; left:2%">min</span>
+									<div class="flat-slider gripper-slider" id="axis1-slider"><input type="range" class="flat-slider-horizontal" id="axis1-slider-input" max="4800" min="2700" step="10" value="4600" style="transform: rotateY(180deg);"/></div>
+									<span style="position:absolute; right:2%">max</span>
+									<div id="clear"></div>
+								</div>
+							</div>
+
+							<div id="axis2-slider-wrapper" hidden>
+								<span class="gripper-axis-label">AXIS 2</span>
+								<div class="flat-slider-wrapper axis-slider-wrapper">
+									<span style="position:absolute; left:2%">min</span>
+									<div class="flat-slider gripper-slider" id="axis2-slider"><input type="range" class="flat-slider-horizontal" id="axis2-slider-input" max="4800" min="4000" step="10" value="4000" style="transform: rotateY(180deg);"/></div>
+									<span style="position:absolute; right:2%">max</span>
+									<div id="clear"></div>
+								</div>
+							</div>
+
+							 <img id="turtle-navigation-view-img" src="assets/img/ui/right-lazik.svg" draggable="false" onmousedown="return false" style="user-drag:none">
 
 							<canvas id="navigation-ring-canvas"></canvas>
 
@@ -464,9 +497,6 @@
 		<!-- transit - http://ricostacruz.com/jquery.transit/ -->
 		<script src='vendors/transit/jquery.transit.min.js'></script>
 
-		<!-- user interface -->
-		<script src='assets/js/ui.js'></script>
-
 		<script>
 /*	accordion buttons - the menu ones 	*/
 /*	----------------------------------- */
@@ -487,6 +517,7 @@ for (i = 0; i < acc.length; i++) {
 /*	----------------------------------- */
 
 </script>
-
+<!-- user interface -->
+<script src='assets/js/ui.js'></script>
 	</body>
 </html>

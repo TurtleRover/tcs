@@ -197,6 +197,12 @@ var serverCommunication = (function () {
             setNewManiPosition();
         }
 
+        function updateAxisPositions() {
+            $("#mani-axis-1").val($("#axis1-slider-input").val());
+            $("#mani-axis-2").val($("#axis2-slider-input").val());
+            setNewManiPosition();   
+        }
+
         /*
          *  set new position of servo
          */

@@ -6,6 +6,10 @@
     padding: 0;
 }
 
+.axis-slider-wrapper {
+    padding-top: 25%;
+}
+
 .flat-vertical-slider-wrapper {
     padding-bottom: 1em;
     float: none;
