@@ -13,10 +13,10 @@ MANIPULATOR_PREFIX = 0x84
 POSTFIX = [0x0D, 0x0A]
 
 
-def motors(data):
+def motors(payload):
     command = bytearray()
     command.append(MOTORS_PREFIX)
-    command.extend(data)
+    command.extend(payload)
     command.extend(POSTFIX)
     return command
 
@@ -32,19 +32,19 @@ def readBatteryVoltage():
     command.append(0x0D)
     command.append(0x0A)
     # sendSerial(command)
-    data = [0x31, 0]
+    payload = [0x31, 0]
     byte_read = ser.read(1)
-    data[1] = int.from_bytes(byte_read, byteorder='big', signed=False)
-    print("Battery value: " + str(data))
-    return data
+    payload[1] = int.from_bytes(byte_read, byteorder='big', signed=False)
+    print("Battery value: " + str(payload))
+    return payload
 
 #	Set servo values
 
 
-def gripper(data):
+def gripper(payload):
     command = bytearray()
     command.append(GRIPPER_PREFIX)
-    command.extend(data)
+    command.extend(payload)
     command.append(0x00)
     command.append(0x00)
     command.extend(POSTFIX)
@@ -64,10 +64,10 @@ def setNewCameraPosition(msb, lsb):
 #	Set servo values
 
 
-def manipulator(data):
+def manipulator(payload):
     command = bytearray()
     command.append(MANIPULATOR_PREFIX)
-    command.extend(data)
+    command.extend(payload)
     command.append(0x0D)
     command.append(0x0A)
     return command
