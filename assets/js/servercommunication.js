@@ -196,13 +196,6 @@ var serverCommunication = (function () {
             $("#mani-axis-2").val($("#axis2-slider-input").val());
             setNewManiPosition();
         }
-
-        function updateAxisPositions() {
-            $("#mani-axis-1").val($("#axis1-slider-input").val());
-            $("#mani-axis-2").val($("#axis2-slider-input").val());
-            setNewManiPosition();
-        }
-
         /*
          *  set new position of servo
          */
@@ -211,13 +204,13 @@ var serverCommunication = (function () {
             if (sockets.io.connected) {
                 /*var alphaValue = newPosition.alpha * 4;   //  in quarter of microseconds
                 var betaValue = newPosition.beta * 4;*/
-                var buf = new ArrayBuffer(5);
-                var arr = new Uint8Array(buf);
 
-                var axis_1 = $("#mani-axis-1").val();
-                var axis_2 = $("#mani-axis-2").val();
+                var axis_1 = document.getElementById('axis1-slider-input').value;
+                var axis_2 = document.getElementById('axis2-slider-input').value;
+
 
                 let frame = frameBuilder.manipulator(axis_1, axis_2);
+                console.log(utils.arrayToHex(frameBuilder.motorsArr));
                 sockets.sendManipulator(frame);
             }
         }
@@ -228,7 +221,7 @@ var serverCommunication = (function () {
             if (sockets.io.connected) {
                 let frame = frameBuilder.gripper(gripperPosition);
                 console.log(utils.arrayToHex(frameBuilder.gripperArr));
-                sockets.sendGripper(frame);
+                // sockets.sendGripper(frame);
             }
         }
 

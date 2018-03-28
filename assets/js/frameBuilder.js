@@ -47,12 +47,11 @@
     };
 
     frameBuilder.prototype.manipulator = function(axis_1, axis_2) {
-        this.motorsArr[0] = 0x84;
         console.log("Mani position: " + axis_1 + "\t" + axis_2);
-        this.motorsArr[1] = (axis_1 >> 8) & 0xFF;
-        this.motorsArr[2] = axis_1 & 0xFF;
-        this.motorsArr[3] = (axis_2 >> 8) & 0xFF;
-        this.motorsArr[4] = axis_2 & 0xFF;
+        this.motorsArr[0] = (axis_1 >> 8) & 0xFF;
+        this.motorsArr[1] = axis_1 & 0xFF;
+        this.motorsArr[2] = (axis_2 >> 8) & 0xFF;
+        this.motorsArr[3] = axis_2 & 0xFF;
         return this.motorsBuf;
     };
 

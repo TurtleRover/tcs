@@ -9,6 +9,7 @@ sys.path.append(os.path.join(os.path.dirname(
 #	Updates Motors PWM values
 MOTORS_PREFIX = 0x10  # Set all motors
 GRIPPER_PREFIX = 0x94
+MANIPULATOR_PREFIX = 0x84
 POSTFIX = [0x0D, 0x0A]
 
 
@@ -43,8 +44,7 @@ def readBatteryVoltage():
 def gripper(data):
     command = bytearray()
     command.append(GRIPPER_PREFIX)
-    command.append(data[0])
-    command.append(data[1])
+    command.extend(data)
     command.append(0x00)
     command.append(0x00)
     command.extend(POSTFIX)
@@ -64,12 +64,10 @@ def setNewCameraPosition(msb, lsb):
 #	Set servo values
 
 
-def setNewManiPosition(axis_1_msb, axis_1_lsb, axis_2_msb, axis_2_lsb):
-    command = [0x84]
-    command.append(axis_1_msb)
-    command.append(axis_1_lsb)
-    command.append(axis_2_msb)
-    command.append(axis_2_lsb)
+def manipulator(data):
+    command = bytearray()
+    command.append(MANIPULATOR_PREFIX)
+    command.extend(data)
     command.append(0x0D)
     command.append(0x0A)
-    sendSerial(command)
+    return command

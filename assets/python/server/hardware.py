@@ -13,7 +13,8 @@ class Hardware():
         self.uart.send(frame.motors(payload))
 
     def setManipulator(self, payload):
-        pass
+        print (frame.manipulator(payload))
+        self.uart.send(frame.manipulator(payload))
 
     def setGripper(self, payload):
         print (frame.gripper(payload))
