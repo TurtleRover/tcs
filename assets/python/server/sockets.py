@@ -26,16 +26,14 @@ async def motors(sid, payload):
 @sio.on('manipulator')
 async def motors(sid, payload):
     hardware.setManipulator(payload)
-    # print(payload)
-    # if payload[0] == 0x84:
-    #     setNewManiPosition(payload[1], payload[2], payload[3], payload[4])
-    #     received = [0x85, 0x00]
-    #     await sio.emit('response', received)
+    await sio.emit('response', 'manipulator set')
 
 @sio.on('gripper')
 async def motors(sid, payload):
     hardware.setGripper(payload)
-    # if payload[0] == 0x94:
-    #     setNewGripperPosition(payload[1], payload[2])
-    #     received = [0x95, 0x00]
-    #     await sio.emit('response', received)
+    await sio.emit('response', 'gripper set')
+
+@sio.on('battery')
+async def motors(sid):
+    battery_status =  hardware.getBattery()
+    await sio.emit('battery', battery_status)

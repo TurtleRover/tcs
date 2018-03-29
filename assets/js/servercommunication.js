@@ -9,18 +9,18 @@
  *  + SoundJS
  *  + PreloadJS
  * http://www.createjs.com/docs
-*/
+ */
 
-var serverCommunication = (function () {
+var serverCommunication = (function() {
     /*
-	 * 																		PRIVATE area
-	 */
-     let sockets = new window.turtle.sockets();
-     let utils = new window.turtle.utils();
-     let frameBuilder = new window.turtle.frameBuilder();
+     * 																		PRIVATE area
+     */
+    let sockets = new window.turtle.sockets();
+    let utils = new window.turtle.utils();
+    let frameBuilder = new window.turtle.frameBuilder();
     /*
-	 * 																		SUBSCRIBE to all topics
-	 */
+     * 																		SUBSCRIBE to all topics
+     */
     amplify.subscribe("linux->serverCommunication", linuxMessageCallback);
 
     function linuxMessageCallback(message) {
@@ -61,6 +61,7 @@ var serverCommunication = (function () {
          *  subscribe to canvas topic
          */
         amplify.subscribe("controlCanvas->port8080", canvasMessageCallback);
+
         function canvasMessageCallback(message) {
             if (DEBUG) console.log("canvasMessageCallback: " + message);
             if (DEBUG) amplify.publish("all->utests", message);
@@ -75,6 +76,7 @@ var serverCommunication = (function () {
         };
 
         amplify.subscribe("manipulator->port8080", manipulatorMessageCallback);
+
         function manipulatorMessageCallback(message) {
             if (DEBUG) console.log("manipulatorMessageCallback: " + message);
             if (DEBUG) amplify.publish("all->utests", message);
@@ -89,6 +91,7 @@ var serverCommunication = (function () {
         };
 
         amplify.subscribe("ui->port8080", uiMessageCallback);
+
         function uiMessageCallback(message) {
             if (DEBUG) console.log("uiMessageCallback: " + message);
             if (DEBUG) amplify.publish("all->utests", message);
@@ -132,6 +135,20 @@ var serverCommunication = (function () {
             amplify.publish("all->ui", "set last status done");
             amplify.publish("all->ui", "initialize camera...");
         }
+
+        sockets.io.on('battery', function(voltage) {
+            console.log("voltage: " + voltage);
+            voltage = voltage * 0.1 + 7.6; // voltage divider
+            console.log("voltage: " + voltage);
+            var str_voltage = voltage.toString();
+            $("#battery-level-text").text("battery voltage: " + str_voltage.substr(0, 4) + " V");
+
+            if (voltage > 24) amplify.publish("all->ui", "set battery level to full");
+            else if (voltage > 23) amplify.publish("all->ui", "set battery level to 3");
+            else if (voltage > 21.5) amplify.publish("all->ui", "set battery level to 2");
+            else if (voltage > 19.5) amplify.publish("all->ui", "set battery level to 1");
+            else amplify.publish("all->ui", "set battery level to 0");
+        });
 
         // socket8080.socket.onmessage = function (e) {
         //     if (typeof e.data == "string") {
@@ -221,7 +238,7 @@ var serverCommunication = (function () {
             if (sockets.io.connected) {
                 let frame = frameBuilder.gripper(gripperPosition);
                 console.log(utils.arrayToHex(frameBuilder.gripperArr));
-                // sockets.sendGripper(frame);
+                sockets.sendGripper(frame);
             }
         }
 
@@ -241,21 +258,21 @@ var serverCommunication = (function () {
         }
 
         /*
-        *  set all motors values
-        */
+         *  set all motors values
+         */
         function setMotors() {
             if (sockets.io.connected) {
                 var motorsSpeed = controlCanvas.getMotorsSpeed();
                 let frame = frameBuilder.motors(motorsSpeed);
                 console.log(utils.arrayToHex(frameBuilder.motorsArr));
                 sockets.sendMotors(frame);
-            }
-            else {
+            } else {
                 console.log("Connection not opened.");
             }
         }
 
         amplify.subscribe("controlkeyboard->servercommunication", setMotorKeyboard);
+
         function setMotorKeyboard(movement) {
             if (sockets.io.connected) {
                 if (movement.type == "run") {
@@ -292,29 +309,10 @@ var serverCommunication = (function () {
                 arr[3] = 0;
                 console.log("Halt!", buf);
                 sockets.sendMotors(buf);
-            }
-            else console.log("Connection not opened.");
+            } else console.log("Connection not opened.");
         }
 
-        /*
-         *  get battery level
-         */
-        function getBatteryLevel() {
-            if (sockets.io.connected) {
-                var buf = new ArrayBuffer(1);
-                var arr = new Uint8Array(buf);
-                arr[0] = 0x30;
-                sockets.sendMotors(buf);
 
-                // Convert to readable form
-                var hex = '';
-                for (var i = 0; i < arr.length; i++)
-                    hex += ('00' + arr[i].toString(16)).substr(-2);
-
-                // if(DEBUG) console.log("Binary message sent. " + hex);
-            }
-            else console.log("Connection not opened.");
-        }
 
         /*
          *  get signal level
@@ -332,8 +330,7 @@ var serverCommunication = (function () {
                     hex += ('00' + arr[i].toString(16)).substr(-2);
 
                 // if(DEBUG) console.log("Binary message sent. " + hex);
-            }
-            else console.log("Connection not opened.");
+            } else console.log("Connection not opened.");
         }
 
         /*
@@ -352,8 +349,7 @@ var serverCommunication = (function () {
                     hex += ('00' + arr[i].toString(16)).substr(-2);
 
                 // if(DEBUG) console.log("Binary message sent. " + hex);
-            }
-            else console.log("Connection not opened.");
+            } else console.log("Connection not opened.");
         }
 
         /*
@@ -381,15 +377,14 @@ var serverCommunication = (function () {
                     hex += ('00' + arr[i].toString(16)).substr(-2);
 
                 if (DEBUG) console.log("Binary message sent. " + hex);
-            }
-            else console.log("Connection not opened.");
+            } else console.log("Connection not opened.");
         }
 
         /*
          *  set interval to update motor values
          *  take care to not overload CPU
          */
-        setInterval(function () {
+        setInterval(function() {
             if (sockets.io.connected && controlCanvas.isCoordinatesClicked())
                 setMotors();
         }, INTERVAL);
@@ -397,13 +392,17 @@ var serverCommunication = (function () {
         /*
          *  read battery value
          */
-        setInterval(function () {
+        setInterval(function() {
             if (sockets.io.connected) {
-                // getBatteryLevel();
-                setTimeout(function () { getSignalLevel() }, 500);
-                setTimeout(function () { getProcessorTemperature() }, 1000);
+                sockets.sendBattery();
+                setTimeout(function() {
+                    getSignalLevel();
+                }, 500);
+                setTimeout(function() {
+                    getProcessorTemperature();
+                }, 1000);
             }
         }, BAT_INTERVAL);
 
     }
-}) ();
+})();

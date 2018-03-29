@@ -22,8 +22,7 @@ def motors(payload):
 
 #	Read battery voltage (actualy, not the voltage but ADC reading)
 
-
-def readBatteryVoltage():
+def battery():
     command = [0x30]
     command.append(0x00)
     command.append(0x00)
@@ -31,6 +30,10 @@ def readBatteryVoltage():
     command.append(0x00)
     command.append(0x0D)
     command.append(0x0A)
+    return command
+
+def readBatteryVoltage():
+
     # sendSerial(command)
     payload = [0x31, 0]
     byte_read = ser.read(1)

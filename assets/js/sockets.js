@@ -20,6 +20,9 @@
     sockets.prototype.sendGripper = function (data) {
          this.io.emit('gripper', data);
     };
+    sockets.prototype.sendBattery = function () {
+         this.io.emit('battery');
+    };
 
     window.turtle.sockets = sockets;
 })();

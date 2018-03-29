@@ -36,10 +36,10 @@ class Uart(Thread):
 
     def waiter(self):
         while self.serial is None:
-            logger.info("UART: Waiting for serial device")
+            logger.info("Waiting for serial device")
             for port in self.available_ports():
                 if self.port in port.name:
-                    logger.info("UART: Found device: %s %s",
+                    logger.info("Found device: %s %s",
                                 port.name, port.manufacturer)
                     self.connect(port.device)
             sleep(2)
@@ -49,9 +49,9 @@ class Uart(Thread):
             self.serial = serial.Serial(
                 device, baudrate=self.BAUD, timeout=self.TIMEOUT)
             # self.events.on_connected()
-            logger.info("UART: Connected")
+            logger.info("Connected")
         except serial.SerialException as e:
-            logger.error("UART: %s", e)
+            logger.error(e)
 
     def available_ports(self):
         return serial.tools.list_ports.comports()
