@@ -29,8 +29,6 @@ class Hardware():
     def getBattery(self):
         self.uart.send(frame.battery())
         status = self.uart.serial.read(1)
-        print(status)
-        print(int(status))
         battery_status = int.from_bytes(status, byteorder='big', signed=False)
         print(battery_status)
         return battery_status
