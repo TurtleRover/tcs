@@ -31,7 +31,7 @@ class Uart(Thread):
         try:
             return self.serial.readline()
         except serial.SerialException as e:
-            logger.error("UART: %s", e)
+            logger.error(e)
             return 0
 
     def waiter(self):

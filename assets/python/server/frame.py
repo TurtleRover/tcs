@@ -32,15 +32,6 @@ def battery():
     command.append(0x0A)
     return command
 
-def readBatteryVoltage():
-
-    # sendSerial(command)
-    payload = [0x31, 0]
-    byte_read = ser.read(1)
-    payload[1] = int.from_bytes(byte_read, byteorder='big', signed=False)
-    print("Battery value: " + str(payload))
-    return payload
-
 #	Set servo values
 
 

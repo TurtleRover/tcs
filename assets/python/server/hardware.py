@@ -1,12 +1,15 @@
 import frame
 from uart import Uart
-
+from link_quality import Signal
+import asyncio
 
 class Hardware():
     def __init__(self):
         self.uart = Uart()
+        self.signal = Signal()
 
         self.uart.start()
+        self.signal.start()
 
     def setMotors(self, payload):
         print (frame.motors(payload))
@@ -30,8 +33,10 @@ class Hardware():
         self.uart.send(frame.battery())
         status = self.uart.serial.read(1)
         battery_status = int.from_bytes(status, byteorder='big', signed=False)
-        print(battery_status)
         return battery_status
+
+    def getSignal(self):
+        return self.signal.strength
 
     def getTemperature(self, payload):
         pass

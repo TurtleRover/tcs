@@ -37,3 +37,8 @@ async def motors(sid, payload):
 async def motors(sid):
     battery_status =  hardware.getBattery()
     await sio.emit('battery', battery_status)
+
+@sio.on('signal')
+async def signal(sid):
+    signal_strength =  hardware.getSignal()
+    await sio.emit('signal', signal_strength)

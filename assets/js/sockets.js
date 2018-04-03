@@ -23,6 +23,9 @@
     sockets.prototype.sendBattery = function () {
          this.io.emit('battery');
     };
+    sockets.prototype.sendSignal = function () {
+         this.io.emit('signal');
+    };
 
     window.turtle.sockets = sockets;
 })();

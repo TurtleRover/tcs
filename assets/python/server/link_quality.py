@@ -8,67 +8,97 @@ import subprocess
 import sys
 import asyncio
 import os
+import socket
+import fcntl
+import struct
+from threading import Thread
 
-MOVING_AVERAGE_LEN = 40
-LIST_DEFAULT_VAL = 1
+# def fillList(lenght, val):
+#     arr = []
+#     for i in range(lenght):
+#         arr.append(val)
+#
+#     return arr
+# link_quality_var = 69
+# async def pingToGetLinkQuality():
+#
+#     # flush the old connection
+#     os.popen('sudo ip -s -s neigh flush all')
+#     f = os.popen('arp | grep "wlan0" | grep -v incomplete | grep -E -o -m 1 [0-9]+[.][0-9]+[.][0-9]+[.][0-9]+')
+#     ip = f.read()
+#
+#     process = subprocess.Popen(['ping', '-i', '0.05', ip, '-f'], stdout=subprocess.PIPE)
+#
+#     #    Fill the moving average with 100 %
+#     dots = fillList(MOVING_AVERAGE_LEN, LIST_DEFAULT_VAL)
+#     backspaces = fillList(MOVING_AVERAGE_LEN, LIST_DEFAULT_VAL)
+#
+#     output_hex = hex(0x00)
+#     prev_output_hex = output_hex
+#     start_counting = False
+#
+#     i = 0
+#
+#
+#
+#     rc = process.poll()
 
-def fillList(lenght, val):
-    arr = []
-    for i in range(lenght):
-        arr.append(val)
-    
-    return arr
+class Signal(Thread):
+    def __init__(self):
+        Thread.__init__(self)
+        self.daemon = True
+        self.strength = 0
+        self.MOVING_AVERAGE_LEN = 40
+        self.LIST_DEFAULT_VAL = 1
 
-@asyncio.coroutine
-def pingToGetLinkQuality():
-    global link_quality_var
-    link_quality_var = 69
-    # flush the old connection
-    os.popen('sudo ip -s -s neigh flush all')
-    f = os.popen('arp | grep "ra0" | grep -v incomplete | grep -E -o -m 1 [0-9]+[.][0-9]+[.][0-9]+[.][0-9]+')
-    ip = f.read()
+        self.dots = self.fillList(self.MOVING_AVERAGE_LEN, self.LIST_DEFAULT_VAL)
+        self.backspaces = self.fillList(self.MOVING_AVERAGE_LEN, self.LIST_DEFAULT_VAL)
 
-    process = subprocess.Popen(['ping', '-i', '0.05', ip, '-f'], stdout=subprocess.PIPE)
-    
-    #    Fill the moving average with 100 %
-    dots = fillList(MOVING_AVERAGE_LEN, LIST_DEFAULT_VAL)
-    backspaces = fillList(MOVING_AVERAGE_LEN, LIST_DEFAULT_VAL)
-    
-    output_hex = hex(0x00)
-    prev_output_hex = output_hex
-    start_counting = False
-    
-    i = 0
-    
-    while True:
-        yield from asyncio.sleep(0)
-        output = process.stdout.read(1)
-        if output.decode('utf-8') == '' and process.poll() is not None:
-            break
-        if output:
-            prev_output_hex = output_hex
-            output_hex = hex(ord(output))
-            if output_hex == hex(0x08) and prev_output_hex == hex(0x2e):
-                backspaces.pop(0)
-                backspaces.append(1)
-            elif output_hex == hex(0x2e):
-                if prev_output_hex == hex(0xa):
-                    start_counting = True
-                if start_counting == True and prev_output_hex == hex(0x2e):
-                    backspaces.pop(0)
-                    backspaces.append(0)
-                if start_counting == True:
-                    dots.pop(0)
-                    dots.append(1)
-            elif output_hex == hex(0xa):
-                start_counting = False
-            
-            i += 1
-                
-            if (i >= MOVING_AVERAGE_LEN):
-                print("link quality: ", int(sum(backspaces) / sum(dots) * 100), " %")
-                link_quality_var = sum(backspaces) / sum(dots) * 100
-                i = 0
-        
-    rc = process.poll()
-    
+        self.output_hex = hex(0x00)
+        self.prev_output_hex = self.output_hex
+        self.start_counting = False
+
+        self.i = 0
+
+        self.process = subprocess.Popen(['ping', '-i', '0.05', self.getIP(), '-f'], stdout=subprocess.PIPE)
+
+    def getIP(self, ifname="wlan0"):
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        return socket.inet_ntoa(fcntl.ioctl(s.fileno(), 0x8915, struct.pack('256s', bytes(ifname[:15], 'utf-8')) )[20:24])
+
+    def fillList(self, lenght, val):
+        arr = []
+        for self.i in range(lenght):
+            arr.append(val)
+        return arr
+
+    def run(self):
+        while True:
+            output = self.process.stdout.read(1)
+            if output.decode('utf-8') == '' and self.process.poll() is not None:
+                break
+            if output:
+                self.prev_output_hex = self.output_hex
+                self.output_hex = hex(ord(output))
+                if self.output_hex == hex(0x08) and self.prev_output_hex == hex(0x2e):
+                    self.backspaces.pop(0)
+                    self.backspaces.append(1)
+                elif self.output_hex == hex(0x2e):
+                    if self.prev_output_hex == hex(0xa):
+                        self.start_counting = True
+                    if self.start_counting == True and self.prev_output_hex == hex(0x2e):
+                        self.backspaces.pop(0)
+                        self.backspaces.append(0)
+                    if self.start_counting == True:
+                        self.dots.pop(0)
+                        self.dots.append(1)
+                elif self.output_hex == hex(0xa):
+                    self.start_counting = False
+
+                self.i += 1
+                # print(self.i)
+
+                if (self.i >= self.MOVING_AVERAGE_LEN):
+                    self.strength = sum(self.backspaces) / sum(self.dots) * 100
+                    print("link quality: ", self.strength, "%")
+                    self.i = 0
