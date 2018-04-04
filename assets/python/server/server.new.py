@@ -1,4 +1,4 @@
-from instaces_checker import check_for_another_instances
+from killer import kill
 from log import logname
 import os
 
@@ -7,7 +7,7 @@ logger = logname()
 if __name__ == '__main__':
     logger.info(
         'Starting Turtle Control System... [PID:%s PPID:%s]', os.getpid(), os.getppid())
-    check_for_another_instances()
+    kill()
 
     logger.info('Starting new server instance...')
     # logger.info('Battery: %s', frame.readBatteryVoltage())

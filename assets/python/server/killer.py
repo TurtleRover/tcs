@@ -6,12 +6,11 @@ from log import logname
 
 logger = logname()
 
-def check_for_another_instances():
+def kill():
     logger.info('Checking for another server instances...')
     child = subprocess.Popen(
         ['pgrep', '-f', "server.new.py"], stdout=subprocess.PIPE, shell=False)
     pids = child.communicate()[0].split()
-    print (pids)
     for pid in pids:
         if int(pid) != os.getppid() and int(pid) != os.getpid():
             logger.warn("Killing...%s", int(pid))

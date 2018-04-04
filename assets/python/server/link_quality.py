@@ -70,5 +70,5 @@ class Signal(Thread):
 
                 if (self.i >= self.MOVING_AVERAGE_LEN):
                     self.strength = sum(self.backspaces) / sum(self.dots) * 100
-                    logger.debug("link quality: %d", self.strength)
+                    # logger.debug("link quality: %d", self.strength)
                     self.i = 0
