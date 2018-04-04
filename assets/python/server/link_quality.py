@@ -5,43 +5,14 @@ Created on Oct 18, 2017
 '''
 
 import subprocess
-import sys
 import asyncio
-import os
 import socket
 import fcntl
 import struct
 from threading import Thread
 
-# def fillList(lenght, val):
-#     arr = []
-#     for i in range(lenght):
-#         arr.append(val)
-#
-#     return arr
-# link_quality_var = 69
-# async def pingToGetLinkQuality():
-#
-#     # flush the old connection
-#     os.popen('sudo ip -s -s neigh flush all')
-#     f = os.popen('arp | grep "wlan0" | grep -v incomplete | grep -E -o -m 1 [0-9]+[.][0-9]+[.][0-9]+[.][0-9]+')
-#     ip = f.read()
-#
-#     process = subprocess.Popen(['ping', '-i', '0.05', ip, '-f'], stdout=subprocess.PIPE)
-#
-#     #    Fill the moving average with 100 %
-#     dots = fillList(MOVING_AVERAGE_LEN, LIST_DEFAULT_VAL)
-#     backspaces = fillList(MOVING_AVERAGE_LEN, LIST_DEFAULT_VAL)
-#
-#     output_hex = hex(0x00)
-#     prev_output_hex = output_hex
-#     start_counting = False
-#
-#     i = 0
-#
-#
-#
-#     rc = process.poll()
+from log import logname
+logger = logname("signal")
 
 class Signal(Thread):
     def __init__(self):
@@ -96,9 +67,8 @@ class Signal(Thread):
                     self.start_counting = False
 
                 self.i += 1
-                # print(self.i)
 
                 if (self.i >= self.MOVING_AVERAGE_LEN):
                     self.strength = sum(self.backspaces) / sum(self.dots) * 100
-                    print("link quality: ", self.strength, "%")
+                    logger.debug("link quality: %d", self.strength)
                     self.i = 0
