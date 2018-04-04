@@ -149,79 +149,24 @@ var serverCommunication = (function() {
             else amplify.publish("all->ui", "set battery level to 0");
         });
 
-        sockets.io.on('signal', function(signal_strength) {
-            var signal = parseInt(signal_strength);
-            // $("#signal-strength-text").text("signal strength: -" + signal.toString() + " dBm");
-            //console.log("signal" + signal);
+        sockets.io.on('temperature', function(temperature) {
+            console.log("temp ",temperature);
+            $("#processor-temperature-text").text("processor temp.: " + temperature + " °C");
+        });
+
+        sockets.io.on('signal', function(signal) {
+            $("#signal-strength-text").text("signal strength: " + signal + "%");
+            console.log("signal", signal);
 
             /*
              *  set icon according to signal strength
              */
-            console.log("signal: " + signal);
             if (signal > 95) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-4.svg");
             else if (signal > 90) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-3.svg");
             else if (signal > 85) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-2.svg");
             else if (signal > 80) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-1.svg");
             else $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-0.svg");
         });
-
-        // socket8080.socket.onmessage = function (e) {
-        //     if (typeof e.data == "string") {
-        //         //  string is only if CRC is NOK
-        //         console.log("Wrong CRC of received message: " + e.data);
-        //     }
-        //     else {
-        //         var arr = new Uint8Array(e.data);
-        //         var hex = '';
-        //         for (var i = 0; i < arr.length; i++)
-        //             hex += ('00' + arr[i].toString(16)).substr(-2);
-        //
-        //         //  read battery voltage
-        //         if (arr[0] == 0x31) {
-        //             var voltage = arr[1];
-        //             // console.log("voltage: " + voltage);
-        //             voltage = voltage * 0.1 + 7.6 // voltage divider
-        //             var str_voltage = voltage.toString();
-        //             $("#battery-level-text").text("battery voltage: " + str_voltage.substr(0, 4) + " V");
-        //
-        //             if (voltage > 24) amplify.publish("all->ui", "set battery level to full");
-        //             else if (voltage > 23) amplify.publish("all->ui", "set battery level to 3");
-        //             else if (voltage > 21.5) amplify.publish("all->ui", "set battery level to 2");
-        //             else if (voltage > 19.5) amplify.publish("all->ui", "set battery level to 1");
-        //             else amplify.publish("all->ui", "set battery level to 0");
-        //         }
-        //         //  read signal strength
-        //         else if (arr[0] == 0x41) {
-        //             var signal = parseInt(arr[1]);
-        //             // $("#signal-strength-text").text("signal strength: -" + signal.toString() + " dBm");
-        //             //console.log("signal" + signal);
-        //
-        //             /*
-        //              *  set icon according to signal strength
-        //              */
-        //             if (signal > 95) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-4.svg");
-        //             else if (signal > 90) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-3.svg");
-        //             else if (signal > 85) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-2.svg");
-        //             else if (signal > 80) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-1.svg");
-        //             else $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-0.svg");
-        //         }
-        //         //  read processor temperature
-        //         else if (arr[0] == 0x61) {
-        //             var temperature = arr[1];
-        //             $("#processor-temperature-text").text("processor temp.: " + temperature.toString() + " °C");
-        //         }
-        //     }
-        // };
-
-        // socket8080.socket.onclose = function (e) {
-        //     console.log("Connection closed. Log: " + e.data);
-        //     socket8080.socket = null;
-        //     socket8080.isOpen = null;
-        //
-        //     amplify.publish("all->ui", "set last status error");
-        //
-        //     setTimeout(function () { connect8080() }, 1000);
-        // };
 
         function updateAxisPositions() {
             $("#mani-axis-1").val($("#axis1-slider-input").val());
@@ -329,25 +274,6 @@ var serverCommunication = (function() {
 
 
         /*
-         *  get processor temperature
-         */
-        function getProcessorTemperature() {
-            if (sockets.io.connected) {
-                var buf = new ArrayBuffer(1);
-                var arr = new Uint8Array(buf);
-                arr[0] = 0x60;
-                // socket8080.socket.send(buf);
-
-                // Convert to readable form
-                var hex = '';
-                for (var i = 0; i < arr.length; i++)
-                    hex += ('00' + arr[i].toString(16)).substr(-2);
-
-                // if(DEBUG) console.log("Binary message sent. " + hex);
-            } else console.log("Connection not opened.");
-        }
-
-        /*
          *  update all camera settings
          */
         function updateCameraSettings() {
@@ -394,7 +320,7 @@ var serverCommunication = (function() {
                     sockets.sendSignal();
                 }, 500);
                 setTimeout(function() {
-                    getProcessorTemperature();
+                    sockets.sendTemperature();
                 }, 1000);
             }
         }, BAT_INTERVAL);

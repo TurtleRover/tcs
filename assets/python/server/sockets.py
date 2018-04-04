@@ -42,3 +42,8 @@ async def motors(sid):
 async def signal(sid):
     signal_strength =  hardware.getSignal()
     await sio.emit('signal', signal_strength)
+
+@sio.on('temperature')
+async def signal(sid):
+    temperature =  hardware.getTemperature()
+    await sio.emit('temperature', temperature)

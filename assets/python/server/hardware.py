@@ -2,6 +2,7 @@ import frame
 from uart import Uart
 from link_quality import Signal
 import asyncio
+import os
 
 class Hardware():
     def __init__(self):
@@ -38,5 +39,6 @@ class Hardware():
     def getSignal(self):
         return self.signal.strength
 
-    def getTemperature(self, payload):
-        pass
+    def getTemperature(self):
+        f = os.popen('vcgencmd measure_temp | grep -ohP "=[0-9]*" | cut -c 2-')
+        return f.read()

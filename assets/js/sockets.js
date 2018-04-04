@@ -26,6 +26,9 @@
     sockets.prototype.sendSignal = function () {
          this.io.emit('signal');
     };
+    sockets.prototype.sendTemperature = function () {
+         this.io.emit('temperature');
+    };
 
     window.turtle.sockets = sockets;
 })();
