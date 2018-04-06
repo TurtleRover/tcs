@@ -1,3 +1,2 @@
 #!/bin/sh
-
-exec "sudo" "python3" "./assets/python/server/server.new.py"
+exec "sudo" "/usr/bin/python3" "/home/pi/Turtle-Rover-Mission-Control/assets/python/server/server.new.py"

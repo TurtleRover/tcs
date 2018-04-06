@@ -1,7 +1,7 @@
 <?php
     // THIS FILE STARTS WEBSOCKET SERVER
 
-    //  receive the parameters
+     // receive the parameters
     $resolution = $_GET['resolution'];
 
     $numberOfClients = exec("netstat -n | grep 192.168.10.1:8090 | wc -l");
@@ -15,12 +15,12 @@
 		exec ("sudo gpio write 1 0");
         //  kill old processes
         exec ("sudo killall python3 > /dev/null 2>&1");
-        exec ("sudo killall mjpg_streamer > /dev/null 2>&1");
-        exec ("sudo ifconfig wlan0 down");
+        // exec ("sudo killall mjpg_streamer > /dev/null 2>&1");
+        // exec ("sudo ifconfig wlan0 down");
 		sleep(0.25);
 		exec ("sudo gpio write 1 1");
 		#sleep(1);
-        $pidPythonServer = exec("sudo python3 server.py > /dev/null 2>&1 & echo $!");
+        // $pidPythonServer = exec("sudo python3 server.py > /dev/null 2>&1 & echo $!");
         sleep(2);
         $pidPythonServer = exec("pidof python3");
 		#sleep(1);
