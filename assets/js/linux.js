@@ -35,7 +35,7 @@ var linux = (function () {
 
         if (DEBUG) console.log("Image resolution: " + res);
 
-        $.get("assets/python/server/run_server.php",
+        $.get("assets/python/server/starter.php",
         { resolution: res },
         function(data) {
             if (DEBUG) console.log("AJAX request sent");
@@ -48,7 +48,8 @@ var linux = (function () {
              *  2   -   mjpeg streamer process pid
              */
 
-            var numberOfClients = data[0];
+            // var numberOfClients = data[0];
+            var numberOfClients = 0;
             if (DEBUG) console.log("numberOfClients: " + numberOfClients);
 
             /*
@@ -56,8 +57,10 @@ var linux = (function () {
 			 *	TODO: should be numberOfClients == 0. Does not work properly
              */
             if (numberOfClients >= 0 || document.domain.includes("localhost")) {
-                serverProcessPID = data[1];
-                mjpegStreamPID = data[2];
+                serverProcessPID = -1;
+                mjpegStreamPID = -1;
+                // serverProcessPID = data[1];
+                // mjpegStreamPID = data[2];
                 //  if the returned value is numeric (pid of the process) continue with camera
                 if ($.isNumeric(serverProcessPID) || $.isNumeric(mjpegStreamPID)) {
                     isCameraAvailable = true;

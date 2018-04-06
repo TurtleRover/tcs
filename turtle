@@ -1,2 +1,9 @@
 #!/bin/sh
+
+# restart STM
+echo "Restarting STM..."
+sudo gpio mode 1 out
+sudo gpio write 1 0
+sleep 0.25
+sudo gpio write 1 1
 exec "sudo" "/usr/bin/python3" "/home/pi/Turtle-Rover-Mission-Control/assets/python/server/server.new.py"
