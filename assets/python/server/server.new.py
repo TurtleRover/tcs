@@ -3,12 +3,9 @@ from log import logname
 import os
 import argparse
 import sys
+from version import version_info
 
 logger = logname()
-
-version_info = (0, 8, 0)
-version = '.'.join(str(c) for c in version_info)
-
 
 def start_server():
     logger.info(
@@ -27,7 +24,7 @@ def start_server():
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='This is a Turtle WebSocket Server.')
-    parser.add_argument('-v', action='version', version=version,
+    parser.add_argument('-v', action='version', version=version_info,
                         help='Show the version number and exit')
     parser.add_argument('start', nargs='?', help='Start server')
 
