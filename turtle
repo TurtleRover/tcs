@@ -11,5 +11,3 @@ case "$1" in
        exec $DEFAULT_COMMAND
         ;;
 esac
-
-exit 0
