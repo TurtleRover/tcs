@@ -9,3 +9,4 @@ tags
 ieconfig.xml
 *.directory
 .idea
+.fuse_hidden*
