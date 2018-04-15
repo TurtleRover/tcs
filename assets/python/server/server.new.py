@@ -23,10 +23,9 @@ def start_server():
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='This is a Turtle WebSocket Server.')
-    parser.add_argument('-v', action='version', version=version_info,
-                        help='Show the version number and exit')
-    parser.add_argument('start', nargs='?', help='Start server')
+        description='This is the Turtle WebSocket Server.')
+    parser.add_argument('-v', action='version', version=version_info,help='Show the version number and exit')
+    parser.add_argument('start', nargs='?', help='Start the server')
 
     args = parser.parse_args()
 
