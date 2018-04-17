@@ -2,14 +2,6 @@ from github import Github
 # import requests
 import subprocess
 
-# gh = Github()
-#
-# organization = gh.get_organization("TurtleRover")
-# repository = organization.get_repo("Turtle-Rover-Mission-Control")
-# latest = repository.get_latest_release()
-
-# print (latest.tarball_url)
-
 
 class Updater():
     def __init__(self):
@@ -53,12 +45,6 @@ class Updater():
         else:
             print("Installed version is ahead of released one.")
             return False
-
-
-# version = get_installed_version()
-#
-# print (convert_to_tuple(version))
-# # print (version)
 
 
 updater = Updater()
