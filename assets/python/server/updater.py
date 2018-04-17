@@ -14,6 +14,8 @@ class Updater():
         self.organization_name = "TurtleRover"
         self.repository_name = "Turtle-Rover-Mission-Control"
 
+        self.updates_directory = "/home/pi/updates/"
+
         self.github = Github()
 
     def check(self):
@@ -58,23 +60,25 @@ class Updater():
             return False
 
     def download(self, url):
-        directory = "/home/pi/updates/"
-        filename = "turtle-server-"+ url.split('/')[-1] + ".zip"
-        # setting parameter stream=True
-        r = requests.get(url, stream=True, allow_redirects=True)
-        self.create_updates_directory(directory)
-        with open(directory + filename, 'wb') as f:
-            for chunk in r.iter_content(chunk_size=1024):
-                if chunk:
-                    f.write(chunk)
-        filesize = os.path.getsize(directory + filename)
-        logger.info('Downloaded: %s',self.get_human_readable_size(filesize))
-        return True
+        filename = self.build_filename(url)
+        if os.path.isfile(filename):
+            r = requests.get(url, stream=True, allow_redirects=True)
+            self.create_updates_directory()
+            with open(self.updates_directory + filename, 'wb') as f:
+                for chunk in r.iter_content(chunk_size=1024):
+                    if chunk:
+                        f.write(chunk)
+            filesize = os.path.getsize(directory + filename)
+            logger.info('Downloaded: %s',self.get_human_readable_size(filesize))
+            return True
+        else:
+            logger.info('Already downloaded: ' + self.updates_directory + filename)
+            return False
 
-    def create_updates_directory(self, directory):
+    def create_updates_directory(self):
         try:
             logger.debug('Creating "updates" directory')
-            os.makedirs(directory)
+            os.makedirs(self.updates_directory)
         except OSError as e:
             logger.debug(e)
 
@@ -86,6 +90,10 @@ class Updater():
             suffixIndex += 1 #increment the index of the suffix
             size = size/1024.0 #apply the division
         return "%.*f%s"%(precision,size,suffixes[suffixIndex])
+
+    def build_filename(self, url):
+        return "turtle-server-"+ url.split('/')[-1] + ".zip"
+
 
 updater = Updater()
 updater.check()
