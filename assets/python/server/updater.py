@@ -2,6 +2,9 @@ from github import Github
 import requests
 import subprocess
 import os
+from log import logname
+logger = logname("Updater")
+
 
 class Updater():
     def __init__(self):
@@ -14,13 +17,18 @@ class Updater():
         self.github = Github()
 
     def check(self):
+        logger.info('Checking for new release...')
         latest_release = self.get_latest_release(self.repository_name)
         installed_version = self.get_installed_version()
-        is_new_release = self.compare(latest_release.tag_name, installed_version)
-        if True:
+        # is_new_release = self.compare(latest_release.tag_name, installed_version)
+        is_new_release = True
+        if is_new_release == True:
+            logger.info('Found new release: %s', installed_version[:-1])
             self.download(latest_release.zipball_url)
+        elif is_new_release == False:
+            logger.info('Installed version is up-to-date: %s', installed_version[:-1])
         else:
-            print("Up-to-date")
+            logger.error("Can't get latest release")
 
     def get_installed_version(self):
         return subprocess.run(['turtle', '-v'], stdout=subprocess.PIPE).stdout.decode('utf-8')
@@ -32,7 +40,7 @@ class Updater():
             latest_release = repository.get_latest_release()
             return latest_release
         except BaseException as e:
-            print(e)
+            logger.error(e)
             return None
 
     def convert_to_tuple(self, version):
@@ -46,7 +54,7 @@ class Updater():
         elif latest_version_tuple == installed_version_tuple:
             return False
         else:
-            print("Installed version is ahead of released one.")
+            logger.warn("Installed version is ahead of released one.")
             return False
 
     def download(self, url):
@@ -60,15 +68,15 @@ class Updater():
                 if chunk:
                     f.write(chunk)
         filesize = os.path.getsize(directory + filename)
-        print(self.get_human_readable_size(filesize))
+        logger.info('Downloaded: %s',self.get_human_readable_size(filesize))
         return True
-        
+
     def create_updates_directory(self, directory):
         try:
+            logger.debug('Creating "updates" directory')
             os.makedirs(directory)
         except OSError as e:
-            if e.errno != errno.EEXIST:
-                raise
+            logger.debug(e)
 
     # https://stackoverflow.com/a/32009595/1589989
     def get_human_readable_size(self, size, precision=2):
