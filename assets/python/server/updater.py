@@ -1,7 +1,7 @@
 from github import Github
-# import requests
+import requests
 import subprocess
-
+import os
 
 class Updater():
     def __init__(self):
@@ -17,7 +17,10 @@ class Updater():
         latest_release = self.get_latest_release(self.repository_name)
         installed_version = self.get_installed_version()
         is_new_release = self.compare(latest_release.tag_name, installed_version)
-        print(is_new_release)
+        if True:
+            self.download(latest_release.zipball_url)
+        else:
+            print("Up-to-date")
 
     def get_installed_version(self):
         return subprocess.run(['turtle', '-v'], stdout=subprocess.PIPE).stdout.decode('utf-8')
@@ -46,6 +49,35 @@ class Updater():
             print("Installed version is ahead of released one.")
             return False
 
+    def download(self, url):
+        directory = "/home/pi/updates/"
+        filename = "turtle-server-"+ url.split('/')[-1] + ".zip"
+        # setting parameter stream=True
+        r = requests.get(url, stream=True, allow_redirects=True)
+        self.create_updates_directory(directory)
+        with open(directory + filename, 'wb') as f:
+            for chunk in r.iter_content(chunk_size=1024):
+                if chunk:
+                    f.write(chunk)
+        filesize = os.path.getsize(directory + filename)
+        print(self.get_human_readable_size(filesize))
+        return True
+        
+    def create_updates_directory(self, directory):
+        try:
+            os.makedirs(directory)
+        except OSError as e:
+            if e.errno != errno.EEXIST:
+                raise
+
+    # https://stackoverflow.com/a/32009595/1589989
+    def get_human_readable_size(self, size, precision=2):
+        suffixes=['B','KB','MB','GB','TB']
+        suffixIndex = 0
+        while size > 1024 and suffixIndex < 4:
+            suffixIndex += 1 #increment the index of the suffix
+            size = size/1024.0 #apply the division
+        return "%.*f%s"%(precision,size,suffixes[suffixIndex])
 
 updater = Updater()
 updater.check()
