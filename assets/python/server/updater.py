@@ -19,16 +19,17 @@ class Updater():
         self.github = Github()
 
     def check(self):
-        logger.info('Checking for new release...')
+        logger.info('Checking for a new release...')
         latest_release = self.get_latest_release(self.repository_name)
         installed_version = self.get_installed_version()
         # is_new_release = self.compare(latest_release.tag_name, installed_version)
         is_new_release = True
         if is_new_release == True:
-            logger.info('Found new release: %s', installed_version[:-1])
-            self.download(latest_release.zipball_url)
+            logger.info('Found a new release: %s', latest_release.tag_name)
+            self.update(latest_release)
         elif is_new_release == False:
-            logger.info('Installed version is up-to-date: %s', installed_version[:-1])
+            logger.info('Installed version is up-to-date: %s',
+                        installed_version[:-1])
         else:
             logger.error("Can't get latest release")
 
@@ -59,21 +60,17 @@ class Updater():
             logger.warn("Installed version is ahead of released one.")
             return False
 
-    def download(self, url):
-        filename = self.build_filename(url)
-        if os.path.isfile(filename):
-            r = requests.get(url, stream=True, allow_redirects=True)
-            self.create_updates_directory()
-            with open(self.updates_directory + filename, 'wb') as f:
-                for chunk in r.iter_content(chunk_size=1024):
-                    if chunk:
-                        f.write(chunk)
-            filesize = os.path.getsize(directory + filename)
-            logger.info('Downloaded: %s',self.get_human_readable_size(filesize))
-            return True
-        else:
-            logger.info('Already downloaded: ' + self.updates_directory + filename)
-            return False
+    def download(self, latest_release, path):
+        logger.info('Starting download...')
+        r = requests.get(latest_release.zipball_url, stream=True, allow_redirects=True)
+        self.create_updates_directory()
+        with open(path, 'wb') as f:
+            for chunk in r.iter_content(chunk_size=1024):
+                if chunk:
+                    f.write(chunk)
+        filesize = os.path.getsize(path)
+        logger.info('Downloaded: %s', self.get_human_readable_size(filesize))
+        return True
 
     def create_updates_directory(self):
         try:
@@ -84,15 +81,26 @@ class Updater():
 
     # https://stackoverflow.com/a/32009595/1589989
     def get_human_readable_size(self, size, precision=2):
-        suffixes=['B','KB','MB','GB','TB']
+        suffixes = ['B', 'KB', 'MB', 'GB', 'TB']
         suffixIndex = 0
         while size > 1024 and suffixIndex < 4:
-            suffixIndex += 1 #increment the index of the suffix
-            size = size/1024.0 #apply the division
-        return "%.*f%s"%(precision,size,suffixes[suffixIndex])
+            suffixIndex += 1  # increment the index of the suffix
+            size = size / 1024.0  # apply the division
+        return "%.*f%s" % (precision, size, suffixes[suffixIndex])
 
-    def build_filename(self, url):
-        return "turtle-server-"+ url.split('/')[-1] + ".zip"
+    def build_filename(self, tag_name):
+        return "turtle-server-" + tag_name + ".zip"
+
+    def unpack(self, path):
+        pass
+
+    def update(self, latest_release):
+        path = self.updates_directory + self.build_filename(latest_release.tag_name)
+        if not os.path.isfile(path):
+            self.download(latest_release, path)
+        else:
+            logger.info('Already downloaded to: ' + path)
+            return False
 
 
 updater = Updater()
