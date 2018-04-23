@@ -5,6 +5,7 @@ import os
 import zipfile
 from log import logname
 import time
+import shutil
 logger = logname("Updater")
 
 
@@ -101,6 +102,7 @@ class Updater():
     def pack(self):
         logger.info("Starting backup...")
         os.chdir(os.path.dirname(self.root_directory))
+        self.clean_directory(self.backups_directory)
         backup_path = self.backups_directory + str(int(time.time())) + '.zip'
         try:
             with zipfile.ZipFile(backup_path, "w", zipfile.ZIP_DEFLATED, allowZip64=True) as zf:
@@ -122,6 +124,19 @@ class Updater():
         else:
             logger.info('Already downloaded to: ' + path)
             return False
+
+    # https://stackoverflow.com/a/185941/1589989
+    def clean_directory(self, directory):
+        for file in os.listdir(directory):
+            path = os.path.join(directory, file)
+            try:
+                if os.path.isfile(path):
+                    os.unlink(path)
+                #elif os.path.isdir(path): shutil.rmtree(path)
+                return True
+            except Exception as e:
+                logger.error(e)
+                return False
 
 
 updater = Updater()
