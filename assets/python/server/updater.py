@@ -66,9 +66,9 @@ class Updater():
             return False
 
     def download(self, latest_release, path):
+        self.create_updates_directory()
         logger.info('Starting download...')
         r = requests.get(latest_release.zipball_url, stream=True, allow_redirects=True)
-        self.create_updates_directory()
         with open(path, 'wb') as f:
             for chunk in r.iter_content(chunk_size=1024):
                 if chunk:
@@ -94,16 +94,23 @@ class Updater():
         return "%.*f%s" % (precision, size, suffixes[suffixIndex])
 
     def build_filename(self, tag_name):
-        return self.repository_name + tag_name + ".zip"
+        return self.repository_name +'-' + tag_name + ".zip"
 
-    def unpack(self, path):
-        pass
+    def unpack(self, path = '/home/pi/updates/Turtle-Rover-Mission-Control-0.8.0.zip'):
+        extracted = None
+        logger.info("Unzipping & copying update...")
+        with zipfile.ZipFile(path,"r") as zip_ref:
+            zip_ref.extractall("/tmp/")
+            extracted = zip_ref.namelist()[0]
+
+        shutil.move('/tmp/' + extracted, '/home/pi/test')
 
     def pack(self):
         logger.info("Starting backup...")
         os.chdir(os.path.dirname(self.root_directory))
         self.clean_directory(self.backups_directory)
         backup_path = self.backups_directory + str(int(time.time())) + '.zip'
+        # Check if it is ok to use here try/catch
         try:
             with zipfile.ZipFile(backup_path, "w", zipfile.ZIP_DEFLATED, allowZip64=True) as zf:
                 for root, _, filenames in os.walk(os.path.basename(self.root_directory)):
@@ -121,6 +128,7 @@ class Updater():
         path = self.updates_directory + self.build_filename(latest_release.tag_name)
         if not os.path.isfile(path):
             self.download(latest_release, path)
+            self.unpack(path)
         else:
             logger.info('Already downloaded to: ' + path)
             return False
@@ -140,4 +148,4 @@ class Updater():
 
 
 updater = Updater()
-updater.pack()
+updater.unpack()
