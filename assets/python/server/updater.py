@@ -2,7 +2,9 @@ from github import Github
 import requests
 import subprocess
 import os
+import zipfile
 from log import logname
+import time
 logger = logname("Updater")
 
 
@@ -14,7 +16,9 @@ class Updater():
         self.organization_name = "TurtleRover"
         self.repository_name = "Turtle-Rover-Mission-Control"
 
+        self.root_directory = "/home/pi/" + self.repository_name
         self.updates_directory = "/home/pi/updates/"
+        self.backups_directory = "/home/pi/backups/"
 
         self.github = Github()
 
@@ -89,10 +93,27 @@ class Updater():
         return "%.*f%s" % (precision, size, suffixes[suffixIndex])
 
     def build_filename(self, tag_name):
-        return "turtle-server-" + tag_name + ".zip"
+        return self.repository_name + tag_name + ".zip"
 
     def unpack(self, path):
         pass
+
+    def pack(self):
+        logger.info("Starting backup...")
+        os.chdir(os.path.dirname(self.root_directory))
+        backup_path = self.backups_directory + str(int(time.time())) + '.zip'
+        try:
+            with zipfile.ZipFile(backup_path, "w", zipfile.ZIP_DEFLATED, allowZip64=True) as zf:
+                for root, _, filenames in os.walk(os.path.basename(self.root_directory)):
+                    for name in filenames:
+                        name = os.path.join(root, name)
+                        name = os.path.normpath(name)
+                        zf.write(name, name)
+            logger.info("Backup saved: %s", backup_path)
+            return True
+        except BaseException as e:
+            logger.error(e)
+            return False
 
     def update(self, latest_release):
         path = self.updates_directory + self.build_filename(latest_release.tag_name)
@@ -104,4 +125,4 @@ class Updater():
 
 
 updater = Updater()
-updater.check()
+updater.pack()
