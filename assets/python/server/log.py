@@ -10,6 +10,7 @@ logging.getLogger("engineio").setLevel(logging.WARNING)
 logging.getLogger("aiohttp").setLevel(logging.WARNING)
 logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("github").setLevel(logging.WARNING)
+logging.getLogger("urllib3").setLevel(logging.WARNING)
 coloredlogs.install(level='DEBUG')
 
 def logname(name='Turtle'):
