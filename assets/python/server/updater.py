@@ -96,14 +96,16 @@ class Updater():
     def build_filename(self, tag_name):
         return self.repository_name +'-' + tag_name + ".zip"
 
-    def unpack(self, path = '/home/pi/updates/Turtle-Rover-Mission-Control-0.8.0.zip'):
+    def unpack(self, path):
         extracted = None
-        logger.info("Unzipping & copying update...")
+        logger.info("Unzipping & installing update...")
         with zipfile.ZipFile(path,"r") as zip_ref:
             zip_ref.extractall("/tmp/")
             extracted = zip_ref.namelist()[0]
 
-        shutil.move('/tmp/' + extracted, '/home/pi/test')
+        files = os.listdir('/tmp/'+extracted)
+        for f in files:
+            shutil.move(os.path.join('/tmp/' + extracted + f), os.path.join('/home/pi/test/' + f))
 
     def pack(self):
         logger.info("Starting backup...")
@@ -128,10 +130,10 @@ class Updater():
         path = self.updates_directory + self.build_filename(latest_release.tag_name)
         if not os.path.isfile(path):
             self.download(latest_release, path)
-            self.unpack(path)
         else:
             logger.info('Already downloaded to: ' + path)
-            return False
+
+        self.unpack(path)
 
     # https://stackoverflow.com/a/185941/1589989
     def clean_directory(self, directory):
@@ -140,7 +142,7 @@ class Updater():
             try:
                 if os.path.isfile(path):
                     os.unlink(path)
-                #elif os.path.isdir(path): shutil.rmtree(path)
+                elif os.path.isdir(path): shutil.rmtree(path)
                 return True
             except Exception as e:
                 logger.error(e)
@@ -148,4 +150,4 @@ class Updater():
 
 
 updater = Updater()
-updater.unpack()
+updater.check()
