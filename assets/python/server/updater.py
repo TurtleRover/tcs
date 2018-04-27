@@ -126,13 +126,17 @@ class Updater():
 
     def update(self, latest_release):
         path = self.updates_directory + self.build_filename(latest_release.tag_name)
-        if not os.path.isfile(path):
-            self.download(latest_release, path)
-        else:
-            logger.info('Already downloaded to: ' + path)
+        if not os.path.isdir(self.root_directory+ '/.git'):
+            if not os.path.isfile(path):
+                self.download(latest_release, path)
+            else:
+                logger.info('Already downloaded to: ' + path)
 
-        self.unpack(path)
-        self.run_postinstall()
+            self.unpack(path)
+            self.run_postinstall()
+
+        else:
+            logger.warn('This is a development environment. Please use git instead')
 
     # https://stackoverflow.com/a/185941/1589989
     def clean_directory(self, directory):
@@ -150,6 +154,9 @@ class Updater():
     def run_postinstall(self):
         logger.info("Spawning pip3...")
         pip = subprocess.run(['sudo', 'pip3', 'install', '-r', '/home/pi/Turtle-Rover-Mission-Control/requirements.txt'])
+
+    def yolo(self):
+        print(os.path.isdir(self.root_directory+ '/.git'))
 
 
 updater = Updater()
