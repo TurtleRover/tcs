@@ -103,9 +103,7 @@ class Updater():
             zip_ref.extractall("/tmp/")
             extracted = zip_ref.namelist()[0]
 
-        files = os.listdir('/tmp/'+extracted)
-        for f in files:
-            shutil.move(os.path.join('/tmp/' + extracted + f), os.path.join('/home/pi/test/' + f))
+        subprocess.run(['cp', '-R', '/tmp/'+extracted + '.', '/home/pi/test/'])
 
     def pack(self):
         logger.info("Starting backup...")
@@ -134,6 +132,7 @@ class Updater():
             logger.info('Already downloaded to: ' + path)
 
         self.unpack(path)
+        self.run_postinstall()
 
     # https://stackoverflow.com/a/185941/1589989
     def clean_directory(self, directory):
@@ -147,6 +146,10 @@ class Updater():
             except Exception as e:
                 logger.error(e)
                 return False
+
+    def run_postinstall(self):
+        logger.info("Spawning pip3...")
+        pip = subprocess.run(['sudo', 'pip3', 'install', '-r', '/home/pi/Turtle-Rover-Mission-Control/requirements.txt'])
 
 
 updater = Updater()
