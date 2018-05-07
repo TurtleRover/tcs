@@ -27,16 +27,19 @@ class Updater():
         logger.info('Checking for new releases...')
         latest_release = self.get_latest_release(self.repository_name)
         installed_version = self.get_installed_version()
-        # is_new_release = self.compare(latest_release.tag_name, installed_version)
-        is_new_release = True
+
+        if latest_release:
+            is_new_release = self.compare(latest_release.tag_name, installed_version)
+        else:
+            is_new_release = None
+        # is_new_release = True
         if is_new_release == True:
             logger.info('Found a new release: %s', latest_release.tag_name)
             self.update(latest_release)
         elif is_new_release == False:
-            logger.info('Installed version is up-to-date: %s',
-                        installed_version[:-1])
+            logger.info('Installed version is up-to-date: %s', installed_version[:-1])
         else:
-            logger.error("Can't get latest release")
+            logger.error("Can't get latest release. Probably no internet connection")
 
     def get_installed_version(self):
         return subprocess.run(['turtle', '-v'], stdout=subprocess.PIPE).stdout.decode('utf-8')
