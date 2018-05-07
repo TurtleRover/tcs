@@ -24,7 +24,7 @@ class Updater():
         self.github = Github()
 
     def check(self):
-        logger.info('Checking for a new release...')
+        logger.info('Checking for new releases...')
         latest_release = self.get_latest_release(self.repository_name)
         installed_version = self.get_installed_version()
         # is_new_release = self.compare(latest_release.tag_name, installed_version)
@@ -155,8 +155,6 @@ class Updater():
         logger.info("Spawning pip3...")
         pip = subprocess.run(['sudo', 'pip3', 'install', '-r', '/home/pi/Turtle-Rover-Mission-Control/requirements.txt'])
 
-    def yolo(self):
-        print(os.path.isdir(self.root_directory+ '/.git'))
 
 
 updater = Updater()
