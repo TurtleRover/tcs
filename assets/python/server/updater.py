@@ -137,6 +137,7 @@ class Updater():
 
             self.unpack(path)
             self.run_postinstall()
+            self.start_server()
 
         else:
             logger.warn('This is a development environment. Please use git instead')
@@ -158,7 +159,9 @@ class Updater():
         logger.info("Spawning pip3...")
         pip = subprocess.run(['sudo', 'pip3', 'install', '-r', '/home/pi/Turtle-Rover-Mission-Control/requirements.txt'])
 
+    def start_server(self):
+        subprocess.Popen(['turtle'])
 
-
-updater = Updater()
-updater.check()
+if __name__ == '__main__':
+    updater = Updater()
+    updater.check()
