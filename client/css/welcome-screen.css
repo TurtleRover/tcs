@@ -56,7 +56,7 @@
 }
 
 #welcome-screen-horizontal-wrapper-logo {
-    background-image: url("../../assets/img/welcome-screen/turtle-logo.svg");
+    background-image: url("../img/welcome-screen/turtle-logo.svg");
     background-size: auto 70%;
     background-position: center center;
     background-repeat: no-repeat;
@@ -118,7 +118,7 @@
 }
 
 #welcome-screen-background-circle-outer {
-    background-image: url("../../assets/img/welcome-screen/kolko-srednie.png");
+    background-image: url("../img/welcome-screen/kolko-srednie.png");
 
     -webkit-animation-name: rotate-clockwise;
     -webkit-animation-duration:30s;
@@ -128,7 +128,7 @@
 }
 
 #welcome-screen-background-circle-inner {
-    background-image: url("../../assets/img/welcome-screen/kolko-male.png");
+    background-image: url("../img/welcome-screen/kolko-male.png");
 
     -webkit-animation-name: rotate-counter-clockwise;
     -webkit-animation-duration:45s;

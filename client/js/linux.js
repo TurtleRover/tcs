@@ -35,7 +35,7 @@ var linux = (function () {
 
         if (DEBUG) console.log("Image resolution: " + res);
 
-        $.get("assets/python/server/starter.php",
+        $.get("server/starter.php",
         { resolution: res },
         function(data) {
             if (DEBUG) console.log("AJAX request sent");
