@@ -20,8 +20,8 @@ var controller = (function () {
 			if (linux.getIsCameraAvailable() == true) amplify.publish("controller->ui", "change image source to camera");
 			else amplify.publish("controller->ui", "change image source to default background");
 			amplify.publish("controller->ui", "display camera video");
-		}, 500)
-	};
+		}, 500);
+	}
 
 	/*
 	 * 																		EVENTS triggers
@@ -51,7 +51,7 @@ var controller = (function () {
 			default:
 				console.log("unknown command: " + message);
 		}
-	};
+	}
 
 	function linuxMessageCallback(message) {
 		if (DEBUG) console.log("linuxMessageCallback: " + message);
@@ -63,7 +63,7 @@ var controller = (function () {
 			default:
 				console.log("unknown command: " + message);
 		}
-	};
+	}
 
 	/*
 	 *	called when ui send ready message
@@ -79,7 +79,7 @@ var controller = (function () {
 			amplify.publish("controller->linux", "start python server");
 			amplify.publish("controller->ui", "turtle is awake");
 		}, 1500);
-	};
+	}
 
 	/*
 	 *	called when page is unloaded
@@ -87,7 +87,7 @@ var controller = (function () {
 	function closePage() {
 		if (linux.getIsCameraAvailable())
 			amplify.publish("controller->linux", "stop python server");
-	};
+	}
 
 	/*
 	 * 																		PUBLIC area

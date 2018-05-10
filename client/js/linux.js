@@ -88,17 +88,17 @@ var linux = (function () {
             }
             else amplify.publish("all->ui", "notifications.client-already-connected");
         });
-    };
+    }
 
     /*
      *  stop python server when page is unloaded (controller.js -> closePage)
      */
     function stopPythonServer() {
         $.get("assets/python/server/close_server.php");
-    };
+    }
 
-    function retIsCameraAvailable() {return isCameraAvailable;};
-    function retServerProcessPID() {return serverProcessPID;};
+    function retIsCameraAvailable() {return isCameraAvailable;}
+    function retServerProcessPID() {return serverProcessPID;}
 
     /*
 	 * 																		SUBSCRIBE to all topics
@@ -114,7 +114,7 @@ var linux = (function () {
 
 		switch(message) {
 			case "start python server":
-                // startPythonServer();
+                startPythonServer();
 				break;
             case "stop python server":
                 stopPythonServer();
@@ -122,7 +122,7 @@ var linux = (function () {
 			default:
 				console.log("unknown command: " + message);
 		}
-	};
+	}
 
     function webrtcMessageCallback(message) {
 		if (DEBUG) console.log("webrtcMessageCallback: " + message);
@@ -136,7 +136,7 @@ var linux = (function () {
 		// 	default:
 		// 		console.log("unknown command: " + message);
 		// }
-	};
+	}
 
 
 
