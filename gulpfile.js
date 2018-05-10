@@ -116,6 +116,6 @@ gulp.task('html', function() {
         .pipe(gulp.dest('./'));
 });
 
-gulp.task('run', function(done) {
+gulp.task('default', function(done) {
     runSequence('critical-style', 'main-style', 'html', 'watch', done);
 });

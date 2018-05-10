@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "postcss client/pcss/*.pcss --config .postcssrc -d client/css/ --ext '.css' -w",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp": "gulp"
   },
   "repository": "git+https://github.com/TurtleRover/Turtle-Rover-Mission-Control.git",
   "keywords": [],

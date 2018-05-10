@@ -1,0 +1,123 @@
+.flat-slider-wrapper {
+    padding-bottom: 1em;
+    float: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.axis-slider-wrapper {
+    padding-top: 25%;
+}
+
+.flat-vertical-slider-wrapper {
+    padding-bottom: 1em;
+    float: none;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.flat-slider-description {
+    width: 40%;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+    .flat-slider-description > p {
+        font-weight: lighter;
+        text-transform: uppercase;
+        font-size: small;
+        margin: 10px;
+        padding: 0;
+        height: auto;
+        line-height: 175%;
+    }
+
+.flat-slider {
+    width: 50%;
+    float: right; 
+    margin: 0;
+    padding: 0;
+}
+
+.gripper-slider {
+    width: 80%;
+    margin-right: 10%;
+    padding: 0;
+}
+
+.camera-slider {
+    height:80%;
+    width: 20%;
+    margin-top: 10%;
+    margin-right: 40%;
+    padding: 0;
+}
+
+.flat-slider-horizontal {
+    width: 90%;
+    background-color: transparent;
+    -webkit-appearance: none;
+    border: rgb(34,177,76) 1px solid;
+    height: 20px;
+    border-radius: 10px;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin: 10px;
+    outline: none;
+}
+
+.vranger {
+    margin-top: 40%;
+     transform: rotate(270deg);
+    -moz-transform: rotate(270deg); /*do same for other browsers if required*/
+  }
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color:rgb(34,177,76);
+    width: 14px;
+    height: 14px;
+    border-radius: 7px;
+    border-width: 0;
+}
+
+input[type="range"]::-moz-range-thumb {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color:rgb(34,177,76);
+    width: 14px;
+    height: 14px;
+    border-radius: 7px;
+    border-width: 0;
+}
+
+input[type="range"]::-ms-thumb {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color:rgb(34,177,76);
+    width: 14px;
+    height: 14px;
+    border-radius: 7px;
+    border-width: 0;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    background-color: transparent
+}
+
+input[type="range"]::-ms-track {
+    background-color: transparent;
+}
+
+input[type="range"]::-moz-range-track {
+    background-color: transparent;
+}
+
+input[type=range]::-moz-focus-outer {
+    border: 0;
+}

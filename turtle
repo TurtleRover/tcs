@@ -1,0 +1,13 @@
+#!/bin/sh
+
+DEFAULT_COMMAND="sudo /usr/bin/python3 /home/pi/Turtle-Rover-Mission-Control/server/server.py"
+case "$1" in
+    -v) exec $DEFAULT_COMMAND "-v"
+        ;;
+    -h) exec $DEFAULT_COMMAND "-h"
+        ;;
+    *) echo "Restarting STM..."
+       sudo gpio mode 1 out && sudo gpio write 1 0 && sleep 0.25 && sudo gpio write 1 1
+       exec $DEFAULT_COMMAND
+        ;;
+esac

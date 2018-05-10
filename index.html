@@ -411,17 +411,19 @@
 
     <!-- include all JavaScript files -->
 
-    <script src="client/js/ui/bootscreen.js"></script>
-    <script src="client/js/ui/menu.js"></script>
+    <!-- jQuery (disabled due to conflict with theme) -->
+    <!-- <script src='vendors/jquery/jquery-3.1.1.js'></script> -->
 
     <!-- theme related -->
     <script src='client/themes/html5up-spectral/assets/js/jquery.min.js'></script>
+    <script src="client/themes/html5up-spectral/assets/js/jquery.scrollex.min.js"></script>
     <script src="client/themes/html5up-spectral/assets/js/jquery.scrolly.min.js"></script>
     <script src="client/themes/html5up-spectral/assets/js/skel.min.js"></script>
     <script src="client/themes/html5up-spectral/assets/js/util.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
     <script src="client/themes/html5up-spectral/assets/js/main.js"></script>
 
-    <!-- <script src='client/vendors/jquery/jquery-ui.js'></script> -->
+    <script src='client/vendors/jquery/jquery-ui.js'></script>
 
     <!-- js-Cookie -->
     <script src='client/vendors/js_cookie/js.cookie.js'></script>
@@ -435,9 +437,16 @@
     <!-- Amplify JS -->
     <script src='client/vendors/amplify_js/src/core.js'></script>
     <script src='client/vendors/amplify_js/src/request.js'></script>
-    <!-- <script src='client/vendors/amplify_js/src/store.js'></script> -->
+    <script src='client/vendors/amplify_js/src/store.js'></script>
+
+    <script src="client/vendors/socket.io.js"></script>
 
     <!-- user interface -->
+    <script src='client/js/namespace.js'></script>
+    <script src='client/js/utils.js'></script>
+    <script src='client/js/sockets.js'></script>
+    <script src='client/js/frameBuilder.js'></script>
+
     <script src='client/js/webrtc.js'></script>
 
     <!-- controller -->
@@ -459,7 +468,7 @@
     <!-- canvas controller -->
     <script src='client/js/controlcanvas.js'></script>
 
-    <!-- button-fullscreen plugin -->
+    <!-- fullscreen plugin -->
     <script src='client/vendors/jquery_fullscreen/jquery.fullscreen.js'></script>
 
     <!-- socket server communication -->
@@ -486,9 +495,6 @@
     <!-- transit - http://ricostacruz.com/jquery.transit/ -->
     <script src='client/vendors/transit/jquery.transit.min.js'></script>
 
-    <!-- user interface -->
-    <script src='client/js/ui.js'></script>
-
     <script>
         /*	accordion buttons - the menu ones 	*/
         /*	----------------------------------- */
@@ -508,7 +514,7 @@
         }
         /*	----------------------------------- */
     </script>
-
+    <script src='client/js/ui.js'></script>
 </body>
 
 </html>

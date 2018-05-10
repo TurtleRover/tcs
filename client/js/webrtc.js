@@ -14,7 +14,7 @@ var webrtc = (function () {
         */
         amplify.subscribe("linux->webrtc", linuxMessageCallback);
         amplify.subscribe("ui->webrtc", uiMessageCallback);
-        
+
         /*
         * 																		CALLBACK functions
         */
@@ -141,7 +141,7 @@ var webrtc = (function () {
                 document.documentElement.style.cursor ='wait';
 
                 var protocol = location.protocol === "https:" ? "wss:" : "ws:";
-                ws = new WebSocket(protocol + '//' + document.location.hostname + ":9090" + '/stream/webrtc');
+                ws = new WebSocket(protocol + '//' + document.location.hostname + ":8090" + '/stream/webrtc');
 
                 function offer(stream) {
                     createPeerConnection();
@@ -181,7 +181,7 @@ var webrtc = (function () {
                     audio_video_stream = null;
 
                     var localConstraints = {};
-                    
+
                     offer();
                 };
 
@@ -372,7 +372,7 @@ var webrtc = (function () {
             recorder = null;
             vid = document.createElement('video');
             //vid.style.display = 'none';
-            
+
             var superBuffer = new Blob(recordedBlobs, {type: 'video/webm'});
             vid.src = URL.createObjectURL(superBuffer);
             document.body.appendChild(vid);

@@ -63,83 +63,89 @@
 
 	<!-- include all JavaScript files -->
 
-	<script src="client/js/ui/bootscreen.js"></script>
-	<script src="client/js/ui/menu.js"></script>
+    <!-- jQuery (disabled due to conflict with theme) -->
+    		<!-- <script src='vendors/jquery/jquery-3.1.1.js'></script> -->
 
-	<!-- theme related -->
-	<script src='client/themes/html5up-spectral/assets/js/jquery.min.js'></script>
-	<script src="client/themes/html5up-spectral/assets/js/jquery.scrolly.min.js"></script>
-	<script src="client/themes/html5up-spectral/assets/js/skel.min.js"></script>
-	<script src="client/themes/html5up-spectral/assets/js/util.js"></script>
-	<script src="client/themes/html5up-spectral/assets/js/main.js"></script>
+    		<!-- theme related -->
+    		<script src='client/themes/html5up-spectral/assets/js/jquery.min.js'></script>
+    		<script src="client/themes/html5up-spectral/assets/js/jquery.scrollex.min.js"></script>
+    		<script src="client/themes/html5up-spectral/assets/js/jquery.scrolly.min.js"></script>
+    		<script src="client/themes/html5up-spectral/assets/js/skel.min.js"></script>
+    		<script src="client/themes/html5up-spectral/assets/js/util.js"></script>
+    		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    		<script src="client/themes/html5up-spectral/assets/js/main.js"></script>
 
-	<!-- <script src='client/vendors/jquery/jquery-ui.js'></script> -->
+    		<script src='client/vendors/jquery/jquery-ui.js'></script>
 
-	<!-- js-Cookie -->
-	<script src='client/vendors/js_cookie/js.cookie.js'></script>
+    		<!-- js-Cookie -->
+    		<script src='client/vendors/js_cookie/js.cookie.js'></script>
 
-	<!-- Bootstrap -->
-	<script src="client/vendors/bootstrap/bootstrap.js"></script>
+    		<!-- Bootstrap -->
+    		<script src="client/vendors/bootstrap/bootstrap.js"></script>
 
-	<!-- jQuery Flagstrap -->
-	<script src='client/vendors/jquery_flagstrap/jquery.flagstrap.js'></script>
+    		<!-- jQuery Flagstrap -->
+    		<script src='client/vendors/jquery_flagstrap/jquery.flagstrap.js'></script>
 
-	<!-- Amplify JS -->
-	<script src='client/vendors/amplify_js/src/core.js'></script>
-	<script src='client/vendors/amplify_js/src/request.js'></script>
-	<!-- <script src='client/vendors/amplify_js/src/store.js'></script> -->
+    		<!-- Amplify JS -->
+    		<script src='client/vendors/amplify_js/src/core.js'></script>
+    		<script src='client/vendors/amplify_js/src/request.js'></script>
+    		<script src='client/vendors/amplify_js/src/store.js'></script>
 
-	<!-- user interface -->
-	<script src='client/js/webrtc.js'></script>
+    		<script src="client/vendors/socket.io.js"></script>
 
-	<!-- controller -->
-	<script src='client/js/controller.js'></script>
+    		<!-- user interface -->
+    		<script src='client/js/namespace.js'></script>
+    		<script src='client/js/utils.js'></script>
+    		<script src='client/js/sockets.js'></script>
+    		<script src='client/js/frameBuilder.js'></script>
 
-	<!-- linux communication -->
-	<script src='client/js/linux.js'></script>
+    		<script src='client/js/webrtc.js'></script>
 
-	<!-- i18next -->
-	<script src='client/vendors/i18next/i18next.js'></script>
-	<script src='client/vendors/i18next/i18nextXHRBackend.js'></script>
+    		<!-- controller -->
+    		<script src='client/js/controller.js'></script>
 
-	<!-- noty -->
-	<script src="client/vendors/noty/packaged/jquery.noty.packaged.js"></script>
+    		<!-- linux communication -->
+    		<script src='client/js/linux.js'></script>
 
-	<!-- manipulator -->
-	<script src='client/js/manipulator.js'></script>
+    		<!-- i18next -->
+    		<script src='client/vendors/i18next/i18next.js'></script>
+    		<script src='client/vendors/i18next/i18nextXHRBackend.js'></script>
 
-	<!-- canvas controller -->
-	<script src='client/js/controlcanvas.js'></script>
+    		<!-- noty -->
+    		<script src="client/vendors/noty/packaged/jquery.noty.packaged.js"></script>
 
-	<!-- button-fullscreen plugin -->
-	<script src='client/vendors/jquery_fullscreen/jquery.fullscreen.js'></script>
+    		<!-- manipulator -->
+    		<script src='client/js/manipulator.js'></script>
 
-	<!-- socket server communication -->
-	<script src='client/js/servercommunication.js'></script>
+    		<!-- canvas controller -->
+    		<script src='client/js/controlcanvas.js'></script>
 
-	<!-- vex dialogs -->
-	<script src='client/vendors/vex/js/vex.combined.js'></script>
+    		<!-- fullscreen plugin -->
+    		<script src='client/vendors/jquery_fullscreen/jquery.fullscreen.js'></script>
 
-	<!-- html2canvas -->
-	<script src='client/vendors/html2canvas/html2canvas.js'></script>
+    		<!-- socket server communication -->
+    		<script src='client/js/servercommunication.js'></script>
 
-	<!-- canvas2image -->
-	<script src='client/vendors/canvas2image/canvas2image.js'></script>
+    		<!-- vex dialogs -->
+    		<script src='client/vendors/vex/js/vex.combined.js'></script>
 
-	<!-- FileSaver -->
-	<script src='client/vendors/file_saver/FileSaver.js'></script>
+    		<!-- html2canvas -->
+    		<script src='client/vendors/html2canvas/html2canvas.js'></script>
 
-	<!-- Keyboard support -->
-	<script src='client/vendors/keyboardjs/keyboard.min.js'></script>
+    		<!-- canvas2image -->
+    		<script src='client/vendors/canvas2image/canvas2image.js'></script>
 
-	<!-- keboard controller -->
-	<script src='client/js/controlkeyboard.js'></script>
+    		<!-- FileSaver -->
+    		<script src='client/vendors/file_saver/FileSaver.js'></script>
 
-	<!-- transit - http://ricostacruz.com/jquery.transit/ -->
-	<script src='client/vendors/transit/jquery.transit.min.js'></script>
+    		<!-- Keyboard support -->
+    		<script src='client/vendors/keyboardjs/keyboard.min.js'></script>
 
-	<!-- user interface -->
-	<script src='client/js/ui.js'></script>
+    		<!-- keboard controller -->
+    		<script src='client/js/controlkeyboard.js'></script>
+
+    		<!-- transit - http://ricostacruz.com/jquery.transit/ -->
+    		<script src='client/vendors/transit/jquery.transit.min.js'></script>
 
 	<script>
 		/*	accordion buttons - the menu ones 	*/
@@ -160,7 +166,7 @@
 		}
 		/*	----------------------------------- */
 	</script>
-
+<script src='client/js/ui.js'></script>
 </body>
 
 </html>

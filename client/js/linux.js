@@ -17,6 +17,7 @@ var linux = (function () {
      *  start python server
      *  python server is responsible for all communication on the server side
      */
+     amplify.publish("linux->controller", "communication established");
     function startPythonServer() {
         /*
          *  read screen resolution and choose video size from the following ones:
@@ -34,7 +35,7 @@ var linux = (function () {
 
         if (DEBUG) console.log("Image resolution: " + res);
 
-        $.get("server/run_server.php",
+        $.get("server/starter.php",
         { resolution: res },
         function(data) {
             if (DEBUG) console.log("AJAX request sent");
@@ -47,7 +48,8 @@ var linux = (function () {
              *  2   -   mjpeg streamer process pid
              */
 
-            var numberOfClients = data[0];
+            // var numberOfClients = data[0];
+            var numberOfClients = 0;
             if (DEBUG) console.log("numberOfClients: " + numberOfClients);
 
             /*
@@ -55,8 +57,10 @@ var linux = (function () {
 			 *	TODO: should be numberOfClients == 0. Does not work properly
              */
             if (numberOfClients >= 0 || document.domain.includes("localhost")) {
-                serverProcessPID = data[1];
-                mjpegStreamPID = data[2];
+                serverProcessPID = -1;
+                mjpegStreamPID = -1;
+                // serverProcessPID = data[1];
+                // mjpegStreamPID = data[2];
                 //  if the returned value is numeric (pid of the process) continue with camera
                 if ($.isNumeric(serverProcessPID) || $.isNumeric(mjpegStreamPID)) {
                     isCameraAvailable = true;
@@ -123,16 +127,18 @@ var linux = (function () {
     function webrtcMessageCallback(message) {
 		if (DEBUG) console.log("webrtcMessageCallback: " + message);
 
-		switch(message) {
-			case "camera stream is ready":
-                //  wait until communication channel is ready
-                while (communicationEstablished == false && !document.domain.includes("localhost")) setTimeout(function() { }, 1000);
-                amplify.publish("linux->controller", "communication established");
-				break;
-			default:
-				console.log("unknown command: " + message);
-		}
+		// switch(message) {
+		// 	case "camera stream is ready":
+        //         //  wait until communication channel is ready
+        //         while (communicationEstablished == false && !document.domain.includes("localhost")) setTimeout(function() { }, 1000);
+        //         // amplify.publish("linux->controller", "communication established");
+		// 		break;
+		// 	default:
+		// 		console.log("unknown command: " + message);
+		// }
 	};
+
+
 
     /*
 	 * 																		PUBLIC area
