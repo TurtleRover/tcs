@@ -3359,7 +3359,7 @@
 						}
 
 							#header nav > ul > li > a.menuToggle:after {
-								background-image: url("../../../../assets/img/ui/nav-bar-menu.svg");
+								background-image: url("../../../../img/ui/nav-bar-menu.svg");
 								background-position: center;
 								background-repeat: no-repeat;
 								background-size: auto 2vw;
