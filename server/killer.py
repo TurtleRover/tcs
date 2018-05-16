@@ -9,7 +9,7 @@ logger = logname()
 def kill():
     logger.info('Checking for another server instances...')
     child = subprocess.Popen(
-        ['pgrep', '-f', "server.new.py"], stdout=subprocess.PIPE, shell=False)
+        ['pgrep', '-f', "server.py"], stdout=subprocess.PIPE, shell=False)
     pids = child.communicate()[0].split()
     for pid in pids:
         if int(pid) != os.getppid() and int(pid) != os.getpid():
