@@ -6,6 +6,7 @@
 tags
 ieconfig.xml
 *.directory
+.fuse*
 
 node_modules
 *.map
