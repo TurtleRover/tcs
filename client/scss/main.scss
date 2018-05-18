@@ -3,6 +3,7 @@
 @import "helpers/breakpoints";
 @import "helpers/lato-font";
 @import "helpers/normalize";
+@import "helpers/size";
 
 @import "partials/body";
 @import "partials/wrapper";
@@ -15,3 +16,5 @@
 @import "partials/controls";
 @import "partials/crosshair";
 @import "partials/joystick";
+@import "partials/mode-chooser";
+@import "partials/radio";

@@ -3780,4 +3780,92 @@ a.ui-button:active,
   height: auto;
 }
 
+.mode-chooser {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: #000000;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@media screen and (min-device-width: 320px) {
+  .mode-chooser {
+    width: 40vw;
+    height: 10vw;
+  }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-device-width: 320px), only screen and (min-resolution: 2dppx) and (min-device-width: 320px) {
+  .mode-chooser {
+    width: 80vw;
+    height: 20vw;
+  }
+}
+
+@media (min-width: 900px) {
+  .mode-chooser {
+    width: 20vw;
+    height: 5vw;
+  }
+}
+
+.radio {
+  display: inline-block;
+  padding-right: 20px;
+  font-size: 18px;
+  line-height: 49px;
+  cursor: pointer;
+}
+
+.radio:hover .inner {
+  transform: scale(0.5);
+  opacity: 0.5;
+}
+
+.radio input {
+  height: 1px;
+  width: 1px;
+  display: none;
+}
+
+.radio input:checked + .outer .inner {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.radio input:checked + .outer {
+  border: 3px solid #22b14c;
+}
+
+.radio input:focus + .outer .inner {
+  transform: scale(1);
+  opacity: 1;
+  background-color: #1a863a;
+}
+
+.radio .outer {
+  height: 20px;
+  width: 20px;
+  display: block;
+  float: left;
+  margin: 10px 9px 10px 10px;
+  border: 3px solid #22b14c;
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+.radio .inner {
+  transition: all 0.25s ease-in-out;
+  height: 16px;
+  width: 16px;
+  transform: scale(0);
+  display: block;
+  margin: 2px;
+  border-radius: 50%;
+  background-color: #22b14c;
+  opacity: 0;
+}
+
 /*# sourceMappingURL=main.css.map */
