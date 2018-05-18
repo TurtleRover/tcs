@@ -535,10 +535,10 @@ var ui = (function() {
         amplify.publish("ui->manipulator", "move mani");
     });
 
-    $("#grab-text").click(function(e, data) {
+    $("#mode_grab").click(function(e, data) {
         grabOrDriveClicked("grab");
     });
-    $("#drive-text").click(function(e, data) {
+    $("#mode_drive").click(function(e, data) {
         grabOrDriveClicked("drive");
     });
 
@@ -552,8 +552,7 @@ var ui = (function() {
 
     function grabOrDriveClicked(name) {
         if (name == "grab") {
-            $("#grab-text").addClass("grab-drive-text-filled-dot");
-            $("#drive-text").removeClass("grab-drive-text-filled-dot");
+
             /*
              *	if standard grab mode (not photography), use standard GRAB
              *	else use GRAB for photography
@@ -581,8 +580,8 @@ var ui = (function() {
 
         } else if (name == "drive") {
             $("#camera-slider-wrapper").fadeOut();
-            $("#drive-text").addClass("grab-drive-text-filled-dot");
-            $("#grab-text").removeClass("grab-drive-text-filled-dot");
+            $("#mode_drive").addClass("grab-mode_drive-filled-dot");
+            $("#mode_grab").removeClass("grab-mode_drive-filled-dot");
             $("#camera-video-img").removeClass("camera-video-grab-mode");
             $("#camera-video-img").addClass("camera-video-drive-mode");
             $("#right-navigation-cross-img").fadeIn();
