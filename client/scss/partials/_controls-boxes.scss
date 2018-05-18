@@ -1,0 +1,20 @@
+.controls-box-left {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-flow: column;
+    background: $background-color;
+
+    @include small {
+        width: 40vw;
+    }
+
+    @include small2x {
+        width: 40vw * 2;
+    }
+
+    @include medium {
+        width: 20vw;
+    }
+}

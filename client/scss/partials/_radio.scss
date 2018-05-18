@@ -33,6 +33,7 @@
             background-color: darken($green, 10);
         }
     }
+    // TODO: convert to BEM
     // Outer ring of custom radio
     .outer {
         @include size(20px);

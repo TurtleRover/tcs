@@ -1,23 +1,17 @@
 .mode-chooser {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    background: $background-color;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    width: 100%;
     @include small {
-        width: 40vw;
         height: 10vw;
     }
 
     @include small2x {
-        width: 40vw * 2;
         height: 10vw * 2;
     }
 
     @include medium {
-        width: 20vw;
         height: 5vw;
     }
 
