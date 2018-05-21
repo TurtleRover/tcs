@@ -1,0 +1,50 @@
+.range {
+    padding: 0 20px;
+
+    &_input {
+        background-color: transparent;
+        -webkit-appearance: none;
+        border: $green 1px solid;
+        height: 20px;
+        border-radius: 10px;
+        outline: none;
+        box-sizing: border-box;
+        width: 100%;
+
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: rgb(34,177,76);
+            width: 14px;
+            height: 14px;
+            border-radius: 7px;
+            border-width: 0;
+        }
+
+        &::-moz-range-thumb {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: rgb(34,177,76);
+            width: 14px;
+            height: 14px;
+            border-radius: 7px;
+            border-width: 0;
+        }
+
+        &::-webkit-slider-runnable-track {
+            background-color: transparent;
+        }
+
+        &::-ms-track {
+            background-color: transparent;
+        }
+
+        &::-moz-range-track {
+            background-color: transparent;
+        }
+
+        &::-moz-focus-outer {
+            border: 0;
+        }
+    }
+}
