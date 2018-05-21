@@ -418,7 +418,7 @@ var ui = (function() {
                 consoleButtonClicked();
                 break;
             case "set last status done":
-                setLastStatusDone(true);
+                // setLastStatusDone(true);
                 break;
             case "set last status error":
                 setLastStatusDone(false);
@@ -535,13 +535,6 @@ var ui = (function() {
         amplify.publish("ui->manipulator", "move mani");
     });
 
-    $("#mode_grab").click(function(e, data) {
-        grabOrDriveClicked("grab");
-    });
-    $("#mode_drive").click(function(e, data) {
-        grabOrDriveClicked("drive");
-    });
-
     function setBatteryLevel(level) {
         if (level == 4) $("#battery-level-indicator-img").attr('src', 'assets/img/ui/nav-bar-battery.svg');
         else if (level == 3) $("#battery-level-indicator-img").attr('src', 'assets/img/ui/nav-bar-battery-3.svg');
@@ -550,73 +543,8 @@ var ui = (function() {
         else $("#battery-level-indicator-img").attr('src', 'assets/img/ui/nav-bar-battery-0.svg');
     }
 
-    function grabOrDriveClicked(name) {
-        if (name == "grab") {
-
-            /*
-             *	if standard grab mode (not photography), use standard GRAB
-             *	else use GRAB for photography
-             */
-            //if($("#photography-button").prop('checked') == false) {
-            $("#camera-video-img").removeClass("camera-video-drive-mode");
-            $("#camera-video-img").addClass("camera-video-grab-mode");
-            $("#right-navigation-cross-img").fadeIn();
-            $("#turtle-navigation-view-img").fadeIn();
-            $("#navigation-ring-canvas").fadeOut();
-            $("#axis1-slider-wrapper").fadeIn();
-            $("#axis2-slider-wrapper").fadeIn();
-            $("#right-navigation-cross-img").attr('src', '');
-            $("#turtle-navigation-view-img").attr('src', '');
-            amplify.publish("ui->controlCanvas", "set function to GRAB");
-            /*}
-            else {
-            	//	set camera as for drive
-            	$("#camera-video-img").removeClass("camera-video-grab-mode");
-            	$("#camera-video-img").addClass("camera-video-drive-mode");
-            	$("#camera-slider-wrapper").fadeIn();
-            	$("#right-navigation-cross-img").fadeOut();
-            	$("#turtle-navigation-view-img").fadeOut();
-            }*/
-
-        } else if (name == "drive") {
-            $("#camera-slider-wrapper").fadeOut();
-            $("#mode_drive").addClass("grab-mode_drive-filled-dot");
-            $("#mode_grab").removeClass("grab-mode_drive-filled-dot");
-            $("#camera-video-img").removeClass("camera-video-grab-mode");
-            $("#camera-video-img").addClass("camera-video-drive-mode");
-            $("#right-navigation-cross-img").fadeIn();
-            $("#turtle-navigation-view-img").fadeIn();
-            $("#navigation-ring-canvas").fadeIn();
-            $("#axis1-slider-wrapper").fadeOut();
-            $("#axis2-slider-wrapper").fadeOut();
-            $("#right-navigation-cross-img").attr('src', 'assets/img/ui/right-krzyz.svg');
-            $("#turtle-navigation-view-img").attr('src', 'assets/img/ui/right-lazik.svg');
-            amplify.publish("ui->controlCanvas", "set function to DRIVE");
-        }
-    }
 
 
-    /*
-     *	status functions
-     */
-
-    $("#welcome-screen-status-text").append("<p class='animation-typewriter'>turtle is awake</p>");
-    $("#welcome-screen-status-text").children().last().attr('data-content', '[ ]');
-
-    function setLastStatusDone(stat) {
-        if (stat == true) {
-            $("#welcome-screen-status-text").children().last().attr('data-content', '[*]');
-            $("#welcome-screen-status-text").children().last().removeClass('animation-typewriter');
-        } else {
-            $("#welcome-screen-status-text").children().last().attr('data-content', '[!]');
-        }
-    };
-
-    function addNewStatus(status, id, before) {
-        $("#welcome-screen-status-text").append("<p class='animation-typewriter' id='" + id + "'>" + status + "</p>");
-        if (before != false) $("#welcome-screen-status-text").children().last().attr('data-content', '[ ]');
-        else $("#welcome-screen-status-text").children().last().attr('data-content', "\00 \00");
-    };
 
     /*
      * 																		SEND information to controller

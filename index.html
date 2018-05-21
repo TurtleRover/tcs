@@ -101,13 +101,29 @@
 
         <!-- partial -->
 
-        <!-- partial:partials/_virtual-joystick.html -->
-        <div class="joystick">
-            <canvas id="navigation-ring-canvas"></canvas>
-            <img class="joystick_image" src="client/img/ui/right-krzyz.svg">
+        <div class="controls-box-right">
+            <!-- partial:partials/_manipulator-control.html -->
+            <div class="manipulatorControl">
+
+                <div class="range" id="axis1-slider">
+                    <input type="range" class="range_input" id="axis1-slider-input" max="5000" min="2200" step="10" value="4600" />
+                </div>
+
+                <div class="range" id="axis2-slider">
+                    <input type="range" class="range_input" id="axis2-slider-input" max="5000" min="2700" step="10" value="3400" />
+                </div>
+
+            </div>
+
+            <!-- partial -->
+
+            <!-- partial:partials/_virtual-joystick.html -->
+            <div class="joystick">
+                <canvas id="navigation-ring-canvas"></canvas>
+                <img class="joystick_image" src="client/img/ui/right-krzyz.svg">
 
 
-            <!-- <div id="turtle-top-view-left-top-div" class="advanced-interface">
+                <!-- <div id="turtle-top-view-left-top-div" class="advanced-interface">
         <p id="turtle-top-view-left-top-p" class="debug-text">0%</p>
     </div>
     <div id="turtle-top-view-right-top-div" class="advanced-interface">
@@ -119,55 +135,19 @@
     <div id="turtle-top-view-right-bottom-div" class="advanced-interface">
         <p id="turtle-top-view-right-bottom-p" class="debug-text">0%</p>
     </div> -->
-        </div>
-
-        <!-- partial -->
-
-        <!-- partial:partials/_footer.html -->
-        <!-- <div id="statusbar" class="footer">
-    <div id="control-container-div">
-        <div id="left-navigation-div" draggable="false" style="user-drag: none">
-
-
-            <div id="gripper-wrapper">
-                <div id="gripper-slider-wrapper">
-                    <div class="flat-slider-wrapper">
-                        <div class="flat-slider gripper-slider" id="gripper-slider">
-                            <input type="range" class="flat-slider-horizontal" id="gripper-slider-input" max="3600" min="2400" step="10" value="3000"
-                            style="transform: rotateY(180deg);" />
-                        </div>
-                        <div id="clear"></div>
-                    </div>
-                </div>
-                <div id="gripper-images-wrapper">
-                        <img src="" class="gripper-img" id="left-gripper-img">
-                        <img src="" class="gripper-img" id="right-gripper-img">
-                    </div>
             </div>
-        </div>
-    </div>
-    <div id="footer-container-div">
-        <div id="footer-div" class="left-footer-div">
-            <img id="left-footer-button-img" class="footer-button-img" src="client/img/ui/menu-dolne-gora.svg">
-        </div>
-        <div id="footer-div" class="center-footer-div">
-            <img id="center-footer-button-img" class="footer-button-img" src="client/img/ui/menu-dolne-stop.svg">
-        </div>
-        <div id="footer-div" class="right-footer-div">
-            <img id="show-hide-right-menu-img" class="footer-button-img" src="client/img/ui/menu-dolne-gora.svg">
-        </div>
-    </div>
-</div> -->
 
-        <!-- partial -->
+            <!-- partial -->
+        </div>
+
 
         <div class="controls-box-left">
             <!-- partial:partials/_gripper-control.html -->
-            <div class="gripper-control">
+            <div class="gripperControl">
 
-                <div class="gripper-control_icons">
-                    <img src="client/img/ui/gripper-opened.svg" class="gripper-control_icons_icon">
-                    <img src="client/img/ui/gripper-closed.svg" class="gripper-control_icons_icon">
+                <div class="gripperControl_icons">
+                    <img src="client/img/ui/gripper-opened.svg" class="gripperControl_icons_icon">
+                    <img src="client/img/ui/gripper-closed.svg" class="gripperControl_icons_icon">
                 </div>
 
                 <div class="range" id="gripper-slider">
@@ -179,10 +159,10 @@
             <!-- partial -->
 
             <!-- partial:partials/_mode-chooser.html -->
-            <div class="mode-chooser">
+            <div class="mode-switcher">
 
                 <label class="radio">
-        <input id="mode_grab" type="radio" name="radios" checked>
+        <input id="mode_grab" type="radio" name="mode-switch" value="grab">
         <span class="outer">
             <span class="inner"></span>
         </span>
@@ -190,7 +170,7 @@
     </label>
 
                 <label class="radio">
-        <input id="mode_drive" type="radio" name="radios" checked>
+        <input id="mode_drive" type="radio" name="mode-switch" checked value="drive">
         <span class="outer">
             <span class="inner"></span>
         </span>
@@ -539,6 +519,7 @@
     <script src='client/js/ui.js'></script>
     <script src='client/js/ui/bootscreen.js'></script>
     <script src='client/js/ui/menu.js'></script>
+    <script src='client/js/ui/modeswitcher.js'></script>
 </body>
 
 </html>

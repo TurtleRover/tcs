@@ -2,7 +2,7 @@
  * controlCanvas is used for controlling Turtle
  * It uses the Revealing Module Pattern
  * https://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript
- * 
+ *
  * For drawing and touch applications it uses CREATEJS set of libraries
  *  + EaselJS
  *  + TweenJS
@@ -12,35 +12,13 @@
 */
 
 var controlCanvas = (function () {
-    /*
-	 * 																		SUBSCRIBE to controller topic
-	 */
-    amplify.subscribe("controller->controlCanvas", controllerMessageCallback);
-    function controllerMessageCallback(message) {}
 
-    amplify.subscribe("ui->controlCanvas", uiMessageCallback);
-    function uiMessageCallback(message) {
-        if (DEBUG) console.log("uiMessageCallback: " + message);
-		if (DEBUG) amplify.publish("all->utests", message);
-
-		switch(message) {
-			case "set function to GRAB":
-				grabOrDrive = "GRAB";
-                $("#mani-x").trigger('change');
-                $("#mani-y").trigger('change');
-				break;
-			case "set function to DRIVE":
-				grabOrDrive = "DRIVE";
-				break;
-			default:
-				console.log("unknown command: " + message);
-		}
-    };
 
     /*
 	 * 																		PRIVATE area
 	 */
     var canvas = $('#navigation-ring-canvas');
+    console.log("controlCanvas", canvas);
 
     /*
      *  information about mouse (touch) coordinates
@@ -65,7 +43,7 @@ var controlCanvas = (function () {
         motor_2: 0,
         motor_3: 0,
         motor_4: 0
-    }
+    };
 
     var maniDirection = "NONE";
     var maniTimerId = 0;
@@ -90,7 +68,7 @@ var controlCanvas = (function () {
             height: rect.bottom - rect.top
         };
     }
-
+// TODO: make this work. comment out "DRIVE"
     function move(event) {
         if (coordinates.clicked == true) {
             if (grabOrDrive == "DRIVE")
@@ -100,6 +78,7 @@ var controlCanvas = (function () {
 
     function start(event) {
         coordinates.clicked = true;
+        console.log("canvas", event);
         if (grabOrDrive == "DRIVE")
             updateMotors(event);
         else {
@@ -110,6 +89,7 @@ var controlCanvas = (function () {
 
     function stop(event) {
         coordinates.clicked = false;
+        console.log("canvas", event);
         if (grabOrDrive == "DRIVE")
             stopMotors();
         else {
@@ -136,7 +116,7 @@ var controlCanvas = (function () {
     });
 
     canvas.mousedown(function(event) { start(event); });
-    canvas[0].addEventListener("touchstart", function(event) { 
+    canvas[0].addEventListener("touchstart", function(event) {
         event.preventDefault();
         var touch = event.touches[0];
         var mouseEvent = new MouseEvent("mousedown", {
@@ -179,12 +159,12 @@ var controlCanvas = (function () {
             mousePosition.x = Math.floor(canvasDimensions.width * 0.5);
             mousePosition.y = 0;
         }
-        else if (mousePosition.x < -canvasDimensions.width * 0.5) { 
+        else if (mousePosition.x < -canvasDimensions.width * 0.5) {
             mousePosition.x = Math.ceil(-canvasDimensions.width * 0.5);
             mousePosition.y = 0;
         }
 
-        if (mousePosition.y > canvasDimensions.height * 0.5) { 
+        if (mousePosition.y > canvasDimensions.height * 0.5) {
             mousePosition.y = Math.floor(canvasDimensions.height * 0.5);
             mousePosition.x = 0;
         }
@@ -200,8 +180,8 @@ var controlCanvas = (function () {
         coordinates.module = Math.sqrt(coordinates.x * coordinates.x + coordinates.y * coordinates.y);
         coordinates.angle = Math.asin(coordinates.y / coordinates.module) * 180 / Math.PI;
 
-        //  calculate motors values if the appropriate zone was 
-        
+        //  calculate motors values if the appropriate zone was
+
         if (coordinates.module > emptyZoneRadius && coordinates.module <= circleRadius) {
             //  var a = coordinates.module / circleRadius * 100;
             //  var b = coordinates.module * (Math.sin((2 * coordinates.angle - 90) * Math.PI / 180)) / circleRadius * 100;

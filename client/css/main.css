@@ -3590,7 +3590,11 @@ a.ui-button:active,
   height: auto;
 }
 
-.mode-chooser {
+.joystick-hide {
+  visibility: hidden;
+}
+
+.mode-switcher {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -3598,19 +3602,19 @@ a.ui-button:active,
 }
 
 @media screen and (min-device-width: 320px) {
-  .mode-chooser {
+  .mode-switcher {
     height: 10vw;
   }
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-device-width: 320px), only screen and (min-resolution: 2dppx) and (min-device-width: 320px) {
-  .mode-chooser {
+  .mode-switcher {
     height: 20vw;
   }
 }
 
 @media (min-width: 900px) {
-  .mode-chooser {
+  .mode-switcher {
     height: 5vw;
   }
 }
@@ -3672,37 +3676,37 @@ a.ui-button:active,
   opacity: 0;
 }
 
-.gripper-control {
+.gripperControl {
   position: relative;
   display: flex;
   flex-flow: column;
 }
 
-.gripper-control_icons {
+.gripperControl_icons {
   position: relative;
   display: flex;
   flex-flow: row;
   justify-content: space-between;
 }
 
-.gripper-control_icons_icon {
+.gripperControl_icons_icon {
   margin: 20px 20px 15px;
 }
 
 @media screen and (min-device-width: 320px) {
-  .gripper-control_icons_icon {
+  .gripperControl_icons_icon {
     height: 34px;
   }
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-device-width: 320px), only screen and (min-resolution: 2dppx) and (min-device-width: 320px) {
-  .gripper-control_icons_icon {
+  .gripperControl_icons_icon {
     height: 68px;
   }
 }
 
 @media (min-width: 900px) {
-  .gripper-control_icons_icon {
+  .gripperControl_icons_icon {
     height: 34px;
   }
 }
@@ -3730,6 +3734,33 @@ a.ui-button:active,
 
 @media (min-width: 900px) {
   .controls-box-left {
+    width: 20vw;
+  }
+}
+
+.controls-box-right {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-flow: column;
+  background: #000000;
+}
+
+@media screen and (min-device-width: 320px) {
+  .controls-box-right {
+    width: 40vw;
+  }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-device-width: 320px), only screen and (min-resolution: 2dppx) and (min-device-width: 320px) {
+  .controls-box-right {
+    width: 80vw;
+  }
+}
+
+@media (min-width: 900px) {
+  .controls-box-right {
     width: 20vw;
   }
 }
