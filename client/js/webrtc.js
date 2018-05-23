@@ -125,14 +125,14 @@ var webrtc = (function () {
 
         function onRemoteStreamAdded(event) {
             console.log("Remote stream added:", URL.createObjectURL(event.stream));
-            var remoteVideoElement = document.getElementById('camera-video-img');
+            var remoteVideoElement = document.getElementById('remote-video');
             remoteVideoElement.src = URL.createObjectURL(event.stream);
             remoteVideoElement.play();
             amplify.publish("webrtc->linux", "camera stream is ready");
         }
 
         function onRemoteStreamRemoved(event) {
-            var remoteVideoElement = document.getElementById('camera-video-img');
+            var remoteVideoElement = document.getElementById('remote-video');
             remoteVideoElement.src = '';
         }
 
