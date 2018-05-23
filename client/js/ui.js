@@ -392,8 +392,8 @@ var ui = (function() {
                 }, 1000);
                 break;
             case "turtle is awake":
-                setLastStatusDone(true);
-                addNewStatus("connecting...");
+                // setLastStatusDone(true);
+                // addNewStatus("connecting...");
                 break;
             default:
                 console.log("unknown command: " + message);
@@ -421,10 +421,10 @@ var ui = (function() {
                 // setLastStatusDone(true);
                 break;
             case "set last status error":
-                setLastStatusDone(false);
+                // setLastStatusDone(false);
                 break;
             case "initialize camera...":
-                addNewStatus(message);
+                // addNewStatus(message);
                 break;
             case "set battery level to full":
                 setBatteryLevel(4);
@@ -559,15 +559,15 @@ var ui = (function() {
     /*
      *	this function enables jquery flagstrap form drop-down menu in #menu
      */
-    $(function() {
-        // Setup drop down menu
-        $('.dropdown-toggle').dropdown();
-
-        // Fix input element click problem
-        $('.dropdown input, .dropdown label').click(function(e) {
-            e.stopPropagation();
-        });
-    });
+    // $(function() {
+    //     // Setup drop down menu
+    //     $('.dropdown-toggle').dropdown();
+    //
+    //     // Fix input element click problem
+    //     $('.dropdown input, .dropdown label').click(function(e) {
+    //         e.stopPropagation();
+    //     });
+    // });
 
     /*
      *	read settings from last session
@@ -586,32 +586,37 @@ var ui = (function() {
 
     // GRIPPER range
     $(function() {
-        var axis1_max = Cookies.get("mani-axis-1-max") ||  $('#axis1-slider-input').attr('max');
-        var axis1_min =  Cookies.get("mani-axis-1-min") ||  $('#axis1-slider-input').attr('min');
+        // var axis1_max = Cookies.get("mani-axis-1-max") ||  $('#axis1-slider-input').attr('max');
+        // var axis1_min =  Cookies.get("mani-axis-1-min") ||  $('#axis1-slider-input').attr('min');
+        //
+        // var axis2_max =  Cookies.get("mani-axis-2-max") ||   $('#axis2-slider-input').attr('max');
+        // var axis2_min =  Cookies.get("mani-axis-2-min") ||   $('#axis2-slider-input').attr('min');
+        var axis1_max =  $('#axis1-slider-input').attr('max');
+        var axis1_min =   $('#axis1-slider-input').attr('min');
 
-        var axis2_max =  Cookies.get("mani-axis-2-max") ||   $('#axis2-slider-input').attr('max');
-        var axis2_min =  Cookies.get("mani-axis-2-min") ||   $('#axis2-slider-input').attr('min');
+        var axis2_max =   $('#axis2-slider-input').attr('max');
+        var axis2_min =    $('#axis2-slider-input').attr('min');
 
-		if (Cookies.get("mani-axis-1-max")) {
-			$("#axis1-slider-input").attr({
-				"max": axis1_max
-			});
-		}
-		if (Cookies.get("mani-axis-1-min")) {
-			$("#axis1-slider-input").attr({
-				"min": axis1_max
-			});
-		}
-		if (Cookies.get("mani-axis-2-max")) {
-			$("#axis2-slider-input").attr({
-				"max": axis2_max
-			});
-		}
-		if (Cookies.get("mani-axis-2-min")) {
-			$("#axis2-slider-input").attr({
-				"min": axis2_min
-			});
-		}
+		// if (Cookies.get("mani-axis-1-max")) {
+		// 	$("#axis1-slider-input").attr({
+		// 		"max": axis1_max
+		// 	});
+		// }
+		// if (Cookies.get("mani-axis-1-min")) {
+		// 	$("#axis1-slider-input").attr({
+		// 		"min": axis1_max
+		// 	});
+		// }
+		// if (Cookies.get("mani-axis-2-max")) {
+		// 	$("#axis2-slider-input").attr({
+		// 		"max": axis2_max
+		// 	});
+		// }
+		// if (Cookies.get("mani-axis-2-min")) {
+		// 	$("#axis2-slider-input").attr({
+		// 		"min": axis2_min
+		// 	});
+		// }
 
         $('#mani-axis-1-max').val(axis1_max);
         $('#mani-axis-1-min').val(axis1_min);
@@ -624,7 +629,7 @@ var ui = (function() {
                 $("#axis1-slider-input").attr({
                     "max": $('#mani-axis-1-max').val()
                 });
-				Cookies.set("mani-axis-1-max", $('#mani-axis-1-max').val());
+				// Cookies.set("mani-axis-1-max", $('#mani-axis-1-max').val());
             }
         });
         $("#mani-axis-1-min").on("change", function() {
@@ -632,7 +637,7 @@ var ui = (function() {
                 $("#axis1-slider-input").attr({
                     "min": $('#mani-axis-1-min').val()
                 });
-				Cookies.set("mani-axis-1-min", $('#mani-axis-1-min').val());
+				// Cookies.set("mani-axis-1-min", $('#mani-axis-1-min').val());
             }
         });
         $("#mani-axis-2-max").on("change", function() {
@@ -640,7 +645,7 @@ var ui = (function() {
                 $("#axis2-slider-input").attr({
                     "max": $('#mani-axis-2-max').val()
                 });
-				Cookies.set("mani-axis-2-max", $('#mani-axis-2-max').val());
+				// Cookies.set("mani-axis-2-max", $('#mani-axis-2-max').val());
             }
         });
         $("#mani-axis-2-min").on("change", function() {
@@ -648,7 +653,7 @@ var ui = (function() {
                 $("#axis2-slider-input").attr({
                     "min": $('#mani-axis-2-min').val()
                 });
-				Cookies.set("mani-axis-2-min", $('#mani-axis-2-min').val());
+				// Cookies.set("mani-axis-2-min", $('#mani-axis-2-min').val());
             }
         });
     });
