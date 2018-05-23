@@ -1,5 +1,7 @@
 .range {
     padding: 0 20px;
+    display: flex;
+    flex-flow: column;
 
     &_input {
         background-color: transparent;
@@ -46,5 +48,21 @@
         &::-moz-focus-outer {
             border: 0;
         }
+    }
+
+    &_name {
+        text-align: center;
+        margin: 20px 0 10px;
+    }
+    &_labels {
+        display: flex;
+        flex-flow: row;
+        justify-content: space-between;
+    }
+    &_labelMin {
+        text-align: left;
+    }
+    &_labelMax {
+        text-align: right;
     }
 }

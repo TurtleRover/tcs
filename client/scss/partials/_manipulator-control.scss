@@ -1,0 +1,9 @@
+.manipulatorControl {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+
+    &-hide {
+        visibility: hidden;
+    }
+}

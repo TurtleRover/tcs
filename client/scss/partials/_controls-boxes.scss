@@ -28,14 +28,17 @@
     background: $background-color;
 
     @include small {
-        width: 40vw;
+        width: 30vw;
+        height: 30vw;
     }
 
     @include small2x {
-        width: 40vw * 2;
+        width: 30vw * 2;
+        height: 30vw * 2;
     }
 
     @include medium {
-        width: 20vw;
+        width: 25vw;
+        height: 25vw;
     }
 }
