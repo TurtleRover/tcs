@@ -30,5 +30,5 @@
          this.io.emit('temperature');
     };
 
-    window.turtle.sockets = sockets;
+    window.turtle.sockets = new sockets();
 })();

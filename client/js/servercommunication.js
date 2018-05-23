@@ -15,7 +15,7 @@ var serverCommunication = (function() {
     /*
      * 																		PRIVATE area
      */
-    let sockets = new window.turtle.sockets();
+    let sockets = window.turtle.sockets;
     let utils = new window.turtle.utils();
     let frameBuilder = new window.turtle.frameBuilder();
     /*
@@ -135,38 +135,6 @@ var serverCommunication = (function() {
             amplify.publish("all->ui", "set last status done");
             amplify.publish("all->ui", "initialize camera...");
         }
-
-        sockets.io.on('battery', function(voltage) {
-            voltage = voltage * 0.1 + 7.6; // voltage divider
-            console.log("voltage: " + voltage);
-            var str_voltage = voltage.toString();
-            $("#battery-level-text").text("battery voltage: " + str_voltage.substr(0, 4) + " V");
-
-            if (voltage > 24) amplify.publish("all->ui", "set battery level to full");
-            else if (voltage > 23) amplify.publish("all->ui", "set battery level to 3");
-            else if (voltage > 21.5) amplify.publish("all->ui", "set battery level to 2");
-            else if (voltage > 19.5) amplify.publish("all->ui", "set battery level to 1");
-            else amplify.publish("all->ui", "set battery level to 0");
-        });
-
-        sockets.io.on('temperature', function(temperature) {
-            console.log("temp ",temperature);
-            $("#processor-temperature-text").text("processor temp.: " + temperature + " °C");
-        });
-
-        sockets.io.on('signal', function(signal) {
-            $("#signal-strength-text").text("signal strength: " + signal + "%");
-            console.log("signal", signal);
-
-            /*
-             *  set icon according to signal strength
-             */
-            if (signal > 95) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-4.svg");
-            else if (signal > 90) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-3.svg");
-            else if (signal > 85) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-2.svg");
-            else if (signal > 80) $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-1.svg");
-            else $("#signal-level-indicator-img").attr("src", "assets/img/ui/icon-zasieg-0.svg");
-        });
 
         function updateAxisPositions() {
             $("#mani-axis-1").val($("#axis1-slider-input").val());
@@ -310,20 +278,6 @@ var serverCommunication = (function() {
                 setMotors();
         }, INTERVAL);
 
-        /*
-         *  read battery value
-         */
-        setInterval(function() {
-            if (sockets.io.connected) {
-                sockets.sendBattery();
-                setTimeout(function() {
-                    sockets.sendSignal();
-                }, 500);
-                setTimeout(function() {
-                    sockets.sendTemperature();
-                }, 1000);
-            }
-        }, BAT_INTERVAL);
 
     }
 })();
