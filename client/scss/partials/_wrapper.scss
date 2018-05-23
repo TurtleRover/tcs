@@ -1,12 +1,12 @@
 
 .wrapper {
     // temp background
-    background-image: url("../img/ui/dot.svg"), url("https://i2-prod.mirror.co.uk/incoming/article10530897.ece/ALTERNATES/s1200/PROD-135557139.jpg");
+    background-image: url("https://i2-prod.mirror.co.uk/incoming/article10530897.ece/ALTERNATES/s1200/PROD-135557139.jpg");
     // background-image: url("../img/welcome-screen/background.png");
     background-attachment: fixed;
-    background-position:center center;
-    background-repeat: repeat, no-repeat;
-    background-size: auto, cover;
+    background-position: center;
+    background-repeat:  no-repeat;
+    background-size:  cover;
 
 
 
@@ -31,4 +31,16 @@
         width: 100%;
         z-index: 10001;
     }
+}
+
+.dots {
+    background-image: url("../img/ui/dot.svg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: repeat;
+    background-size: auto;
+    z-index: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }

@@ -73,14 +73,9 @@
         <!-- partial -->
 
         <div class="crosshair"></div>
+        <div class="dots"></div>
 
-        <!-- partial:partials/_camera.html -->
-        <div id="camera-video">
-            <video id="remote-video" class="camera-video-drive-mode" draggable="false" onmousedown="return false" style="user-drag: none"></video>
 
-        </div>
-
-        <!-- partial -->
 
         <div class="controls-box-right">
             <!-- partial:partials/_manipulator-control.html -->
@@ -390,7 +385,13 @@
 
         <!-- partial -->
 
+        <!-- partial:partials/_camera.html -->
+        <div id="camera-video" class="videoWrapper">
+            <video id="remote-video" class="video" draggable="false" onmousedown="return false" style="user-drag: none"></video>
 
+        </div>
+
+        <!-- partial -->
 
     </div>
 

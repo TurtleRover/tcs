@@ -104,23 +104,6 @@
 /*
  *                                                  CAMERA VIDEO
  */
-.camera-body {
-  overflow: hidden;
-}
-
-#camera-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 0 0 0 0;
-  width: 100%;
-  height: 100%;
-  cursor: url("../img/cursor.png") 12 12, url("../img/cursor.cur") 12 12,
-    auto;
-  /* background-image: url("../img/marsyard-camera.jpg"); */
-  display: block;
-  z-index: 1;
-}
 
 #servo-control-div {
   position: absolute;
