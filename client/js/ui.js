@@ -113,28 +113,28 @@ var ui = (function() {
          * if undefined set to English
          */
 
-        var previousSessionLanguage = Cookies.get("language");
-        if (previousSessionLanguage == undefined) previousSessionLanguage = "US";
+        // var previousSessionLanguage = Cookies.get("language");
+        // if (previousSessionLanguage == undefined) previousSessionLanguage = "US";
 
-        $("#languageSelector").attr({
-            "data-selected-country": previousSessionLanguage
-        });
-
-        $("#languageSelector").flagStrap({
-            countries: {
-                "PL": "Poland",
-                "US": "United States",
-                "DE": "Germany"
-            },
-            buttonSize: "btn-sm",
-            buttonType: "btn-info",
-            labelMargin: "10px",
-            scrollable: false,
-            scrollableHeight: "350px"
-        });
-        var lng = $("#languageSelector select option:selected").val();
-        console.log("interface language: " + lng);
-        return lng;
+        // $("#languageSelector").attr({
+        //     "data-selected-country": previousSessionLanguage
+        // });
+        //
+        // $("#languageSelector").flagStrap({
+        //     countries: {
+        //         "PL": "Poland",
+        //         "US": "United States",
+        //         "DE": "Germany"
+        //     },
+        //     buttonSize: "btn-sm",
+        //     buttonType: "btn-info",
+        //     labelMargin: "10px",
+        //     scrollable: false,
+        //     scrollableHeight: "350px"
+        // });
+        // var lng = $("#languageSelector select option:selected").val();
+        // console.log("interface language: " + lng);
+        // return lng;
     }
 
     /*
@@ -572,10 +572,10 @@ var ui = (function() {
     /*
      *	read settings from last session
      */
-    $(function() {
-        readSetting(Cookies.get("advanced-interface"), "#advanced-interface-button", "true");
-        readSetting(Cookies.get("photography"), "#photography-button", "false");
-    });
+    // $(function() {
+    //     readSetting(Cookies.get("advanced-interface"), "#advanced-interface-button", "true");
+    //     readSetting(Cookies.get("photography"), "#photography-button", "false");
+    // });
 
     function readSetting(value, name, defVal) {
         if (value == undefined) value = defVal;
