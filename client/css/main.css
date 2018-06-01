@@ -556,11 +556,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .wrapper {
-  background-image: url("https://i2-prod.mirror.co.uk/incoming/article10530897.ece/ALTERNATES/s1200/PROD-135557139.jpg");
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   padding-top: 0;
   transition: opacity 0.5s ease;
   opacity: 1;
