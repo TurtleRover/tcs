@@ -1,6 +1,6 @@
 {
   "name": "Turtle-Rover-Mission-Control",
-  "version": "1.0.0",
+  "version": "0.10.0",
   "description": "After several years of working on Mars rover prototypes, a team of four engineers decided to launch their own company and their own product.  Turtle Rover - as this is how they named their newest baby - is a remotely controlled four-wheeled robot designed for Earth exploration.",
   "main": "index.js",
   "directories": {
