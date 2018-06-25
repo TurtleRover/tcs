@@ -3,34 +3,19 @@
   "version": "0.10.0",
   "description": "After several years of working on Mars rover prototypes, a team of four engineers decided to launch their own company and their own product.  Turtle Rover - as this is how they named their newest baby - is a remotely controlled four-wheeled robot designed for Earth exploration.",
   "main": "index.js",
-  "directories": {
-    "doc": "docs",
-    "test": "tests"
-  },
+
   "scripts": {
-    "start": "postcss client/pcss/*.pcss --config .postcssrc -d client/css/ --ext '.css' -w",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "gulp": "gulp"
+    "start": "parcel watch ./client/src/index.html --out-dir ./client/dist --public-url ./",
+    "build": "parcel build ./client/src/index.html --out-dir ./client/dist --public-url ./"
   },
   "repository": "git+https://github.com/TurtleRover/Turtle-Rover-Mission-Control.git",
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/TurtleRover/Turtle-Rover-Mission-Control/issues"
-  },
-  "homepage": "https://github.com/TurtleRover/Turtle-Rover-Mission-Control#readme",
+
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^4.1.0",
-    "gulp-html-beautify": "^1.0.1",
-    "gulp-inject-partials": "^1.0.3",
-    "gulp-notify": "^3.2.0",
-    "gulp-plumber": "^1.2.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^3.1.0",
-    "gulp-sass-lint": "^1.3.4",
-    "gulp-sourcemaps": "^2.6.4",
-    "run-sequence": "^2.2.1"
+    "hyperapp": "^1.2.6",
+    "node-sass": "^4.8.3",
+    "parcel-bundler": "^1.7.0"
   }
 }
