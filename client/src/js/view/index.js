@@ -6,6 +6,7 @@ import { Settings } from "./components/settings"
 import { Manipulator } from "./components/manipulator";
 import { Joystick } from "./components/joystick";
 import { Gripper } from "./components/gripper";
+import { ModeChooser } from "./components/modechooser";
 
 const view = (state, actions) => (
     <main>
@@ -20,6 +21,7 @@ const view = (state, actions) => (
             </div>
             <div class="controls-box-left">
                 <Gripper/>
+                <ModeChooser/>
             </div>
             <Settings/>
             <Stream/>
