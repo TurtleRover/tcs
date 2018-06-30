@@ -4,6 +4,7 @@ import { StatusBar } from './components/statusbar'
 import { Stream } from './components/stream'
 import { Settings } from "./components/settings"
 import { Manipulator } from "./components/manipulator";
+import { Joystick } from "./components/joystick";
 
 const view = (state, actions) => (
     <main>
@@ -14,6 +15,7 @@ const view = (state, actions) => (
             <div class="dots"></div>
             <div class="controls-box-right">
                 <Manipulator/>
+                <Joystick/>
             </div>
             <div class="controls-box-left">
 
