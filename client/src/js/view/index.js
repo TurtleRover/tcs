@@ -2,6 +2,7 @@ import { h } from 'hyperapp'
 import { BootScreen } from './bootscreen'
 import { StatusBar } from './components/statusbar'
 import { Stream } from './components/stream'
+import { Settings } from "./components/settings";
 
 const view = (state, actions) => (
     <main>
@@ -10,7 +11,7 @@ const view = (state, actions) => (
             <StatusBar/>
             <div class="crosshair"></div>
             <div class="dots"></div>
-
+            <Settings/>
             <Stream/>
         </div>
     </main>
