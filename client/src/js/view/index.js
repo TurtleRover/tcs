@@ -5,6 +5,7 @@ import { Stream } from './components/stream'
 import { Settings } from "./components/settings"
 import { Manipulator } from "./components/manipulator";
 import { Joystick } from "./components/joystick";
+import { Gripper } from "./components/gripper";
 
 const view = (state, actions) => (
     <main>
@@ -18,7 +19,7 @@ const view = (state, actions) => (
                 <Joystick/>
             </div>
             <div class="controls-box-left">
-
+                <Gripper/>
             </div>
             <Settings/>
             <Stream/>
