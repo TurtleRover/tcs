@@ -1,5 +1,5 @@
 import { h } from 'hyperapp'
-import { BootScreen } from './components/bootscreen'
+import { BootScreen } from './bootscreen'
 
 
 const view = (state, actions) => (
