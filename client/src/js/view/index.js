@@ -21,7 +21,7 @@ const view = (state, actions) => (
             </div>
             <div class="controls-box-left">
                 <Gripper/>
-                <ModeChooser/>
+                <ModeChooser mode={state.mode}/>
             </div>
             <Settings/>
             <Stream/>
