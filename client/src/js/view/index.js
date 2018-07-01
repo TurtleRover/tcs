@@ -1,4 +1,5 @@
-import { h } from 'hyperapp'
+import { h} from 'hyperapp'
+
 import { BootScreen } from './bootscreen'
 import { StatusBar } from './components/statusbar'
 import { Stream } from './components/stream'
@@ -21,7 +22,7 @@ const view = (state, actions) => (
             </div>
             <div class="controls-box-left">
                 <Gripper/>
-                <ModeChooser mode={state.mode}/>
+                <ModeChooser mode={state.mode} setMode={actions.setMode}/>
             </div>
             <Settings/>
             <Stream/>

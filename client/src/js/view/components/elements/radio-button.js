@@ -1,9 +1,9 @@
 import { h } from 'hyperapp'
 
 
-export const RadioButton = ({group, checked, value, text})  => 
-    <label class="radio">
-        <input type="radio" name={group} checked={checked} value={value}/>
+export const RadioButton = ({group, state, value, text, setValue})  => 
+    <label class="radio" onmousedown={() => setValue(value)}>
+        <input type="radio" name={group} checked={state === value} value={value}/>
         <span class="outer">
             <span class="inner"></span>
         </span>

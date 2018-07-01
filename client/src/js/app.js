@@ -10,5 +10,7 @@ const main = withLogger(app)(state, actions, view, document.body)
 document.onreadystatechange = function() {
     if (document.readyState === "complete") {
         main.setBootScreenState(false);
+        console.log(main);
+        
     }
 };

@@ -1,8 +1,8 @@
 import { h } from 'hyperapp'
 import { RadioButton } from "./elements/radio-button";
 
-export const ModeChooser = ({mode})  => 
+export const ModeChooser = ({mode, setMode})  => 
     <div class="mode-switcher">
-        <RadioButton group='mode-switch' checked='false' value='grab' text='GRAB'/>
-        <RadioButton group='mode-switch' checked='true' value='drive' text='DRIVE'/>
+        <RadioButton group='mode-switch' state={mode} value='grab' text='GRAB' setValue={setMode}/>
+        <RadioButton group='mode-switch' state={mode} value='drive' text='DRIVE' setValue={setMode}/>
     </div>
