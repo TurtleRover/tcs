@@ -3,7 +3,6 @@
   "version": "0.10.0",
   "description": "After several years of working on Mars rover prototypes, a team of four engineers decided to launch their own company and their own product.  Turtle Rover - as this is how they named their newest baby - is a remotely controlled four-wheeled robot designed for Earth exploration.",
   "main": "index.js",
-
   "scripts": {
     "start": "parcel watch ./client/src/ --out-dir ./client/dist --public-url ./",
     "build": "parcel build ./client/src/index.html --out-dir ./client/dist --public-url ./"
@@ -12,10 +11,12 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
-
   "devDependencies": {
     "hyperapp": "^1.2.6",
     "node-sass": "^4.8.3",
     "parcel-bundler": "^1.7.0"
+  },
+  "dependencies": {
+    "@hyperapp/logger": "^0.5.0"
   }
 }

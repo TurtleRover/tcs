@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@hyperapp/logger@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@hyperapp/logger/-/logger-0.5.0.tgz#627404507c45d38fb5190343f84b4da377e103b8"
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
