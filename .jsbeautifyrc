@@ -8,6 +8,6 @@
     // Documentation: https://github.com/einars/js-beautify/
     "css": {
         "allowed_file_extensions": ["scss", "sass", "less"],
-        "newline_between_rules": true, // Add a new line after every css rule
+        "newline_between_rules": true // Add a new line after every css rule
     }
 }
