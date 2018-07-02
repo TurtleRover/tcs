@@ -1,16 +1,14 @@
 import { h } from 'hyperapp'
+import { RangeInput } from "./elements/range-input";
 
 
-export const Gripper = () => 
+export const Gripper = ({state}) => 
     <div class="gripperControl">
-
-        <div class="gripperControl_icons">
-            <img src={require("../../../img/ui/gripper-opened.svg")} class="gripperControl_icons_icon"/>
-            <img src={require("../../../img/ui/gripper-closed.svg")} class="gripperControl_icons_icon"/>
-        </div>
-
-        <div class="range" id="gripper-slider">
-                <input type="range" class="range_input" id="gripper-slider-input" max="3600" min="2400" step="10" value="3000" />
-        </div>
-
+        <RangeInput text='' state={state} labelMax={IconGripperOpen} labelMin={IconGripperClose}/>
     </div>
+
+const IconGripperOpen = () =>
+    <img src={require("../../../img/ui/gripper-opened.svg")} class="gripperControl_icons_icon"/>
+
+const IconGripperClose = () =>
+    <img src={require("../../../img/ui/gripper-closed.svg")} class="gripperControl_icons_icon"/>
