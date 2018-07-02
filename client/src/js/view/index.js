@@ -17,8 +17,8 @@ const view = (state, actions) => (
             <div class="crosshair"></div>
             <div class="dots"></div>
             <div class="controls-box-right">
-                <Manipulator/>
-                <Joystick/>
+                <Manipulator mode={state.mode}/>
+                <Joystick mode={state.mode}/>
             </div>
             <div class="controls-box-left">
                 <Gripper/>

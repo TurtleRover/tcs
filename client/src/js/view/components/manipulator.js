@@ -1,8 +1,8 @@
 import { h } from 'hyperapp'
 
 
-export const Manipulator = ()  => 
-    <div class="manipulatorControl manipulatorControl-hide">
+export const Manipulator = ({mode})  => 
+    <div class={(mode==='grab') ? 'manipulatorControl' : 'manipulatorControl manipulatorControl-hide'}>
         <div class="range" id="axis1-slider">
             <span class="range_name">AXIS 1</span>
             <div class="range_labels">
