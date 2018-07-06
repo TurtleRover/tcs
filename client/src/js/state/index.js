@@ -20,6 +20,9 @@ const state = {
         max: 3600,
         step: 10,
         value: 3000
+    },
+    settings: {
+      isVisible: false
     }
 }
 

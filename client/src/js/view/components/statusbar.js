@@ -1,7 +1,7 @@
 import { h } from 'hyperapp'
 
 
-export const StatusBar = ()  => 
+export const StatusBar = ({switchSettings})  => 
     <section id="statusbar" class="statusbar">
         <img class="statusbar_logo" src={require("../../../img/ui/turtle-logo.svg")}/>
         <div class="statusbar_indicators">
@@ -16,7 +16,7 @@ export const StatusBar = ()  =>
             <img class="statusbar_actions_action" id="button-fullscreen" src={require("../../../img/ui/nav-bar-fullscreen.svg")}/>
         </div>
 
-        <div class="statusbar_menu">
+        <div class="statusbar_menu" onmousedown={() => switchSettings()}>
             <div class="statusbar_menu_bar"></div>
         </div>
     </section>

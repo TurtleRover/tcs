@@ -13,7 +13,8 @@ const view = (state, actions) => (
     <main>
         <BootScreen state={state.showBootScreen}/>
         <div id="wrapper" class="wrapper">
-            <StatusBar/>
+            <StatusBar switchSettings={actions.settings.setVisibility}/>
+            <Settings state={state.settings}/>
             <div class="crosshair"></div>
             <div class="dots"></div>
             <div class="controls-box-right">
@@ -24,7 +25,6 @@ const view = (state, actions) => (
                 <Gripper state={state.gripper}/>
                 <ModeChooser mode={state.mode} setMode={actions.setMode}/>
             </div>
-            <Settings/>
             <Stream/>
         </div>
     </main>
