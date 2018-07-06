@@ -1,5 +1,5 @@
 .settings {
-	background-color: rebeccapurple;
+	background-color: $background-color;
 	position: absolute;
 	z-index: 2;
 	right: 0;
@@ -27,8 +27,8 @@
 	
     @include medium {
 		padding-top: $statusbar-height-medium;
-		width: 50vw;
-		height: 100%;
+		width: 60vw;
+		height: calc(100vh - #{$statusbar-height-medium});
 	}
 	
 	&-hide {
