@@ -22,7 +22,8 @@ const state = {
         value: 3000
     },
     settings: {
-      isVisible: false
+      isVisible: false,
+      category: 'general'
     }
 }
 

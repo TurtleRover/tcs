@@ -3,7 +3,8 @@ const actions = {
   setMode: value => state => ({ mode: value }),
 
   settings: {
-    setVisibility: value => state => ({ isVisible: !state.isVisible })
+    setVisibility: value => state => ({ isVisible: !state.isVisible }),
+    setVisibleCategory: value => state => ({ category: value })
   }
 }
 
