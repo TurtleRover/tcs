@@ -10,9 +10,9 @@ export const StatusBar = ({switchSettings})  =>
         </div>
         <div id="statusbar_actions" class="statusbar_actions">
             <img class="statusbar_actions_action" id="button-screenrecord" src={require("../../../img/ui/nav-bar-rec.svg")}/>
-                <a id="snap-download-a"> 
+                {/* <a id="snap-download-a">  */}
             <img class="statusbar_actions_action" id="button-screenshot" src={require("../../../img/ui/nav-bar-snap.svg")}/>
-                </a> 
+                {/* </a>  */}
             <img class="statusbar_actions_action" id="button-fullscreen" src={require("../../../img/ui/nav-bar-fullscreen.svg")}/>
         </div>
 
