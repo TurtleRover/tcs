@@ -5,6 +5,7 @@
     display: flex;
     flex-flow: column;
     background: $background-color;
+    min-width: 250px;
 
     @include small {
         width: 40vw;
@@ -16,6 +17,10 @@
 
     @include medium {
         width: 20vw;
+    }
+
+    @include medium2x {
+        width: 20vw * 2;
     }
 }
 
