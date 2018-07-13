@@ -6,7 +6,7 @@ export const StatusBar = ({state, switchSettings})  =>
         <img class="statusbar_logo" src={require("../../../img/ui/turtle-logo.svg")}/>
         <div class="statusbar_indicators">
             <IndicatorBattery batteryLevel={state.batteryLevel}/>
-            <IndicatorSignal/>
+            <IndicatorSignal signalLevel={state.signalLevel}/>
         </div>
         <div id="statusbar_actions" class="statusbar_actions">
             <img class="statusbar_actions_action" id="button-screenrecord" src={require("../../../img/ui/nav-bar-rec.svg")}/>
@@ -24,8 +24,8 @@ export const StatusBar = ({state, switchSettings})  =>
 const IndicatorBattery = ({batteryLevel}) => 
     <img id="indicator-battery" class="statusbar_indicators_indicator" src={batteryLevelIcon(batteryLevel)}/>
 
-const IndicatorSignal = () =>
-    <img id="indicator-signal" class="statusbar_indicators_indicator" src={require("../../../img/ui/signal-0.svg")}/>
+const IndicatorSignal = ({signalLevel}) =>
+    <img id="indicator-signal" class="statusbar_indicators_indicator" src={signalLevelIcon(signalLevel)}/>
 
 
 const batteryLevelIcon = (batteryLevel) => {
@@ -39,6 +39,20 @@ const batteryLevelIcon = (batteryLevel) => {
         return require("../../../img/ui/battery-4.svg")
     } else {
         return require("../../../img/ui/battery-0.svg")
+    }
+}
+
+const signalLevelIcon = (signalLevel) => {
+    if (80 <= signalLevel==signalLevel < 85) {
+        return require("../../../img/ui/signal-1.svg")
+    } else if (85 <= signalLevel==signalLevel < 90) {
+        return require("../../../img/ui/signal-2.svg")
+    } else if (90 <= signalLevel==signalLevel < 95) {
+        return require("../../../img/ui/signal-3.svg")
+    } else if (signalLevel >= 95) {
+        return require("../../../img/ui/signal-4.svg")
+    } else {
+        return require("../../../img/ui/signal-0.svg")
     }
 }
     
