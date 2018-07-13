@@ -1,5 +1,4 @@
 // TODO: make this like serviceworker ???
-// separate ui and logic
 import { Sockets } from './sockets';
 
 export const telemetry = function(actions) {
@@ -26,18 +25,6 @@ export const telemetry = function(actions) {
     sockets.io.on('signal', function(signal) {
         telemetry_state.signal = signal;
         actions.telemetry.setSignalLevel(signal);
-
-        // if (signal > 95) {
-        //     $("#indicator-signal").attr("src", "client/img/ui/signal-4.svg");
-        // } else if (signal > 90) {
-        //     $("#indicator-signal").attr("src", "client/img/ui/signal-3.svg");
-        // } else if (signal > 85) {
-        //     $("#indicator-signal").attr("src", "client/img/ui/signal-2.svg");
-        // } else if (signal > 80) {
-        //     $("#indicator-signal").attr("src", "client/img/ui/signal-1.svg");
-        // } else {
-        //     $("#indicator-signal").attr("src", "client/img/ui/signal-0.svg");
-        // }
     });
     setInterval(function() {
         if (sockets.io.connected) {
