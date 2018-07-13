@@ -1,9 +1,6 @@
 // TODO: make this like serviceworker ???
-import { Sockets } from './sockets';
 
-export const telemetry = function(actions) {
-    let sockets = new Sockets();
-
+export const telemetry = function(actions, sockets) {
     sockets.io.on('battery', function(voltage) {
         voltage = voltage * 0.1 + 7.6; // voltage divider
         actions.telemetry.setBatteryLevel(voltage);
