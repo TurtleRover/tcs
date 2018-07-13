@@ -1,11 +1,11 @@
 import { h } from 'hyperapp'
 
 
-export const StatusBar = ({switchSettings})  => 
+export const StatusBar = ({state, switchSettings})  => 
     <section id="statusbar" class="statusbar">
         <img class="statusbar_logo" src={require("../../../img/ui/turtle-logo.svg")}/>
         <div class="statusbar_indicators">
-            <IndicatorBattery/>
+            <IndicatorBattery batteryLevel={state.batteryLevel}/>
             <IndicatorSignal/>
         </div>
         <div id="statusbar_actions" class="statusbar_actions">
@@ -21,8 +21,24 @@ export const StatusBar = ({switchSettings})  =>
         </div>
     </section>
 
-const IndicatorBattery = () => 
-    <img id="indicator-battery" class="statusbar_indicators_indicator" src={require("../../../img/ui/battery-0.svg")}/>
+const IndicatorBattery = ({batteryLevel}) => 
+    <img id="indicator-battery" class="statusbar_indicators_indicator" src={batteryLevelIcon(batteryLevel)}/>
 
 const IndicatorSignal = () =>
     <img id="indicator-signal" class="statusbar_indicators_indicator" src={require("../../../img/ui/signal-0.svg")}/>
+
+
+const batteryLevelIcon = (batteryLevel) => {
+    if (19.5 <= batteryLevel==batteryLevel < 21.5) {
+        return require("../../../img/ui/battery-1.svg")
+    } else if (21.5 <= batteryLevel==batteryLevel < 23) {
+        return require("../../../img/ui/battery-2.svg")
+    } else if (23 <= batteryLevel==batteryLevel < 24) {
+        return require("../../../img/ui/battery-3.svg")
+    } else if (batteryLevel >= 24) {
+        return require("../../../img/ui/battery-4.svg")
+    } else {
+        return require("../../../img/ui/battery-0.svg")
+    }
+}
+    

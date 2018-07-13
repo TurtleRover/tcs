@@ -22,8 +22,13 @@ const state = {
         value: 3000
     },
     settings: {
-      isVisible: false,
-      category: 'general'
+        isVisible: false,
+        category: 'general'
+    },
+    telemetry: {
+        batteryLevel: 0,
+        signalLevel: 0,
+        temperature: ""
     }
 }
 
