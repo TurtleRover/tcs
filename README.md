@@ -14,7 +14,7 @@ Also static files are served by Apache web server.
  * Working UART
  * Python and JavaScript requirements
 
-## How to install
+## How to build & install
  * Unpack archive to a directory which is served by Apache
  * Run `yarn install`
  * Run `npm run build`
