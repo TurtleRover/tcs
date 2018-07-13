@@ -24,14 +24,3 @@ Sockets.prototype.sendGripper = function(data) {
     this.io.emit('gripper', data);
 };
 
-Sockets.prototype.sendBattery = function() {
-    this.io.emit('battery');
-};
-
-Sockets.prototype.sendSignal = function() {
-    this.io.emit('signal');
-};
-
-Sockets.prototype.sendTemperature = function() {
-    this.io.emit('temperature');
-};
