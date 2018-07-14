@@ -1,12 +1,12 @@
-export const Helper = function() {};
+export const helper = {
+    arrayToHex: (arr) => {
+        var result = '';
+        var value;
 
-Helper.prototype.arrayToHex = function(arr) {
-    var result = '';
-    var value;
-
-    for (var i = 0; i < arr.length; i++) {
-        value = arr[i].toString(16);
-        result += (value.length === 1 ? '0' + value : value);
+        for (var i = 0; i < arr.length; i++) {
+            value = arr[i].toString(16);
+            result += (value.length === 1 ? '0' + value : value);
+        }
+        return result;
     }
-    return result;
 };
