@@ -1,11 +1,10 @@
 import { FrameBuilder } from './frameBuilder';
-import { Helper } from './utils/helper';
+import { helper } from '../utils/helper';
 
 
 export const Motors = function(sockets) { 
     this.sockets = sockets;
     this.frameBuilder = new FrameBuilder();
-    this.helper = new Helper();
 };
 
 
@@ -31,7 +30,7 @@ Motors.prototype.setFromKeyboard = function(movement) {
                 let frame = this.frameBuilder.motorsKeyboard(movement);
                 this.sockets.sendMotors(frame);
                 // Convert to readable form
-                console.log(this.helper.arrayToHex(this.frameBuilder.motorsArr));
+                console.log(helper.arrayToHex(this.frameBuilder.motorsArr));
             } else {
                 clearInterval(movement.interval);
             }
@@ -43,4 +42,4 @@ Motors.prototype.setFromKeyboard = function(movement) {
     } else {
         console.log("Connection not opened.");
     }
-}
+};
