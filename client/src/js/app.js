@@ -5,9 +5,11 @@ import view from './view'
 
 import withLogger from "./utils/logger";
 import { telemetry } from './telemetry';
-import { Motors } from './motors';
+
 import { Sockets } from './sockets';
 import { keyboard } from './controlkeyboard';
+import { Motors } from './core/motors';
+
 
 const main = withLogger(app)(state, actions, view, document.body)
 
@@ -21,7 +23,7 @@ document.onreadystatechange = function() {
 
 let sockets = new Sockets();
 
-telemetry(main, sockets);
+// telemetry(main, sockets);
 
 let motors = new Motors(sockets);
 keyboard(motors);
