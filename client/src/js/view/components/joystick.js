@@ -33,6 +33,7 @@ const joystick = (element, motors) => {
     manager.on('end', function(evt, nipple) {   
         console.log(evt);
         // nipple.off('start move end dir plain');
+        motors.stop();
     });
 
     const convertToArrOfDirections = (angle) => {
@@ -49,5 +50,4 @@ const joystick = (element, motors) => {
                 break;
         }
     }
-
   }
