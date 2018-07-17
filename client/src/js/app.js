@@ -28,6 +28,4 @@ let sockets = new Sockets();
 main.motors =  new Motors(sockets);
 keyboard(main.motors);
 
-console.log(main);
-
 
