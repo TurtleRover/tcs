@@ -17,8 +17,6 @@ const joystick = (element, motors) => {
     dataOnly: true
     });
     
-    let timer_id = 0;
-
     manager.on('start', function (evt, nipple) {
         console.log(evt);
 
@@ -27,13 +25,14 @@ const joystick = (element, motors) => {
     });
 
     let motorsThrottled = throttle((evt, data) => {
-        motors.set(Math.round(data.distance), convertToArrOfDirections(data.direction));
-        console.log(Math.round(data.distance), convertToArrOfDirections(data.direction));        
+        motors.set(treshold(data.force), convertToArrOfDirections(data.direction));
+        console.log(Math.round(data.force*100), convertToArrOfDirections(data.direction));        
     }, 100, { 'trailing': false });
+
+    let treshold = (force) => force >= 1 ? 100 : (force * 100).toFixed(0);
     
     manager.on('end', function(evt, nipple) {   
         console.log(evt);
-        clearInterval(timer_id);
         // nipple.off('start move end dir plain');
     });
 
