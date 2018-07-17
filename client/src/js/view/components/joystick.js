@@ -4,7 +4,7 @@ import {throttle} from 'lodash'
 
 export const Joystick = ({mode, motors}) =>
     <div class={(mode==='drive') ? 'joystick' : 'joystick joystick-hide'} oncreate={(el) => joystick(el, motors)}>
-        <img class="joystick_image" src={require("../../../img/ui/right-krzyz.svg")}/>
+        <img class='joystick_image' src={require('../../../img/ui/right-krzyz.svg')}/>
     </div>
 
 
@@ -19,14 +19,13 @@ const joystick = (element, motors) => {
     
     manager.on('start', function (evt, nipple) {
         console.log(evt);
-
         nipple.on('move', (evt, data) => motorsThrottled(evt, data));
-
     });
 
     let motorsThrottled = throttle((evt, data) => {
-        motors.set(treshold(data.force), convertToArrOfDirections(data.direction));
-        console.log(Math.round(data.force*100), convertToArrOfDirections(data.direction));        
+        if (!data.hasOwnProperty('direction')) { return; }
+        motors.set(treshold(data.force), convertToArrOfDirections(data.direction.angle));
+        console.log(Math.round(data.force*100), convertToArrOfDirections(data.direction.angle));        
     }, 100, { 'trailing': false });
 
     let treshold = (force) => force >= 1 ? 100 : (force * 100).toFixed(0);
@@ -36,20 +35,19 @@ const joystick = (element, motors) => {
         // nipple.off('start move end dir plain');
     });
 
-    const convertToArrOfDirections = (direction) => {
-      if (typeof direction !== "undefined" ) {
-        if (direction.angle === "up") {
-          return [0, 0, 0, 0];
-        } else if (direction.angle === "down") {
-          return [1, 1, 1, 1];
-        } else if (direction.angle === "left") {
-          return [1, 0, 1, 0];
-        } else if (direction.angle === "right") {
-          return [0, 1, 0, 1];
+    const convertToArrOfDirections = (angle) => {
+        switch (angle) {
+            case 'up':
+                return motors.direction.forward;
+            case 'down':
+                return motors.direction.backward;
+            case 'left':
+                return motors.direction.left;
+            case 'right':
+                return motors.direction.right;
+            default:
+                break;
         }
-      } else {
-        return [0, 0, 0, 0];
-      }
     }
 
   }

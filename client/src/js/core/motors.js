@@ -5,6 +5,13 @@ import { helper } from '../utils/helper';
 export const Motors = function(sockets) { 
     this.sockets = sockets;
     this.frameBuilder = new FrameBuilder();
+
+    this.direction = {
+        forward : [0, 0, 0, 0],
+        backward: [1, 1, 1, 1],
+        left: [1, 0, 1, 0],
+        right: [0, 1, 0, 1]
+    };
 };
 
 
