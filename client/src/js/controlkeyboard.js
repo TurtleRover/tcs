@@ -1,94 +1,93 @@
-
 import keyboardJS from 'keyboardjs';
 
-export const keyboard = function (motors) {
+export const keyboard = function(motors) {
 
     var intervalUp,
         intervalDown,
         intervalLeft,
         intervalRight;
+
     const UPDATE_INTERVAL = 100;
     const INC = 10;
+    const SPEED_LIMIT = 100;
 
-    var movement = {
-        type: "",
-        speed: 0,
-        interval: 0,
-        direction: [0,0,0,0]
-    };
+    var speed = 0;
+    var directions = [0, 0, 0, 0];
 
     // FORWARD
-    keyboardJS.bind('w', function (e) {
+    keyboardJS.bind('w', function(e) {
         e.preventRepeat();
-        console.log("Keyboard: UP");
-        movement.type = "run";
-        movement.direction = [0, 0, 0, 0];
-        intervalUp = setInterval(function () {
-            motors.setFromKeyboard(movement);
-            movement.speed = movement.speed + INC;
-            movement.interval = intervalUp;
+        console.log("[keyboard] UP");
+        directions = [0, 0, 0, 0];
+        intervalUp = setInterval(function() {
+            if (speed <= SPEED_LIMIT) {
+
+                motors.set(speed, directions);
+                console.log('[keyboard]', speed);
+                speed = speed + INC;
+            }
         }, UPDATE_INTERVAL);
-    }, function (e) {
+    }, function(e) {
         clearInterval(intervalUp);
-        movement.type = "stop";
-        movement.speed = 0;
+        speed = 0;
         motors.stop();
     });
 
     // BACKWARD
     keyboardJS.bind('s', function (e) {
         e.preventRepeat();
-        movement.type = "run";
-        movement.direction = [1, 1, 1, 1];
-        console.log("Keyboard: DOWN");
+        directions = [1, 1, 1, 1];
+        console.log("[keyboard] DOWN");
         intervalDown = setInterval(function () {
-            motors.setFromKeyboard(movement);
-            movement.speed = movement.speed + INC;
-            movement.interval = intervalDown;
+            if (speed <= SPEED_LIMIT) {
+
+                motors.set(speed, directions);
+                console.log('[keyboard]', speed);
+                speed = speed + INC;
+            }
         }, UPDATE_INTERVAL);
 
     }, function (e) {
         clearInterval(intervalDown);
-        movement.type = "stop";
-        movement.speed = 0;
+        speed = 0;
         motors.stop();
     });
 
-    // LEFT
-    keyboardJS.bind('a', function (e) {
-        e.preventRepeat();
-        movement.type = "run";
-        movement.direction = [1, 0, 1, 0];
-        console.log("Keyboard: LEFT");
-        intervalLeft = setInterval(function () {
-            motors.setFromKeyboard(movement);
-            movement.speed = movement.speed + INC;
-            movement.interval = intervalLeft;
-        }, UPDATE_INTERVAL);
+    // // LEFT
+    // keyboardJS.bind('a', function (e) {
+    //     e.preventRepeat();
+    //     movement.type = "run";
+    //     movement.direction = [1, 0, 1, 0];
+    //     console.log("Keyboard: LEFT");
+    //     intervalLeft = setInterval(function () {
+    //         motors.setFromKeyboard(movement);
+    //         movement.speed = movement.speed + INC;
+    //         movement.interval = intervalLeft;
+    //     }, UPDATE_INTERVAL);
 
-    }, function (e) {
-        clearInterval(intervalLeft);
-        movement.type = "stop";
-        movement.speed = 0;
-        motors.stop();
-    });
+    // }, function (e) {
+    //     clearInterval(intervalLeft);
+    //     movement.type = "stop";
+    //     movement.speed = 0;
+    //     motors.stop();
+    // });
 
-    // RIGHT
-    keyboardJS.bind('d', function (e) {
-        e.preventRepeat();
-        movement.type = "run";
-        movement.direction = [0, 1, 0, 1];
-        console.log("Keyboard: RIGHT");
-        intervalRight = setInterval(function () {
-            motors.setFromKeyboard(movement);
-            movement.speed = movement.speed + INC;
-            movement.interval = intervalRight;
-        }, UPDATE_INTERVAL);
+    // // RIGHT
+    // keyboardJS.bind('d', function (e) {
+    //     e.preventRepeat();
+    //     movement.type = "run";
+    //     movement.direction = [0, 1, 0, 1];
+    //     console.log("Keyboard: RIGHT");
+    //     intervalRight = setInterval(function () {
+    //         motors.setFromKeyboard(movement);
+    //         movement.speed = movement.speed + INC;
+    //         movement.interval = intervalRight;
+    //     }, UPDATE_INTERVAL);
 
-    }, function (e) {
-        clearInterval(intervalRight);
-        movement.type = "stop";
-        movement.speed = 0;
-        motors.stop();
-    });
+    // }, function (e) {
+    //     clearInterval(intervalRight);
+    //     movement.type = "stop";
+    //     movement.speed = 0;
+    //     motors.stop();
+    // });
 };

@@ -25,5 +25,9 @@ let sockets = new Sockets();
 
 // telemetry(main, sockets);
 
-let motors = new Motors(sockets);
-keyboard(motors);
+main.motors =  new Motors(sockets);
+keyboard(main.motors);
+
+console.log(main);
+
+

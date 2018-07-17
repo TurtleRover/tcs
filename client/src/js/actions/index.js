@@ -1,5 +1,5 @@
-import { telemetry } from "../telemetry";
-
+import nipplejs from 'nipplejs'
+ 
 const actions = {
   setBootScreenState: value => state => ({ showBootScreen: value }),
   setMode: value => state => ({ mode: value }),
@@ -13,7 +13,11 @@ const actions = {
     setBatteryLevel: value => state => ({ batteryLevel: value }),
     setSignalLevel: value => state => ({ signalLevel: value }),
     setTemperature: value => state => ({ temperature: value }),
-  }
+  },
+
+
+  motors: null
+  
 }
 
 export default actions

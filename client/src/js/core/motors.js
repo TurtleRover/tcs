@@ -23,23 +23,12 @@ Motors.prototype.stop = function() {
     } else console.log("Connection not opened.");
 };
 
-Motors.prototype.setFromKeyboard = function(movement) {
+Motors.prototype.set = function (speed, directions) {
     if (this.sockets.io.connected) {
-        if (movement.type == "run") {
-            if (movement.speed <= 100 && movement.speed >= -100) {
-                let frame = this.frameBuilder.motorsKeyboard(movement);
-                this.sockets.sendMotors(frame);
-                // Convert to readable form
-                console.log(helper.arrayToHex(this.frameBuilder.motorsArr));
-            } else {
-                clearInterval(movement.interval);
-            }
-
-        } else if (movement.type == "stop") {
-            clearInterval(movement.interval);
-            this.stop();
-        }
+        let frame = this.frameBuilder.motors(speed, directions);
+        console.log(helper.arrayToHex(this.frameBuilder.motorsArr));
+        this.sockets.sendMotors(frame);
     } else {
         console.log("Connection not opened.");
     }
-};
+}

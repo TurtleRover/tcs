@@ -12,15 +12,15 @@ export const FrameBuilder = function() {
 FrameBuilder.prototype.motor = function(value) {
     // Multiplying by this value should make possible to write directly to PWM
     // Current range is 0 - 127 with first bit as direction
+    // Gets 0-100 
     let k = 1.27;
     return Math.round(Math.abs(value * k) | (value & 0x80));
 };
 
-FrameBuilder.prototype.motors = function(motorsSpeed) {
-    this.motorsArr[0] = this.motor(motorsSpeed.motor_1); //	Left front
-    this.motorsArr[1] = this.motor(motorsSpeed.motor_2); //	Right front
-    this.motorsArr[2] = this.motor(motorsSpeed.motor_3); //	Left rear
-    this.motorsArr[3] = this.motor(motorsSpeed.motor_4); //	Right rear
+FrameBuilder.prototype.motors = function(speed, directions) {   
+    this.motorsArr.forEach ((motor, index) => {
+        this.motorsArr[index] = Math.abs(speed * 1.27) | (directions[index] << 7);
+    });
     return this.motorsBuf;
 };
 
@@ -29,7 +29,11 @@ FrameBuilder.prototype.motors = function(motorsSpeed) {
 
 FrameBuilder.prototype.motorKeyboard = function(value, motor_number) {
     let k = 1.27;
-    return Math.round(Math.abs(value.speed * k) | (value.direction[motor_number] << 7));
+    let speed = Math.abs(value.speed * k);
+    let result = Math.abs(value.speed * k) | (value.direction[motor_number] << 7);
+    console.log(speed, result.toString(2));
+    
+    return result;
 };
 
 FrameBuilder.prototype.motorsKeyboard = function(mov) {
