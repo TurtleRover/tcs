@@ -1,6 +1,6 @@
 import { h } from 'hyperapp'
 import nipplejs from 'nipplejs'
-
+import {throttle} from 'lodash'
 
 export const Joystick = ({mode, motors}) =>
     <div class={(mode==='drive') ? 'joystick' : 'joystick joystick-hide'} oncreate={(el) => joystick(el, motors)}>
@@ -17,17 +17,23 @@ const joystick = (element, motors) => {
     dataOnly: true
     });
     
-    manager.on('start', function(evt, nipple) {
-      console.log(evt);
-      nipple.on('move', function(evt, data) {
+    let timer_id = 0;
 
-          motors.set(Math.round(data.distance), convertToArrOfDirections(data.direction));
-          console.log(Math.round(data.distance), convertToArrOfDirections(data.direction));
-          
-
-      });
-    }).on('end', function(evt, nipple) {   
+    manager.on('start', function (evt, nipple) {
         console.log(evt);
+
+        nipple.on('move', (evt, data) => motorsThrottled(evt, data));
+
+    });
+
+    let motorsThrottled = throttle((evt, data) => {
+        motors.set(Math.round(data.distance), convertToArrOfDirections(data.direction));
+        console.log(Math.round(data.distance), convertToArrOfDirections(data.direction));        
+    }, 100, { 'trailing': false });
+    
+    manager.on('end', function(evt, nipple) {   
+        console.log(evt);
+        clearInterval(timer_id);
         // nipple.off('start move end dir plain');
     });
 
