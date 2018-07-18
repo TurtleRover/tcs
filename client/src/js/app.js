@@ -4,12 +4,7 @@ import state from './state'
 import view from './view'
 
 import withLogger from "./utils/logger";
-import { telemetry } from './telemetry';
-
-import { Sockets } from './sockets';
-import { keyboard } from './controlkeyboard';
-import { Motors } from './core/motors';
-
+import core from './core'
 
 const main = withLogger(app)(state, actions, view, document.body)
 
@@ -20,12 +15,4 @@ document.onreadystatechange = function() {
     }
 };
 
-
-let sockets = new Sockets();
-
-// telemetry(main, sockets);
-
-main.motors =  new Motors(sockets);
-keyboard(main.motors);
-
-
+core(main);

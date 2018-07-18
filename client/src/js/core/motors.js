@@ -1,10 +1,10 @@
-import { FrameBuilder } from './frameBuilder';
+import { Frame } from './frame';
 import { helper } from '../utils/helper';
 
 
 export const Motors = function(sockets) { 
     this.sockets = sockets;
-    this.frameBuilder = new FrameBuilder();
+    this.frame = new Frame();
 
     this.direction = {
         forward : [0, 0, 0, 0],
@@ -32,8 +32,8 @@ Motors.prototype.stop = function() {
 
 Motors.prototype.set = function (speed, directions) {
     if (this.sockets.io.connected) {
-        let frame = this.frameBuilder.motors(speed, directions);
-        console.log(helper.arrayToHex(this.frameBuilder.motorsArr));
+        let frame = this.frame.motors(speed, directions);
+        console.log(helper.arrayToHex(this.frame.motorsArr));
         this.sockets.sendMotors(frame);
     } else {
         console.log("Connection not opened.");
