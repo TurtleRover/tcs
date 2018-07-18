@@ -8,7 +8,7 @@ export const keyboard = function(motors) {
         intervalRight;
 
     const UPDATE_INTERVAL = 100;
-    const INC = 10;
+    const SPEED_STEP = 10;
     const SPEED_LIMIT = 100;
 
     var speed = 0;
@@ -22,7 +22,7 @@ export const keyboard = function(motors) {
 
                 motors.set(speed, motors.direction.forward);
                 console.log('[keyboard]', speed);
-                speed = speed + INC;
+                speed = speed + SPEED_STEP;
             }
         }, UPDATE_INTERVAL);
     }, function(e) {
@@ -40,7 +40,7 @@ export const keyboard = function(motors) {
 
                 motors.set(speed, motors.direction.backward);
                 console.log('[keyboard]', speed);
-                speed = speed + INC;
+                speed = speed + SPEED_STEP;
             }
         }, UPDATE_INTERVAL);
 
@@ -59,7 +59,7 @@ export const keyboard = function(motors) {
 
                 motors.set(speed, motors.direction.left);
                 console.log('[keyboard]', speed);
-                speed = speed + INC;
+                speed = speed + SPEED_STEP;
             }
         }, UPDATE_INTERVAL);
 
@@ -78,7 +78,7 @@ export const keyboard = function(motors) {
 
                 motors.set(speed, motors.direction.right);
                 console.log('[keyboard]', speed);
-                speed = speed + INC;
+                speed = speed + SPEED_STEP;
             }
         }, UPDATE_INTERVAL);
 
