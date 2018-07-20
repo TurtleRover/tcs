@@ -3,25 +3,25 @@ responsible for establishing video transmission using webrtc
 */
 
 var webrtc = (function () {
-    if(document.domain.includes("localhost")) {
+    if (document.domain.includes("localhost")) {
         console.log("in localhost camera is disabled");
-        setTimeout(function() {amplify.publish("webrtc->linux", "camera stream is ready")}, 1000);
-    }
-
-    else {
+        setTimeout(function () {
+            amplify.publish("webrtc->linux", "camera stream is ready")
+        }, 1000);
+    } else {
         /*
-        * 																		SUBSCRIBE to all topics
-        */
+         * 																		SUBSCRIBE to all topics
+         */
         amplify.subscribe("linux->webrtc", linuxMessageCallback);
         amplify.subscribe("ui->webrtc", uiMessageCallback);
 
         /*
-        * 																		CALLBACK functions
-        */
+         * 																		CALLBACK functions
+         */
         function linuxMessageCallback(message) {
             if (DEBUG) console.log("linuxMessageCallback: " + message);
 
-            switch(message) {
+            switch (message) {
                 case "start webrtc stream":
                     start();
                     break;
@@ -33,7 +33,7 @@ var webrtc = (function () {
         function uiMessageCallback(message) {
             if (DEBUG) console.log("uiMessageCallback: " + message);
 
-            switch(message) {
+            switch (message) {
                 case "start stop recording":
                     start_stop_record();
                     break;
@@ -42,9 +42,9 @@ var webrtc = (function () {
             }
         };
 
-        var signalling_server_hostname = location.hostname || "192.168.10.1";
-        var signalling_server_address = signalling_server_hostname + ':' + (location.port || (location.protocol === 'https:' ? 443 : 80));
-        var isFirefox = typeof InstallTrigger !== 'undefined';// Firefox 1.0
+        var signalling_server_hostname = location.hostname;
+        //var signalling_server_address = signalling_server_hostname + ':';// + (location.port || (location.protocol === 'https:' ? 443 : 80));
+        var isFirefox = typeof InstallTrigger !== 'undefined'; // Firefox 1.0
 
         var vid;
 
@@ -68,7 +68,7 @@ var webrtc = (function () {
         //RTCSessionDescription = window.mozRTCSessionDescription || window.RTCSessionDescription;
         //RTCIceCandidate = window.mozRTCIceCandidate || window.RTCIceCandidate;
         navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia;
-        var URL =  window.URL || window.webkitURL;
+        var URL = window.URL || window.webkitURL;
 
         function createPeerConnection() {
             try {
@@ -89,7 +89,7 @@ var webrtc = (function () {
 
             event.channel.onopen = function () {
                 console.log("Data Channel is open!");
-                //amplify.publish("webrtc->linux", "camera stream is ready");
+                amplify.publish("webrtc->linux", "camera stream is ready");
             };
 
             event.channel.onerror = function (error) {
@@ -114,7 +114,7 @@ var webrtc = (function () {
                     candidate: event.candidate.candidate
                 };
                 var command = {
-                    command_id: "addicecandidate",
+                    what: "addicecandidate",
                     data: JSON.stringify(candidate)
                 };
                 ws.send(JSON.stringify(command));
@@ -125,22 +125,23 @@ var webrtc = (function () {
 
         function onRemoteStreamAdded(event) {
             console.log("Remote stream added:", URL.createObjectURL(event.stream));
-            var remoteVideoElement = document.getElementById('remote-video');
+            var remoteVideoElement = document.getElementById('camera-video-img');
             remoteVideoElement.src = URL.createObjectURL(event.stream);
             remoteVideoElement.play();
             amplify.publish("webrtc->linux", "camera stream is ready");
         }
 
         function onRemoteStreamRemoved(event) {
-            var remoteVideoElement = document.getElementById('remote-video');
+            var remoteVideoElement = document.getElementById('camera-video-img');
             remoteVideoElement.src = '';
         }
 
         function start() {
             if ("WebSocket" in window) {
-                document.documentElement.style.cursor ='wait';
+                document.documentElement.style.cursor = 'wait';
 
                 var protocol = location.protocol === "https:" ? "wss:" : "ws:";
+                console.log('protocol:' + protocol);
                 ws = new WebSocket(protocol + '//' + document.location.hostname + ":8090" + '/stream/webrtc');
 
                 function offer(stream) {
@@ -149,25 +150,26 @@ var webrtc = (function () {
                         console.log("stream already added");
                         pc.addStream(stream);
                     }
+
                     var command;
 
-                    testExp = new RegExp('Android|webOS|iPhone|iPad|' + 'BlackBerry|Windows Phone|' + 'Opera Mini|IEMobile|Mobile' ,'i');
+                    testExp = new RegExp('Android|webOS|iPhone|iPad|' + 'BlackBerry|Windows Phone|' + 'Opera Mini|IEMobile|Mobile', 'i');
 
-                    if(testExp.test(navigator.userAgent)) {
+                    if (testExp.test(navigator.userAgent)) {
                         command = {
-                            command_id: "offer",
+                            what: "call",
                             options: {
                                 force_hw_vcodec: true,
                                 vformat: 30
                             }
                         };
-                    }
-                    else {
+                    } else {
                         command = {
-                            command_id: "offer",
+                            what: "call",
                             options: {
                                 force_hw_vcodec: true,
-                                vformat: 55
+                                vformat: 25,
+                                trickle_ice: true
                             }
                         };
                     }
@@ -216,11 +218,11 @@ var webrtc = (function () {
                                 }
                             );
 
-                            var request = {
+                            /*var request = {
                                 what: "generateIceCandidates"
                             };
                             console.log(request);
-                            ws.send(JSON.stringify(request));
+                            ws.send(JSON.stringify(request));*/
                             break;
 
                         case "answer":
@@ -234,14 +236,17 @@ var webrtc = (function () {
                             var candidates = JSON.parse(msg.data);
                             for (var i = 0; candidates && i < candidates.length; i++) {
                                 var elt = candidates[i];
-                                let candidate = new window.RTCIceCandidate({sdpMLineIndex: elt.sdpMLineIndex, candidate: elt.candidate});
+                                let candidate = new window.RTCIceCandidate({
+                                    sdpMLineIndex: elt.sdpMLineIndex,
+                                    candidate: elt.candidate
+                                });
                                 pc.addIceCandidate(candidate,
-                                        function () {
-                                            console.log("IceCandidate added: " + JSON.stringify(candidate));
-                                        },
-                                        function (error) {
-                                            console.error("addIceCandidate error: " + error);
-                                        }
+                                    function () {
+                                        console.log("IceCandidate added: " + JSON.stringify(candidate));
+                                    },
+                                    function (error) {
+                                        console.error("addIceCandidate error: " + error);
+                                    }
                                 );
                             }
                             document.documentElement.style.cursor = 'default';
@@ -254,7 +259,7 @@ var webrtc = (function () {
                         pc.close();
                         pc = null;
                     }
-                    document.documentElement.style.cursor ='default';
+                    document.documentElement.style.cursor = 'default';
                 };
 
                 ws.onerror = function (evt) {
@@ -298,7 +303,7 @@ var webrtc = (function () {
                 ws.close();
                 ws = null;
             }
-            document.documentElement.style.cursor ='default';
+            document.documentElement.style.cursor = 'default';
         }
 
         /*
@@ -313,25 +318,37 @@ var webrtc = (function () {
                 }
             } else {
                 stop_record();
-                setTimeout(function() { download(); }, 500);
+                setTimeout(function () {
+                    download();
+                }, 500);
             }
         }
 
         function startRecording(stream) {
             recordedBlobs = [];
-            var options = {mimeType: 'video/webm;codecs=vp9'};
+            var options = {
+                mimeType: 'video/webm;codecs=vp9'
+            };
             if (!MediaRecorder.isTypeSupported(options.mimeType)) {
                 console.log(options.mimeType + ' is not Supported');
-                options = {mimeType: 'video/webm;codecs=vp8'};
+                options = {
+                    mimeType: 'video/webm;codecs=vp8'
+                };
                 if (!MediaRecorder.isTypeSupported(options.mimeType)) {
                     console.log(options.mimeType + ' is not Supported');
-                    options = {mimeType: 'video/webm;codecs=h264'};
+                    options = {
+                        mimeType: 'video/webm;codecs=h264'
+                    };
                     if (!MediaRecorder.isTypeSupported(options.mimeType)) {
                         console.log(options.mimeType + ' is not Supported');
-                        options = {mimeType: 'video/webm'};
+                        options = {
+                            mimeType: 'video/webm'
+                        };
                         if (!MediaRecorder.isTypeSupported(options.mimeType)) {
                             console.log(options.mimeType + ' is not Supported');
-                            options = {mimeType: ''};
+                            options = {
+                                mimeType: ''
+                            };
                         }
                     }
                 }
@@ -347,7 +364,7 @@ var webrtc = (function () {
 
             recorder.onstop = handleStop;
             recorder.ondataavailable = handleDataAvailable;
-            recorder.onwarning = function(e){
+            recorder.onwarning = function (e) {
                 console.log('Warning: ' + e);
             };
             recorder.start();
@@ -373,14 +390,18 @@ var webrtc = (function () {
             vid = document.createElement('video');
             //vid.style.display = 'none';
 
-            var superBuffer = new Blob(recordedBlobs, {type: 'video/webm'});
+            var superBuffer = new Blob(recordedBlobs, {
+                type: 'video/webm'
+            });
             vid.src = URL.createObjectURL(superBuffer);
             document.body.appendChild(vid);
         }
 
         function download() {
             if (recordedBlobs !== undefined) {
-                var blob = new Blob(recordedBlobs, {type: 'video/webm'});
+                var blob = new Blob(recordedBlobs, {
+                    type: 'video/webm'
+                });
                 var url = window.URL.createObjectURL(blob);
                 var a = document.createElement('a');
                 a.style.display = 'none';
@@ -388,7 +409,7 @@ var webrtc = (function () {
                 a.download = 'video.webm';
                 document.body.appendChild(a);
                 a.click();
-                setTimeout(function() {
+                setTimeout(function () {
                     document.body.removeChild(a);
                     window.URL.revokeObjectURL(url);
                     document.body.removeChild(vid);
