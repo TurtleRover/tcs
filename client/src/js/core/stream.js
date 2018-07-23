@@ -15,10 +15,10 @@ Stream.prototype.start = function() {
 
     this.websocket = new WebSocket(this.url);
 
-    this.websocket.onopen = this.open();
-    // this.websocket.onmessage = this.message(event);
-    // this.websocket.onclose = this.close(event);
-    // this.websocket.onerror = this.error(event);
+    this.websocket.onopen = () => this.open();
+    this.websocket.onmessage = (event) => this.message(event);
+    this.websocket.onclose = (event) => this.close(event);
+    this.websocket.onerror =(event) => this.error(event);
 }
 
 Stream.prototype.createPeerConnection = function() {
@@ -64,15 +64,18 @@ Stream.prototype.createPeerConnection = function() {
 
 }
 
-Stream.prototype.offer = function(stream) {
+Stream.prototype.offer = function() {
     this.createPeerConnection();
-    if (stream) {
-        console.log("stream already added");
-        pc.addStream(stream);
-    }
+    // if (stream) {
+    //     console.log("stream already added");
+    //     this.peerConnection.addStream(stream);
+    // }
 
     var command;
 
+    console.log(navigator.userAgent);
+    
+    // TODO: delete? 
     let testExp = new RegExp('Android|webOS|iPhone|iPad|' + 'BlackBerry|Windows Phone|' + 'Opera Mini|IEMobile|Mobile', 'i');
 
     if (testExp.test(navigator.userAgent)) {
@@ -93,18 +96,18 @@ Stream.prototype.offer = function(stream) {
             }
         };
     }
-    console.log(this.websocket.readyState);
     this.websocket.send(JSON.stringify(command));
     console.log("offer(), command=" + JSON.stringify(command));
 }
 
 Stream.prototype.open = function() {
-    // audio_video_stream = null;
-    // this.offer();
-    console.log(this.websocket.readyState);
+    // audio_video_stream = null;    
+    this.offer();
+    console.log('[stream] state:', this.websocket.readyState);
 }
 
 Stream.prototype.message = function(event) {
+    
     var msg = JSON.parse(event.data);
     var what = msg.what;
     var data = msg.data;
@@ -112,11 +115,11 @@ Stream.prototype.message = function(event) {
 
     switch (what) {
         case "offer":
-            pc.setRemoteDescription(new window.RTCSessionDescription(JSON.parse(data)),
+            this.peerConnection.setRemoteDescription(new window.RTCSessionDescription(JSON.parse(data)),
                 function onRemoteSdpSuccess() {
                     console.log('onRemoteSdpSucces()');
-                    pc.createAnswer(function(sessionDescription) {
-                        pc.setLocalDescription(sessionDescription);
+                    this.peerConnection.createAnswer(function(sessionDescription) {
+                        this.peerConnection.setLocalDescription(sessionDescription);
                         var request = {
                             what: "answer",
                             data: JSON.stringify(sessionDescription)
@@ -163,7 +166,7 @@ Stream.prototype.message = function(event) {
                     sdpMLineIndex: elt.sdpMLineIndex,
                     candidate: elt.candidate
                 });
-                pc.addIceCandidate(candidate,
+                this.peerConnection.addIceCandidate(candidate,
                     function() {
                         console.log("IceCandidate added: " + JSON.stringify(candidate));
                     },
@@ -212,9 +215,9 @@ Stream.prototype.stop = function() {
     // }
     // stop_record();
     // document.getElementById('remote-video').src = '';
-    // if (pc) {
-    //     pc.close();
-    //     pc = null;
+    // if (this.peerConnection) {
+    //     this.peerConnection.close();
+    //     this.peerConnection = null;
     // }
     // if (ws) {
     //     ws.close();
