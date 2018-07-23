@@ -3,7 +3,6 @@ import { keyboard } from './keyboard';
 import { Motors } from './motors';
 import { telemetry } from './telemetry';
 import { Stream } from './stream'
-// import { webrtc } from './w';
 
 
 const core = (actions) => {
