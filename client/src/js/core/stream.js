@@ -8,6 +8,8 @@ export const Stream = function() {
     this.websocket = null;
     this.peerConnection = null;
     this.dataChannel = null;
+
+    this.iceCandidates = [];
 };
 
 Stream.prototype.start = function() {
@@ -68,18 +70,18 @@ Stream.prototype.createPeerConnection = function() {
 
     this.peerConnection.onaddstream = (event) => {
         console.log("[stream] remote stream added:", event.stream);
-        // let remoteVideoElement = document.getElementById('remote-video');
-        // remoteVideoElement.srcObject = event.stream;
-        // remoteVideoElement.play();
-        
+        let remoteVideoElement = document.getElementById('remote-video');
+        remoteVideoElement.srcObject = event.stream;
+        remoteVideoElement.play();
+
     }
 
     this.peerConnection.ontrack = (event) => {
         console.log("[stream] remote stream added:", event.stream);
-        let remoteVideoElement = document.getElementById('remote-video');
-        remoteVideoElement.srcObject = event.stream;
-        remoteVideoElement.play();
-        
+        // let remoteVideoElement = document.getElementById('remote-video');
+        // remoteVideoElement.srcObject = event.stream;
+        // remoteVideoElement.play();
+
     }
 
     this.peerConnection.onremovestream = () => console.log('[stream] remove');
@@ -128,6 +130,21 @@ Stream.prototype.open = function() {
     console.log('[stream] state:', this.websocket.readyState);
 }
 
+Stream.prototype.addIceCandidates = function () {
+    
+    this.iceCandidates.forEach((candidate) => {
+        this.peerConnection.addIceCandidate(candidate,
+            function() {
+                console.log("IceCandidate added: " + JSON.stringify(candidate));
+            },
+            function(error) {
+                console.error("addIceCandidate error: " + error);
+            }
+        );
+    });
+    this.iceCandidates = [];
+}
+
 Stream.prototype.message = function(event) {
 
     var msg = JSON.parse(event.data);
@@ -157,6 +174,23 @@ Stream.prototype.message = function(event) {
             console.error(msg.data);
             break;
 
+        case "iceCandidate": // when trickle is enabled
+            if (!msg.data) {
+                console.log("Ice Gathering Complete");
+                break;
+            }
+            var elt = JSON.parse(msg.data);
+            let candidate = new RTCIceCandidate({
+                sdpMLineIndex: elt.sdpMLineIndex,
+                candidate: elt.candidate
+            });
+            this.iceCandidates.push(candidate);
+            // if (remoteDesc)
+                this.addIceCandidates();
+            document.documentElement.style.cursor = 'default';
+            break;
+
+
         case "iceCandidates":
             var candidates = JSON.parse(msg.data);
             for (var i = 0; candidates && i < candidates.length; i++) {
@@ -165,14 +199,7 @@ Stream.prototype.message = function(event) {
                     sdpMLineIndex: elt.sdpMLineIndex,
                     candidate: elt.candidate
                 });
-                this.peerConnection.addIceCandidate(candidate,
-                    function() {
-                        console.log("IceCandidate added: " + JSON.stringify(candidate));
-                    },
-                    function(error) {
-                        console.error("addIceCandidate error: " + error);
-                    }
-                );
+                this.addIceCandidates();
             }
             document.documentElement.style.cursor = 'default';
             break;
@@ -184,24 +211,23 @@ Stream.prototype.message = function(event) {
 Stream.prototype._onRemoteSdpSuccess = function() {
     console.log('onRemoteSdpSucces()');
     this.peerConnection.createAnswer((sessionDescription) => {
-        this.peerConnection.setLocalDescription(sessionDescription);
-        let request = JSON.stringify({
-            what: "answer",
-            data: JSON.stringify(sessionDescription)
+            this.peerConnection.setLocalDescription(sessionDescription);
+            let request = JSON.stringify({
+                what: "answer",
+                data: JSON.stringify(sessionDescription)
+            });
+            console.log('[stream] sdp success', request);
+
+            this.websocket.send(request);
+
+        },
+        (error) => console.error(error), {
+            optional: [],
+            mandatory: {
+                OfferToReceiveAudio: true,
+                OfferToReceiveVideo: true
+            }
         });
-        console.log('[stream] sdp success', request);
-
-        this.websocket.send(request);
-
-    },
-    (error) => console.error(error), 
-    {
-        optional: [],
-        mandatory: {
-            OfferToReceiveAudio: true,
-            OfferToReceiveVideo: true
-        }
-    });
 }
 
 Stream.prototype._onRemoteSdpError = function(event) {
