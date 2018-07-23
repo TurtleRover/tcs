@@ -22,7 +22,20 @@ Stream.prototype.start = function() {
 }
 
 Stream.prototype.createPeerConnection = function() {
-    this.peerConnection = new window.RTCPeerConnection();
+    let peerConnectionConf = {
+        "iceServers": [{
+            "urls": ["stun:" + this.hostname + ":3478"]
+        }]
+    };
+
+    let peerConnectionOptions = {
+        optional: [
+            // Deprecated:
+            //{RtpDataChannels: false},
+            //{DtlsSrtpKeyAgreement: true}
+        ]
+    };
+    this.peerConnection = new window.RTCPeerConnection(peerConnectionConf, peerConnectionOptions);
 
     this.peerConnection.onicecandidate = (event) => {
         if (event.candidate) {
@@ -55,9 +68,18 @@ Stream.prototype.createPeerConnection = function() {
 
     this.peerConnection.onaddstream = (event) => {
         console.log("[stream] remote stream added:", event.stream);
-        // let remoteVideoElement = document.getElementById('camera-video');
+        // let remoteVideoElement = document.getElementById('remote-video');
         // remoteVideoElement.srcObject = event.stream;
         // remoteVideoElement.play();
+        
+    }
+
+    this.peerConnection.ontrack = (event) => {
+        console.log("[stream] remote stream added:", event.stream);
+        let remoteVideoElement = document.getElementById('remote-video');
+        remoteVideoElement.srcObject = event.stream;
+        remoteVideoElement.play();
+        
     }
 
     this.peerConnection.onremovestream = () => console.log('[stream] remove');
@@ -132,7 +154,7 @@ Stream.prototype.message = function(event) {
             break;
 
         case "message":
-            alert(msg.data);
+            console.error(msg.data);
             break;
 
         case "iceCandidates":
@@ -156,6 +178,8 @@ Stream.prototype.message = function(event) {
             break;
     }
 }
+
+
 
 Stream.prototype._onRemoteSdpSuccess = function() {
     console.log('onRemoteSdpSucces()');
