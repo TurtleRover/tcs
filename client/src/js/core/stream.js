@@ -18,7 +18,7 @@ Stream.prototype.start = function() {
     this.websocket.onopen = () => this.open();
     this.websocket.onmessage = (event) => this.message(event);
     this.websocket.onclose = (event) => this.close(event);
-    this.websocket.onerror =(event) => this.error(event);
+    this.websocket.onerror = (event) => this.error(event);
 }
 
 Stream.prototype.createPeerConnection = function() {
@@ -55,7 +55,7 @@ Stream.prototype.createPeerConnection = function() {
 
     this.peerConnection.onaddstream = (event) => {
         console.log("[stream] remote stream added:", event.stream);
-        // let remoteVideoElement = document.getElementById('camera-video-img');
+        // let remoteVideoElement = document.getElementById('camera-video');
         // remoteVideoElement.srcObject = event.stream;
         // remoteVideoElement.play();
     }
@@ -74,7 +74,7 @@ Stream.prototype.offer = function() {
     var command;
 
     console.log(navigator.userAgent);
-    
+
     // TODO: delete? 
     let testExp = new RegExp('Android|webOS|iPhone|iPad|' + 'BlackBerry|Windows Phone|' + 'Opera Mini|IEMobile|Mobile', 'i');
 
@@ -107,7 +107,7 @@ Stream.prototype.open = function() {
 }
 
 Stream.prototype.message = function(event) {
-    
+
     var msg = JSON.parse(event.data);
     var what = msg.what;
     var data = msg.data;
@@ -115,33 +115,10 @@ Stream.prototype.message = function(event) {
 
     switch (what) {
         case "offer":
-            this.peerConnection.setRemoteDescription(new window.RTCSessionDescription(JSON.parse(data)),
-                function onRemoteSdpSuccess() {
-                    console.log('onRemoteSdpSucces()');
-                    this.peerConnection.createAnswer(function(sessionDescription) {
-                        this.peerConnection.setLocalDescription(sessionDescription);
-                        var request = {
-                            what: "answer",
-                            data: JSON.stringify(sessionDescription)
-                        };
-                        ws.send(JSON.stringify(request));
-                        console.log(request);
-
-                    }, function(error) {
-                        alert("Failed to createAnswer: " + error);
-
-                    }, {
-                        optional: [],
-                        mandatory: {
-                            OfferToReceiveAudio: true,
-                            OfferToReceiveVideo: true
-                        }
-                    });
-                },
-                function onRemoteSdpError(event) {
-                    alert('Failed to set remote description (unsupported codec on this browser?): ' + event);
-                    stop();
-                }
+            this.peerConnection.setRemoteDescription(
+                new window.RTCSessionDescription(JSON.parse(data)),
+                () => this._onRemoteSdpSuccess(),
+                () => this._onRemoteSdpError()
             );
 
             /*var request = {
@@ -178,6 +155,34 @@ Stream.prototype.message = function(event) {
             document.documentElement.style.cursor = 'default';
             break;
     }
+}
+
+Stream.prototype._onRemoteSdpSuccess = function() {
+    console.log('onRemoteSdpSucces()');
+    this.peerConnection.createAnswer((sessionDescription) => {
+        this.peerConnection.setLocalDescription(sessionDescription);
+        let request = JSON.stringify({
+            what: "answer",
+            data: JSON.stringify(sessionDescription)
+        });
+        console.log('[stream] sdp success', request);
+
+        this.websocket.send(request);
+
+    },
+    (error) => console.error(error), 
+    {
+        optional: [],
+        mandatory: {
+            OfferToReceiveAudio: true,
+            OfferToReceiveVideo: true
+        }
+    });
+}
+
+Stream.prototype._onRemoteSdpError = function(event) {
+    console.error('Failed to set remote description (unsupported codec on this browser?):', event);
+    // stop();
 }
 
 Stream.prototype.close = function(event) {
