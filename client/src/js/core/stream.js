@@ -54,9 +54,9 @@ Stream.prototype.createPeerConnection = function() {
     }
 
     this.peerConnection.onaddstream = (event) => {
-        console.log("[stream] remote stream added:", URL.createObjectURL(event.stream));
+        console.log("[stream] remote stream added:", event.stream);
         // let remoteVideoElement = document.getElementById('camera-video-img');
-        // remoteVideoElement.src = URL.createObjectURL(event.stream);
+        // remoteVideoElement.srcObject = event.stream;
         // remoteVideoElement.play();
     }
 
