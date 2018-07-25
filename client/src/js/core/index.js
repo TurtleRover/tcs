@@ -1,18 +1,21 @@
 import { Sockets } from './sockets';
 import { keyboard } from './keyboard';
 import { Motors } from './motors';
+import { Manipulator } from './manipulator';
 import { telemetry } from './telemetry';
 import { Stream } from './stream'
 
 
 const core = (actions) => {
     let sockets = new Sockets();
-    let stream = 
+
     actions.motors = new Motors(sockets);
     actions.stream = new Stream();
+    // actions.manipulator = new Manipulator(sockets);
+
     keyboard(actions.motors);
 
-    // telemetry(main, sockets);
+    // telemetry(actions, sockets);
 }
 
 export default core;

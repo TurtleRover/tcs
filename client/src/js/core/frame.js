@@ -1,6 +1,9 @@
 export const Frame = function() {
     this.motorsBuf = new ArrayBuffer(4);
     this.motorsArr = new Uint8Array(this.motorsBuf);
+    
+    this.manipulatorBuf = new ArrayBuffer(4);
+    this.manipulatorArr = new Uint8Array(this.manipulatorBuf);
 
     this.gripperBuf = new ArrayBuffer(2);
     this.gripperArr = new Uint8Array(this.gripperBuf);
@@ -33,18 +36,17 @@ Frame.prototype.gripper = function(gripperPosition) {
 
 Frame.prototype.manipulator = function(axis_1, axis_2) {
     console.log("Mani position: " + axis_1 + "\t" + axis_2);
-    this.motorsArr[0] = (axis_1 >> 8) & 0xFF;
-    this.motorsArr[1] = axis_1 & 0xFF;
-    this.motorsArr[2] = (axis_2 >> 8) & 0xFF;
-    this.motorsArr[3] = axis_2 & 0xFF;
-    return this.motorsBuf;
+    this.manipulatorArr[0] = (axis_1 >> 8) & 0xFF;
+    this.manipulatorArr[1] = axis_1 & 0xFF;
+    this.manipulatorArr[2] = (axis_2 >> 8) & 0xFF;
+    this.manipulatorArr[3] = axis_2 & 0xFF;
+    return this.manipulatorBuf;
 };
 
-Frame.prototype.battery = function(axis_1, axis_2) {
-    console.log("Mani position: " + axis_1 + "\t" + axis_2);
-    this.motorsArr[0] = (axis_1 >> 8) & 0xFF;
-    this.motorsArr[1] = axis_1 & 0xFF;
-    this.motorsArr[2] = (axis_2 >> 8) & 0xFF;
-    this.motorsArr[3] = axis_2 & 0xFF;
-    return this.motorsBuf;
-};
+// Frame.prototype.battery = function(axis_1, axis_2) {
+//     this.motorsArr[0] = (axis_1 >> 8) & 0xFF;
+//     this.motorsArr[1] = axis_1 & 0xFF;
+//     this.motorsArr[2] = (axis_2 >> 8) & 0xFF;
+//     this.motorsArr[3] = axis_2 & 0xFF;
+//     return this.motorsBuf;
+// };

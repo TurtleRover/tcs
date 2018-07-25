@@ -66,7 +66,19 @@ const actions = {
     }
   },
 
-  stream: null
+  stream: null,
+  manipulator: {
+      axis1: {
+          setValue: val => state => ({value: val})
+      },
+      axis2: {
+        setValue: val => state => ({value: val})
+    },
+  },
+
+
+  log: (value) => console.log(value)
+  
 }
 
 export default actions

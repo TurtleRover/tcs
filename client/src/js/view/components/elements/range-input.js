@@ -4,7 +4,14 @@ export const RangeInput = ({state, name, labelMin, labelMax, setValue})  =>
     <div class="range">
         <RangeName name={name}/>
         <RangeLabels labelMin={labelMin} labelMax={labelMax}/>
-        <input type="range" class="range_input" id="axis1-slider-input" max={state.max} min={state.min} step={state.step} value={state.value} />
+        <input type="range" class="range_input" 
+            max={state.max} 
+            min={state.min} 
+            step={state.step} 
+            value={state.value}
+            // oninput={(event) => action(event.srcElement.value)}
+            onchange={(event) => setValue(event.srcElement.value)}
+            />
     </div>
 
 const RangeName = ({name}) => {
