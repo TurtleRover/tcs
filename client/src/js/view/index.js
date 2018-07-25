@@ -18,7 +18,7 @@ const view = (state, actions) => (
             <div class="crosshair"></div>
             <div class="dots"></div>
             <div class="controls-box-right">
-                <Manipulator mode={state.mode} state={state.manipulator} manipulator={actions.manipulator}/>
+                <Manipulator mode={state.mode} state={state.manipulator} action={actions.manipulator}/>
                 <Joystick mode={state.mode} joystick={actions.joystick} motors={actions.motors}/>
             </div>
             <div class="controls-box-left">

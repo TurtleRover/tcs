@@ -1,6 +1,6 @@
 import { h } from 'hyperapp'
 
-export const RangeInput = ({state, name, labelMin, labelMax, setValue})  => 
+export const RangeInput = ({state, name, labelMin, labelMax, onchange, oninput})  => 
     <div class="range">
         <RangeName name={name}/>
         <RangeLabels labelMin={labelMin} labelMax={labelMax}/>
@@ -9,8 +9,8 @@ export const RangeInput = ({state, name, labelMin, labelMax, setValue})  =>
             min={state.min} 
             step={state.step} 
             value={state.value}
-            // oninput={(event) => action(event.srcElement.value)}
-            onchange={(event) => setValue(event.srcElement.value)}
+            oninput={(event) => oninput(event.srcElement.value)}
+            onchange={(event) => onchange(event.srcElement.value)}
             />
     </div>
 

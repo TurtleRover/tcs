@@ -68,6 +68,7 @@ const actions = {
 
   stream: null,
   manipulator: {
+      m: null,
       axis1: {
           setValue: val => state => ({value: val})
       },

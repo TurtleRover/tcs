@@ -11,7 +11,7 @@ const core = (actions) => {
 
     actions.motors = new Motors(sockets);
     actions.stream = new Stream();
-    // actions.manipulator = new Manipulator(sockets);
+    actions.manipulator.m = new Manipulator(sockets);
 
     keyboard(actions.motors);
 
