@@ -7,11 +7,11 @@ import { Stream } from './stream'
 
 const core = (actions) => {
     let sockets = new Sockets();
-    let stream = new Stream();
+    let stream = 
     actions.motors = new Motors(sockets);
+    actions.stream = new Stream();
     keyboard(actions.motors);
 
-    stream.start();
     // telemetry(main, sockets);
 }
 

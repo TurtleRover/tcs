@@ -1,5 +1,6 @@
 import nipplejs from 'nipplejs'
 import {throttle} from 'lodash'
+import { Stream } from '../core/stream';
 
 const actions = {
   setBootScreenState: value => state => ({ showBootScreen: value }),
@@ -63,7 +64,9 @@ const actions = {
                 break;
         }
     }
-  }
+  },
+
+  stream: null
 }
 
 export default actions
