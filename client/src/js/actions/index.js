@@ -38,7 +38,7 @@ const actions = {
     let motorsThrottled = throttle((evt, data) => {
         if (!data.hasOwnProperty('direction')) { return; }
         motors.set(treshold(data.force), convertToArrOfDirections(data.direction.angle));
-        console.log(Math.round(data.force*100), convertToArrOfDirections(data.direction.angle));        
+        console.log(treshold(data.force), convertToArrOfDirections(data.direction.angle));        
     }, 100, { 'trailing': false });
 
     let treshold = (force) => force >= 1 ? 100 : (force * 100).toFixed(0);
