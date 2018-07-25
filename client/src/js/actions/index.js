@@ -21,14 +21,14 @@ const actions = {
   motors: null,
   
 
-  joystick: ({element, motors}) => {
+  joystick: ({el, motors}) => {
     
     let manager = nipplejs.create({
-    zone: element,
+    zone: el,
     mode: 'static',
     position: {left: '50%', top: '50%'},
-    size: element.clientHeight,
-    dataOnly: true
+    size: el.clientHeight,
+    // dataOnly: true
     });
     
     manager.on('start', function (evt, nipple) {
