@@ -9,16 +9,17 @@ export const keyboard = function(motors) {
 
     const UPDATE_INTERVAL = 100;
     const SPEED_STEP = 10;
-    const SPEED_LIMIT = 100;
+    const SPEED_MAX = 100;
+    const SPEED_MIN = 60;
 
-    var speed = 0;
+    var speed = SPEED_MIN;
 
     // FORWARD
     keyboardJS.bind('w', function(e) {
         e.preventRepeat();
         console.log("[keyboard] UP");
         intervalUp = setInterval(function() {
-            if (speed <= SPEED_LIMIT) {
+            if (speed <= SPEED_MAX) {
 
                 motors.set(speed, motors.direction.forward);
                 console.log('[keyboard]', speed);
@@ -27,7 +28,7 @@ export const keyboard = function(motors) {
         }, UPDATE_INTERVAL);
     }, function(e) {
         clearInterval(intervalUp);
-        speed = 0;
+        speed = SPEED_MIN;
         motors.stop();
     });
 
@@ -36,7 +37,7 @@ export const keyboard = function(motors) {
         e.preventRepeat();
         console.log("[keyboard] DOWN");
         intervalDown = setInterval(function () {
-            if (speed <= SPEED_LIMIT) {
+            if (speed <= SPEED_MAX) {
 
                 motors.set(speed, motors.direction.backward);
                 console.log('[keyboard]', speed);
@@ -46,7 +47,7 @@ export const keyboard = function(motors) {
 
     }, function (e) {
         clearInterval(intervalDown);
-        speed = 0;
+        speed = SPEED_MIN;
         motors.stop();
     });
 
@@ -55,7 +56,7 @@ export const keyboard = function(motors) {
         e.preventRepeat();
         console.log("[keyboard] LEFT");
         intervalLeft = setInterval(function () {
-            if (speed <= SPEED_LIMIT) {
+            if (speed <= SPEED_MAX) {
 
                 motors.set(speed, motors.direction.left);
                 console.log('[keyboard]', speed);
@@ -65,7 +66,7 @@ export const keyboard = function(motors) {
 
     }, function (e) {
         clearInterval(intervalLeft);
-        speed = 0;
+        speed = SPEED_MIN;
         motors.stop();
     });
 
@@ -74,7 +75,7 @@ export const keyboard = function(motors) {
         e.preventRepeat();
         console.log("[keyboard] RIGHT");
         intervalRight = setInterval(function () {
-            if (speed <= SPEED_LIMIT) {
+            if (speed <= SPEED_MAX) {
 
                 motors.set(speed, motors.direction.right);
                 console.log('[keyboard]', speed);
@@ -84,7 +85,7 @@ export const keyboard = function(motors) {
 
     }, function (e) {
         clearInterval(intervalRight);
-        speed = 0;
+        speed = SPEED_MIN;
         motors.stop();
     });
 };
