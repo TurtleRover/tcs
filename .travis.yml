@@ -19,7 +19,7 @@ script:
   - pip3 install -r requirements.txt
   - yarn install
   - npm run build
-  - TURTLE_VERSION = $(turtle -v)
+  - TURTLE_VERSION = $(./turtle -v)
   - zip -r tcs-$TURTLE_VERSION.zip . -x node_modules/\* .git/\* .cache/\*
 
 branches:
