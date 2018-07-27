@@ -16,11 +16,10 @@ before_install:
 
 
 script:
-  - pip3 install -r requirements.txt
+  # - pip3 install -r requirements.txt
   - yarn install
   - npm run build
-  - TURTLE_VERSION = $(./turtle -v)
-  - zip -r tcs-$TURTLE_VERSION.zip . -x node_modules/\* .git/\* .cache/\*
+  - zip -r tcs-$(./turtle -v).zip . -x node_modules/\* .git/\* .cache/\*
 
 branches:
   only:
