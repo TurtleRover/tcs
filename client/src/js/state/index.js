@@ -14,13 +14,14 @@ const state = {
             step: 10,
             value: 3400
         },
+        gripper: {
+            min: 2400,
+            max: 3600,
+            step: 10,
+            value: 3000
+        },
     },
-    gripper: {
-        min: 2400,
-        max: 3600,
-        step: 10,
-        value: 3000
-    },
+    
     settings: {
         isVisible: false,
         category: 'general'

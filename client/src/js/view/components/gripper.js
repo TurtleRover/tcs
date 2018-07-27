@@ -2,9 +2,16 @@ import { h } from 'hyperapp'
 import { RangeInput } from "./elements/range-input";
 
 
-export const Gripper = ({state}) => 
+export const Gripper = ({state, action}) => 
     <div class="gripperControl">
-        <RangeInput text='' state={state} labelMax={IconGripperOpen} labelMin={IconGripperClose}/>
+        <RangeInput 
+            name=''
+            state={state} 
+            labelMax={IconGripperOpen} 
+            labelMin={IconGripperClose}
+            oninput={(value) => action.m.setGripper(value)} 
+            onchange={action.gripper.setValue}/>
+
     </div>
 
 const IconGripperOpen = () =>

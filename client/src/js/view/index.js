@@ -22,7 +22,7 @@ const view = (state, actions) => (
                 <Joystick mode={state.mode} joystick={actions.joystick} motors={actions.motors}/>
             </div>
             <div class="controls-box-left">
-                <Gripper state={state.gripper}/>
+                <Gripper state={state.manipulator.gripper} action={actions.manipulator}/>
                 <ModeChooser mode={state.mode} setMode={actions.setMode}/>
             </div>
             <Stream stream={actions.stream}/>
