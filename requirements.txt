@@ -21,7 +21,6 @@ psutil==5.4.3
 pyasn1==0.1.9
 pycrypto==2.6.1
 PyGithub==1.39
-pygobject==3.22.0
 PyJWT==1.6.1
 pyserial==3.4
 python-apt==1.1.0b5
