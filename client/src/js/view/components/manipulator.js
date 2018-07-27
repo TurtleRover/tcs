@@ -17,4 +17,4 @@ export const Manipulator = ({mode, state, action})  =>
             onchange={action.axis2.setValue}/>
     </div>
 
-const setManipulator = throttle((axis1, axis2, action) => action.m.set(axis1, axis2), 100, { 'trailing': false });
+const setManipulator = throttle((axis1, axis2, action) => action.m.setAxes(axis1, axis2), 100, { 'trailing': false });
