@@ -16,7 +16,7 @@ before_install:
 
 
 script:
-  # - pip3 install -r requirements.txt
+  - pip3 install -r requirements.txt
   - yarn install
   - npm run build
   - zip -r tcs-$(./turtle -v).zip . -x node_modules/\* .git/\* .cache/\*
@@ -25,10 +25,11 @@ branches:
   only:
     - hyperapp
 
-# deploy:
-#   provider: releases
-#   api_key: $GITHUB_TOKEN
-#   file: *.zip
-#   skip_cleanup: true
-#   on:
-#     tags: true
+deploy:
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  file: *.zip
+  skip_cleanup: true
+  on:
+    branch: master
+    tags: true
