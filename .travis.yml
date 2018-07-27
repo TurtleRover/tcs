@@ -1,0 +1,16 @@
+language: python, node_js
+python:
+  - 3.5
+
+env:
+  - NODE_VERSION="8.11.3"
+
+before_install:
+  - nvm install $NODE_VERSION
+
+script:
+  - pip3 install -r requirements.txt
+
+branches:
+  only:
+    - hyperapp
