@@ -17,6 +17,10 @@ Also static files are served by Apache web server.
 ## How to install
  * Unpack archive with prebuilt frontend to a directory which is served by Apache
 
+## How to run
+ * Run ./turtle
+ * Open in browser http://*.*.*.*/client/dist
+
 ## How to build
  * Run `yarn install`
  * Run `npm run build`
