@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DEFAULT_COMMAND="sudo /usr/bin/python3 /home/pi/Turtle-Rover-Mission-Control/server/server.py"
+DEFAULT_COMMAND="sudo /usr/bin/python3 ./server/server.py"
 case "$1" in
     -v) exec $DEFAULT_COMMAND "-v"
         ;;
