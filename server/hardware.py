@@ -24,12 +24,6 @@ class Hardware():
         print (frame.gripper(payload))
         self.uart.send(frame.gripper(payload))
 
-    def setCameraPosition(self, payload):
-        pass
-
-    def setCameraParams(self, payload):
-        pass
-
     def getBattery(self):
         self.uart.send(frame.battery())
         status = self.uart.serial.read(1)
@@ -42,3 +36,10 @@ class Hardware():
     def getTemperature(self):
         f = os.popen('vcgencmd measure_temp | grep -ohP "=[0-9]*" | cut -c 2-')
         return f.read()
+
+    def getFirmwareVersion(self):
+        print (frame.firmware_ver())
+        return '0.0.0'
+        # self.uart.send(frame.firmware_ver())
+        # firmaware_version = self.uart.serial.read(1)
+        # return int.from_bytes(firmaware_version, byteorder='big', signed=False)

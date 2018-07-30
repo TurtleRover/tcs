@@ -20,7 +20,7 @@ async def connect(sid, environ):
     logger.info("connected %s", sid)
     await sio.emit('response', {
         'ws_server_ver' : version_info,
-        'firmware_ver' : '0.0.0',
+        'firmware_ver' : hardware.getFirmwareVersion(),
         'wifi_dongle' : 'Unavailable'
     })
 
@@ -31,17 +31,17 @@ async def motors(sid, payload):
     await sio.emit('response', "motors set")
 
 @sio.on('manipulator')
-async def motors(sid, payload):
+async def manipulator(sid, payload):
     hardware.setManipulator(payload)
     await sio.emit('response', 'manipulator set')
 
 @sio.on('gripper')
-async def motors(sid, payload):
+async def gripper(sid, payload):
     hardware.setGripper(payload)
     await sio.emit('response', 'gripper set')
 
 @sio.on('battery')
-async def motors(sid):
+async def battery(sid):
     battery_status =  hardware.getBattery()
     await sio.emit('battery', battery_status)
 
@@ -51,7 +51,7 @@ async def signal(sid):
     await sio.emit('signal', signal_strength)
 
 @sio.on('temperature')
-async def signal(sid):
+async def temperature(sid):
     temperature =  hardware.getTemperature()
     await sio.emit('temperature', temperature)
 

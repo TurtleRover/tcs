@@ -3,14 +3,24 @@ import sys
 import time
 import os
 
-sys.path.append(os.path.join(os.path.dirname(
-    os.path.abspath(__file__)), os.path.pardir))
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.pardir))
 
-#	Updates Motors PWM values
 MOTORS_PREFIX = 0x10  # Set all motors
 GRIPPER_PREFIX = 0x94
 MANIPULATOR_PREFIX = 0x84
+FIRMWARE_VER_PREFIX = 0x99
 POSTFIX = [0x0D, 0x0A]
+
+def firmware_ver():
+    command = bytearray()
+    command.append(FIRMWARE_VER_PREFIX)
+    command.append(0x00)
+    command.append(0x00)
+    command.append(0x00)
+    command.append(0x00)
+    command.append(0x0D)
+    command.append(0x0A)
+    return command
 
 
 def motors(payload):
@@ -33,8 +43,6 @@ def battery():
     return command
 
 #	Set servo values
-
-
 def gripper(payload):
     command = bytearray()
     command.append(GRIPPER_PREFIX)
@@ -45,19 +53,7 @@ def gripper(payload):
     return command
 
 
-def setNewCameraPosition(msb, lsb):
-    command = [0xA4]
-    command.append(msb)
-    command.append(lsb)
-    command.append(0x00)
-    command.append(0x00)
-    command.append(0x0D)
-    command.append(0x0A)
-    sendSerial(command)
-
 #	Set servo values
-
-
 def manipulator(payload):
     command = bytearray()
     command.append(MANIPULATOR_PREFIX)
