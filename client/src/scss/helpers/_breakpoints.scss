@@ -1,0 +1,32 @@
+@mixin small {
+    @media screen and (min-device-width: 320px) {
+        @content;
+    }
+}
+@mixin small2x {
+    @media only screen and (min-resolution: 2dppx) and (min-device-width: 320px) {
+        @content;
+    }
+}
+@mixin medium {
+    @media (min-width: 900px) {
+        @content;
+    }
+}
+
+@mixin medium2x {
+    @media only screen and (min-resolution: 2dppx) and (min-device-width: 900px) {
+        @content;
+    }
+}
+
+@mixin big {
+    @media (min-width: 1200px) and (max-width: 1799px) {
+        @content;
+    }
+}
+@mixin very-big {
+    @media (min-width: 1800px) {
+        @content;
+    }
+}

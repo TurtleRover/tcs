@@ -1,0 +1,19 @@
+.mode-chooser {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    @include small {
+        height: 10vw;
+    }
+
+    @include small2x {
+        height: 10vw * 2;
+    }
+
+    @include medium {
+        height: 5vw;
+    }
+
+
+}

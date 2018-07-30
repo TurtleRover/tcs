@@ -1,0 +1,30 @@
+.crosshair {
+    position: absolute;
+    display: block;
+    height: 300px;
+    width: 300px;
+    background-image: url("../img/ui/crosshair.svg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    @include vertical-align();
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+
+    @include small {
+        height: 150px;
+        width: 150px;
+    }
+
+    @include small2x {
+        height: 150px;
+        width: 150px;
+    }
+
+
+    @include medium {
+        height: 300px;
+        width: 300px;
+    }
+}

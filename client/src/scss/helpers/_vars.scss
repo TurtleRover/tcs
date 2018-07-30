@@ -1,0 +1,34 @@
+/* Primary colors */
+$grey_0: #f4f4f6;
+$grey_1: #f0eeef;
+$grey_2: #888888;
+$grey_3: #333333;
+$grey_4: #262626;
+$background-color: #000000;
+$light_green: #7fffa0;
+$green: #22b14c;
+
+/* Main Font */
+$font: LatoWeb;
+$font-size: 13pt;
+$font-color: #ffffff;
+$font-weight: 400;
+$letter-spacing: 0.075em;
+$line-height: 1.65em;
+
+/* Log Font */
+$log-font: monospace;
+$log-font-size: 9pt;
+$log-line-height: 1.5;
+
+/* Statusbar */
+$statusbar-height-small: 34px;
+$statusbar-height-medium: 68px; 
+
+/* Menu */
+$menubar-color: white;
+$menubar-height: 2px;
+$menubar-width: 25px;
+$nav-background: $background-color;
+$nav-color: white;
+$z-nav-toggle: 2;

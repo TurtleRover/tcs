@@ -1,0 +1,42 @@
+.settings {
+	background-color: $background-color;
+	position: absolute;
+	z-index: 2;
+	right: 0;
+	top: 0;
+	display: flex;
+    &_categories {
+        list-style: none;
+        margin: 0;
+		padding: 0;
+		width: 30%;
+		border-right: 1px solid $grey_4;
+		&_category {
+			text-transform: uppercase;
+			font-size: 24px;
+			padding: 25px;
+
+			&-selected {
+				background-color: $grey_4;
+			}
+		}
+	}
+
+	&_content {
+		padding: 25px;
+	}
+	
+    @include small {
+        padding-top: $statusbar-height-small;
+	}
+	
+    @include medium {
+		padding-top: $statusbar-height-medium;
+		width: 60vw;
+		height: calc(100vh - #{$statusbar-height-medium});
+	}
+	
+	&-hide {
+		display: none;
+	}
+}

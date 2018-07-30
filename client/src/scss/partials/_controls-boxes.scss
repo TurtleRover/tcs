@@ -1,0 +1,49 @@
+.controls-box-left {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-flow: column;
+    background: $background-color;
+    min-width: 250px;
+
+    @include small {
+        width: 40vw;
+    }
+
+    @include small2x {
+        width: 40vw * 2;
+    }
+
+    @include medium {
+        width: 20vw;
+    }
+
+    @include medium2x {
+        width: 20vw * 2;
+    }
+}
+
+.controls-box-right {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-flow: column;
+    background: $background-color;
+
+    @include small {
+        width: 30vw;
+        height: 30vw;
+    }
+
+    @include small2x {
+        width: 30vw * 2;
+        height: 30vw * 2;
+    }
+
+    @include medium {
+        width: 25vw;
+        height: 25vw;
+    }
+}

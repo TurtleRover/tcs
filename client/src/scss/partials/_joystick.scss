@@ -1,0 +1,32 @@
+.joystick {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    // background: $background-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include small {
+        width: 30vw;
+        height: 30vw;
+    }
+
+    @include small2x {
+        width: 30vw * 2;
+        height: 30vw * 2;
+    }
+
+    @include medium {
+        width: 25vw;
+        height: 25vw;
+    }
+
+    &_image {
+        width: 80%;
+        height: auto;
+    }
+
+    &-hide {
+        visibility: hidden;
+    }
+}

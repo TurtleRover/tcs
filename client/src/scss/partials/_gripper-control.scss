@@ -1,0 +1,25 @@
+.gripperControl {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    &_icons {
+        position: relative;
+        display: flex;
+        flex-flow: row;
+        justify-content: space-between;
+        &_icon {
+            margin: 20px 10px 15px;
+            @include small {
+                height: 34px;
+            }
+
+            @include small2x {
+                height: 34px * 2;
+            }
+
+            @include medium {
+                height: 34px;
+            }
+        }
+    }
+}

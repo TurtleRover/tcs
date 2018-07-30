@@ -1,0 +1,35 @@
+language: python
+python:
+  - '3.5'
+
+env:
+  - NODE_VERSION='8.11.3'
+
+addons:
+  apt:
+    update: true
+    packages:
+      - python3-pip
+
+before_install:
+  - nvm install $NODE_VERSION
+
+
+script:
+  - pip3 install -r requirements.txt
+  - yarn install
+  - npm run build
+  - zip -r tcs-$(./turtle -v).zip . -x node_modules/\* .git/\* .cache/\*
+
+branches:
+  only:
+    - hyperapp
+
+deploy:
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  file: *.zip
+  skip_cleanup: true
+  on:
+    branch: master
+    tags: true
