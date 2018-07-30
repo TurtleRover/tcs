@@ -1,3 +1,5 @@
+sudo: required
+
 language: python
 python:
   - '3.5'
@@ -19,16 +21,13 @@ script:
   - pip3 install -r requirements.txt
   - yarn install
   - npm run build
-  - zip -r tcs-$(./turtle -v).zip . -x node_modules/\* .git/\* .cache/\*
-
-branches:
-  only:
-    - hyperapp
+  - zip -r tcs-$TRAVIS_TAG.zip . -x node_modules/\* .git/\* .cache/\*
 
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
-  file: *.zip
+  file: '*.zip'
+  file_glob: true
   skip_cleanup: true
   on:
     branch: master
