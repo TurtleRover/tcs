@@ -8,8 +8,7 @@ from version import version_info
 logger = logname()
 
 def start_server():
-    logger.info(
-        'Starting Turtle Control System... [PID:%s PPID:%s]', os.getpid(), os.getppid())
+    logger.info('Starting Turtle Control System... [PID:%s PPID:%s]', os.getpid(), os.getppid())
     kill()
     logger.info('Starting new server instance...')
     # logger.info('Battery: %s', frame.readBatteryVoltage())
