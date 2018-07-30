@@ -21,7 +21,7 @@ script:
   - pip3 install -r requirements.txt
   - yarn install
   - npm run build
-  - zip -r tcs-$(./turtle -v).zip . -x node_modules/\* .git/\* .cache/\*
+  - zip -r tcs-$TRAVIS_TAG.zip . -x node_modules/\* .git/\* .cache/\*
 
 deploy:
   provider: releases
