@@ -21,10 +21,6 @@ script:
   - npm run build
   - zip -r tcs-$(./turtle -v).zip . -x node_modules/\* .git/\* .cache/\*
 
-branches:
-  only:
-    - hyperapp
-
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
