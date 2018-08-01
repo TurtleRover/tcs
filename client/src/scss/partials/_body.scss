@@ -8,7 +8,7 @@ body {
   letter-spacing: $letter-spacing;
   line-height: $line-height;
   min-height: 100%;
-  cursor: url("../img/cursor.png") 12 12, url("../img/cursor.cur") 12 12, auto;
+  overflow: auto;
 
   -webkit-tap-highlight-color: transparent; /* for remove highlight */
 }
