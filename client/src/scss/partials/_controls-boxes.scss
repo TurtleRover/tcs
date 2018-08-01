@@ -31,6 +31,7 @@
     display: flex;
     flex-flow: column;
     background: $background-color;
+    z-index: 1;
 
     @include small {
         width: 30vw;
