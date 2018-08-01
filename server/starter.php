@@ -1,5 +1,5 @@
 <?php
 
-exec("../turtle");
+exec("tcs");
 
 ?>
