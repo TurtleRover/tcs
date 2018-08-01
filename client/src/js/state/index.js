@@ -23,8 +23,8 @@ const state = {
     },
     
     settings: {
-        isVisible: false,
-        category: 'general'
+        isVisible: true,
+        category: 'manipulator'
     },
     telemetry: {
         batteryLevel: 0,

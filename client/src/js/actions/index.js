@@ -70,7 +70,9 @@ const actions = {
     manipulator: {
         m: null,
         axis1: {
-            setValue: val => state => ({value: val})
+            setValue: val => state => ({value: val}),
+            incMax: step => state => ({max: state.max + step}),
+            decMax: step => state => ({max: state.max - step})
         },
         axis2: {
             setValue: val => state => ({value: val})
