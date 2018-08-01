@@ -16,3 +16,8 @@ document.onreadystatechange = function() {
 };
 
 core(main);
+
+// This disables bouncing
+// https://bugs.webkit.org/show_bug.cgi?id=182521
+// https://stackoverflow.com/a/50856621/1589989
+window.addEventListener("touchmove", (event) => event.preventDefault(), {passive: false} );
