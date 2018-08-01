@@ -1,26 +1,26 @@
 {
   "short_name": "Turtle",
-  "name": "Turtle Rover Mission Control",
+  "name": "Turtle Control Software",
   "icons": [
     {
-      "src": "client/img/icon/launcher-1x.png",
+      "src": "img/icon/launcher-1x.png",
       "type": "image/png",
       "sizes": "48x48"
     },
     {
-      "src": "client/img/icon/launcher-2x.png",
+      "src": "img/icon/launcher-2x.png",
       "type": "image/png",
       "sizes": "96x96"
     },
     {
-      "src": "client/img/icon/launcher-4x.png",
+      "src": "img/icon/launcher-4x.png",
       "type": "image/png",
       "sizes": "192x192"
     }
   ],
   "start_url": "index.html?launcher=true",
   "background_color": "#000000",
-  "display": "standalone",
+  "display": "fullscreen",
   "orientation": "landscape",
   "theme_color": "#000000"
 }
