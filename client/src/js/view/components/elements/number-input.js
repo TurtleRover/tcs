@@ -8,6 +8,8 @@ export const NumberInput = ({label, value, step, inc, dec})  =>
             type="number" 
             placeholder={value}
             step={step}
+            min="0"
+            max="999"
             />
 
         <button 

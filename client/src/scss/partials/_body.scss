@@ -9,6 +9,8 @@ body {
   line-height: $line-height;
   min-height: 100%;
   cursor: url("../img/cursor.png") 12 12, url("../img/cursor.cur") 12 12, auto;
+
+  -webkit-tap-highlight-color: transparent; /* for remove highlight */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -18,4 +20,11 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1em;
     margin: 0 0 1em 0;
     text-transform: uppercase;
+}
+
+button {
+  outline-style:none;
+  &:-moz-focusring {
+    outline: none;
+  }
 }
