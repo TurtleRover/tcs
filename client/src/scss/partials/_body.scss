@@ -11,6 +11,17 @@ body {
   overflow: auto;
 
   -webkit-tap-highlight-color: transparent; /* for remove highlight */
+  user-select: none;
+
+  -webkit-user-callout: none;
+  -webkit-touch-callout: none;
+}
+
+input, textarea {    
+  user-select: text;
+  -webkit-user-select: text;
+  -webkit-user-callout: default;
+  -webkit-touch-callout: default;
 }
 
 h1, h2, h3, h4, h5, h6 {
