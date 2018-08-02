@@ -30,5 +30,19 @@ export const SettingsManipulator = ({state, actions}) =>
             step={state.manipulator.axis2.step}
             inc={actions.manipulator.axis2.incMin}
             dec={actions.manipulator.axis2.decMin}/>
+
+        <NumberInput 
+            label={'Gripper max value'} 
+            value={state.manipulator.gripper.max} 
+            step={state.manipulator.gripper.step}
+            inc={actions.manipulator.gripper.incMax}
+            dec={actions.manipulator.gripper.decMax}/>
+
+        <NumberInput 
+            label={'Gripper min value'} 
+            value={state.manipulator.gripper.min} 
+            step={state.manipulator.gripper.step}
+            inc={actions.manipulator.gripper.incMin}
+            dec={actions.manipulator.gripper.decMin}/>
     </div>
 
