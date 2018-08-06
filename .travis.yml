@@ -29,6 +29,7 @@ deploy:
   file: '*.zip'
   file_glob: true
   skip_cleanup: true
+  name: $TRAVIS_TAG
   on:
     branch: master
     tags: true
