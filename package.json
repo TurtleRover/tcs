@@ -1,6 +1,6 @@
 {
   "name": "tcs",
-  "version": "0.12",
+  "version": "0.12.1",
   "description": "Turtle Control Software",
   "main": "index.js",
   "scripts": {

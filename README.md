@@ -16,11 +16,12 @@ Also static files are served by Apache web server.
 
 ## How to install
  * Unpack archive with prebuilt frontend to a directory which is served by Apache
+ * Install Python dependencies: run `sudo pip3 -r requirements.txt` in _tcs_ directory
  * Symlink tcs script: `sudo ln -sf /home/pi/tcs/tcs /usr/bin/tcs`
 
 ## How to run
  * Run `tcs`
- * Open in browser http://*.*.*.*/client/dist
+ * Open in browser http://\*.\*.\*.\*/client/dist
 
 ## How to build
  * Run `yarn install`
