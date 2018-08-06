@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DEFAULT_COMMAND="sudo /usr/bin/python3 ./server/server.py"
+DEFAULT_COMMAND="sudo /usr/bin/python3 $HOME/tcs/server/server.py"
 case "$1" in
     -v) exec $DEFAULT_COMMAND "-v"
         ;;

@@ -8,7 +8,20 @@ body {
   letter-spacing: $letter-spacing;
   line-height: $line-height;
   min-height: 100%;
-  cursor: url("../img/cursor.png") 12 12, url("../img/cursor.cur") 12 12, auto;
+  overflow: auto;
+
+  -webkit-tap-highlight-color: transparent; /* for remove highlight */
+  user-select: none;
+
+  -webkit-user-callout: none;
+  -webkit-touch-callout: none;
+}
+
+input, textarea {    
+  user-select: text;
+  -webkit-user-select: text;
+  -webkit-user-callout: default;
+  -webkit-touch-callout: default;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -18,4 +31,11 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1em;
     margin: 0 0 1em 0;
     text-transform: uppercase;
+}
+
+button {
+  outline-style:none;
+  &:-moz-focusring {
+    outline: none;
+  }
 }

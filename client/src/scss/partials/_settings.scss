@@ -24,14 +24,21 @@
 
 	&_content {
 		padding: 25px;
+		width: 70%;
 	}
 	
     @include small {
-        padding-top: $statusbar-height-small;
+		padding-top: $statusbar-height-small;
+		width: 100vw;
 	}
 	
     @include medium {
 		padding-top: $statusbar-height-medium;
+		width: 75vw;
+		height: calc(100vh - #{$statusbar-height-medium});
+	}
+
+	@include big {
 		width: 60vw;
 		height: calc(100vh - #{$statusbar-height-medium});
 	}

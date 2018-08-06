@@ -1,0 +1,60 @@
+.numberInput {
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+    width: 100%;
+    padding:10px 0;
+    box-sizing: border-box;
+
+    &_label {
+        text-transform: uppercase;
+        padding: 10px;
+    }
+
+    &_input {
+        border: 2px solid $green;
+        background-color: $green;
+        color: #000;
+        min-width: 50px;
+        padding: 10px 0 10px 10px;
+        border-radius: 0;
+        -moz-appearance: textfield;
+        font-weight: bold;
+        -webkit-appearance: none;       
+
+
+        &::-webkit-input-placeholder {
+            color: #000;
+        }
+
+        &::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    }
+
+    &_inc {
+        border: 2px solid $green;
+        border-left: 0;
+        background-color: transparent;
+        color: $green;
+        padding: 10px;
+        width: 52px;
+        // font-weight: bold;
+       
+    }
+
+    &_dec {
+        padding: 10px;
+        border: 2px solid $green;
+        border-left: 0;
+        background-color: transparent;
+        color: $green;
+        width: 52px;
+        // font-weight: bold;
+    }
+}

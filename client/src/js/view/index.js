@@ -14,7 +14,7 @@ const view = (state, actions) => (
         <BootScreen state={state.showBootScreen}/>
         <div id="wrapper" class="wrapper">
             <StatusBar state={state.telemetry} switchSettings={actions.settings.setVisibility}/>
-            <Settings state={state.settings} actions={actions.settings}/>
+            <Settings state={state} actions={actions}/>
             <div class="crosshair"></div>
             <div class="dots"></div>
             <div class="controls-box-right">

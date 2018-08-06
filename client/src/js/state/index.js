@@ -1,4 +1,4 @@
-const state = {
+let state = {
     showBootScreen: true,
     mode: 'drive',
     manipulator: {
@@ -23,14 +23,14 @@ const state = {
     },
     
     settings: {
-        isVisible: false,
-        category: 'general'
+        isVisible: true,
+        category: 'manipulator'
     },
     telemetry: {
         batteryLevel: 0,
         signalLevel: 0,
         temperature: ""
     }
-}
+};
 
-export default state
+export default state;
