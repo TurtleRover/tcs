@@ -4,7 +4,7 @@
     bottom: 0;
     display: flex;
     flex-flow: column;
-    background: $background-color;
+    background: rgba($background-color, 0.6);
     min-width: 250px;
 
     @include small {
@@ -30,7 +30,7 @@
     bottom: 0;
     display: flex;
     flex-flow: column;
-    background: $background-color;
+    background: rgba($background-color, 0.6);
     z-index: 1;
 
     @include small {
