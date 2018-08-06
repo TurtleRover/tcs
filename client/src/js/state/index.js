@@ -1,4 +1,12 @@
-const state = {
+// import localforage from "localforage";
+
+// localforage.config({
+//     name: 'TCS',
+//     storeName: 'state'
+// });
+
+
+let state = {
     showBootScreen: true,
     mode: 'drive',
     manipulator: {
@@ -31,6 +39,14 @@ const state = {
         signalLevel: 0,
         temperature: ""
     }
-}
+};
 
-export default state
+// localforage.setItem('global', state).then(function (value) {
+//     // Do other things once the value has been saved.
+//     console.log('LocalForage SET', value);
+// }).catch(function(err) {
+//     // This code runs if there were any errors
+//     console.error(err);
+// });
+
+export default state;

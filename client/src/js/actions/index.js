@@ -1,14 +1,30 @@
 import nipplejs from 'nipplejs'
-import {throttle} from 'lodash'
-import { Stream } from '../core/stream';
+import {throttle, zipObjectDeep} from 'lodash'
+
+let save = (prefix, state) => {
+    let key = Object.keys(state);    
+    if (prefix) { prefix = prefix + '.'; }
+    localStorage.setItem(prefix + key, JSON.stringify(state[key]));
+    return state;
+}
 
 const actions = {
+    restoreState: v => state => {
+        var props = Object.keys(localStorage)[0];
+        let zipped = zipObjectDeep([props], [JSON.parse(localStorage[props])]);
+        Object.assign(state, zipped);
+      
+        console.log('Restore', props, zipped);
+        console.log(state);
+        
+    },
+
     setBootScreenState: value => state => ({ showBootScreen: value }),
-    setMode: value => state => ({ mode: value }),
+    setMode: value => state => save('', { mode: value }),
 
     settings: {
-        setVisibility: value => state => ({ isVisible: !state.isVisible }),
-        setVisibleCategory: value => state => ({ category: value })
+        setVisibility: value => state => save('settings', { isVisible: !state.isVisible }),
+        setVisibleCategory: value => state => save('settings', {category: value }),
     },
 
     telemetry: {
@@ -16,7 +32,6 @@ const actions = {
         setSignalLevel: value => state => ({ signalLevel: value }),
         setTemperature: value => state => ({ temperature: value }),
     },
-
 
     motors: null,
   
@@ -70,25 +85,25 @@ const actions = {
     manipulator: {
         m: null,
         axis1: {
-            setValue: val => state => ({value: val}),
-            incMax: step => state => ({max: state.max + step}),
-            decMax: step => state => ({max: state.max - step}),
-            incMin: step => state => ({min: state.min + step}),
-            decMin: step => state => ({min: state.min - step})
+            setValue: val => state =>  save('manipulator.axis1',{value: val}),
+            incMax: step => state => save('manipulator.axis1', {max: state.max + step}),
+            decMax: step => state => save('manipulator.axis1', {max: state.max - step}),
+            incMin: step => state => save('manipulator.axis1', {min: state.min + step}),
+            decMin: step => state => save('manipulator.axis1', {min: state.min - step})
         },
         axis2: {
-            setValue: val => state => ({value: val}),
-            incMax: step => state => ({max: state.max + step}),
-            decMax: step => state => ({max: state.max - step}),
-            incMin: step => state => ({min: state.min + step}),
-            decMin: step => state => ({min: state.min - step})
+            setValue: val => state => save('manipulator.axis2', {value: val}),
+            incMax: step => state => save('manipulator.axis2', {max: state.max + step}),
+            decMax: step => state => save('manipulator.axis2', {max: state.max - step}),
+            incMin: step => state => save('manipulator.axis2', {min: state.min + step}),
+            decMin: step => state => save('manipulator.axis2', {min: state.min - step})
         },
         gripper: {
-            setValue: val => state => ({value: val}),
-            incMax: step => state => ({max: state.max + step}),
-            decMax: step => state => ({max: state.max - step}),
-            incMin: step => state => ({min: state.min + step}),
-            decMin: step => state => ({min: state.min - step})
+            setValue: val => state => save('manipulator.gripper', {value: val}),
+            incMax: step => state => save('manipulator.gripper', {max: state.max + step}),
+            decMax: step => state => save('manipulator.gripper', {max: state.max - step}),
+            incMin: step => state => save('manipulator.gripper', {min: state.min + step}),
+            decMin: step => state => save('manipulator.gripper', {min: state.min - step})
         }
     },
 
