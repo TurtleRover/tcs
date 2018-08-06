@@ -1,5 +1,5 @@
 import nipplejs from 'nipplejs'
-import {throttle, zipObjectDeep} from 'lodash'
+import {throttle, zipObjectDeep, merge} from 'lodash'
 
 let save = (prefix, state) => {
     let key = Object.keys(state);    
@@ -10,13 +10,13 @@ let save = (prefix, state) => {
 
 const actions = {
     restoreState: v => state => {
-        var props = Object.keys(localStorage)[0];
-        let zipped = zipObjectDeep([props], [JSON.parse(localStorage[props])]);
-        Object.assign(state, zipped);
-      
-        console.log('Restore', props, zipped);
-        console.log(state);
-        
+        let props = Object.keys(localStorage);
+        props.forEach((prop) => {
+            let zipped = zipObjectDeep([prop], [JSON.parse(localStorage[prop])]);
+            merge(state, zipped);
+            console.log('Restore', prop, zipped);
+        });
+        console.log('State after restore', state);
     },
 
     setBootScreenState: value => state => ({ showBootScreen: value }),
