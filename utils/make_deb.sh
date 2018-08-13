@@ -7,7 +7,7 @@ fpm --input-type dir \
 	--vendor "Kell ideas Ltd." \
 	--url "some url" \
 	--license "MIT" \
-	--version "0.12.1" \
+	--version "0.12.2" \
 	--iteration 1 \
 	--architecture all \
 	--deb-no-default-config-files \
