@@ -20,7 +20,7 @@ fpm --input-type dir \
 	--depends "python3 (>= 3.5.3-1)" \
 	--depends "apache2" \
 	--prefix /opt/turtle/tcs \
-	--description "Turtle Rover Control Software"
-	--after-install after-install.sh
-	--after-remove after-remove.sh
+	--description "Turtle Rover Control Software" \
+	--after-install utils/after-install.sh \
+	--after-remove utils/after-remove.sh \
 	.
