@@ -22,7 +22,7 @@ install:
 
 script:
   - yarn build
-  - sh scripts/make_deb.sh
+  - sh utils/make_deb.sh
 
 deploy:
   provider: releases
