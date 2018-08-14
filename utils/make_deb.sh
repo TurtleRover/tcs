@@ -3,12 +3,12 @@
 fpm --input-type dir \
 	--output-type deb \
 	--maintainer "Kell ideas Ltd. <contact@turtlerover.com>" \
-	--name "tcs" \
+	--name "turtlerover-tcs" \
 	--vendor "Kell ideas Ltd." \
-	--url "some url" \
 	--license "MIT" \
+	--url "https://github.com/TurtleRover/tcs" \
 	--version "0.12.2" \
-	--iteration 1 \
+	--iteration 2 \
 	--architecture all \
 	--deb-no-default-config-files \
 	--exclude node_modules \
@@ -16,10 +16,9 @@ fpm --input-type dir \
     --exclude .cache \
 	--deb-dist stretch \
 	--verbose \
-	--url "https://github.com/TurtleRover/tcs" \
 	--depends "python3 (>= 3.5.3-1)" \
 	--depends "apache2" \
-	--prefix /opt/turtle/tcs \
+	--prefix /opt/turtlerover/tcs \
 	--description "Turtle Rover Control Software" \
 	--after-install utils/after-install.sh \
 	--after-remove utils/after-remove.sh \
