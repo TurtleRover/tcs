@@ -10,7 +10,7 @@ fpm --input-type dir \
 	--license "MIT" \
 	--url "https://github.com/TurtleRover/tcs" \
 	--version "0.12.2" \
-	--iteration 6 \
+	--iteration 7 \
 	--architecture all \
 	--deb-no-default-config-files \
 	--exclude node_modules \
@@ -20,7 +20,9 @@ fpm --input-type dir \
 	--verbose \
 	--depends "python3 (>= 3.5.3-1)" \
 	--depends "apache2" \
-	--depends "wiringpi" \
+	--depends "wiringpi" \	
+	--depends "libapache2-mod-php" \
+	--depends "php" \
 	--prefix /opt/turtlerover/tcs \
 	--description "Turtle Rover Control Software" \
 	--after-install utils/after-install.sh \
