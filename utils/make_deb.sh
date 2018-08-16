@@ -20,7 +20,7 @@ fpm --input-type dir \
 	--verbose \
 	--depends "python3 (>= 3.5.3-1)" \
 	--depends "apache2" \
-	--depends "wiringpi" \	
+	--depends "wiringpi" \
 	--depends "libapache2-mod-php" \
 	--depends "php" \
 	--prefix /opt/turtlerover/tcs \
