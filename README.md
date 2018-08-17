@@ -34,18 +34,17 @@ Also static files are served by Apache web server.
  * Apache web server to serve static files
  * uv4l to send video stream
  * Working UART
- * Python and JavaScript requirements
+ * Python requirements
 
 ## How to install
- * Unpack archive with prebuilt frontend to a directory which is served by Apache
- * Install Python dependencies: run `sudo pip3 -r requirements.txt` in _tcs_ directory
- * Symlink tcs script: `sudo ln -sf /home/pi/tcs/tcs /usr/bin/tcs`
+ * [Download latest package!](https://github.com/TurtleRover/tcs/releases)
+ * `sudo apt install ./turtlerover-tcs_\*_all.deb`
 
 ## How to run
- * Run `tcs`
- * Open in browser http://\*.\*.\*.\*/client/dist
+ * Open in browser http://\*.\*.\*.\*/client/dist 
 
 ## How to build
  * Run `yarn install`
  * Run `npm run build`
+ * Run `utils/make_deb.sh`
 
