@@ -37,8 +37,8 @@ Also static files are served by Apache web server.
  * Python requirements
 
 ## How to install
- * [Download latest package!](https://github.com/TurtleRover/tcs/releases)
- * `sudo apt install ./turtlerover-tcs_\*_all.deb`
+ * [Download latest package](https://github.com/TurtleRover/tcs/releases)
+ * `sudo apt install ./turtlerover-tcs_*_all.deb`
 
 ## How to run
  * Open in browser http://\*.\*.\*.\*/client/dist 
