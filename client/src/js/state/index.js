@@ -23,7 +23,7 @@ let state = {
     },
     
     settings: {
-        isVisible: true,
+        isVisible: false,
         category: 'manipulator'
     },
     telemetry: {
