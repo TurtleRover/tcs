@@ -21,7 +21,7 @@ async def connect(sid, environ):
     await sio.emit('response', {
         'ws_server_ver' : version_info,
         'firmware_ver' : hardware.getFirmwareVersion(),
-        'wifi_dongle' : 'Unavailable'
+        'wifi_dongle' : hardware.getWirelessAdapterInfo()
     })
 
 
