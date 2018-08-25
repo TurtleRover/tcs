@@ -1,11 +1,14 @@
 import io from "socket.io-client";
 
-export const Sockets = function() { 
+export const Sockets = function(actions) { 
     this.io = io.connect('http://' + document.domain + ':' + 5000, {
         transports: ['websocket']
     });
     this.io.on('connect', function() {
         console.info("[sockets] Connection established via WebSockets");
+    });
+    this.io.on('connected', function(msg) {
+        actions.setSystemInfo(msg);
     });
     this.io.on('response', function(msg) {
         console.info("[sockets] Response:", msg);

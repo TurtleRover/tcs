@@ -7,7 +7,7 @@ import { Stream } from './stream'
 
 
 const core = (actions) => {
-    let sockets = new Sockets();
+    let sockets = new Sockets(actions);
 
     actions.motors = new Motors(sockets);
     actions.stream = new Stream();

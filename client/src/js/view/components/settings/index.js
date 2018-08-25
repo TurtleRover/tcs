@@ -29,7 +29,7 @@ const SettingsContent = ({state, actions}) => {
         case 'debug':
             return <SettingsDebug/>
         case 'about':
-            return <SettingsAbout/>
+            return <SettingsAbout state={state}/>
         default:
             return <SettingsGeneral/>
     }

@@ -4,6 +4,7 @@ from link_quality import Signal
 import asyncio
 import os
 import pyudev
+import glob
 
 class Hardware():
     def __init__(self):
@@ -54,3 +55,6 @@ class Hardware():
             if external_wlan_model is not None:
                 return external_wlan_model
         return None
+
+    def getCameraInfo(self):
+        return glob.glob("/dev/video*")

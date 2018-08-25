@@ -19,6 +19,8 @@ const actions = {
         console.log('State after restore', state);
     },
 
+    setSystemInfo: value => state => ({system_info: value}),
+
     setBootScreenState: value => state => ({ showBootScreen: value }),
     setMode: value => state => save('', { mode: value }),
 

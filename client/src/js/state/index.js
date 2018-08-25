@@ -1,4 +1,11 @@
 let state = {
+    system_info: {
+        ws_server_ver:'N/A',
+        firmware_ver: 'N/A',
+        wifi_dongle: 'N/A',
+        video_devices: [],
+    },
+    
     showBootScreen: true,
     mode: 'drive',
     manipulator: {
