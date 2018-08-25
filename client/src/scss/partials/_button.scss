@@ -1,0 +1,12 @@
+.button {
+    background-color: $background-color;
+    border: $green 2px solid;
+    padding: 15px;
+    color: $green;
+    font-weight: bold;
+
+    &:active {
+        background-color: $green;
+        color: $background-color;
+    }
+}
