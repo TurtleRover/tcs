@@ -21,7 +21,7 @@ export const Settings = ({state, actions})  =>
 const SettingsContent = ({state, actions}) => {
     switch (state.settings.category) {
         case 'general':
-            return <SettingsGeneral/>
+            return <SettingsGeneral actions={actions}/>
         case 'network':
             return <SettingsNetwork/>
         case 'manipulator':
