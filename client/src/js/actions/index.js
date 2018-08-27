@@ -109,8 +109,9 @@ const actions = {
         }
     },
 
-
-  log: (value) => console.log(value)
+    log: (value) => console.log(value),
+    
+    system: null
   
 }
 
