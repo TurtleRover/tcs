@@ -41,7 +41,7 @@ Also static files are served by Apache web server.
  * `sudo apt install ./turtlerover-tcs_*_all.deb`
 
 ## How to run
- * Open in browser http://\*.\*.\*.\*/client/dist 
+ * Open in browser http://10.0.0.1/client/dist (for more detailed network configuration look at [Turtle OS repo](https://github.com/TurtleRover/turtleos))
 
 ## How to build
  * Run `yarn install`
