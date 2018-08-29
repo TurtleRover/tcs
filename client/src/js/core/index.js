@@ -15,7 +15,7 @@ const core = (actions) => {
 
     keyboard(actions.motors);
 
-    // telemetry(actions, sockets);
+    telemetry(actions, sockets);
 }
 
 export default core;
