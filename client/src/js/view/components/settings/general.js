@@ -7,9 +7,3 @@ export const SettingsGeneral = ({actions}) =>
     <div class="settings_content">
         <HoldButton text='SHUTDOWN' setValue={() => actions.system.shutdown()}></HoldButton>
     </div>
-
-const lol = (a) => {
-    console.log('-----------',a);
-    a.shutdown();
-    
-}
