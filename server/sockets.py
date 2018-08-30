@@ -57,11 +57,6 @@ async def temperature(sid):
     temperature =  hardware.getTemperature()
     await sio.emit('temperature', temperature)
 
-# TODO: symlink this
-@sio.on('update')
-async def signal(sid):
-    subprocess.Popen(['python3', 'updater.py'])
-
 @sio.on('shutdown')
 async def system_shutdown(sid):
     os.system('poweroff') 
