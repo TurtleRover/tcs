@@ -41,29 +41,43 @@ const actions = {
     joystick: ({el, motors}) => {
         
         let manager = nipplejs.create({
-        zone: el,
-        mode: 'static',
-        position: {left: '50%', top: '50%'},
-        size: el.clientHeight,
-        // dataOnly: true
+            zone: el,
+            mode: 'static',
+            position: {left: '50%', top: '50%'},
+            size: el.clientHeight,
+            // dataOnly: true
         });
+
+        var force = 0;
+        var angle = "up";
+        var interval;
         
         manager.on('start', function (evt, nipple) {
-            console.log(evt);
-            nipple.on('move', (evt, data) => motorsThrottled(evt, data));
+            // console.log(evt);
+            nipple.on('move', (evt, data) => motorsThrottled(evt, data, force, angle));
+
+            interval = setInterval(function() {
+                motors.set(force, angle);               
+            }, 100);
+
+
+
         });
 
         let motorsThrottled = throttle((evt, data) => {
             if (!data.hasOwnProperty('direction')) { return; }
-            motors.set(treshold(data.force), convertToArrOfDirections(data.direction.angle));
-            console.log(treshold(data.force), convertToArrOfDirections(data.direction.angle));        
+            force = treshold(data.force);
+            angle = convertToArrOfDirections(data.direction.angle);
+            console.log('[joystick]', treshold(data.force), convertToArrOfDirections(data.direction.angle));        
         }, 100, { 'trailing': false });
 
         let treshold = (force) => force >= 1 ? 100 : (force * 100).toFixed(0);
         
-        manager.on('end', function(evt, nipple) {   
+        manager.on('end', function(evt, nipple) { 
+            clearInterval(interval);
+            console.log("[joystick interval]", interval);
+             
             console.log(evt);
-            // nipple.off('start move end dir plain');
             motors.stop();
         });
 

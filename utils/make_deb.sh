@@ -9,7 +9,7 @@ fpm --input-type dir \
 	--vendor "Kell ideas Ltd." \
 	--license "MIT" \
 	--url "https://github.com/TurtleRover/tcs" \
-	--version "0.12.3" \
+	--version "0.12.5" \
 	--iteration 7 \
 	--architecture all \
 	--deb-no-default-config-files \

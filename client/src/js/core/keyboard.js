@@ -19,12 +19,12 @@ export const keyboard = function(motors) {
         e.preventRepeat();
         console.log("[keyboard] UP");
         intervalUp = setInterval(function() {
-            if (speed <= SPEED_MAX) {
-
-                motors.set(speed, motors.direction.forward);
+            if (speed < SPEED_MAX) {
                 console.log('[keyboard]', speed);
                 speed = speed + SPEED_STEP;
             }
+            motors.set(speed, motors.direction.forward);
+
         }, UPDATE_INTERVAL);
     }, function(e) {
         clearInterval(intervalUp);
@@ -37,12 +37,12 @@ export const keyboard = function(motors) {
         e.preventRepeat();
         console.log("[keyboard] DOWN");
         intervalDown = setInterval(function () {
-            if (speed <= SPEED_MAX) {
-
-                motors.set(speed, motors.direction.backward);
+            if (speed < SPEED_MAX) {
                 console.log('[keyboard]', speed);
                 speed = speed + SPEED_STEP;
             }
+            motors.set(speed, motors.direction.backward);
+
         }, UPDATE_INTERVAL);
 
     }, function (e) {
@@ -56,12 +56,12 @@ export const keyboard = function(motors) {
         e.preventRepeat();
         console.log("[keyboard] LEFT");
         intervalLeft = setInterval(function () {
-            if (speed <= SPEED_MAX) {
-
-                motors.set(speed, motors.direction.left);
+            if (speed < SPEED_MAX) {
                 console.log('[keyboard]', speed);
                 speed = speed + SPEED_STEP;
             }
+            motors.set(speed, motors.direction.left);
+
         }, UPDATE_INTERVAL);
 
     }, function (e) {
@@ -75,12 +75,12 @@ export const keyboard = function(motors) {
         e.preventRepeat();
         console.log("[keyboard] RIGHT");
         intervalRight = setInterval(function () {
-            if (speed <= SPEED_MAX) {
-
-                motors.set(speed, motors.direction.right);
+            if (speed < SPEED_MAX) {
                 console.log('[keyboard]', speed);
                 speed = speed + SPEED_STEP;
             }
+            motors.set(speed, motors.direction.right);
+
         }, UPDATE_INTERVAL);
 
     }, function (e) {
