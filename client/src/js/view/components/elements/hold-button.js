@@ -16,22 +16,29 @@ var iid;
 var TIMEOUT = 4000;
 
 const hold = (event, cb) => {
-    event.target.children[0].textContent = TIMEOUT/1000;
-    countdown(event.target.children[0]);
+    let button = event.target;
+    let button_counter = event.target.children[0];
+
+    button_counter.textContent = to_secs(TIMEOUT);
+
+    countdown(button_counter);
+
     tid = setTimeout(() => {
         cb();
-        disable(event.target);
+        disable(button);
         clearInterval(iid); 
     }, TIMEOUT);
 }
 
-const countdown = (element) => {
+const countdown = (button_counter) => {
     let counter = 1;
     iid = setInterval (()=> {
-        element.textContent = TIMEOUT/1000 - counter;
+        button_counter.textContent = to_secs(TIMEOUT) - counter;
         counter++;
     }, 1000);
 }
+
+const to_secs = (t) => t/1000;
 
 const clearTimers = (event) => {   
     clearTimeout(tid);
