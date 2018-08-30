@@ -6,6 +6,7 @@ from log import logname
 import frame
 from hardware import Hardware
 from version import version_info
+import os
 
 logger = logname("sockets")
 
@@ -60,3 +61,7 @@ async def temperature(sid):
 @sio.on('update')
 async def signal(sid):
     subprocess.Popen(['python3', 'updater.py'])
+
+@sio.on('shutdown')
+async def system_shutdown(sid):
+    os.system('poweroff') 
