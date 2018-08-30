@@ -20,7 +20,7 @@ hardware = Hardware()
 async def connect(sid, environ):
     logger.info("connected %s", sid)
     await sio.emit('connected', {
-        'ws_server_ver' : version_info,
+        'tcs_ver' : version_info,
         'firmware_ver' : hardware.getFirmwareVersion(),
         'wifi_dongle' : hardware.getWirelessAdapterInfo(),
         'video_devices': hardware.getCameraInfo()
