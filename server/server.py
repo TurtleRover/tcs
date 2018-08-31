@@ -16,14 +16,13 @@ def start_server():
     try:
         from sockets import web, app
         import frame
-        web.run_app(app, host='0.0.0.0', port=5000)
+        web.run_app(app, port=80)
     except OSError as e:
         logger.error(e)
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(
-        description='This is the Turtle WebSocket Server.')
+    parser = argparse.ArgumentParser(description='This is the Turtle WebSocket Server.')
     parser.add_argument('-v', action='version', version=version_info,help='Show the version number and exit')
     parser.add_argument('start', nargs='?', help='Start the server')
 

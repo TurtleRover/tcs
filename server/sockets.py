@@ -10,9 +10,19 @@ import os
 
 logger = logname("sockets")
 
+SERVER_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_DIR = os.path.join( os.path.dirname( __file__ ), '..' )
+
 sio = socketio.AsyncServer(async_mode='aiohttp')
 app = web.Application()
 sio.attach(app)
+
+async def index(request):
+    with open(PROJECT_DIR+'/client/dist/index.html') as f:
+        return web.Response(text=f.read(), content_type='text/html')
+
+app.router.add_get('/', index)
+app.router.add_static('/', PROJECT_DIR+'/client/dist', show_index=True)
 
 hardware = Hardware()
 
