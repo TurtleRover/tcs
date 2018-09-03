@@ -7,66 +7,53 @@ import frame
 from hardware import Hardware
 from version import version_info
 import os
+from HTTPserver import HTTPserver
 
 logger = logname("sockets")
 
-SERVER_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_DIR = os.path.join( os.path.dirname( __file__ ), '..' )
 
+# http_server = HTTPserver()
+# http_server.start()
+# app = http_server.app
 sio = socketio.AsyncServer(async_mode='aiohttp')
-app = web.Application()
-sio.attach(app)
-
-async def index(request):
-    with open(PROJECT_DIR+'/client/dist/index.html') as f:
-        return web.Response(text=f.read(), content_type='text/html')
-
-app.router.add_get('/', index)
-app.router.add_static('/', PROJECT_DIR+'/client/dist', show_index=True)
 
 hardware = Hardware()
 
-@sio.on('connect')
-async def connect(sid, environ):
-    logger.info("connected %s", sid)
-    await sio.emit('connected', {
-        'tcs_ver' : version_info,
-        'firmware_ver' : hardware.getFirmwareVersion(),
-        'wifi_dongle' : hardware.getWirelessAdapterInfo(),
-        'video_devices': hardware.getCameraInfo()
-    })
+class BaseSocketsNamespace(socketio.AsyncNamespace):
+
+    async def on_connect(self, sid, environ):
+        logger.info("connected %s", sid)
+        await sio.emit('connected', {
+            'tcs_ver' : version_info,
+            'firmware_ver' : hardware.getFirmwareVersion(),
+            'wifi_dongle' : hardware.getWirelessAdapterInfo(),
+            'video_devices': hardware.getCameraInfo()
+        }, namespace="/sockets")
 
 
-@sio.on('motors')
-async def motors(sid, payload):
-    hardware.setMotors(payload)
-    await sio.emit('response', "motors set")
+    async def on_motors(self, sid, payload):
+        hardware.setMotors(payload)
+        await sio.emit('response', "motors set", namespace="/sockets")
 
-@sio.on('manipulator')
-async def manipulator(sid, payload):
-    hardware.setManipulator(payload)
-    await sio.emit('response', 'manipulator set')
+    async def on_manipulator(self, sid, payload):
+        hardware.setManipulator(payload)
+        await sio.emit('response', 'manipulator set', namespace="/sockets")
 
-@sio.on('gripper')
-async def gripper(sid, payload):
-    hardware.setGripper(payload)
-    await sio.emit('response', 'gripper set')
+    async def on_gripper(self, sid, payload):
+        hardware.setGripper(payload)
+        await sio.emit('response', 'gripper set', namespace="/sockets")
 
-@sio.on('battery')
-async def battery(sid):
-    battery_status =  hardware.getBattery()
-    await sio.emit('battery', battery_status)
+    async def on_battery(self, sid):
+        battery_status =  hardware.getBattery()
+        await sio.emit('battery', battery_status, namespace="/sockets")
 
-@sio.on('signal')
-async def signal(sid):
-    signal_strength =  hardware.getSignal()
-    await sio.emit('signal', signal_strength)
+    async def on_signal(self, sid):
+        signal_strength =  hardware.getSignal()
+        await sio.emit('signal', signal_strength, namespace="/sockets")
 
-@sio.on('temperature')
-async def temperature(sid):
-    temperature =  hardware.getTemperature()
-    await sio.emit('temperature', temperature)
+    async def on_temperature(self, sid):
+        temperature =  hardware.getTemperature()
+        await sio.emit('temperature', temperature, namespace="/sockets")
 
-@sio.on('shutdown')
-async def system_shutdown(sid):
-    os.system('poweroff') 
+    async def on_system_shutdown(self, sid):
+        os.system('poweroff') 

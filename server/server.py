@@ -4,7 +4,6 @@ import os
 import argparse
 import sys
 from version import version_info
-
 logger = logname()
 
 def start_server():
@@ -14,9 +13,15 @@ def start_server():
     logger.info('Starting new server instance...')
     # logger.info('Battery: %s', frame.readBatteryVoltage())
     try:
-        from sockets import web, app
+        from sockets import BaseSocketsNamespace, sio
         import frame
-        web.run_app(app, port=80)
+        from HTTPserver import HTTPserver
+
+        http_server = HTTPserver()
+        app = http_server.app
+        sio.register_namespace(BaseSocketsNamespace('/sockets'))
+        sio.attach(app)
+        http_server.start()
     except OSError as e:
         logger.error(e)
 

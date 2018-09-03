@@ -1,7 +1,7 @@
 import io from "socket.io-client";
 
 export const Sockets = function(actions) { 
-    this.io = io.connect('http://' + document.domain + ':' + 5000, {
+    this.io = io.connect('http://' + document.domain + '/sockets', {
         transports: ['websocket']
     });
     this.io.on('connect', function() {
