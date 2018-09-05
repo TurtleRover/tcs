@@ -11,49 +11,60 @@ from HTTPserver import HTTPserver
 
 logger = logname("sockets")
 
-
-# http_server = HTTPserver()
-# http_server.start()
-# app = http_server.app
-sio = socketio.AsyncServer(async_mode='aiohttp')
-
-hardware = Hardware()
-
-class BaseSocketsNamespace(socketio.AsyncNamespace):
+class WSnamespace(socketio.AsyncNamespace):
+    def __init__(self, namespace='/sockets'):
+        super().__init__(namespace)
+        self.sio = None
+        self.hw = Hardware()
 
     async def on_connect(self, sid, environ):
         logger.info("connected %s", sid)
-        await sio.emit('connected', {
+        await self.sio.emit('connected', {
             'tcs_ver' : version_info,
-            'firmware_ver' : hardware.getFirmwareVersion(),
-            'wifi_dongle' : hardware.getWirelessAdapterInfo(),
-            'video_devices': hardware.getCameraInfo()
+            'firmware_ver' : self.hw.getFirmwareVersion(),
+            'wifi_dongle' : self.hw.getWirelessAdapterInfo(),
+            'video_devices': self.hw.getCameraInfo()
         }, namespace="/sockets")
 
 
     async def on_motors(self, sid, payload):
-        hardware.setMotors(payload)
-        await sio.emit('response', "motors set", namespace="/sockets")
+        self.hw.setMotors(payload)
+        await self.sio.emit('response', "motors set", namespace="/sockets")
 
     async def on_manipulator(self, sid, payload):
-        hardware.setManipulator(payload)
-        await sio.emit('response', 'manipulator set', namespace="/sockets")
+        self.hw.setManipulator(payload)
+        await self.sio.emit('response', 'manipulator set', namespace="/sockets")
 
     async def on_gripper(self, sid, payload):
-        hardware.setGripper(payload)
-        await sio.emit('response', 'gripper set', namespace="/sockets")
+        self.hw.setGripper(payload)
+        await self.sio.emit('response', 'gripper set', namespace="/sockets")
 
     async def on_battery(self, sid):
-        battery_status =  hardware.getBattery()
-        await sio.emit('battery', battery_status, namespace="/sockets")
+        battery_status =  self.hw.getBattery()
+        await self.sio.emit('battery', battery_status, namespace="/sockets")
 
     async def on_signal(self, sid):
-        signal_strength =  hardware.getSignal()
-        await sio.emit('signal', signal_strength, namespace="/sockets")
+        signal_strength =  self.hw.getSignal()
+        await self.sio.emit('signal', signal_strength, namespace="/sockets")
 
     async def on_temperature(self, sid):
-        temperature =  hardware.getTemperature()
-        await sio.emit('temperature', temperature, namespace="/sockets")
+        temperature =  self.hw.getTemperature()
+        await self.sio.emit('temperature', temperature, namespace="/sockets")
 
     async def on_system_shutdown(self, sid):
         os.system('poweroff') 
+
+
+class WSserver():
+    def __init__(self, app):
+        super().__init__()
+        self.sio = None
+        self.app = app
+        self.namespace = WSnamespace('/sockets')
+    
+    def start(self):
+        self.sio = socketio.AsyncServer(async_mode='aiohttp')
+        self.sio.register_namespace(self.namespace)
+        self.namespace.sio = self.sio
+        self.sio.attach(self.app)
+

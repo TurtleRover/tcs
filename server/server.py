@@ -11,16 +11,13 @@ def start_server():
     logger.info('[PID:%s PPID:%s]', os.getpid(), os.getppid())
     kill()
     logger.info('Starting new server instance...')
-    # logger.info('Battery: %s', frame.readBatteryVoltage())
     try:
-        from sockets import BaseSocketsNamespace, sio
-        import frame
+        from sockets import WSserver
         from HTTPserver import HTTPserver
 
         http_server = HTTPserver()
-        app = http_server.app
-        sio.register_namespace(BaseSocketsNamespace('/sockets'))
-        sio.attach(app)
+        ws_server = WSserver(http_server.app)
+        ws_server.start()
         http_server.start()
     except OSError as e:
         logger.error(e)
