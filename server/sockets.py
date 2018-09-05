@@ -7,7 +7,6 @@ import frame
 from hardware import Hardware
 from version import version_info
 import os
-from HTTPserver import HTTPserver
 
 logger = logname("sockets")
 
