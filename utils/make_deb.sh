@@ -10,7 +10,7 @@ fpm --input-type dir \
 	--license "MIT" \
 	--url "https://github.com/TurtleRover/tcs" \
 	--version "0.12.5" \
-	--iteration 7 \
+	--iteration 8 \
 	--architecture all \
 	--deb-no-default-config-files \
 	--exclude node_modules \
