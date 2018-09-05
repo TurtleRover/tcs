@@ -7,6 +7,7 @@ import frame
 from hardware import Hardware
 from version import version_info
 import os
+import subprocess
 
 logger = logname("sockets")
 
@@ -50,8 +51,8 @@ class WSnamespace(socketio.AsyncNamespace):
         temperature =  self.hw.getTemperature()
         await self.sio.emit('temperature', temperature, namespace="/sockets")
 
-    async def on_system_shutdown(self, sid):
-        os.system('poweroff') 
+    async def on_shutdown(self, sid):
+        subprocess.run(['poweroff'])
 
 
 class WSserver():
