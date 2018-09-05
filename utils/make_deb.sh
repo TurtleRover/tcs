@@ -9,7 +9,7 @@ fpm --input-type dir \
 	--vendor "Kell ideas Ltd." \
 	--license "MIT" \
 	--url "https://github.com/TurtleRover/tcs" \
-	--version "0.12.5" \
+	--version $(node -p -e "require('./package.json').version") \
 	--iteration 8 \
 	--architecture all \
 	--deb-no-default-config-files \

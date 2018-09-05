@@ -1,2 +1,7 @@
-version = (0, 12, 5)
-version_info = '.'.join(str(c) for c in version)
+import json
+import os
+
+with open(os.path.join( os.path.dirname( __file__ ), '..' )+'/package.json') as f:
+    data = json.load(f)
+
+version_info = data["version"]
