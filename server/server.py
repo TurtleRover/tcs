@@ -13,7 +13,7 @@ def start_server():
     logger.info('Starting new server instance...')
     try:
         from sockets import WSserver
-        from HTTPserver import HTTPserver
+        from http_server import HTTPserver
 
         http_server = HTTPserver()
         ws_server = WSserver(http_server.app)

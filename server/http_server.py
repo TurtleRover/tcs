@@ -1,4 +1,4 @@
-from Singleton import Singleton
+from singleton import Singleton
 from aiohttp import web
 import os
 
