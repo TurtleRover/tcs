@@ -1,0 +1,17 @@
+[Unit]
+Description=Turtle Control Software Service
+ConditionPathIsMountPoint=/boot/
+
+[Service]
+Type=simple
+User=pi
+KillMode=none
+ExecStart=/bin/bash /opt/turtlerover/tcs/tcs
+ExecStop=
+Restart=always
+RestartSec=4
+StandardOutput=null
+RemainAfterExit=no
+
+[Install]
+WantedBy=multi-user.target
