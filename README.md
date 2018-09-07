@@ -28,10 +28,7 @@
 
 **Web Application** --_WebSockets_--> **Server** --_Serial_--> **Firmware**
 
-Also static files are served by Apache web server.
-
 ## Requirements
- * Apache web server to serve static files
  * uv4l to send video stream
  * Working UART
  * Python requirements
@@ -41,7 +38,7 @@ Also static files are served by Apache web server.
  * `sudo apt install ./turtlerover-tcs_*_all.deb`
 
 ## How to run
- * Open in browser http://10.0.0.1/client/dist (for more detailed network configuration look at [Turtle OS repo](https://github.com/TurtleRover/turtleos))
+ * Open in browser http://10.0.0.1/ (for more detailed network configuration look at [Turtle OS repo](https://github.com/TurtleRover/turtleos))
 
 ## How to build
  * Run `yarn install`

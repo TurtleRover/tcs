@@ -9,8 +9,8 @@ fpm --input-type dir \
 	--vendor "Kell ideas Ltd." \
 	--license "MIT" \
 	--url "https://github.com/TurtleRover/tcs" \
-	--version "0.12.5" \
-	--iteration 7 \
+	--version $(node -p -e "require('./package.json').version") \
+	--iteration 8 \
 	--architecture all \
 	--deb-no-default-config-files \
 	--exclude node_modules \
@@ -19,10 +19,12 @@ fpm --input-type dir \
 	--deb-dist stretch \
 	--verbose \
 	--depends "python3 (>= 3.5.3-1)" \
-	--depends "apache2" \
 	--depends "wiringpi" \
-	--depends "libapache2-mod-php" \
-	--depends "php" \
+	--depends "uv4l" \
+	--depends "uv4l-raspicam-extras" \
+	--depends "uv4l-server" \
+	--depends "uv4l-uvc" \
+	--depends "uv4l-webrtc" \
 	--prefix /opt/turtlerover/tcs \
 	--description "Turtle Rover Control Software" \
 	--after-install utils/after-install.sh \

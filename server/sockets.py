@@ -6,56 +6,65 @@ from log import logname
 import frame
 from hardware import Hardware
 from version import version_info
+import os
+import subprocess
 
 logger = logname("sockets")
 
-sio = socketio.AsyncServer(async_mode='aiohttp')
-app = web.Application()
-sio.attach(app)
+class WSnamespace(socketio.AsyncNamespace):
+    def __init__(self, namespace='/sockets'):
+        super().__init__(namespace)
+        self.sio = None
+        self.hw = Hardware()
 
-hardware = Hardware()
-
-@sio.on('connect')
-async def connect(sid, environ):
-    logger.info("connected %s", sid)
-    await sio.emit('response', {
-        'ws_server_ver' : version_info,
-        'firmware_ver' : hardware.getFirmwareVersion(),
-        'wifi_dongle' : 'Unavailable'
-    })
+    async def on_connect(self, sid, environ):
+        logger.info("connected %s", sid)
+        await self.sio.emit('connected', {
+            'tcs_ver' : version_info,
+            'firmware_ver' : self.hw.getFirmwareVersion(),
+            'wifi_dongle' : self.hw.getWirelessAdapterInfo(),
+            'video_devices': self.hw.getCameraInfo()
+        }, namespace="/sockets")
 
 
-@sio.on('motors')
-async def motors(sid, payload):
-    hardware.setMotors(payload)
-    await sio.emit('response', "motors set")
+    async def on_motors(self, sid, payload):
+        self.hw.setMotors(payload)
+        await self.sio.emit('response', "motors set", namespace="/sockets")
 
-@sio.on('manipulator')
-async def manipulator(sid, payload):
-    hardware.setManipulator(payload)
-    await sio.emit('response', 'manipulator set')
+    async def on_manipulator(self, sid, payload):
+        self.hw.setManipulator(payload)
+        await self.sio.emit('response', 'manipulator set', namespace="/sockets")
 
-@sio.on('gripper')
-async def gripper(sid, payload):
-    hardware.setGripper(payload)
-    await sio.emit('response', 'gripper set')
+    async def on_gripper(self, sid, payload):
+        self.hw.setGripper(payload)
+        await self.sio.emit('response', 'gripper set', namespace="/sockets")
 
-@sio.on('battery')
-async def battery(sid):
-    battery_status =  hardware.getBattery()
-    await sio.emit('battery', battery_status)
+    async def on_battery(self, sid):
+        battery_status =  self.hw.getBattery()
+        await self.sio.emit('battery', battery_status, namespace="/sockets")
 
-@sio.on('signal')
-async def signal(sid):
-    signal_strength =  hardware.getSignal()
-    await sio.emit('signal', signal_strength)
+    async def on_signal(self, sid):
+        signal_strength =  self.hw.getSignal()
+        await self.sio.emit('signal', signal_strength, namespace="/sockets")
 
-@sio.on('temperature')
-async def temperature(sid):
-    temperature =  hardware.getTemperature()
-    await sio.emit('temperature', temperature)
+    async def on_temperature(self, sid):
+        temperature =  self.hw.getTemperature()
+        await self.sio.emit('temperature', temperature, namespace="/sockets")
 
-# TODO: symlink this
-@sio.on('update')
-async def signal(sid):
-    subprocess.Popen(['python3', 'updater.py'])
+    async def on_shutdown(self, sid):
+        subprocess.run(['poweroff'])
+
+
+class WSserver():
+    def __init__(self, app):
+        super().__init__()
+        self.sio = None
+        self.app = app
+        self.namespace = WSnamespace('/sockets')
+    
+    def start(self):
+        self.sio = socketio.AsyncServer(async_mode='aiohttp')
+        self.sio.register_namespace(self.namespace)
+        self.namespace.sio = self.sio
+        self.sio.attach(self.app)
+

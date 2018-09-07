@@ -31,7 +31,7 @@ class Signal(Thread):
         self.i = 0
         self.process = None
 
-    def getIP(self, ifname="wlan0"):
+    def getIP(self, ifname="wlan0ext"):
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         ip = None
         try:

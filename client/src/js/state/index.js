@@ -1,4 +1,11 @@
 let state = {
+    system_info: {
+        tcs_ver:'N/A',
+        firmware_ver: 'N/A',
+        wifi_dongle: 'N/A',
+        video_devices: [],
+    },
+    
     showBootScreen: true,
     mode: 'drive',
     manipulator: {
@@ -23,7 +30,7 @@ let state = {
     },
     
     settings: {
-        isVisible: true,
+        isVisible: false,
         category: 'manipulator'
     },
     telemetry: {

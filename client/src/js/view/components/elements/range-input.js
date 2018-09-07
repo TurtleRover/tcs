@@ -9,8 +9,8 @@ export const RangeInput = ({state, name, labelMin, labelMax, onchange, oninput})
             min={state.min} 
             step={state.step} 
             value={state.value}
-            oninput={(event) => oninput(event.srcElement.value)}
-            onchange={(event) => onchange(event.srcElement.value)}
+            oninput={(event) => oninput(event.target.value)}
+            onchange={(event) => onchange(event.target.value)}
             />
     </div>
 
