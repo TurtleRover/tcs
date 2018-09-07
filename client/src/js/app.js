@@ -8,8 +8,6 @@ import core from './core'
 
 const wiredActions = hyperlog(app)(state, actions, view, document.body);
 
-startServer();
-
 document.onreadystatechange = function() {
     if (document.readyState === "complete") {
         wiredActions.restoreState();
@@ -24,10 +22,3 @@ core(wiredActions);
 // https://bugs.webkit.org/show_bug.cgi?id=182521
 // https://stackoverflow.com/a/50856621/1589989
 window.addEventListener("touchmove", (event) => event.preventDefault(), {passive: false} );
-
-
-function startServer() {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", "../../server/starter.php");
-    xmlhttp.send();
-}
