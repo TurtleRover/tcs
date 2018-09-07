@@ -13,7 +13,7 @@ export const Manipulator = ({mode, state, action})  =>
         <RangeInput 
             name='AXIS 2' 
             state={state.axis2} 
-            oninput={(value) => setManipulator(state.axis2.value, value, action)} 
+            oninput={(value) => setManipulator(state.axis1.value, value, action)} 
             onchange={action.axis2.setValue}/>
     </div>
 
