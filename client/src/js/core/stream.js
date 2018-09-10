@@ -8,6 +8,7 @@ export const Stream = function() {
     this.websocket = null;
     this.peerConnection = null;
     this.dataChannel = null;
+    this.remoteDesc = false;
 
     this.iceCandidates = [];
 };
@@ -30,14 +31,7 @@ Stream.prototype.createPeerConnection = function() {
         }]
     };
 
-    let peerConnectionOptions = {
-        optional: [
-            // Deprecated:
-            //{RtpDataChannels: false},
-            //{DtlsSrtpKeyAgreement: true}
-        ]
-    };
-    this.peerConnection = new window.RTCPeerConnection(peerConnectionConf, peerConnectionOptions);
+    this.peerConnection = new window.RTCPeerConnection(peerConnectionConf);
 
     this.peerConnection.onicecandidate = (event) => {
         if (event.candidate) {
@@ -56,32 +50,12 @@ Stream.prototype.createPeerConnection = function() {
         }
     }
 
-    this.peerConnection.ondatachannel = (event) => {
-        this.dataChannel = event.channel;
-
-        event.channel.onopen = () => console.log('[stream] data channel is open!')
-        event.channel.onerror = (error) => console.error("[stream] data channel error:", error);
-        event.channel.onmessage = (event) => console.log("[stream] got data channel msg:", event.data);
-        event.channel.onclose = () => {
-            this.dataChannel = null;
-            console.log("The Data Channel is Closed");
-        };
-    }
-
-    this.peerConnection.onaddstream = (event) => {
-        console.log("[stream] remote stream added:", event.stream);
-        let remoteVideoElement = document.getElementById('remote-video');
-        remoteVideoElement.srcObject = event.stream;
-        remoteVideoElement.play();
-
-    }
 
     this.peerConnection.ontrack = (event) => {
-        console.log("[stream] remote stream added:", event.stream);
-        // let remoteVideoElement = document.getElementById('remote-video');
-        // remoteVideoElement.srcObject = event.stream;
-        // remoteVideoElement.play();
-
+        console.log("[stream] remote stream added:", event.streams[0]);
+        let remoteVideoElement = document.getElementById('remote-video');
+        remoteVideoElement.srcObject = event.streams[0];
+        remoteVideoElement.play();
     }
 
     this.peerConnection.onremovestream = () => console.log('[stream] remove');
@@ -90,42 +64,21 @@ Stream.prototype.createPeerConnection = function() {
 
 Stream.prototype.offer = function() {
     this.createPeerConnection();
-    // if (stream) {
-    //     console.log("stream already added");
-    //     this.peerConnection.addStream(stream);
-    // }
-
-    var command;
-
-    console.log(navigator.userAgent);
-
-    // TODO: delete? 
-    let testExp = new RegExp('Android|webOS|iPhone|iPad|' + 'BlackBerry|Windows Phone|' + 'Opera Mini|IEMobile|Mobile', 'i');
-
-    if (testExp.test(navigator.userAgent)) {
-        command = {
-            what: "call",
-            options: {
-                force_hw_vcodec: true,
-                vformat: 30
-            }
-        };
-    } else {
-        command = {
-            what: "call",
-            options: {
-                force_hw_vcodec: true,
-                vformat: 25,
-                trickle_ice: true
-            }
-        };
-    }
+    this.iceCandidates = [];
+    this.remoteDesc = false;
+    var command = {
+        what: "call",
+        options: {
+            force_hw_vcodec: true,
+            vformat: 25,
+            trickle_ice: true
+        }
+    };
     this.websocket.send(JSON.stringify(command));
-    console.log("offer(), command=" + JSON.stringify(command));
+    console.log("[stream] offer(), command=" + JSON.stringify(command));
 }
 
 Stream.prototype.open = function() {
-    // audio_video_stream = null;    
     this.offer();
     console.log('[stream] state:', this.websocket.readyState);
 }
@@ -135,10 +88,10 @@ Stream.prototype.addIceCandidates = function () {
     this.iceCandidates.forEach((candidate) => {
         this.peerConnection.addIceCandidate(candidate,
             function() {
-                console.log("IceCandidate added: " + JSON.stringify(candidate));
+                console.log("[stream] IceCandidate added: " + JSON.stringify(candidate));
             },
             function(error) {
-                console.error("addIceCandidate error: " + error);
+                console.error("[stream] addIceCandidate error: " + error);
             }
         );
     });
@@ -150,7 +103,7 @@ Stream.prototype.message = function(event) {
     var msg = JSON.parse(event.data);
     var what = msg.what;
     var data = msg.data;
-    console.log("message =" + what);
+    console.log("[stream] message =" + what);
 
     switch (what) {
         case "offer":
@@ -159,24 +112,18 @@ Stream.prototype.message = function(event) {
                 () => this._onRemoteSdpSuccess(),
                 () => this._onRemoteSdpError()
             );
-
-            /*var request = {
-                what: "generateIceCandidates"
-            };
-            console.log(request);
-            ws.send(JSON.stringify(request));*/
             break;
 
         case "answer":
             break;
 
         case "message":
-            console.error(msg.data);
+            console.error('[stream]',msg.data);
             break;
 
         case "iceCandidate": // when trickle is enabled
             if (!msg.data) {
-                console.log("Ice Gathering Complete");
+                console.log("[stream] Ice Gathering Complete");
                 break;
             }
             var elt = JSON.parse(msg.data);
@@ -185,9 +132,9 @@ Stream.prototype.message = function(event) {
                 candidate: elt.candidate
             });
             this.iceCandidates.push(candidate);
-            // if (remoteDesc)
+            if (this.remoteDesc) {
                 this.addIceCandidates();
-            document.documentElement.style.cursor = 'default';
+            }
             break;
 
 
@@ -201,7 +148,9 @@ Stream.prototype.message = function(event) {
                 });
                 this.addIceCandidates();
             }
-            document.documentElement.style.cursor = 'default';
+            if (remoteDesc){
+                addIceCandidates();
+            }
             break;
     }
 }
@@ -209,7 +158,8 @@ Stream.prototype.message = function(event) {
 
 
 Stream.prototype._onRemoteSdpSuccess = function() {
-    console.log('onRemoteSdpSucces()');
+    console.log('[stream] onRemoteSdpSucces()');
+    this.remoteDesc = true;
     this.peerConnection.createAnswer((sessionDescription) => {
             this.peerConnection.setLocalDescription(sessionDescription);
             let request = JSON.stringify({
@@ -231,7 +181,7 @@ Stream.prototype._onRemoteSdpSuccess = function() {
 }
 
 Stream.prototype._onRemoteSdpError = function(event) {
-    console.error('Failed to set remote description (unsupported codec on this browser?):', event);
+    console.error('[stream] Failed to set remote description (unsupported codec on this browser?):', event);
     // stop();
 }
 
