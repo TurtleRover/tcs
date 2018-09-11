@@ -30,7 +30,6 @@
     bottom: 0;
     display: flex;
     flex-flow: column;
-    background: rgba($background-color, 0.6);
     z-index: 1;
 
     @include small {

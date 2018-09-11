@@ -43,7 +43,7 @@ const actions = {
         let manager = nipplejs.create({
             zone: el,
             mode: 'static',
-            position: {left: '50%', top: '50%'},
+            position: {right: '55%', bottom: '55%'},
             size: el.clientHeight,
             // dataOnly: true
         });
