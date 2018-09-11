@@ -11,7 +11,10 @@ const core = (actions) => {
     let sockets = new Sockets(actions);
 
     actions.motors = new Motors(sockets);
+
     actions.stream = new Stream();
+    window.onbeforeunload = () => actions.stream.stop();
+    
     actions.manipulator.m = new Manipulator(sockets);
     actions.system = new System(sockets);
 
