@@ -182,7 +182,7 @@ Stream.prototype._onRemoteSdpSuccess = function() {
 
 Stream.prototype._onRemoteSdpError = function(event) {
     console.error('[stream] Failed to set remote description (unsupported codec on this browser?):', event);
-    // stop();
+    this.stop();
 }
 
 Stream.prototype.close = function(event) {
@@ -198,35 +198,14 @@ Stream.prototype.error = function(event) {
 }
 
 Stream.prototype.stop = function() {
-    // if (this.dataChannel) {
-    //     console.log("closing data channels");
-    //     this.dataChannel.close();
-    //     this.dataChannel = null;
-    //     document.getElementById('datachannels').disabled = true;
-    // }
-    // if (localdatachannel) {
-    //     console.log("closing local data channels");
-    //     localdatachannel.close();
-    //     localdatachannel = null;
-    // }
-    // if (audio_video_stream) {
-    //     try {
-    //         audio_video_stream.stop();
-    //     } catch (e) {
-    //         for (var i = 0; i < audio_video_stream.getTracks().length; i++)
-    //             audio_video_stream.getTracks()[i].stop();
-    //     }
-    //     audio_video_stream = null;
-    // }
     // stop_record();
-    // document.getElementById('remote-video').src = '';
-    // if (this.peerConnection) {
-    //     this.peerConnection.close();
-    //     this.peerConnection = null;
-    // }
-    // if (ws) {
-    //     ws.close();
-    //     ws = null;
-    // }
-    // document.documentElement.style.cursor = 'default';
+    document.getElementById('remote-video').src = '';
+
+    this.close();
+    
+    if (this.websocket) {
+        this.websocket.close();
+        this.websocket = null;
+    }
+    console.info('[stream] Stop.')
 }
