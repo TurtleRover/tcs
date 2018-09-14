@@ -1,5 +1,5 @@
 import { h } from 'hyperapp'
-
+import { fullscreen } from 'fullscreen-polyfill'
 
 export const TopBar = ({state, switchSettings})  => 
     <section id="topbar" class="topbar">
@@ -13,7 +13,7 @@ export const TopBar = ({state, switchSettings})  =>
                 {/* <a id="snap-download-a">  */}
             {/* <img class="topbar_actions_action" id="button-screenshot" src={require("../../../img/ui/nav-bar-snap.svg")}/> */}
                 {/* </a>  */}
-            {/* <img class="topbar_actions_action" id="button-fullscreen" src={require("../../../img/ui/nav-bar-fullscreen.svg")}/> */}
+            <ActionFullscreen/>
         </div>
 
         <div class="topbar_menu" onmousedown={() => switchSettings()}>
@@ -56,3 +56,35 @@ const signalLevelIcon = (signalLevel) => {
     }
 }
     
+const ActionFullscreen = () => {
+    return <img 
+                class="topbar_actions_action"
+                id="button-fullscreen" 
+                src={require("../../../img/ui/nav-bar-fullscreen.svg")}
+                onmouseup={(el) => toggleFullscreen(el.target)}
+                />
+
+}
+
+const toggleFullscreen = (el) => {
+    
+    let main = document.documentElement; 
+    // console.log(document.webkitFullscreenEnabled);
+    if (!document.fullscreenElement) {
+        if (main.mozRequestFullScreen) {
+            main.mozRequestFullScreen();
+        } else {
+            main.webkitRequestFullScreen();
+        }
+      } else {
+          console.log('lol');
+
+        if(document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if(document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+          } else if(document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          }
+      }
+}

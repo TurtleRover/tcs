@@ -24,7 +24,7 @@ const actions = {
     setBootScreenState: value => state => ({ showBootScreen: value }),
     setMode: value => state => save('', { mode: value }),
 
-    settings: {
+   settings: {
         setVisibility: value => state => save('settings', { isVisible: !state.isVisible }),
         setVisibleCategory: value => state => save('settings', {category: value }),
     },
