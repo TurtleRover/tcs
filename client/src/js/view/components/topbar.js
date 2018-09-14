@@ -67,9 +67,7 @@ const ActionFullscreen = () => {
 }
 
 const toggleFullscreen = (el) => {
-    
     let main = document.documentElement; 
-    // console.log(document.webkitFullscreenEnabled);
     if (!document.fullscreenElement) {
         if (main.mozRequestFullScreen) {
             main.mozRequestFullScreen();
@@ -77,8 +75,6 @@ const toggleFullscreen = (el) => {
             main.webkitRequestFullScreen();
         }
       } else {
-          console.log('lol');
-
         if(document.exitFullscreen) {
             document.exitFullscreen();
           } else if(document.mozCancelFullScreen) {
