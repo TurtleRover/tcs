@@ -1,6 +1,6 @@
 @import "helpers/vars";
 
-.bootscreen {
+.splashscreen {
     background: linear-gradient(113.05297105520958deg, rgba(127, 255, 160,1) 13.895833333333332%,rgba(74, 155, 96,1) 55.91840277777778%,rgba(33, 77, 46,1) 89.71527777777777%);
     height: 100%;
     width: 100%;
@@ -12,23 +12,15 @@
     justify-content: center;
     z-index: 10;
 
-    &_logo {
+    &__logo {
         display: inline-flex;
         height: auto;
         width: 20em;
-
-        &_svg {
-            height: 100%;
-            width: 100%;
-        }
     }
 
-    &_bootlog {
-        &_message {
-            font-family: $log-font;
-            font-size: $log-font-size;
-            line-height: $log-line-height;
-        }
+    &__svg {
+        height: 100%;
+        width: 100%;
     }
 
     &-hide {

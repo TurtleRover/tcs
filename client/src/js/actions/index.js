@@ -21,7 +21,7 @@ const actions = {
 
     setSystemInfo: value => state => ({system_info: value}),
 
-    setBootScreenState: value => state => ({ showBootScreen: value }),
+    setSplashScreenState: value => state => ({ showSplashScreen: value }),
     setMode: value => state => save('', { mode: value }),
 
    settings: {

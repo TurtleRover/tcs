@@ -6,7 +6,7 @@ let state = {
         video_devices: [],
     },
     
-    showBootScreen: true,
+    showSplashScreen: true,
     mode: 'drive',
     manipulator: {
         axis1: {

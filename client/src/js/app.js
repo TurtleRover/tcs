@@ -11,7 +11,7 @@ const wiredActions = hyperlog(app)(state, actions, view, document.body);
 document.onreadystatechange = function() {
     if (document.readyState === "complete") {
         wiredActions.restoreState();
-        wiredActions.setBootScreenState(false);
+        wiredActions.setSplashScreenState(false);
         console.log(wiredActions);
     }
 };
