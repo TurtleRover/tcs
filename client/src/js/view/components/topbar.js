@@ -1,5 +1,4 @@
 import { h } from 'hyperapp'
-import { fullscreen } from 'fullscreen-polyfill'
 
 export const TopBar = ({state, switchSettings})  => 
     <section id="topbar" class="topbar">
