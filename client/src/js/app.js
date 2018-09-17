@@ -23,3 +23,9 @@ core(wiredActions);
 // https://stackoverflow.com/a/50856621/1589989
 // this is commented out since its prevents from moving thumb on mobile devices
 // window.addEventListener("touchmove", (event) => event.preventDefault(), {passive: false} );
+
+window.oncontextmenu = function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
+};
