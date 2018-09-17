@@ -30,5 +30,11 @@
             }
         }
     }
-
 }
+
+button {
+    outline-style:none;
+    &:-moz-focusring {
+      outline: none;
+    }
+  }
