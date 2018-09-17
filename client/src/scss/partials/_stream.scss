@@ -1,4 +1,4 @@
-.videoWrapper {
+.stream-wrapper {
     position: fixed;
     top: 0;
     right: 0;
@@ -7,7 +7,7 @@
     z-index: -1;
 }
 
-.video {
+.stream {
     position: absolute;
     min-width: 100%;
     min-height: 100%;
