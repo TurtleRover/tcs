@@ -5,8 +5,11 @@ export const ButtonHold = ({state, value, text, setValue})  =>
     <button 
         class='button-hold'
         onmousedown={(event) => hold(event, setValue)}
+        ontouchstart={(event) => hold(event, setValue)}
         onmouseup={(event) => clearTimers(event)}
-        onmouseleave={(event) => clearTimers(event)}>
+        onmouseleave={(event) => clearTimers(event)}
+        ontouchend={(event) => clearTimers(event)}
+        ontouchcancel={(event) => clearTimers(event)}>
         <span class='button-hold__counter'>HOLD</span>
         {text}
     </button>
