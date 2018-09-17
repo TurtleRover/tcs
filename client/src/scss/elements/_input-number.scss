@@ -1,4 +1,4 @@
-.numberInput {
+.input-number {
     display: flex;
     flex-flow: row;
     justify-content: flex-end;
@@ -6,12 +6,12 @@
     padding:10px 0;
     box-sizing: border-box;
 
-    &_label {
+    &__label {
         text-transform: uppercase;
         padding: 10px;
     }
 
-    &_input {
+    &__input {
         border: 2px solid $green;
         background-color: $green;
         color: #000;
@@ -37,7 +37,7 @@
         }
     }
 
-    &_inc {
+    &__inc {
         border: 2px solid $green;
         border-left: 0;
         background-color: transparent;
@@ -45,10 +45,9 @@
         padding: 10px;
         width: 52px;
         // font-weight: bold;
-       
     }
 
-    &_dec {
+    &__dec {
         padding: 10px;
         border: 2px solid $green;
         border-left: 0;

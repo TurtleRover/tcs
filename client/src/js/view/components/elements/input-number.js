@@ -1,10 +1,10 @@
 import { h } from 'hyperapp'
 
-export const NumberInput = ({label, value, step, inc, dec})  => 
-    <div class="numberInput">
-        <label class="numberInput_label" for="height">{label}</label>
+export const InputNumber = ({label, value, step, inc, dec})  => 
+    <div class="input-number">
+        <label class="input-number__label" for="height">{label}</label>
         <input 
-            class="numberInput_input"
+            class="input-number__input"
             type="number" 
             placeholder={value}
             step={step}
@@ -16,13 +16,13 @@ export const NumberInput = ({label, value, step, inc, dec})  =>
             onmousedown={(event) => continiuity(dec, step)}
             onmouseup={(event) => clearTimers()}
             onmouseleave={(event) => clearTimers()}
-            class="numberInput_dec">-{step}</button>
+            class="input-number__dec">-{step}</button>
 
         <button 
             onmousedown={(event) => continiuity(inc, step)}
             onmouseup={(event) => clearTimers()}
             onmouseleave={(event) => clearTimers()}
-            class="numberInput_inc">+{step}</button>
+            class="input-number__inc">+{step}</button>
 
     </div>
 
