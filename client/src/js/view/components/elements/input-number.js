@@ -16,13 +16,17 @@ export const InputNumber = ({label, value, step, inc, dec})  =>
             onmousedown={(event) => continiuity(dec, step)}
             onmouseup={(event) => clearTimers()}
             onmouseleave={(event) => clearTimers()}
-            class="input-number__dec">-{step}</button>
+            class="input-number__dec">
+            -{step}
+        </button>
 
         <button 
             onmousedown={(event) => continiuity(inc, step)}
             onmouseup={(event) => clearTimers()}
             onmouseleave={(event) => clearTimers()}
-            class="input-number__inc">+{step}</button>
+            class="input-number__inc">
+            +{step}
+        </button>
 
     </div>
 
