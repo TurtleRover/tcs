@@ -1,9 +1,9 @@
 import { h } from 'hyperapp'
-import {SettingsGeneral} from './general'
-import { SettingsNetwork } from "./network";
-import { SettingsManipulator } from "./manipulator";
-import { SettingsDebug } from "./debug";
-import { SettingsAbout } from "./about";
+import {SettingsGeneral} from './settings-general'
+import { SettingsNetwork } from "./settings-network";
+import { SettingsManipulator } from "./settings-manipulator";
+import { SettingsDebug } from "./settings-debug";
+import { SettingsAbout } from "./settings-about";
 
 export const Settings = ({state, actions})  => 
     <div class={(state.settings.isVisible===true) ? 'settings' : 'settings settings-hide'}>

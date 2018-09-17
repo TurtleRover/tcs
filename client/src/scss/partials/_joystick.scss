@@ -2,7 +2,6 @@
     position: absolute;
     right: 0;
     bottom: 0;
-    // background: $background-color;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,8 +11,8 @@
     }
 
     @include small2x {
-        width: 30vw * 2;
-        height: 30vw * 2;
+        width: 30vw ;
+        height: 30vw ;
     }
 
     @include medium {

@@ -12,7 +12,7 @@
     }
 
     @include small2x {
-        width: 40vw * 2;
+        width: 40vw;
     }
 
     @include medium {
@@ -30,7 +30,6 @@
     bottom: 0;
     display: flex;
     flex-flow: column;
-    background: rgba($background-color, 0.6);
     z-index: 1;
 
     @include small {
@@ -39,8 +38,8 @@
     }
 
     @include small2x {
-        width: 30vw * 2;
-        height: 30vw * 2;
+        width: 30vw;
+        height: 30vw;
     }
 
     @include medium {

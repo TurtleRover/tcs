@@ -1,4 +1,4 @@
-.statusbar {
+.topbar {
     height: 34px;
     position: fixed;
     top: 0;
@@ -6,10 +6,10 @@
     background-color: $background-color;
     z-index: 9;
     @include small {
-        height: $statusbar-height-small;
+        height: $topbar-height-small;
     }
     @include medium {
-        height: $statusbar-height-medium;
+        height: $topbar-height-medium;
     }
 
     &_logo {

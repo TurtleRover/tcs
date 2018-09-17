@@ -24,7 +24,7 @@ const actions = {
     setBootScreenState: value => state => ({ showBootScreen: value }),
     setMode: value => state => save('', { mode: value }),
 
-    settings: {
+   settings: {
         setVisibility: value => state => save('settings', { isVisible: !state.isVisible }),
         setVisibleCategory: value => state => save('settings', {category: value }),
     },
@@ -43,7 +43,7 @@ const actions = {
         let manager = nipplejs.create({
             zone: el,
             mode: 'static',
-            position: {left: '50%', top: '50%'},
+            position: {right: '55%', bottom: '55%'},
             size: el.clientHeight,
             // dataOnly: true
         });

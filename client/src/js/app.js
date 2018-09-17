@@ -21,4 +21,5 @@ core(wiredActions);
 // This disables bouncing in iOS
 // https://bugs.webkit.org/show_bug.cgi?id=182521
 // https://stackoverflow.com/a/50856621/1589989
-window.addEventListener("touchmove", (event) => event.preventDefault(), {passive: false} );
+// this is commented out since its prevents from moving thumb on mobile devices
+// window.addEventListener("touchmove", (event) => event.preventDefault(), {passive: false} );

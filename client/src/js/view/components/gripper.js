@@ -1,5 +1,6 @@
 import { h } from 'hyperapp'
 import { RangeInput } from "./elements/range-input";
+import {throttle} from 'lodash'
 
 
 export const Gripper = ({state, action}) => 
@@ -9,7 +10,7 @@ export const Gripper = ({state, action}) =>
             state={state} 
             labelMax={IconGripperOpen} 
             labelMin={IconGripperClose}
-            oninput={(value) => action.m.setGripper(value)} 
+            oninput={(value) => setGripperThrottled(value, action)} 
             onchange={action.gripper.setValue}/>
 
     </div>
@@ -19,3 +20,5 @@ const IconGripperOpen = () =>
 
 const IconGripperClose = () =>
     <img src={require("../../../img/ui/gripper-closed.svg")} class="gripperControl_icons_icon"/>
+
+const setGripperThrottled = throttle((value, action) => action.m.setGripper(value), 100, { 'trailing': false });

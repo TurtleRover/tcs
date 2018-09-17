@@ -14,7 +14,7 @@
             }
 
             @include small2x {
-                height: 34px * 2;
+                height: (34px / 2);
             }
 
             @include medium {

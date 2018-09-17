@@ -13,8 +13,8 @@ export const Manipulator = ({mode, state, action})  =>
         <RangeInput 
             name='AXIS 2' 
             state={state.axis2} 
-            oninput={(value) => setManipulator(state.axis1.value, value, action)} 
+            oninput={(value) => setManipulatorThrottled(state.axis1.value, value, action)} 
             onchange={action.axis2.setValue}/>
     </div>
 
-const setManipulator = throttle((axis1, axis2, action) => action.m.setAxes(axis1, axis2), 100, { 'trailing': false });
+const setManipulatorThrottled = throttle((axis1, axis2, action) => action.m.setAxes(axis1, axis2), 100, { 'trailing': false });

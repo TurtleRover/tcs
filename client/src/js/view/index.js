@@ -1,7 +1,7 @@
 import { h} from 'hyperapp'
 
 import { BootScreen } from './bootscreen'
-import { StatusBar } from './components/statusbar'
+import { TopBar } from './components/topbar'
 import { Stream } from './components/stream'
 import { Settings } from "./components/settings"
 import { Manipulator } from "./components/manipulator";
@@ -13,7 +13,7 @@ const view = (state, actions) => (
     <main>
         <BootScreen state={state.showBootScreen}/>
         <div id="wrapper" class="wrapper">
-            <StatusBar state={state.telemetry} switchSettings={actions.settings.setVisibility}/>
+            <TopBar state={state.telemetry} switchSettings={actions.settings.setVisibility}/>
             <Settings state={state} actions={actions}/>
             <div class="crosshair"></div>
             <div class="dots"></div>
