@@ -20,12 +20,12 @@
         height: 25vw;
     }
 
-    &_image {
+    &__image {
         width: 80%;
         height: auto;
     }
 
-    &-hide {
+    &--hide {
         visibility: hidden;
     }
 }
