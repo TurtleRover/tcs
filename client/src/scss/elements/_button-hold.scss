@@ -1,0 +1,42 @@
+.button-hold {
+    background-color: $background-color;
+    border: $green 2px solid;
+    padding: 15px;
+    color: $green;
+    font-weight: bold;
+    position: relative;
+
+    &:active {
+        background-color: $green;
+        color: $background-color;
+    }
+
+    &:disabled {
+        border: $green_dark 2px solid;
+        color: $green_dark;
+    }
+
+    &__counter {
+        position: absolute;
+        font-size: 7px;
+        top: -12px;
+        left: -2px;
+        padding: 2px;
+        background-color: $green;
+        color: $background-color;
+        font-weight: bold;
+
+        &--disabled {
+            background-color: $green_dark;
+        }
+    }
+
+}
+
+button {
+    outline-style: none;
+
+    &:-moz-focusring {
+        outline: none;
+    }
+}

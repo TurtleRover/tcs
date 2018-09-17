@@ -1,9 +1,9 @@
 import { h } from 'hyperapp'
-import { HoldButton } from '../elements/hold-button';
+import { ButtonHold } from '../elements/button-hold';
 import { System } from '../../../core/system';
 
 
 export const SettingsGeneral = ({actions}) =>
     <div class="settings_content">
-        <HoldButton text='SHUTDOWN' setValue={() => actions.system.shutdown()}></HoldButton>
+        <ButtonHold text='SHUTDOWN' setValue={() => actions.system.shutdown()}></ButtonHold>
     </div>

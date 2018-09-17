@@ -1,13 +1,13 @@
 import { h } from 'hyperapp'
 import { setInterval } from 'core-js';
 
-export const HoldButton = ({state, value, text, setValue})  => 
+export const ButtonHold = ({state, value, text, setValue})  => 
     <button 
-        class='button button-hold'
+        class='button-hold'
         onmousedown={(event) => hold(event, setValue)}
         onmouseup={(event) => clearTimers(event)}
         onmouseleave={(event) => clearTimers(event)}>
-        <span class='button-hold_counter'>HOLD</span>
+        <span class='button-hold__counter'>HOLD</span>
         {text}
     </button>
 
@@ -48,7 +48,7 @@ const clearTimers = (event) => {
 
 const disable = (el) => {
     el.disabled = true;
-    el.children[0].classList.add('button-hold_counter-disabled')
+    el.children[0].classList.add('button-hold__counter--disabled')
     el.style.background = 'black';
 }
     
