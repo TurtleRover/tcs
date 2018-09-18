@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel watch ./client/src/index.html --out-dir ./client/dist --public-url ./ --no-hmr",
-    "build": "parcel build ./client/src/index.html --out-dir ./client/dist --public-url ./"
+    "build": "parcel build ./client/src/index.html --out-dir ./client/dist --public-url ./",
+    "lint": "eslint --ext .js client/src/"
   },
   "repository": "git+https://github.com/TurtleRover/Turtle-Rover-Mission-Control.git",
   "keywords": [],
