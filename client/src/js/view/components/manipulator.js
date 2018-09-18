@@ -2,7 +2,7 @@ import { h } from 'hyperapp';
 import { throttle } from 'lodash';
 import { RangeInput } from './elements/range-input';
 
-const Manipulator = ({ mode, state, action }) =>
+export const Manipulator = ({ mode, state, action }) =>
     <div class={(mode === 'grab') ? 'manipulatorControl' : 'manipulatorControl manipulatorControl-hide'}>
         <RangeInput
             name='AXIS 1'
@@ -20,5 +20,3 @@ const Manipulator = ({ mode, state, action }) =>
     </div>;
 
 const setManipulatorThrottled = throttle((axis1, axis2, action) => action.m.setAxes(axis1, axis2), 100, { trailing: false });
-
-export default Manipulator;
