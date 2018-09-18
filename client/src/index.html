@@ -1,132 +1,36 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no, shrink-to-fit=no">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no, shrink-to-fit=no">
 
-	<title>Turtle</title>
+		<title>Turtle</title>
 
-	<meta name="application-name" content="Turtle Control Software">
-	<meta name="apple-mobile-web-app-title" content="Turtle Control Software">
+		<meta name="application-name" content="Turtle Control Software">
+		<meta name="apple-mobile-web-app-title" content="Turtle Control Software">
 
-	<meta name="theme-color" content="#000000">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="theme-color" content="#000000">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-	<meta name="mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
 
-	<!-- icons -->
-	<link rel="shortcut icon" href="./img/icon/favicon.png">
-	<link rel="apple-touch-icon-precomposed" href="./img/icon/launcher-4x.png">
+		<!-- icons -->
+		<link rel="shortcut icon" href="./img/icon/favicon.png">
+		<link rel="apple-touch-icon-precomposed" href="./img/icon/launcher-4x.png">
 
-	<link rel="manifest" href="./manifest.webmanifest">
+		<link rel="manifest" href="./manifest.webmanifest">
 
-	<!-- critical styles -->
-	<link rel="stylesheet" href="./scss/bootscreen.scss">
+		<!-- critical styles -->
+		<link rel="stylesheet" href="./scss/splashscreen.scss">
 
-</head>
+	</head>
 
-<body>
-	<script src="./js/app.js"></script>
-
-
-
-	<link rel="stylesheet" href="./scss/main.scss">
-	<!-- <link href="client/vendors/jquery_flagstrap/css/flags.css" rel="stylesheet"> -->
-	<!-- <link href="client/vendors/vex/css/vex.css" rel="stylesheet"> -->
-	<!-- <link href="client/vendors/vex/css/vex-theme-os.css" rel="stylesheet"> -->
-
-
-	<!-- include all JavaScript files -->
-    <!-- <script src="client/vendors/jquery-3.3.1.min.js" -->
-
-    		<!-- js-Cookie -->
-    		<!-- <script src='client/vendors/js_cookie/js.cookie.js'></script> -->
-
-
-    		<!-- jQuery Flagstrap -->
-
-    		<!-- Amplify JS -->
-    		<!-- <script src='client/vendors/amplify_js/src/core.js'></script>
-    		<script src='client/vendors/amplify_js/src/request.js'></script>
-    		<script src='client/vendors/amplify_js/src/store.js'></script>
-
-    		<script src="client/vendors/socket.io.js"></script> -->
-
-    		<!-- user interface -->
-    		<!-- <script src='client/js/namespace.js'></script>
-    		<script src='client/js/utils.js'></script>
-    		<script src='client/js/sockets.js'></script>
-    		<script src='client/js/telemetry.js'></script>
-    		<script src='client/js/frameBuilder.js'></script>
-
-    		<script src='client/js/webrtc.js'></script> -->
-
-    		<!-- controller -->
-    		<!-- <script src='client/js/controller.js'></script> -->
-
-    		<!-- linux communication -->
-    		<!-- <script src='client/js/linux.js'></script> -->
-
-    		<!-- i18next -->
-    		<!-- <script src='client/vendors/i18next/i18next.js'></script>
-    		<script src='client/vendors/i18next/i18nextXHRBackend.js'></script>
- -->
-
-    		<!-- manipulator -->
-    		<!-- <script src='client/js/manipulator.js'></script> -->
-
-    		<!-- canvas controller -->
-    		<!-- <script src='client/js/controlcanvas.js'></script> -->
-
-
-    		<!-- socket server communication -->
-    		<!-- <script src='client/js/servercommunication.js'></script> -->
-
-    		<!-- vex dialogs -->
-    		<!-- <script src='client/vendors/vex/js/vex.combined.js'></script> -->
-
-    		<!-- html2canvas -->
-    		<!-- <script src='client/vendors/html2canvas/html2canvas.js'></script> -->
-
-    		<!-- canvas2image -->
-    		<!-- <script src='client/vendors/canvas2image/canvas2image.js'></script> -->
-
-    		<!-- FileSaver -->
-    		<!-- <script src='client/vendors/file_saver/FileSaver.js'></script> -->
-
-    		<!-- Keyboard support -->
-    		<!-- <script src='client/vendors/keyboardjs/keyboard.min.js'></script> -->
-
-    		<!-- keboard controller -->
-    		<!-- <script src='client/js/controlkeyboard.js'></script> -->
-
-
-	<script>
-		/*	accordion buttons - the menu ones 	*/
-		/*	----------------------------------- */
-		var acc = document.getElementsByClassName("accordion");
-		var i;
-
-		for (i = 0; i < acc.length; i++) {
-			acc[i].onclick = function() {
-				this.classList.toggle("active");
-				var panel = this.nextElementSibling;
-				if (panel.style.maxHeight) {
-					panel.style.maxHeight = null;
-				} else {
-					panel.style.maxHeight = panel.scrollHeight + "px";
-				}
-			}
-		}
-		/*	----------------------------------- */
-	</script>
-<!-- <script src='client/js/ui.js'></script>
-<script src='client/js/ui/bootscreen.js'></script>
-<script src='client/js/ui/menu.js'></script>
-<script src='client/js/ui/modeswitcher.js'></script> -->
-</body>
+	<body>
+		<script src="./js/app.js"></script>
+		<link rel="stylesheet" href="./scss/main.scss">
+	</body>
 
 </html>

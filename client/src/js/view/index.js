@@ -1,6 +1,6 @@
 import { h} from 'hyperapp'
 
-import { BootScreen } from './bootscreen'
+import { SplashScreen } from './splashscreen'
 import { TopBar } from './components/topbar'
 import { Stream } from './components/stream'
 import { Settings } from "./components/settings"
@@ -11,7 +11,7 @@ import { ModeChooser } from "./components/modechooser";
 
 const view = (state, actions) => (
     <main>
-        <BootScreen state={state.showBootScreen}/>
+        <SplashScreen state={state.showSplashScreen}/>
         <div id="wrapper" class="wrapper">
             <TopBar state={state.telemetry} switchSettings={actions.settings.setVisibility}/>
             <Settings state={state} actions={actions}/>

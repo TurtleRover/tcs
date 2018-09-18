@@ -53,7 +53,7 @@ Stream.prototype.createPeerConnection = function() {
 
     this.peerConnection.ontrack = (event) => {
         console.log("[stream] remote stream added:", event.streams[0]);
-        let remoteVideoElement = document.getElementById('remote-video');
+        let remoteVideoElement = document.getElementById('stream');
         remoteVideoElement.srcObject = event.streams[0];
         remoteVideoElement.play();
     }
@@ -199,7 +199,7 @@ Stream.prototype.error = function(event) {
 
 Stream.prototype.stop = function() {
     // stop_record();
-    document.getElementById('remote-video').src = '';
+    document.getElementById('stream').src = '';
 
     this.close();
     
