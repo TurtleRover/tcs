@@ -1,15 +1,15 @@
-import { app } from 'hyperapp'
-import actions from './actions'
-import state from './state'
-import view from './view'
+import { app } from 'hyperapp';
+import actions from './actions';
+import state from './state';
+import view from './view';
 
-import { hyperlog } from "./utils/logger";
-import core from './core'
+import { hyperlog } from './utils/logger';
+import core from './core';
 
 const wiredActions = hyperlog(app)(state, actions, view, document.body);
 
-document.onreadystatechange = function() {
-    if (document.readyState === "complete") {
+document.onreadystatechange = () => {
+    if (document.readyState === 'complete') {
         wiredActions.restoreState();
         wiredActions.setSplashScreenState(false);
         console.log(wiredActions);
@@ -24,7 +24,7 @@ core(wiredActions);
 // this is commented out since its prevents from moving thumb on mobile devices
 // window.addEventListener("touchmove", (event) => event.preventDefault(), {passive: false} );
 
-window.oncontextmenu = function(event) {
+window.oncontextmenu = (event) => {
     event.preventDefault();
     event.stopPropagation();
     return false;
