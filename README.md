@@ -31,7 +31,6 @@
 ## Requirements
  * uv4l to send video stream
  * Working UART
- * Python requirements
 
 ## How to install
  * [Download latest package](https://github.com/TurtleRover/tcs/releases)
@@ -44,6 +43,7 @@
  * Run `yarn install`
  * Run `npm run build`
  * Run `utils/make_deb.sh`
+ * Install Python dependencies `sudo pip3 install -r requirements.txt`
 
 ## How streaming works
 Streaming is done with [UV4L](https://www.linux-projects.org/uv4l/) drivers and [WebRTC streaming server](https://www.linux-projects.org/uv4l/webrtc-extension/). UV4L comes preinstalled with [TurtleOS](https://github.com/TurtleRover/TurtleOS).
