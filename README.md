@@ -45,3 +45,7 @@
  * Run `npm run build`
  * Run `utils/make_deb.sh`
 
+## How streaming works
+Streaming is done with [UV4L](https://www.linux-projects.org/uv4l/) drivers and [WebRTC streaming server](https://www.linux-projects.org/uv4l/webrtc-extension/). UV4L comes preinstalled with [TurtleOS](https://github.com/TurtleRover/TurtleOS).
+### Stream troubleshooting
+There are still some problems with streaming and we are working to fix them. If stream doesn't work on your device, you may try to experiment with `/etc/uv4l/uv4l-uvc.conf`, especially with `webrtc-enable-hw-codec` option and [`force_hw_vcodec`](https://github.com/TurtleRover/tcs/blob/984120b8469f603650f3c6f979bfc96e2dcbbbde/client/src/js/core/stream.js#L72) in `core/stream.js`. If you find any solution to your problem with streaming - please let us know or create a pull request.
