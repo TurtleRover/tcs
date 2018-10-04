@@ -42,6 +42,7 @@
 
 ## How to build
  * Run `yarn install`
- * Run `npm run build`
+ * Run `yarn build` to build productional files. There is also `yarn watch` command, it will watch for any changes in files and rebuild project
  * Run `utils/make_deb.sh`
+
 
