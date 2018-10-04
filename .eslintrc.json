@@ -43,7 +43,13 @@
         "import/no-dynamic-require": 0,
         "import/no-extraneous-dependencies": 0,
         "import/prefer-default-export": 0,
-        "strict": 0
+        "strict": 0,
+        "global-require":"off",
+        "jsx-a11y/interactive-supports-focus":"off",
+        "no-else-return": "off",
+        "jsx-a11y/no-noninteractive-element-interactions": "warn",
+        "jsx-a11y/media-has-caption": "off",
+        "object-curly-newline": "off"
     }
 
 }
