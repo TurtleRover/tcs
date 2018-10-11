@@ -3,19 +3,16 @@ import { forIn, startsWith, throttle, zipObjectDeep, merge } from 'lodash';
 
 const save = (prefix, state) => {
     const key = Object.keys(state);
-    if (prefix) { prefix = prefix + '.'; }
+    if (prefix) { prefix += '.'; }
     localStorage.setItem(prefix + key, JSON.stringify(state[key]));
     return state;
 };
 
 const actions = {
-    resetState: () => {
-        localStorage.clear();
-    },
     restoreState: v => state => {
-        let props = Object.keys(localStorage);
+        const props = Object.keys(localStorage);
         props.forEach((prop) => {
-            let zipped = zipObjectDeep([prop], [JSON.parse(localStorage[prop])]);
+            const zipped = zipObjectDeep([prop], [JSON.parse(localStorage[prop])]);
             merge(state, zipped);
             console.log('Restore', prop, zipped);
         });
@@ -41,9 +38,9 @@ const actions = {
     motors: null,
   
 
-    joystick: ({el, motors}) => {
+    joystick: ({ el, motors }) => {
         
-        let manager = nipplejs.create({
+        const manager = nipplejs.create({
             zone: el,
             mode: 'static',
             position: {right: '55%', bottom: '55%'},
@@ -51,16 +48,15 @@ const actions = {
             // dataOnly: true
         });
 
-        var force = 0;
-        var angle = "up";
-        var interval;
-        
-        manager.on('start', function (evt, nipple) {
+        let force = 0;
+        let angle = 'up';
+        let interval;
+
+        manager.on('start', (evt, nipple) => {
             // console.log(evt);
             nipple.on('move', (evt, data) => getDataFromJoystick(evt, data, force, angle));
 
-            interval = setInterval( () => motors.set(force, angle), 100);
-
+            interval = setInterval(() => motors.set(force, angle), 100);
         });
 
         let getDataFromJoystick = (evt, data) => {
@@ -100,7 +96,7 @@ const actions = {
     manipulator: {
         m: null,
         axis1: {
-            setValue: val => state =>  save('manipulator.axis1',{value: val}),
+            setValue: val => state => save('manipulator.axis1', {value: val}),
             incMax: step => state => save('manipulator.axis1', {max: state.max + step}),
             decMax: step => state => save('manipulator.axis1', {max: state.max - step}),
             incMin: step => state => save('manipulator.axis1', {min: state.min + step}),
@@ -131,9 +127,8 @@ const actions = {
     },
 
     log: (value) => console.log(value),
-    
-    system: null
-  
-}
+
+    system: null,
+};
 
 export default actions
