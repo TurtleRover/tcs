@@ -1,14 +1,17 @@
-import nipplejs from 'nipplejs'
-import {throttle, zipObjectDeep, merge} from 'lodash'
+import nipplejs from 'nipplejs';
+import { forIn, startsWith, throttle, zipObjectDeep, merge } from 'lodash';
 
-let save = (prefix, state) => {
-    let key = Object.keys(state);    
+const save = (prefix, state) => {
+    const key = Object.keys(state);
     if (prefix) { prefix = prefix + '.'; }
     localStorage.setItem(prefix + key, JSON.stringify(state[key]));
     return state;
-}
+};
 
 const actions = {
+    resetState: () => {
+        localStorage.clear();
+    },
     restoreState: v => state => {
         let props = Object.keys(localStorage);
         props.forEach((prop) => {
@@ -19,12 +22,12 @@ const actions = {
         console.log('State after restore', state);
     },
 
-    setSystemInfo: value => state => ({system_info: value}),
+    setSystemInfo: value => state => ({ system_info: value }),
 
     setSplashScreenState: value => state => ({ showSplashScreen: value }),
     setMode: value => state => save('', { mode: value }),
 
-   settings: {
+    settings: {
         setVisibility: value => state => save('settings', { isVisible: !state.isVisible }),
         setVisibleCategory: value => state => save('settings', {category: value }),
     },
@@ -116,7 +119,15 @@ const actions = {
             decMax: step => state => save('manipulator.gripper', {max: state.max - step}),
             incMin: step => state => save('manipulator.gripper', {min: state.min + step}),
             decMin: step => state => save('manipulator.gripper', {min: state.min - step})
-        }
+        },
+        reset: (defaultState) => state => {
+            forIn(window.localStorage, (value, objKey) => {
+                if (true === startsWith(objKey, 'manipulator')) {
+                    window.localStorage.removeItem(objKey);
+                }
+            });
+            return defaultState;
+        },
     },
 
     log: (value) => console.log(value),

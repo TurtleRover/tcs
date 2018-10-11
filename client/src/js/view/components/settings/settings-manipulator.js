@@ -46,10 +46,6 @@ export const SettingsManipulator = ({ state, actions }) =>
             inc={actions.manipulator.gripper.incMin}
             dec={actions.manipulator.gripper.decMin} />
 
-        <Button text='Reset' setValue={() => resetManipulatorValues(state.manipulator)} />
+        <Button text='Reset' setValue={() => actions.manipulator.reset(state.default.manipulator)} />
 
     </div>;
-
-const resetManipulatorValues = (manipulator) => {
-    console.log(manipulator);
-};
