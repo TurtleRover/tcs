@@ -1,8 +1,9 @@
-import { h } from 'hyperapp'
+import { h } from 'hyperapp';
 import { setInterval } from 'core-js';
 
-export const ButtonHold = ({state, value, text, setValue})  => 
-    <button 
+export const ButtonHold = ({ text, setValue }) =>
+    <button
+        type='button'
         class='button-hold'
         onmousedown={(event) => hold(event, setValue)}
         ontouchstart={(event) => hold(event, setValue)}
@@ -12,19 +13,19 @@ export const ButtonHold = ({state, value, text, setValue})  =>
         ontouchcancel={(event) => clearTimers(event)}>
         <span class='button-hold__counter'>HOLD</span>
         {text}
-    </button>
+    </button>;
 
-var tid;
-var iid;
-var TIMEOUT = 4000;
+let tid;
+let iid;
+const TIMEOUT = 4000;
 
 const hold = (event, cb) => {
-    let button = event.target;
-    let button_counter = event.target.children[0];
+    const button = event.target;
+    const buttonCounter = event.target.children[0];
 
-    button_counter.textContent = to_secs(TIMEOUT);
+    buttonCounter.textContent = TIMEOUT / 1000;
 
-    countdown(button_counter);
+    countdown(buttonCounter);
 
     tid = setTimeout(() => {
         cb();
@@ -33,25 +34,22 @@ const hold = (event, cb) => {
     }, TIMEOUT);
 }
 
-const countdown = (button_counter) => {
+const countdown = (buttonCounter) => {
     let counter = 1;
-    iid = setInterval (()=> {
-        button_counter.textContent = to_secs(TIMEOUT) - counter;
-        counter++;
+    iid = setInterval(() => {
+        buttonCounter.textContent = TIMEOUT / 1000 - counter;
+        counter += 1;
     }, 1000);
-}
+};
 
-const to_secs = (t) => t/1000;
-
-const clearTimers = (event) => {   
+const clearTimers = (event) => {
     clearTimeout(tid);
     clearInterval(iid);
     event.target.children[0].textContent = 'HOLD';
-}
+};
 
 const disable = (el) => {
     el.disabled = true;
     el.children[0].classList.add('button-hold__counter--disabled')
     el.style.background = 'black';
-}
-    
+};

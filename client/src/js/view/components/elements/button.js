@@ -1,6 +1,6 @@
 import { h } from 'hyperapp';
 
-export const Button = ({ state, text, setValue }) =>
+export const Button = ({ text, setValue }) =>
     <button
         type='button'
         class='button'
