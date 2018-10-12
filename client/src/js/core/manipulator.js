@@ -1,23 +1,20 @@
 import { Frame } from './frame';
-import { helper } from '../utils/helper';
 
-
-export const Manipulator = function(sockets) { 
+export const Manipulator = function Manipulator(sockets) {
     this.sockets = sockets;
     this.frame = new Frame();
 };
 
-Manipulator.prototype.setAxes = function (axis1, axis2) {
+Manipulator.prototype.setAxes = function setAxes(axis1, axis2) {
     console.log('[manipulator]', axis1, axis2);
-    
-    let frame = this.frame.manipulator(axis1, axis2);
+
+    const frame = this.frame.manipulator(axis1, axis2);
     this.sockets.sendManipulator(frame);
-}
+};
 
-Manipulator.prototype.setGripper = function (value) {
-    console.log("[manipulator][gripper]",value);
+Manipulator.prototype.setGripper = function setGripper(value) {
+    console.log('[manipulator][gripper]', value);
 
-    let frame = this.frame.gripper(value);
+    const frame = this.frame.gripper(value);
     this.sockets.sendGripper(frame);
-    
-}
+};
