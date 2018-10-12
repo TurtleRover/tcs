@@ -3,7 +3,7 @@ import { throttle } from 'lodash';
 import { RangeInput } from './elements/range-input';
 
 export const Manipulator = ({ mode, state, action }) =>
-    <div class={(mode === 'grab') ? 'manipulatorControl' : 'manipulatorControl manipulatorControl-hide'}>
+    <div class={(mode === 'grab') ? 'manipulatorControl' : 'manipulatorControl manipulatorControl--hide'}>
         <RangeInput
             name='AXIS 1'
             state={state.axis1}
