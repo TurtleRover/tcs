@@ -3,8 +3,8 @@ import { throttle } from 'lodash';
 import { RangeInput } from './elements/range-input';
 
 
-export const Gripper = ({ state, action }) =>
-    <div class="gripperControl">
+export const Gripper = ({ mode, state, action }) =>
+    <div class={(mode === 'grab') ? 'gripperControl' : 'gripperControl gripperControl--hide'}>
         <RangeInput
             name=''
             state={state}
@@ -17,9 +17,9 @@ export const Gripper = ({ state, action }) =>
     </div>;
 
 const IconGripperOpen = () =>
-    <img alt="" src={require('../../../img/ui/gripper-opened.svg')} class="gripperControl_icons_icon" />;
+    <img alt="" src={require('../../../img/ui/gripper-opened.svg')} class="gripperControl__icons__icon" />;
 
 const IconGripperClose = () =>
-    <img alt="" src={require('../../../img/ui/gripper-closed.svg')} class="gripperControl_icons_icon" />;
+    <img alt="" src={require('../../../img/ui/gripper-closed.svg')} class="gripperControl__icons__icon" />;
 
 const setGripperThrottled = throttle((value, action) => action.m.setGripper(value), 100, { trailing: false });
