@@ -18,7 +18,7 @@
         }],
         "linebreak-style": "off",
         "indent": ["error", 4],
-
+        "no-param-reassign": [2, { "props": false }],
         "react/jsx-indent": ["error", 4],
         "react/jsx-indent-props": ["error", 4],
         "react/no-unknown-property": "off",
