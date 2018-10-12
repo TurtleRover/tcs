@@ -1,4 +1,4 @@
-export const System = (sockets) => {
+export const System = function System(sockets) {
     this.sockets = sockets;
 };
 
