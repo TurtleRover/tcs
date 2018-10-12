@@ -17,6 +17,7 @@
             "varsIgnorePattern": "h"
         }],
         "linebreak-style": "off",
+        "prefer-template": "off",
         "indent": ["error", 4],
         "no-param-reassign": [2, { "props": false }],
         "react/jsx-indent": ["error", 4],
