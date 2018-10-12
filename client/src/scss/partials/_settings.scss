@@ -34,7 +34,7 @@
 		margin-right: -15px;
 		display: flex;
 		flex-flow: column;
-		align-items: end;
+		align-items: flex-end;
 		
 		@include small {
 			padding: 25px;
