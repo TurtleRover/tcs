@@ -39,17 +39,12 @@ class WSnamespace(socketio.AsyncNamespace):
         self.hw.setGripper(payload)
         await self.sio.emit('response', 'gripper set', namespace="/sockets")
 
-    async def on_battery(self, sid):
-        battery_status =  self.hw.getBattery()
-        await self.sio.emit('battery', battery_status, namespace="/sockets")
-
-    async def on_signal(self, sid):
-        signal_strength =  self.hw.getSignal()
-        await self.sio.emit('signal', signal_strength, namespace="/sockets")
-
-    async def on_temperature(self, sid):
-        temperature =  self.hw.getTemperature()
-        await self.sio.emit('temperature', temperature, namespace="/sockets")
+    async def on_telemetry(self, sid):
+        await self.sio.emit('telemetry', {
+            'temperature': self.hw.getTemperature(),
+            'battery': self.hw.getBattery(),
+            'signal': self.hw.getSignal()
+        }, namespace="/sockets")
 
     async def on_shutdown(self, sid):
         subprocess.run(['poweroff'])

@@ -17,7 +17,7 @@ class Hardware():
         self.context = pyudev.Context()
 
     def setMotors(self, payload):
-        print (frame.motors(payload))
+        print (''.join(format(x, '02x') for x in frame.motors(payload)))
         self.uart.send(frame.motors(payload))
 
     def setManipulator(self, payload):

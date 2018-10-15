@@ -1,24 +1,15 @@
 // TODO: make this like serviceworker ???
 
-export const telemetry = function(actions, sockets) {
-    sockets.io.on('battery', function(voltage) {
-        voltage = voltage * 0.1 + 7.6; // voltage divider
-        actions.telemetry.setBatteryLevel(voltage);
+export const telemetry = function telemetry(actions, sockets) {
+    sockets.io.on('telemetry', (data) => {
+        actions.telemetry.setSignalLevel(data.signal);
+        actions.telemetry.setTemperature(data.temperature);
+        actions.telemetry.setBatteryLevel(data.battery * 0.1 + 7.6);
     });
 
-    sockets.io.on('temperature', function(temperature) {
-        actions.telemetry.setTemperature(temperature);
-    });
-
-    sockets.io.on('signal', function(signal) {
-        actions.telemetry.setSignalLevel(signal);
-    });
-
-    setInterval(function() {
+    setInterval(() => {
         if (sockets.io.connected) {
-            sockets.io.emit('battery');
-            sockets.io.emit('signal');
-            sockets.io.emit('temperature');
+            sockets.io.emit('telemetry');
         }
     }, 2000);
-}
+};
