@@ -1,5 +1,6 @@
 import { h } from 'hyperapp';
 
+import { Rotate } from './rotate';
 import { SplashScreen } from './splashscreen';
 import { TopBar } from './components/topbar';
 import { Stream } from './components/stream';
@@ -11,6 +12,7 @@ import { ModeChooser } from './components/modechooser';
 
 const view = (state, actions) => (
     <main>
+        <Rotate />
         <SplashScreen state={state.showSplashScreen} />
         <div id="wrapper" class="wrapper">
             <TopBar state={state.telemetry} switchSettings={actions.settings.setVisibility} />
