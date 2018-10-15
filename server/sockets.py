@@ -3,8 +3,7 @@ from aiohttp import web
 import socketio
 import hexdump
 from log import logname
-import frame
-from hardware import Hardware
+from firmware import Shield
 from version import version_info
 import os
 import subprocess
@@ -15,7 +14,7 @@ class WSnamespace(socketio.AsyncNamespace):
     def __init__(self, namespace='/sockets'):
         super().__init__(namespace)
         self.sio = None
-        self.hw = Hardware()
+        self.hw = Shield()
 
     async def on_connect(self, sid, environ):
         logger.info("connected %s", sid)

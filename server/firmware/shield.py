@@ -1,13 +1,15 @@
-import frame
-from uart import Uart
+from firmware.frame import Frame
+from firmware.uart import Uart
 from link_quality import Signal
 import asyncio
 import os
 import pyudev
 import glob
 
-class Hardware():
+class Shield():
     def __init__(self):
+        self.frame = Frame()
+
         self.uart = Uart()
         self.signal = Signal()
 
@@ -17,19 +19,19 @@ class Hardware():
         self.context = pyudev.Context()
 
     def setMotors(self, payload):
-        print (''.join(format(x, '02x') for x in frame.motors(payload)))
-        self.uart.send(frame.motors(payload))
+        print (''.join(format(x, '02x') for x in self.frame.motors(payload)))
+        self.uart.send(self.frame.motors(payload))
 
     def setManipulator(self, payload):
-        print (frame.manipulator(payload))
-        self.uart.send(frame.manipulator(payload))
+        print (self.frame.manipulator(payload))
+        self.uart.send(self.frame.manipulator(payload))
 
     def setGripper(self, payload):
-        print (frame.gripper(payload))
-        self.uart.send(frame.gripper(payload))
+        print (self.frame.gripper(payload))
+        self.uart.send(self.frame.gripper(payload))
 
     def getBattery(self):
-        self.uart.send(frame.battery())
+        self.uart.send(self.frame.battery())
         status = self.uart.serial.read(1)
         battery_status = int.from_bytes(status, byteorder='big', signed=False)
         return battery_status
@@ -42,7 +44,7 @@ class Hardware():
         return f.read()
 
     def getFirmwareVersion(self):
-        print (frame.firmware_ver())
+        print (self.frame.firmware_ver())
         return '0.0.0'
         # self.uart.send(frame.firmware_ver())
         # firmaware_version = self.uart.serial.read(5)
