@@ -5,9 +5,9 @@ import { TopBar } from './components/topbar';
 import { Stream } from './components/stream';
 import { Settings } from './components/settings';
 import { Manipulator } from './components/manipulator';
-import { Joystick } from "./components/joystick";
-import { Gripper } from "./components/gripper";
-import { ModeChooser } from "./components/modechooser";
+import { Joystick } from './components/joystick';
+import { Gripper } from './components/gripper';
+import { ModeChooser } from './components/modechooser';
 
 const view = (state, actions) => (
     <main>
