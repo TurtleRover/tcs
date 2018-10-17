@@ -10,22 +10,22 @@ let state = {
     mode: 'drive',
     manipulator: {
         axis1: {
-            min: 2800,
-            max: 4850,
+            min: 2200,
+            max: 5000,
             step: 10,
-            value: 3300
+            value: 4600
         },
         axis2: {
             min: 2700,
-            max: 4450,
+            max: 5000,
             step: 10,
-            value: 3300
+            value: 3400
         },
         gripper: {
             min: 2400,
             max: 3600,
             step: 10,
-            value: 3300
+            value: 3000
         },
     },
     
@@ -39,5 +39,5 @@ let state = {
         temperature: ""
     }
 };
- 
+
 export default state;
