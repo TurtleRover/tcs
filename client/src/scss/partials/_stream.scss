@@ -13,4 +13,12 @@
     min-height: 100%;
     width: auto;
     height: auto;
+
+    &--drive-mode {
+        bottom: -30%;
+    }
+
+    &--grab-mode {
+        bottom: 0;
+    }
 }
