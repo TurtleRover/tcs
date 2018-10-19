@@ -10,9 +10,8 @@ export const Rotate = () =>
     </section>;
 
 const rotateClass = () => {
-    if (window.screen.orientation.type === 'landscape-primary') {
+    if (window.innerHeight < window.innerWidth) {
         return 'rotate rotate--hide';
-    } else {
-        return 'rotate';
     }
+    return 'rotate';
 };
