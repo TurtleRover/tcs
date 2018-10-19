@@ -33,6 +33,7 @@
         "react/prop-types": 0,
         "react/jsx-filename-extension": [1, {"extensions": [".js", ".jsx"]}],
         "react/jsx-uses-vars": 2,
+        "react/jsx-one-expression-per-line": "off",
 
         "no-use-before-define": "off",
         "jsx-quotes": "off",
