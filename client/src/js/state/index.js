@@ -40,6 +40,18 @@ const state = {
     },
 
     default: {},
+    preprogram: {
+        blocks: [{
+            direction: 'fw',
+            speed: 70,
+            time: 3,
+        },
+        {
+            direction: 'l',
+            speed: 20,
+            time: 15,
+        }],
+    },
 };
 
 export default state;
