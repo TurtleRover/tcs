@@ -24,7 +24,7 @@ class Uart(Thread):
         return  self.waiter()
 
     def send(self, data):
-        print ("serial", data)
+        logger.debug(''.join(format(x, '02x') for x in data))
         self.serial.write(data)
 
     def readline(self):

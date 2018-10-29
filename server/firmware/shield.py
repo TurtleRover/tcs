@@ -10,15 +10,12 @@ class Shield():
         self.uart.start()
 
     def setMotors(self, payload):
-        print (''.join(format(x, '02x') for x in self.frame.motors(payload)))
         self.uart.send(self.frame.motors(payload))
 
     def setManipulator(self, payload):
-        print (self.frame.manipulator(payload))
         self.uart.send(self.frame.manipulator(payload))
 
     def setGripper(self, payload):
-        print (self.frame.gripper(payload))
         self.uart.send(self.frame.gripper(payload))
 
     def getBattery(self):
