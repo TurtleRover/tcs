@@ -73,6 +73,35 @@ const actions = {
     log: (value) => console.log(value),
 
     system: null,
+
+    preprogram: {
+        next: {
+            incSpeed: step => state => {
+                const nextSpeed = state.speed + step;
+                if (nextSpeed <= 100) {
+                    return { speed: nextSpeed };
+                }
+            },
+            decSpeed: step => state => {
+                const nextSpeed = state.speed - step;
+                if (nextSpeed >= 0) {
+                    return { speed: nextSpeed };
+                }
+            },
+            incTime: step => state => {
+                const nextTime = state.time + step;
+                if (nextTime <= 60) {
+                    return { time: nextTime };
+                }
+            },
+            decTime: step => state => {
+                const nextTime = state.time - step;
+                if (nextTime >= 0) {
+                    return { time: nextTime };
+                }
+            },
+        },
+    },
 };
 
 export default actions;

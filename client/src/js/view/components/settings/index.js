@@ -31,7 +31,7 @@ const SettingsContent = ({ state, actions }) => {
         case 'debug':
             return <SettingsDebug />;
         case 'preprogram':
-            return <SettingsPreprogram state={state} />;
+            return <SettingsPreprogram state={state} actions={actions} />;
         case 'about':
             return <SettingsAbout state={state} />;
         default:

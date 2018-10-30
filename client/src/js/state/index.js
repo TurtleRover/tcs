@@ -51,6 +51,12 @@ const state = {
             speed: 20,
             time: 15,
         }],
+        next: {
+            direction: 'fw',
+            speed: 0,
+            time: 0,
+            step: 1,
+        },
     },
 };
 

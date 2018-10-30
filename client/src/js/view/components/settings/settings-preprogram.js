@@ -8,9 +8,15 @@ export const SettingsPreprogram = ({ actions, state }) =>
         <div class="preprogram_content">
             <Button text='Start' setValue={() => console.log("START PROGRAM")} />
             <div class="preprogram_content__blocks" id="preprogram_blocks">
-                { state.preprogram.blocks.map(block => (<PreprogramBlock direction={block.direction} speed={block.speed} time={block.time} />)) }
+                { state.preprogram.blocks.map(block => (
+                    <PreprogramBlock
+                        direction={block.direction}
+                        speed={block.speed}
+                        time={block.time} />))}
             </div>
-            <PreprogramBlockAdd />
+            <PreprogramBlockAdd
+                actions={actions.preprogram.next}
+                state={state.preprogram.next} />
         </div>
     </div>;
 
