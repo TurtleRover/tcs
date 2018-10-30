@@ -3,9 +3,9 @@ import { InputNumber } from '../elements/input-number';
 import { Button } from './button';
 
 export const PreprogramBlockAdd = ({ state, actions }) =>
-    <div class="preprogram-block">
-        <div class="preprogram-block__direction">{state.direction}</div>
-        <div class="preprogram-block__parameters">
+    <div class="preprogram-block-add">
+        <div class="preprogram-block-add__direction">{state.next.direction}</div>
+        <div class="preprogram-block-add__parameters">
             <InputNumber
                 label='Speed %'
                 value={state.next.speed}

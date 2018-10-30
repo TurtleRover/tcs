@@ -1,13 +1,4 @@
-.preprogram_content {
-    display: flex;
-    flex-flow: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-}
-
-.preprogram-block {
+.preprogram-block-add {
     background-color: $background-color;
     border: $green 2px solid;
     padding: 15px;
@@ -19,6 +10,7 @@
     flex-flow: row;
     justify-content: center;
     align-items: center;
+    height: 100px;
 
 
     &--active {
