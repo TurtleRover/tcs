@@ -4,7 +4,6 @@ export const Button = ({ text, setValue }) =>
     <button
         type='button'
         class='button'
-        onmouseup={(event) => setValue(event)}
-        ontouchend={(event) => setValue(event)}>
+        onmouseup={(event) => setValue(event)}>
         {text}
     </button>;
