@@ -15,8 +15,8 @@ export const SettingsPreprogram = ({ actions, state }) =>
                         time={block.time} />))}
             </div>
             <PreprogramBlockAdd
-                actions={actions.preprogram.next}
-                state={state.preprogram.next} />
+                actions={actions.preprogram}
+                state={state.preprogram} />
         </div>
     </div>;
 

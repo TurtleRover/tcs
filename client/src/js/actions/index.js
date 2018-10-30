@@ -75,6 +75,15 @@ const actions = {
     system: null,
 
     preprogram: {
+        add: () => state => ({
+            next: {
+                direction: 'fw',
+                speed: 0,
+                time: 0,
+                step: 1,
+            },
+            blocks: state.blocks.concat(state.next),
+        }),
         next: {
             incSpeed: step => state => {
                 const nextSpeed = state.speed + step;
