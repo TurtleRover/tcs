@@ -84,6 +84,7 @@ const actions = {
             },
             blocks: state.blocks.concat(state.next),
         }),
+        remove: (index) => state => ({ blocks: state.blocks.filter(block => state.blocks.indexOf(block) !== index) }),
         next: {
             incSpeed: step => state => {
                 const nextSpeed = state.speed + step;

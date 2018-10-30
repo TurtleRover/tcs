@@ -47,4 +47,22 @@
     &__time {
         
     }
+
+    &__number {
+        position: absolute;
+        font-size: 7px;
+        top: -2px;
+        padding: 2px 6px;
+        line-height: 1.9;
+        left: 0;
+        background-color: #22b14c;
+        color: #000000;
+        font-weight: bold;
+    }
+
+    &__remove {
+        position: absolute;
+        right: -46px;
+        top: -2px;
+    }
 }
