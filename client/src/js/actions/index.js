@@ -79,12 +79,13 @@ const actions = {
             const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
             const asyncForEach = async (array, callback) => {
                 for (let index = 0; index < array.length; index++) {
-                    await callback(array[index], index, array)
+                    // eslint-disable-next-line no-await-in-loop
+                    await callback(array[index], index, array);
                 }
             };
             const run = async () => {
                 await asyncForEach(blocks, async (num) => {
-                    let iid = setInterval(() => console.log(num.time), 100)
+                    const iid = setInterval(() => console.log(num.time), 100);
                     await waitFor(num.time * 1000);
                     clearInterval(iid);
                 });
