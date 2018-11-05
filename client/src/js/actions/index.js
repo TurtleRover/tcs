@@ -75,6 +75,24 @@ const actions = {
     system: null,
 
     preprogram: {
+        start: function start(blocks) {
+            const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
+            const asyncForEach = async (array, callback) => {
+                for (let index = 0; index < array.length; index++) {
+                    await callback(array[index], index, array)
+                }
+            };
+            const run = async () => {
+                await asyncForEach(blocks, async (num) => {
+                    let iid = setInterval(() => console.log(num.time), 100)
+                    await waitFor(num.time * 1000);
+                    clearInterval(iid);
+                });
+                console.log('Done');
+            };
+
+            run();
+        },
         add: () => state => ({
             next: {
                 direction: 'fw',

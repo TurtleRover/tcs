@@ -19,11 +19,12 @@ const core = (actions) => {
     actions.system = new System(sockets);
     actions.joystick = joystick;
 
-    console.log(actions.system, actions.motors);
+
+    console.log('[core][actions]:', actions);
 
     keyboard(actions.motors);
 
-    telemetry(actions, sockets);
+    // telemetry(actions, sockets);
 }
 
 export default core;
