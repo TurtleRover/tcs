@@ -7,9 +7,10 @@ export const InputNumber = ({ label, value, step, inc, dec }) =>
             class="input-number__input"
             type="number"
             placeholder={value}
+            value={value}
             step={step}
             min="0"
-            max="999"
+            max="9990"
         />
 
         <button
