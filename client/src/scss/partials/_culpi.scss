@@ -1,0 +1,15 @@
+.culpi {
+    &__right-group {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+
+    }
+    &__left-group {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+    }
+}
