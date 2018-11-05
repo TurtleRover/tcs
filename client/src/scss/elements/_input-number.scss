@@ -15,12 +15,12 @@
         border: 2px solid $green;
         background-color: $green;
         color: #000;
-        min-width: 50px;
+        width: 60px;
         padding: 10px 0 10px 10px;
         border-radius: 0;
         -moz-appearance: textfield;
         font-weight: bold;
-        -webkit-appearance: none;       
+        // -webkit-appearance: none;       
 
 
         &::-webkit-input-placeholder {
