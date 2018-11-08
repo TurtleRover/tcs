@@ -105,6 +105,7 @@ const actions = {
         }),
         remove: (index) => state => ({ blocks: state.blocks.filter(block => state.blocks.indexOf(block) !== index) }),
         next: {
+            setDirection: dir => state => ({ direction: dir }),
             incSpeed: step => state => {
                 const nextSpeed = state.speed + step;
                 if (nextSpeed <= 100) {
