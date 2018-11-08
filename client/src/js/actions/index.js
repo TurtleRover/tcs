@@ -108,6 +108,7 @@ const actions = {
                     await waitFor(block.time * 1000);
                     clearInterval(iid);
                 });
+                motors.stop();
                 console.log('[pre-program]: Done');
             };
 
