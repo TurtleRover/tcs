@@ -7,7 +7,8 @@ export const SettingsPreprogram = ({ actions, state }) =>
     <div class="settings_content">
         <div class="preprogram_content">
             <div>
-                <Button text='Start' setValue={() => actions.preprogram.start(state.preprogram.blocks)} />
+                {/* <Button text='Start' setValue={() => console.log(actions.motors)} /> */}
+                <Button text='Start' setValue={() => startMotors(state, actions)} />
             </div>
             <div class="preprogram_content__blocks">
                 { state.preprogram.blocks.map((block, index) => (
@@ -26,3 +27,9 @@ export const SettingsPreprogram = ({ actions, state }) =>
 
         </div>
     </div>;
+
+const startMotors = function startMotors(state, actions) {
+    const blocks = state.preprogram.blocks;
+    const motors = actions.motors;
+    actions.preprogram.start({ blocks, motors });
+};
