@@ -32,3 +32,9 @@ class Shield():
         # firmaware_version = self.uart.serial.read(5)
         # return int.from_bytes(firmaware_version, byteorder='big', signed=False)
         # return firmaware_version
+
+    def setCulpiRotationAngle(self, angle, speed):
+        self.uart.send(self.frame.culpi([angle, speed])) 
+
+    def setCulpiTranslation(self):
+        pass

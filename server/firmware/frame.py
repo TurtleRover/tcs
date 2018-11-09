@@ -9,6 +9,10 @@ MOTORS_PREFIX = 0x10  # Set all motors
 GRIPPER_PREFIX = 0x94
 MANIPULATOR_PREFIX = 0x84
 FIRMWARE_VER_PREFIX = 0x99
+
+CULPI_PREFIX = 0x41
+CULPI_ADDR = 0x00
+
 POSTFIX = [0x0D, 0x0A]
 
 class Frame():
@@ -59,6 +63,16 @@ class Frame():
     def manipulator(self, payload):
         command = bytearray()
         command.append(MANIPULATOR_PREFIX)
+        command.extend(payload)
+        command.append(0x0D)
+        command.append(0x0A)
+        return command
+
+    #   This frame is made specially for CULPI
+    def culpi(self, payload):
+        command = bytearray()
+        command.append(CULPI_PREFIX)
+        command.append(CULPI_ADDR)
         command.extend(payload)
         command.append(0x0D)
         command.append(0x0A)
