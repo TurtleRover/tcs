@@ -6,17 +6,19 @@ import { Manipulator } from './manipulator';
 import { telemetry } from './telemetry';
 import { Stream } from './stream'
 import { System } from './system';
+import { Culpi } from './culpi';
 
 const core = (actions) => {
     const sockets = new Sockets(actions);
-
     actions.motors = new Motors(sockets);
 
     actions.stream = new Stream();
     window.onbeforeunload = () => actions.stream.stop();
 
     actions.manipulator.m = new Manipulator(sockets);
+    actions.culpi.c = new Culpi(sockets);
     actions.system = new System(sockets);
+
     actions.joystick = joystick;
 
 

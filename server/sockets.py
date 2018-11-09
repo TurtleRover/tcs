@@ -45,6 +45,11 @@ class WSnamespace(socketio.AsyncNamespace):
             'signal': self.system.getSignal()
         }, namespace="/sockets")
 
+    async def on_culpi_rotation(self, sid, payload):
+        # self.shield.setCulpiRotationAngle(payload.angle, payload.speed)
+        await self.sio.emit('response', 'culpi rot set', namespace="/sockets")
+
+
     async def on_shutdown(self, sid):
         self.system.shutdown()
 

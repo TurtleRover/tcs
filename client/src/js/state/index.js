@@ -58,6 +58,15 @@ const state = {
             step: 1,
         },
     },
+
+    culpi: {
+        rotation: {
+            angle: 0,
+            maxAngle: 180,
+            minAngle: 0,
+            step: 10,
+        },
+    },
 };
 
 export default state;

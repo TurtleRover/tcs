@@ -1,6 +1,6 @@
 import { forIn, startsWith, zipObjectDeep, merge } from 'lodash';
 
-const save = (prefix, state) => {
+export const save = (prefix, state) => {
     const key = Object.keys(state);
     if (prefix) { prefix += '.'; }
     localStorage.setItem(prefix + key, JSON.stringify(state[key]));
@@ -37,6 +37,7 @@ const actions = {
     motors: null,
     joystick: null,
     stream: null,
+    sockets: null,
     manipulator: {
         m: null,
         axis1: {
@@ -150,6 +151,26 @@ const actions = {
                     return { time: nextTime };
                 }
             },
+        },
+    },
+
+    culpi: {
+        c: null,
+        rotation: {
+            inc: (step, sockets) => state => {
+                const nextAngle = state.angle + step;
+                if (nextAngle <= 180) {
+                    return save('culpi.rotation', { angle: nextAngle });
+                }
+            },
+            dec: step => state => {
+                const nextAngle = state.angle - step;
+                if (nextAngle >= 0) {
+                    return save('culpi.rotation', { angle: nextAngle });
+                }
+            },
+            max: value => state => save('culpi.rotation', { angle: value }),
+            min: value => state => save('culpi.rotation', { angle: value }),
         },
     },
 };
