@@ -1,10 +1,19 @@
 import { h } from 'hyperapp';
-import { InputNumber } from '../elements/input-number';
+import { InputNumber } from './input-number';
 import { Button } from './button';
 
 export const PreprogramBlockAdd = ({ state, actions }) =>
     <div class="preprogram-block-add">
-        <div class="preprogram-block-add__direction">{state.next.direction}</div>
+        <div class="preprogram-block-add__direction">
+            <select
+                onchange={(event) => actions.next.setDirection(event.target.value)}>
+                <option value="fw">FW</option>
+                <option value="bw">BW</option>
+                <option value="l">L</option>
+                <option value="r">R</option>
+            </select>
+        </div>
+
         <div class="preprogram-block-add__parameters">
             <InputNumber
                 label='Speed %'

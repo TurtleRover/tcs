@@ -1,13 +1,21 @@
 {
-  "plugins": [["transform-react-jsx", { "pragma": "h" }]],
-  "presets": [
-    [
-      "env",
-      {
-        "targets": {
-          "browsers": ["last 2 versions"]
-        }      
-      }
+    "plugins": [
+        ["transform-react-jsx", {
+            "pragma": "h"
+        }],
+        ["transform-runtime", {
+            "polyfill": false,
+            "regenerator": true
+        }]
+    ],
+    "presets": [
+        [
+            "env",
+            {
+                "targets": {
+                    "browsers": ["last 2 versions"]
+                }
+            }
+        ]
     ]
-  ]
 }

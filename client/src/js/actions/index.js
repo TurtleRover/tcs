@@ -75,6 +75,45 @@ const actions = {
     system: null,
 
     preprogram: {
+        start: function start({ blocks, motors }) {
+            console.log(motors);
+            
+            const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
+            const asyncForEach = async (array, callback) => {
+                for (let index = 0; index < array.length; index++) {
+                    // eslint-disable-next-line no-await-in-loop
+                    await callback(array[index], index, array);
+                }
+            };
+            const convertToArrOfDirections = (dir) => {
+                switch (dir) {
+                    case 'fw':
+                        return motors.direction.forward;
+                    case 'bw':
+                        return motors.direction.backward;
+                    case 'l':
+                        return motors.direction.left;
+                    case 'r':
+                        return motors.direction.right;
+                    default:
+                        break;
+                }
+            };
+            const run = async () => {
+                await asyncForEach(blocks, async (block) => {
+                    const iid = setInterval(() => {
+                        console.log('[pre-program]:', block.speed, motors);
+                        motors.set(block.speed, convertToArrOfDirections(block.direction));
+                    }, 100);
+                    await waitFor(block.time * 1000);
+                    clearInterval(iid);
+                });
+                motors.stop();
+                console.log('[pre-program]: Done');
+            };
+
+            run();
+        },
         add: () => state => ({
             next: {
                 direction: 'fw',
@@ -86,6 +125,7 @@ const actions = {
         }),
         remove: (index) => state => ({ blocks: state.blocks.filter(block => state.blocks.indexOf(block) !== index) }),
         next: {
+            setDirection: dir => state => ({ direction: dir }),
             incSpeed: step => state => {
                 const nextSpeed = state.speed + step;
                 if (nextSpeed <= 100) {
