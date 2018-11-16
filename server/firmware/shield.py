@@ -33,8 +33,5 @@ class Shield():
         # return int.from_bytes(firmaware_version, byteorder='big', signed=False)
         # return firmaware_version
 
-    def setCulpiRotationAngle(self, angle, speed):
-        self.uart.send(self.frame.culpi([angle, speed])) 
-
-    def setCulpiTranslation(self):
-        pass
+    def setCulpi(self, angle, speed):
+        self.uart.send(self.frame.culpi([0, angle, 0, speed])) 

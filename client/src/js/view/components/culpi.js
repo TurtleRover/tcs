@@ -6,7 +6,7 @@ import { Button } from './elements/button';
 export const Culpi = ({ state, actions }) =>
     <div class="culpi">
         <InputNumber
-            label='ytransl.'
+            label='Translation'
             value="-"
             step="10" />
 
@@ -14,8 +14,9 @@ export const Culpi = ({ state, actions }) =>
             label='Rotation'
             value={state.culpi.rotation.angle}
             step={state.culpi.rotation.step}
-            inc={incRotAngle(state.culpi, actions.culpi)}
-            dec={decRotAngle(state.culpi, actions.culpi)}
+            inc={actions.culpi.rotation.inc}
+            dec={actions.culpi.rotation.dec}
+            onmousedown={(val) => actions.culpi.c.setRotationAngle(val)}
         />
 
         <div class="culpi__left-group">
@@ -27,15 +28,20 @@ export const Culpi = ({ state, actions }) =>
         </div>
     </div>;
 
-const incRotAngle = (culpiState, culpiActions) => {
-    culpiActions.c.setRotationAngle(culpiState.rotation.angle, 123);
-    return culpiActions.rotation.inc;
-};
+// const incRotAngle = (culpiState, culpiActions) => {
+//     culpiActions.c.setRotationAngle(culpiState.rotation.angle, 0);
+//     return culpiActions.rotation.inc;
+// };
 
-const decRotAngle = (culpiState, culpiActions) => {
-    culpiActions.c.setRotationAngle(culpiState.rotation.angle, 123);
-    return culpiActions.rotation.dec;
-};
+// // const decRotAngle = (culpiState, culpiActions) => {
+// //     culpiActions.c.setRotationAngle(culpiState.rotation.angle, 0);
+// //     return culpiActions.rotation.dec;
+// // };
+
+// const decRotAngle = (culpiState, culpiActions) => {
+//     culpiActions.c.setRotationAngle(culpiState.rotation.angle, 0);
+//     culpiActions.rotation.dec();
+// };
 
 const maxAngle = (culpiState, culpiActions) => {
     // culpiActions.c.setRotationAngle(180, 123);

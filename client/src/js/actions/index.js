@@ -128,7 +128,7 @@ const actions = {
         next: {
             setDirection: dir => state => ({ direction: dir }),
             incSpeed: step => state => {
-                const nextSpeed = state.speed + step;
+                const nextSpeed = state.speed + state.step;
                 if (nextSpeed <= 100) {
                     return { speed: nextSpeed };
                 }
@@ -157,15 +157,17 @@ const actions = {
     culpi: {
         c: null,
         rotation: {
-            inc: (step, sockets) => state => {
-                const nextAngle = state.angle + step;
+            inc: (cb) => state => {
+                const nextAngle = state.angle + state.step;
                 if (nextAngle <= 180) {
+                    cb(nextAngle);
                     return save('culpi.rotation', { angle: nextAngle });
                 }
             },
-            dec: step => state => {
-                const nextAngle = state.angle - step;
+            dec: (cb) => state => {
+                const nextAngle = state.angle - state.step;
                 if (nextAngle >= 0) {
+                    cb(nextAngle);
                     return save('culpi.rotation', { angle: nextAngle });
                 }
             },
