@@ -41,25 +41,25 @@ const actions = {
     manipulator: {
         m: null,
         axis1: {
-            setValue: val => state => save('manipulator.axis1', {value: val}),
-            incMax: step => state => save('manipulator.axis1', {max: state.max + step}),
-            decMax: step => state => save('manipulator.axis1', {max: state.max - step}),
-            incMin: step => state => save('manipulator.axis1', {min: state.min + step}),
-            decMin: step => state => save('manipulator.axis1', {min: state.min - step})
+            setValue: val => state => save('manipulator.axis1', { value: val }),
+            incMax: step => state => save('manipulator.axis1', { max: state.max + state.step }),
+            decMax: step => state => save('manipulator.axis1', { max: state.max - state.step }),
+            incMin: step => state => save('manipulator.axis1', { min: state.min + state.step }),
+            decMin: step => state => save('manipulator.axis1', { min: state.min - state.step }),
         },
         axis2: {
-            setValue: val => state => save('manipulator.axis2', {value: val}),
-            incMax: step => state => save('manipulator.axis2', {max: state.max + step}),
-            decMax: step => state => save('manipulator.axis2', {max: state.max - step}),
-            incMin: step => state => save('manipulator.axis2', {min: state.min + step}),
-            decMin: step => state => save('manipulator.axis2', {min: state.min - step})
+            setValue: val => state => save('manipulator.axis2', { value: val }),
+            incMax: step => state => save('manipulator.axis2', { max: state.max + state.step }),
+            decMax: step => state => save('manipulator.axis2', { max: state.max - state.step }),
+            incMin: step => state => save('manipulator.axis2', { min: state.min + state.step }),
+            decMin: step => state => save('manipulator.axis2', { min: state.min - state.step }),
         },
         gripper: {
-            setValue: val => state => save('manipulator.gripper', {value: val}),
-            incMax: step => state => save('manipulator.gripper', {max: state.max + step}),
-            decMax: step => state => save('manipulator.gripper', {max: state.max - step}),
-            incMin: step => state => save('manipulator.gripper', {min: state.min + step}),
-            decMin: step => state => save('manipulator.gripper', {min: state.min - step})
+            setValue: val => state => save('manipulator.gripper', { value: val }),
+            incMax: step => state => save('manipulator.gripper', { max: state.max + state.step }),
+            decMax: step => state => save('manipulator.gripper', { max: state.max - state.step }),
+            incMin: step => state => save('manipulator.gripper', { min: state.min + state.step }),
+            decMin: step => state => save('manipulator.gripper', { min: state.min - state.step }),
         },
         reset: (defaultState) => state => {
             forIn(window.localStorage, (value, objKey) => {
