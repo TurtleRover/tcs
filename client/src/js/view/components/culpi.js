@@ -23,32 +23,7 @@ export const Culpi = ({ state, actions }) =>
             <Button text='CENTER' setValue={() => console.log("RESET ROTATION")} />
         </div>
         <div class="culpi__right-group">
-            <Button text='MAX LEFT' value={state.culpi.rotation.maxAngle} setValue={maxAngle(state.culpi, actions.culpi)} />
-            <Button text='MAX RIGHT' value={state.culpi.rotation.minAngle} setValue={minAngle(state.culpi, actions.culpi)} />
+            <Button text='MAX LEFT' value={state.culpi.rotation.maxAngle} setValue={actions.culpi.rotation.max} />
+            <Button text='MAX RIGHT' value={state.culpi.rotation.minAngle} setValue={actions.culpi.rotation.min} />
         </div>
     </div>;
-
-// const incRotAngle = (culpiState, culpiActions) => {
-//     culpiActions.c.setRotationAngle(culpiState.rotation.angle, 0);
-//     return culpiActions.rotation.inc;
-// };
-
-// // const decRotAngle = (culpiState, culpiActions) => {
-// //     culpiActions.c.setRotationAngle(culpiState.rotation.angle, 0);
-// //     return culpiActions.rotation.dec;
-// // };
-
-// const decRotAngle = (culpiState, culpiActions) => {
-//     culpiActions.c.setRotationAngle(culpiState.rotation.angle, 0);
-//     culpiActions.rotation.dec();
-// };
-
-const maxAngle = (culpiState, culpiActions) => {
-    // culpiActions.c.setRotationAngle(180, 123);
-    return culpiActions.rotation.max;
-};
-
-const minAngle = (culpiState, culpiActions) => {
-    // culpiActions.c.setRotationAngle(0, 123);
-    return culpiActions.rotation.min;
-};
