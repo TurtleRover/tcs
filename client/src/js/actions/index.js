@@ -25,7 +25,7 @@ const actions = {
 
     settings: {
         setVisibility: value => state => save('settings', { isVisible: !state.isVisible }),
-        setVisibleCategory: value => state => save('settings', {category: value }),
+        setVisibleCategory: value => state => save('settings', { category: value }),
     },
 
     telemetry: {
@@ -78,7 +78,7 @@ const actions = {
     preprogram: {
         start: function start({ blocks, motors }) {
             console.log(motors);
-            
+
             const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
             const asyncForEach = async (array, callback) => {
                 for (let index = 0; index < array.length; index++) {
