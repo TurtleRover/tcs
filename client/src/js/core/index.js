@@ -4,7 +4,7 @@ import { joystick } from './joystick';
 import { Motors } from './motors';
 import { Manipulator } from './manipulator';
 import { telemetry } from './telemetry';
-import { Stream } from './stream'
+import { Stream } from './stream';
 import { System } from './system';
 
 const core = (actions) => {
@@ -24,7 +24,7 @@ const core = (actions) => {
 
     keyboard(actions.motors);
 
-    // telemetry(actions, sockets);
-}
+    telemetry(actions, sockets);
+};
 
 export default core;
