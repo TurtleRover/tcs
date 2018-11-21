@@ -20,7 +20,7 @@ export const Culpi = ({ state, actions }) =>
         />
 
         <div class="culpi__left-group">
-            <Button text='CENTER' setValue={() => console.log("RESET ROTATION")} />
+            <Button text='CENTER' value={state.culpi.rotation.midAngle} setValue={actions.culpi.rotation.mid} />
         </div>
         <div class="culpi__right-group">
             <Button text='MAX LEFT' value={state.culpi.rotation.maxAngle} setValue={actions.culpi.rotation.max} />
