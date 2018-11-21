@@ -33,8 +33,8 @@ class Shield():
         # return int.from_bytes(firmaware_version, byteorder='big', signed=False)
         # return firmaware_version
 
-    def setCulpi(self, angle, speed):
+    def setCulpi(self, angle, transl):
         payload = bytearray()
         payload.extend(angle.to_bytes(2, byteorder="big"))
-        payload.append(speed)
+        payload.append(transl)
         self.uart.send(self.frame.culpi(payload)) 

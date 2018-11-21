@@ -67,6 +67,14 @@ const state = {
             midAngle: 512,
             step: 1,
         },
+        translation: {
+            valueUp: 64,
+            valueDown: 190,
+            maxUp: 127,
+            minUp: 0,
+            maxDown: 255,
+            minDown: 128,
+        },
     },
 };
 

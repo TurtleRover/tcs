@@ -2,7 +2,7 @@ export const Culpi = function Culpi(sockets) {
     this.sockets = sockets;
 };
 
-Culpi.prototype.setRotationAngle = function setRotationAngle(angle) {
-    console.log('Culpi.prototype.setRotationAngle', angle);
-    this.sockets.io.emit('culpi', { angle, speed: 0 });
+Culpi.prototype.set = function set(angle, transl) {
+    console.log('Culpi.prototype.set', angle, transl);
+    this.sockets.io.emit('culpi', { angle, transl });
 };

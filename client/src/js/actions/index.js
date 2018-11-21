@@ -175,6 +175,18 @@ const actions = {
             min: value => state => save('culpi.rotation', { angle: value }),
             mid: value => state => save('culpi.rotation', { angle: value }),
         },
+        translation: {
+            up: (cb) => state => {
+                if (state.valueUp <= state.maxUp) {
+                    cb(state.valueUp);
+                }
+            },
+            down: (cb) => state => {
+                if (state.valueDown <= state.maxDown) {
+                    cb(state.valueDown);
+                }
+            },
+        },
     },
 };
 

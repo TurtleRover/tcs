@@ -7,8 +7,11 @@ export const Culpi = ({ state, actions }) =>
     <div class="culpi">
         <InputNumber
             label='Translation'
-            value="-"
-            step="10" />
+            value=':)'
+            inc={actions.culpi.translation.up}
+            dec={actions.culpi.translation.down}
+            onmousedown={(transl) => actions.culpi.c.set(state.culpi.rotation.angle, transl)}
+        />
 
         <InputNumber
             label='Rotation'
@@ -16,7 +19,7 @@ export const Culpi = ({ state, actions }) =>
             step={state.culpi.rotation.step}
             inc={actions.culpi.rotation.inc}
             dec={actions.culpi.rotation.dec}
-            onmousedown={(val) => actions.culpi.c.setRotationAngle(val)}
+            onmousedown={(angle) => actions.culpi.c.set(angle, state.culpi.translation.minUp)}
         />
 
         <div class="culpi__left-group">
