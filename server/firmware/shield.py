@@ -34,4 +34,7 @@ class Shield():
         # return firmaware_version
 
     def setCulpi(self, angle, speed):
-        self.uart.send(self.frame.culpi([0, angle, 0, speed])) 
+        payload = bytearray()
+        payload.extend(angle.to_bytes(2, byteorder="big"))
+        payload.append(speed)
+        self.uart.send(self.frame.culpi(payload)) 

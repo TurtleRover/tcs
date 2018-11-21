@@ -11,7 +11,7 @@ MANIPULATOR_PREFIX = 0x84
 FIRMWARE_VER_PREFIX = 0x99
 
 CULPI_PREFIX = 0x41
-CULPI_ADDR = 0x00
+CULPI_ADDR = 0x42
 
 POSTFIX = [0x0D, 0x0A]
 
@@ -70,6 +70,7 @@ class Frame():
 
     #   This frame is made specially for CULPI
     def culpi(self, payload):
+        print(payload)
         command = bytearray()
         command.append(CULPI_PREFIX)
         command.append(CULPI_ADDR)
