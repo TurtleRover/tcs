@@ -159,20 +159,21 @@ const actions = {
         rotation: {
             inc: (cb) => state => {
                 const nextAngle = state.angle + state.step;
-                if (nextAngle <= 180) {
+                if (nextAngle <= state.maxAngle) {
                     cb(nextAngle);
                     return save('culpi.rotation', { angle: nextAngle });
                 }
             },
             dec: (cb) => state => {
                 const nextAngle = state.angle - state.step;
-                if (nextAngle >= 0) {
+                if (nextAngle >= state.minAngle) {
                     cb(nextAngle);
                     return save('culpi.rotation', { angle: nextAngle });
                 }
             },
             max: value => state => save('culpi.rotation', { angle: value }),
             min: value => state => save('culpi.rotation', { angle: value }),
+            mid: value => state => save('culpi.rotation', { angle: value }),
         },
     },
 };

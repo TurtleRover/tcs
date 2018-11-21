@@ -62,9 +62,10 @@ const state = {
     culpi: {
         rotation: {
             angle: 0,
-            maxAngle: 180,
+            maxAngle: 1023,
             minAngle: 0,
-            step: 10,
+            midAngle: 512,
+            step: 1,
         },
     },
 };
