@@ -23,10 +23,25 @@ export const Culpi = ({ state, actions }) =>
         />
 
         <div class="culpi__left-group">
-            <Button text='CENTER' value={state.culpi.rotation.midAngle} setValue={actions.culpi.rotation.mid} />
+            <Button text='CENTER' value={state.culpi.rotation.midAngle} onclick={(angle) => setMidAngle(angle, state.culpi.translation.minUp, actions)} />
         </div>
         <div class="culpi__right-group">
-            <Button text='MAX LEFT' value={state.culpi.rotation.maxAngle} setValue={actions.culpi.rotation.max} />
-            <Button text='MAX RIGHT' value={state.culpi.rotation.minAngle} setValue={actions.culpi.rotation.min} />
+            <Button text='MAX LEFT' value={state.culpi.rotation.maxAngle} onclick={(angle) => setMaxAngle(angle, state.culpi.translation.minUp, actions)} />
+            <Button text='MAX RIGHT' value={state.culpi.rotation.minAngle} onclick={(angle) => setMinAngle(angle, state.culpi.translation.minUp, actions)} />
         </div>
     </div>;
+
+const setMidAngle = (angle, transl, actions) => {
+    actions.culpi.c.set(angle, transl);
+    actions.culpi.rotation.mid();
+};
+
+const setMaxAngle = (angle, transl, actions) => {
+    actions.culpi.c.set(angle, transl);
+    actions.culpi.rotation.max();
+};
+
+const setMinAngle = (angle, transl, actions) => {
+    actions.culpi.c.set(angle, transl);
+    actions.culpi.rotation.min();
+};

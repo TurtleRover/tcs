@@ -171,9 +171,9 @@ const actions = {
                     return save('culpi.rotation', { angle: nextAngle });
                 }
             },
-            max: value => state => save('culpi.rotation', { angle: value }),
-            min: value => state => save('culpi.rotation', { angle: value }),
-            mid: value => state => save('culpi.rotation', { angle: value }),
+            max: value => state => save('culpi.rotation', { angle: state.maxAngle }),
+            min: value => state => save('culpi.rotation', { angle: state.minAngle }),
+            mid: value => state => save('culpi.rotation', { angle: state.midAngle }),
         },
         translation: {
             up: (cb) => state => {
