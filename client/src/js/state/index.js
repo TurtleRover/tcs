@@ -68,8 +68,8 @@ const state = {
             step: 1,
         },
         translation: {
-            valueUp: 64,
-            valueDown: 190,
+            valueUp: 127,
+            valueDown: 255,
             maxUp: 127,
             minUp: 0,
             maxDown: 255,
