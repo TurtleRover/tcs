@@ -10,6 +10,6 @@ export const PreprogramBlock = ({ direction, speed, time, number, remove }) =>
             <span class="preprogram-block__speed">Time: {time} s</span>
         </div>
         <div class="preprogram-block__remove">
-            <Button text='X' setValue={() => remove(number)} />
+            <Button text='X' onclick={() => remove(number)} />
         </div>
     </div>;

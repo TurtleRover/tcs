@@ -30,5 +30,5 @@ export const PreprogramBlockAdd = ({ state, actions }) =>
                 dec={actions.next.decTime}
             />
         </div>
-        <Button text='Add' setValue={() => actions.add()} />
+        <Button text='Add' onclick={() => actions.add()} />
     </div>;

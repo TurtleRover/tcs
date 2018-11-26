@@ -127,26 +127,26 @@ const actions = {
         remove: (index) => state => ({ blocks: state.blocks.filter(block => state.blocks.indexOf(block) !== index) }),
         next: {
             setDirection: dir => state => ({ direction: dir }),
-            incSpeed: step => state => {
+            incSpeed: cb => state => {
                 const nextSpeed = state.speed + state.step;
                 if (nextSpeed <= 100) {
                     return { speed: nextSpeed };
                 }
             },
-            decSpeed: step => state => {
-                const nextSpeed = state.speed - step;
+            decSpeed: cb => state => {
+                const nextSpeed = state.speed - state.step;
                 if (nextSpeed >= 0) {
                     return { speed: nextSpeed };
                 }
             },
-            incTime: step => state => {
-                const nextTime = state.time + step;
+            incTime: cb => state => {
+                const nextTime = state.time + state.step;
                 if (nextTime <= 60) {
                     return { time: nextTime };
                 }
             },
-            decTime: step => state => {
-                const nextTime = state.time - step;
+            decTime: cb => state => {
+                const nextTime = state.time - state.step;
                 if (nextTime >= 0) {
                     return { time: nextTime };
                 }
