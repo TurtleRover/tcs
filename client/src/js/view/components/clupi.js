@@ -4,7 +4,7 @@ import { Button } from './elements/button';
 
 
 export const Clupi = ({ state, actions }) =>
-    <div class="clupi">
+    <div class={(state.clupi.isVisible === true) ? 'clupi' : 'clupi clupi--hide'}>
         <InputNumber
             label='Translation'
             value=':)'

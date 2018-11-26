@@ -156,6 +156,7 @@ const actions = {
 
     clupi: {
         c: null,
+        setVisibility: value => state => save('clupi', { isVisible: value }),
         rotation: {
             inc: (cb) => state => {
                 const nextAngle = state.angle + state.step;

@@ -60,6 +60,7 @@ const state = {
     },
 
     clupi: {
+        isVisible: false,
         rotation: {
             angle: 0,
             maxAngle: 1023,
