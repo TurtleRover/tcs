@@ -1,7 +1,7 @@
 from system.link_quality import Signal
 import os
-import glob
 import pyudev
+import re
 import subprocess
 
 
@@ -26,7 +26,22 @@ class System():
         return None
 
     def getCameraInfo(self):
-        return glob.glob("/dev/video*")
+        try:
+            output = subprocess.check_output("v4l2-ctl --list-devices 2>/dev/null", shell=True)
+        except subprocess.CalledProcessError as e:
+            output = e.output
+
+        expr = r"(?P<model>.*) \(.*\):\n\t(?P<device>.*)"
+
+        cameras = []
+
+        for camera in re.finditer(expr, output.decode('utf-8')):
+            cameras.append({
+                    'model': camera.group('model'),
+                    'device': camera.group('device')
+                })
+
+        return cameras
 
     def shutdown(self):
         subprocess.run(['poweroff'])

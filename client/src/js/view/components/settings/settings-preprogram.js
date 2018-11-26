@@ -11,13 +11,15 @@ export const SettingsPreprogram = ({ actions, state }) =>
                 <Button text='Start' setValue={() => startMotors(state, actions)} />
             </div>
             <div class="preprogram_content__blocks">
-                { state.preprogram.blocks.map((block, index) => (
-                    <PreprogramBlock
-                        direction={block.direction}
-                        speed={block.speed}
-                        time={block.time}
-                        number={index}
-                        remove={actions.preprogram.remove} />))}
+                {
+                    state.preprogram.blocks.map((block, index) => (
+                        <PreprogramBlock
+                            direction={block.direction}
+                            speed={block.speed}
+                            time={block.time}
+                            number={index}
+                            remove={actions.preprogram.remove} />))
+                }
             </div>
             <div>
                 <PreprogramBlockAdd
