@@ -10,8 +10,8 @@ GRIPPER_PREFIX = 0x94
 MANIPULATOR_PREFIX = 0x84
 FIRMWARE_VER_PREFIX = 0x99
 
-CULPI_PREFIX = 0x41
-CULPI_ADDR = 0x42
+CLUPI_PREFIX = 0x41
+CLUPI_ADDR = 0x42
 
 POSTFIX = [0x0D, 0x0A]
 
@@ -68,12 +68,12 @@ class Frame():
         command.append(0x0A)
         return command
 
-    #   This frame is made specially for CULPI
-    def culpi(self, payload):
+    #   This frame is made specially for CLUPI
+    def clupi(self, payload):
         print(payload)
         command = bytearray()
-        command.append(CULPI_PREFIX)
-        command.append(CULPI_ADDR)
+        command.append(CLUPI_PREFIX)
+        command.append(CLUPI_ADDR)
         command.extend(payload)
         command.append(0x0D)
         command.append(0x0A)

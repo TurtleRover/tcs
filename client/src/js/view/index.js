@@ -9,7 +9,7 @@ import { Manipulator } from './components/manipulator';
 import { Joystick } from './components/joystick';
 import { Gripper } from './components/gripper';
 import { ModeChooser } from './components/modechooser';
-import { Culpi } from './components/culpi';
+import { Clupi } from './components/clupi';
 
 const view = (state, actions) => (
     <main>
@@ -26,7 +26,7 @@ const view = (state, actions) => (
             </div>
 
             <div class="controls-box-left">
-                <Culpi state={state} actions={actions} />
+                <Clupi state={state} actions={actions} />
                 <Gripper mode={state.mode} state={state.manipulator.gripper} action={actions.manipulator} />
                 <ModeChooser mode={state.mode} setMode={actions.setMode} />
             </div>

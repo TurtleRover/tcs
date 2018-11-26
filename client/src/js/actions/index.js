@@ -154,26 +154,26 @@ const actions = {
         },
     },
 
-    culpi: {
+    clupi: {
         c: null,
         rotation: {
             inc: (cb) => state => {
                 const nextAngle = state.angle + state.step;
                 if (nextAngle <= state.maxAngle) {
                     cb(nextAngle);
-                    return save('culpi.rotation', { angle: nextAngle });
+                    return save('clupi.rotation', { angle: nextAngle });
                 }
             },
             dec: (cb) => state => {
                 const nextAngle = state.angle - state.step;
                 if (nextAngle >= state.minAngle) {
                     cb(nextAngle);
-                    return save('culpi.rotation', { angle: nextAngle });
+                    return save('clupi.rotation', { angle: nextAngle });
                 }
             },
-            max: value => state => save('culpi.rotation', { angle: state.maxAngle }),
-            min: value => state => save('culpi.rotation', { angle: state.minAngle }),
-            mid: value => state => save('culpi.rotation', { angle: state.midAngle }),
+            max: value => state => save('clupi.rotation', { angle: state.maxAngle }),
+            min: value => state => save('clupi.rotation', { angle: state.minAngle }),
+            mid: value => state => save('clupi.rotation', { angle: state.midAngle }),
         },
         translation: {
             up: (cb) => state => {

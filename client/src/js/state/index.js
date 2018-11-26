@@ -59,7 +59,7 @@ const state = {
         },
     },
 
-    culpi: {
+    clupi: {
         rotation: {
             angle: 0,
             maxAngle: 1023,
