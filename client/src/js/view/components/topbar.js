@@ -67,8 +67,6 @@ const ActionFullscreen = () =>
 
 // https://gist.github.com/demonixis/5188326
 const toggleFullscreen = (event) => {
-    console.log(event);
-
     let element = document.body;
     if (event instanceof window.HTMLElement) {
         element = event;
