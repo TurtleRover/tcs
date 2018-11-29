@@ -58,6 +58,25 @@ const state = {
             step: 1,
         },
     },
+
+    clupi: {
+        isVisible: false,
+        rotation: {
+            angle: 0,
+            maxAngle: 1023,
+            minAngle: 0,
+            midAngle: 512,
+            step: 1,
+        },
+        translation: {
+            valueUp: 127,
+            valueDown: 255,
+            maxUp: 127,
+            minUp: 0,
+            maxDown: 255,
+            minDown: 128,
+        },
+    },
 };
 
 export default state;

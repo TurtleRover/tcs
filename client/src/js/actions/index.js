@@ -1,6 +1,6 @@
 import { forIn, startsWith, zipObjectDeep, merge } from 'lodash';
 
-const save = (prefix, state) => {
+export const save = (prefix, state) => {
     const key = Object.keys(state);
     if (prefix) { prefix += '.'; }
     localStorage.setItem(prefix + key, JSON.stringify(state[key]));
@@ -25,7 +25,7 @@ const actions = {
 
     settings: {
         setVisibility: value => state => save('settings', { isVisible: !state.isVisible }),
-        setVisibleCategory: value => state => save('settings', {category: value }),
+        setVisibleCategory: value => state => save('settings', { category: value }),
     },
 
     telemetry: {
@@ -37,28 +37,29 @@ const actions = {
     motors: null,
     joystick: null,
     stream: null,
+    sockets: null,
     manipulator: {
         m: null,
         axis1: {
-            setValue: val => state => save('manipulator.axis1', {value: val}),
-            incMax: step => state => save('manipulator.axis1', {max: state.max + step}),
-            decMax: step => state => save('manipulator.axis1', {max: state.max - step}),
-            incMin: step => state => save('manipulator.axis1', {min: state.min + step}),
-            decMin: step => state => save('manipulator.axis1', {min: state.min - step})
+            setValue: val => state => save('manipulator.axis1', { value: val }),
+            incMax: step => state => save('manipulator.axis1', { max: state.max + state.step }),
+            decMax: step => state => save('manipulator.axis1', { max: state.max - state.step }),
+            incMin: step => state => save('manipulator.axis1', { min: state.min + state.step }),
+            decMin: step => state => save('manipulator.axis1', { min: state.min - state.step }),
         },
         axis2: {
-            setValue: val => state => save('manipulator.axis2', {value: val}),
-            incMax: step => state => save('manipulator.axis2', {max: state.max + step}),
-            decMax: step => state => save('manipulator.axis2', {max: state.max - step}),
-            incMin: step => state => save('manipulator.axis2', {min: state.min + step}),
-            decMin: step => state => save('manipulator.axis2', {min: state.min - step})
+            setValue: val => state => save('manipulator.axis2', { value: val }),
+            incMax: step => state => save('manipulator.axis2', { max: state.max + state.step }),
+            decMax: step => state => save('manipulator.axis2', { max: state.max - state.step }),
+            incMin: step => state => save('manipulator.axis2', { min: state.min + state.step }),
+            decMin: step => state => save('manipulator.axis2', { min: state.min - state.step }),
         },
         gripper: {
-            setValue: val => state => save('manipulator.gripper', {value: val}),
-            incMax: step => state => save('manipulator.gripper', {max: state.max + step}),
-            decMax: step => state => save('manipulator.gripper', {max: state.max - step}),
-            incMin: step => state => save('manipulator.gripper', {min: state.min + step}),
-            decMin: step => state => save('manipulator.gripper', {min: state.min - step})
+            setValue: val => state => save('manipulator.gripper', { value: val }),
+            incMax: step => state => save('manipulator.gripper', { max: state.max + state.step }),
+            decMax: step => state => save('manipulator.gripper', { max: state.max - state.step }),
+            incMin: step => state => save('manipulator.gripper', { min: state.min + state.step }),
+            decMin: step => state => save('manipulator.gripper', { min: state.min - state.step }),
         },
         reset: (defaultState) => state => {
             forIn(window.localStorage, (value, objKey) => {
@@ -77,7 +78,7 @@ const actions = {
     preprogram: {
         start: function start({ blocks, motors }) {
             console.log(motors);
-            
+
             const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
             const asyncForEach = async (array, callback) => {
                 for (let index = 0; index < array.length; index++) {
@@ -126,28 +127,64 @@ const actions = {
         remove: (index) => state => ({ blocks: state.blocks.filter(block => state.blocks.indexOf(block) !== index) }),
         next: {
             setDirection: dir => state => ({ direction: dir }),
-            incSpeed: step => state => {
-                const nextSpeed = state.speed + step;
+            incSpeed: cb => state => {
+                const nextSpeed = state.speed + state.step;
                 if (nextSpeed <= 100) {
                     return { speed: nextSpeed };
                 }
             },
-            decSpeed: step => state => {
-                const nextSpeed = state.speed - step;
+            decSpeed: cb => state => {
+                const nextSpeed = state.speed - state.step;
                 if (nextSpeed >= 0) {
                     return { speed: nextSpeed };
                 }
             },
-            incTime: step => state => {
-                const nextTime = state.time + step;
+            incTime: cb => state => {
+                const nextTime = state.time + state.step;
                 if (nextTime <= 60) {
                     return { time: nextTime };
                 }
             },
-            decTime: step => state => {
-                const nextTime = state.time - step;
+            decTime: cb => state => {
+                const nextTime = state.time - state.step;
                 if (nextTime >= 0) {
                     return { time: nextTime };
+                }
+            },
+        },
+    },
+
+    clupi: {
+        c: null,
+        setVisibility: value => state => save('clupi', { isVisible: value }),
+        rotation: {
+            inc: (cb) => state => {
+                const nextAngle = state.angle + state.step;
+                if (nextAngle <= state.maxAngle) {
+                    cb(nextAngle);
+                    return save('clupi.rotation', { angle: nextAngle });
+                }
+            },
+            dec: (cb) => state => {
+                const nextAngle = state.angle - state.step;
+                if (nextAngle >= state.minAngle) {
+                    cb(nextAngle);
+                    return save('clupi.rotation', { angle: nextAngle });
+                }
+            },
+            max: value => state => save('clupi.rotation', { angle: state.maxAngle }),
+            min: value => state => save('clupi.rotation', { angle: state.minAngle }),
+            mid: value => state => save('clupi.rotation', { angle: state.midAngle }),
+        },
+        translation: {
+            up: (cb) => state => {
+                if (state.valueUp <= state.maxUp) {
+                    cb(state.valueUp);
+                }
+            },
+            down: (cb) => state => {
+                if (state.valueDown <= state.maxDown) {
+                    cb(state.valueDown);
                 }
             },
         },

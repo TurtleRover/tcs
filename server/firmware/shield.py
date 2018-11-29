@@ -32,3 +32,9 @@ class Shield():
         # firmaware_version = self.uart.serial.read(5)
         # return int.from_bytes(firmaware_version, byteorder='big', signed=False)
         # return firmaware_version
+
+    def setClupi(self, angle, transl):
+        payload = bytearray()
+        payload.extend(angle.to_bytes(2, byteorder="big"))
+        payload.append(transl)
+        self.uart.send(self.frame.clupi(payload)) 

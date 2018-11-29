@@ -45,6 +45,11 @@ class WSnamespace(socketio.AsyncNamespace):
             'signal': self.system.getSignal()
         }, namespace="/sockets")
 
+    async def on_clupi(self, sid, payload):
+        self.shield.setClupi(payload['angle'], payload['transl'])
+        await self.sio.emit('response', 'clupi set', namespace="/sockets")
+
+
     async def on_shutdown(self, sid):
         self.system.shutdown()
 

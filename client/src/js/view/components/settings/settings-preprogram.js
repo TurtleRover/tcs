@@ -8,7 +8,7 @@ export const SettingsPreprogram = ({ actions, state }) =>
         <div class="preprogram_content">
             <div>
                 {/* <Button text='Start' setValue={() => console.log(actions.motors)} /> */}
-                <Button text='Start' setValue={() => startMotors(state, actions)} />
+                <Button text='Start' onclick={() => startMotors(state, actions)} />
             </div>
             <div class="preprogram_content__blocks">
                 {
