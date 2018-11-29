@@ -1,32 +1,31 @@
-import nipplejs from 'nipplejs'
-import {throttle, zipObjectDeep, merge} from 'lodash'
+import { forIn, startsWith, zipObjectDeep, merge } from 'lodash';
 
-let save = (prefix, state) => {
-    let key = Object.keys(state);    
-    if (prefix) { prefix = prefix + '.'; }
+export const save = (prefix, state) => {
+    const key = Object.keys(state);
+    if (prefix) { prefix += '.'; }
     localStorage.setItem(prefix + key, JSON.stringify(state[key]));
     return state;
-}
+};
 
 const actions = {
     restoreState: v => state => {
-        let props = Object.keys(localStorage);
+        const props = Object.keys(localStorage);
         props.forEach((prop) => {
-            let zipped = zipObjectDeep([prop], [JSON.parse(localStorage[prop])]);
+            const zipped = zipObjectDeep([prop], [JSON.parse(localStorage[prop])]);
             merge(state, zipped);
             console.log('Restore', prop, zipped);
         });
         console.log('State after restore', state);
     },
 
-    setSystemInfo: value => state => ({system_info: value}),
+    setSystemInfo: value => state => ({ system_info: value }),
 
     setSplashScreenState: value => state => ({ showSplashScreen: value }),
     setMode: value => state => save('', { mode: value }),
 
-   settings: {
+    settings: {
         setVisibility: value => state => save('settings', { isVisible: !state.isVisible }),
-        setVisibleCategory: value => state => save('settings', {category: value }),
+        setVisibleCategory: value => state => save('settings', { category: value }),
     },
 
     telemetry: {
@@ -36,93 +35,160 @@ const actions = {
     },
 
     motors: null,
-  
-
-    joystick: ({el, motors}) => {
-        
-        let manager = nipplejs.create({
-            zone: el,
-            mode: 'static',
-            position: {right: '55%', bottom: '55%'},
-            size: el.clientHeight,
-            // dataOnly: true
-        });
-
-        var force = 0;
-        var angle = "up";
-        var interval;
-        
-        manager.on('start', function (evt, nipple) {
-            // console.log(evt);
-            nipple.on('move', (evt, data) => getDataFromJoystick(evt, data, force, angle));
-
-            interval = setInterval( () => motors.set(force, angle), 100);
-
-        });
-
-        let getDataFromJoystick = (evt, data) => {
-            if (!data.hasOwnProperty('direction')) { return; }
-            force = treshold(data.force);
-            angle = convertToArrOfDirections(data.direction.angle);
-            console.log('[joystick]', treshold(data.force), convertToArrOfDirections(data.direction.angle));        
-        };
-
-        let treshold = (force) => force >= 1 ? 100 : (force * 100).toFixed(0);
-        
-        manager.on('end', function(evt, nipple) { 
-            clearInterval(interval);
-            console.log("[joystick interval]", interval);
-            force = 0;
-            console.log(evt);
-            motors.stop();
-        });
-
-        const convertToArrOfDirections = (angle) => {
-            switch (angle) {
-                case 'up':
-                    return motors.direction.forward;
-                case 'down':
-                    return motors.direction.backward;
-                case 'left':
-                    return motors.direction.left;
-                case 'right':
-                    return motors.direction.right;
-                default:
-                    break;
-            }
-        }
-    },
-
+    joystick: null,
     stream: null,
+    sockets: null,
     manipulator: {
         m: null,
         axis1: {
-            setValue: val => state =>  save('manipulator.axis1',{value: val}),
-            incMax: step => state => save('manipulator.axis1', {max: state.max + step}),
-            decMax: step => state => save('manipulator.axis1', {max: state.max - step}),
-            incMin: step => state => save('manipulator.axis1', {min: state.min + step}),
-            decMin: step => state => save('manipulator.axis1', {min: state.min - step})
+            setValue: val => state => save('manipulator.axis1', { value: val }),
+            incMax: step => state => save('manipulator.axis1', { max: state.max + state.step }),
+            decMax: step => state => save('manipulator.axis1', { max: state.max - state.step }),
+            incMin: step => state => save('manipulator.axis1', { min: state.min + state.step }),
+            decMin: step => state => save('manipulator.axis1', { min: state.min - state.step }),
         },
         axis2: {
-            setValue: val => state => save('manipulator.axis2', {value: val}),
-            incMax: step => state => save('manipulator.axis2', {max: state.max + step}),
-            decMax: step => state => save('manipulator.axis2', {max: state.max - step}),
-            incMin: step => state => save('manipulator.axis2', {min: state.min + step}),
-            decMin: step => state => save('manipulator.axis2', {min: state.min - step})
+            setValue: val => state => save('manipulator.axis2', { value: val }),
+            incMax: step => state => save('manipulator.axis2', { max: state.max + state.step }),
+            decMax: step => state => save('manipulator.axis2', { max: state.max - state.step }),
+            incMin: step => state => save('manipulator.axis2', { min: state.min + state.step }),
+            decMin: step => state => save('manipulator.axis2', { min: state.min - state.step }),
         },
         gripper: {
-            setValue: val => state => save('manipulator.gripper', {value: val}),
-            incMax: step => state => save('manipulator.gripper', {max: state.max + step}),
-            decMax: step => state => save('manipulator.gripper', {max: state.max - step}),
-            incMin: step => state => save('manipulator.gripper', {min: state.min + step}),
-            decMin: step => state => save('manipulator.gripper', {min: state.min - step})
-        }
+            setValue: val => state => save('manipulator.gripper', { value: val }),
+            incMax: step => state => save('manipulator.gripper', { max: state.max + state.step }),
+            decMax: step => state => save('manipulator.gripper', { max: state.max - state.step }),
+            incMin: step => state => save('manipulator.gripper', { min: state.min + state.step }),
+            decMin: step => state => save('manipulator.gripper', { min: state.min - state.step }),
+        },
+        reset: (defaultState) => state => {
+            forIn(window.localStorage, (value, objKey) => {
+                if (true === startsWith(objKey, 'manipulator')) {
+                    window.localStorage.removeItem(objKey);
+                }
+            });
+            return defaultState;
+        },
     },
 
     log: (value) => console.log(value),
-    
-    system: null
-  
-}
 
-export default actions
+    system: null,
+
+    preprogram: {
+        start: function start({ blocks, motors }) {
+            console.log(motors);
+
+            const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
+            const asyncForEach = async (array, callback) => {
+                for (let index = 0; index < array.length; index++) {
+                    // eslint-disable-next-line no-await-in-loop
+                    await callback(array[index], index, array);
+                }
+            };
+            const convertToArrOfDirections = (dir) => {
+                switch (dir) {
+                    case 'fw':
+                        return motors.direction.forward;
+                    case 'bw':
+                        return motors.direction.backward;
+                    case 'l':
+                        return motors.direction.left;
+                    case 'r':
+                        return motors.direction.right;
+                    default:
+                        break;
+                }
+            };
+            const run = async () => {
+                await asyncForEach(blocks, async (block) => {
+                    const iid = setInterval(() => {
+                        console.log('[pre-program]:', block.speed, motors);
+                        motors.set(block.speed, convertToArrOfDirections(block.direction));
+                    }, 100);
+                    await waitFor(block.time * 1000);
+                    clearInterval(iid);
+                });
+                motors.stop();
+                console.log('[pre-program]: Done');
+            };
+
+            run();
+        },
+        add: () => state => ({
+            next: {
+                direction: 'fw',
+                speed: 0,
+                time: 0,
+                step: 1,
+            },
+            blocks: state.blocks.concat(state.next),
+        }),
+        remove: (index) => state => ({ blocks: state.blocks.filter(block => state.blocks.indexOf(block) !== index) }),
+        next: {
+            setDirection: dir => state => ({ direction: dir }),
+            incSpeed: cb => state => {
+                const nextSpeed = state.speed + state.step;
+                if (nextSpeed <= 100) {
+                    return { speed: nextSpeed };
+                }
+            },
+            decSpeed: cb => state => {
+                const nextSpeed = state.speed - state.step;
+                if (nextSpeed >= 0) {
+                    return { speed: nextSpeed };
+                }
+            },
+            incTime: cb => state => {
+                const nextTime = state.time + state.step;
+                if (nextTime <= 60) {
+                    return { time: nextTime };
+                }
+            },
+            decTime: cb => state => {
+                const nextTime = state.time - state.step;
+                if (nextTime >= 0) {
+                    return { time: nextTime };
+                }
+            },
+        },
+    },
+
+    clupi: {
+        c: null,
+        setVisibility: value => state => save('clupi', { isVisible: value }),
+        rotation: {
+            inc: (cb) => state => {
+                const nextAngle = state.angle + state.step;
+                if (nextAngle <= state.maxAngle) {
+                    cb(nextAngle);
+                    return save('clupi.rotation', { angle: nextAngle });
+                }
+            },
+            dec: (cb) => state => {
+                const nextAngle = state.angle - state.step;
+                if (nextAngle >= state.minAngle) {
+                    cb(nextAngle);
+                    return save('clupi.rotation', { angle: nextAngle });
+                }
+            },
+            max: value => state => save('clupi.rotation', { angle: state.maxAngle }),
+            min: value => state => save('clupi.rotation', { angle: state.minAngle }),
+            mid: value => state => save('clupi.rotation', { angle: state.midAngle }),
+        },
+        translation: {
+            up: (cb) => state => {
+                if (state.valueUp <= state.maxUp) {
+                    cb(state.valueUp);
+                }
+            },
+            down: (cb) => state => {
+                if (state.valueDown <= state.maxDown) {
+                    cb(state.valueDown);
+                }
+            },
+        },
+    },
+};
+
+export default actions;

@@ -1,0 +1,42 @@
+.preprogram-block-add {
+    background-color: $background-color;
+    border: $green 2px solid;
+    padding: 15px;
+    color: $green;
+    font-weight: bold;
+    position: relative;
+    text-transform: uppercase;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+
+
+    &--active {
+        background-color: $green;
+        color: $background-color;
+    }
+
+    &--disabled {
+        border: $green_dark 2px solid;
+        color: $green_dark;
+    }
+
+    &__direction {
+        padding: 10px 20px 10px 0px;
+    }
+
+    &__parameters {
+        display: flex;
+        flex-flow: column;
+    }
+
+    &__speed {
+
+    }
+
+    &__time {
+        
+    }
+}

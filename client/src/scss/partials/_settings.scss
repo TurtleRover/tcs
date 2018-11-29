@@ -32,6 +32,9 @@
 		width: 100%;
 		overflow-y: scroll;
 		margin-right: -15px;
+		display: flex;
+		flex-flow: column;
+		align-items: flex-end;
 		
 		@include small {
 			padding: 25px;

@@ -8,7 +8,8 @@
         "atob": true,
         "history": true,
         "location": true,
-        "addEventListener": true
+        "addEventListener": true,
+        "localStorage": true
     },
     "rules": {
         "no-undef": "error",
@@ -16,8 +17,10 @@
             "varsIgnorePattern": "h"
         }],
         "linebreak-style": "off",
-        "indent": ["error", 4],
-
+        "prefer-template": "off",
+        "indent": ["error", 4, { "SwitchCase": 1 }],
+        "consistent-return": "off",
+        "no-param-reassign": [2, { "props": false }],
         "react/jsx-indent": ["error", 4],
         "react/jsx-indent-props": ["error", 4],
         "react/no-unknown-property": "off",
@@ -30,6 +33,7 @@
         "react/prop-types": 0,
         "react/jsx-filename-extension": [1, {"extensions": [".js", ".jsx"]}],
         "react/jsx-uses-vars": 2,
+        "react/jsx-one-expression-per-line": "off",
 
         "no-use-before-define": "off",
         "jsx-quotes": "off",
@@ -43,7 +47,14 @@
         "import/no-dynamic-require": 0,
         "import/no-extraneous-dependencies": 0,
         "import/prefer-default-export": 0,
-        "strict": 0
+        "strict": 0,
+        "global-require":"off",
+        "jsx-a11y/interactive-supports-focus":"off",
+        "no-else-return": "off",
+        "jsx-a11y/no-noninteractive-element-interactions": "warn",
+        "jsx-a11y/media-has-caption": "off",
+        "object-curly-newline": "off",
+        "no-unused-expressions": [ "error", {"allowTernary": true}]
     }
 
 }

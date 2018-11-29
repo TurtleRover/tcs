@@ -23,9 +23,16 @@
     &__image {
         width: 80%;
         height: auto;
+        position: absolute;
+        right: 15%;
+        bottom: 15%;
     }
 
     &--hide {
         visibility: hidden;
     }
+}
+
+.nipple .back {
+    opacity: 0 !important;
 }

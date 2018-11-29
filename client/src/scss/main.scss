@@ -18,9 +18,18 @@
 @import "partials/controls-boxes";
 @import "partials/manipulator-control";
 @import "partials/stream";
+@import "partials/clupi";
 
 // ELEMENTS
+@import "elements/button";
 @import "elements/button-hold";
 @import "elements/input-number";
 @import "elements/input-range";
 @import "elements/radio";
+
+// ELEMENTS.PREPROGRAM
+@import "elements/preprogram-block";
+@import "elements/preprogram-block-add";
+
+// VIEWS
+@import "rotate";

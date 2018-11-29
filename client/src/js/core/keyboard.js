@@ -10,7 +10,7 @@ export const keyboard = function(motors) {
     const UPDATE_INTERVAL = 100;
     const SPEED_STEP = 10;
     const SPEED_MAX = 100;
-    const SPEED_MIN = 60;
+    const SPEED_MIN = 10;
 
     var speed = SPEED_MIN;
 

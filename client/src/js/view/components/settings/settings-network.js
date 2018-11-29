@@ -1,4 +1,4 @@
-import { h } from 'hyperapp'
+import { h } from 'hyperapp';
 
 export const SettingsNetwork = () =>
-    <div class="settings_content">Network settings</div>
+    <div class="settings_content">Network settings</div>;

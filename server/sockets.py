@@ -3,11 +3,9 @@ from aiohttp import web
 import socketio
 import hexdump
 from log import logname
-import frame
-from hardware import Hardware
+from firmware import Shield
+from system import System
 from version import version_info
-import os
-import subprocess
 
 logger = logname("sockets")
 
@@ -15,44 +13,45 @@ class WSnamespace(socketio.AsyncNamespace):
     def __init__(self, namespace='/sockets'):
         super().__init__(namespace)
         self.sio = None
-        self.hw = Hardware()
+        self.shield = Shield()
+        self.system = System()
 
     async def on_connect(self, sid, environ):
         logger.info("connected %s", sid)
         await self.sio.emit('connected', {
             'tcs_ver' : version_info,
-            'firmware_ver' : self.hw.getFirmwareVersion(),
-            'wifi_dongle' : self.hw.getWirelessAdapterInfo(),
-            'video_devices': self.hw.getCameraInfo()
+            'firmware_ver' : self.shield.getFirmwareVersion(),
+            'wifi_dongle' : self.system.getWirelessAdapterInfo(),
+            'video_devices': self.system.getCameraInfo()
         }, namespace="/sockets")
 
 
     async def on_motors(self, sid, payload):
-        self.hw.setMotors(payload)
+        self.shield.setMotors(payload)
         await self.sio.emit('response', "motors set", namespace="/sockets")
 
     async def on_manipulator(self, sid, payload):
-        self.hw.setManipulator(payload)
+        self.shield.setManipulator(payload)
         await self.sio.emit('response', 'manipulator set', namespace="/sockets")
 
     async def on_gripper(self, sid, payload):
-        self.hw.setGripper(payload)
+        self.shield.setGripper(payload)
         await self.sio.emit('response', 'gripper set', namespace="/sockets")
 
-    async def on_battery(self, sid):
-        battery_status =  self.hw.getBattery()
-        await self.sio.emit('battery', battery_status, namespace="/sockets")
+    async def on_telemetry(self, sid):
+        await self.sio.emit('telemetry', {
+            'temperature': self.system.getTemperature(),
+            'battery': self.shield.getBattery(),
+            'signal': self.system.getSignal()
+        }, namespace="/sockets")
 
-    async def on_signal(self, sid):
-        signal_strength =  self.hw.getSignal()
-        await self.sio.emit('signal', signal_strength, namespace="/sockets")
+    async def on_clupi(self, sid, payload):
+        self.shield.setClupi(payload['angle'], payload['transl'])
+        await self.sio.emit('response', 'clupi set', namespace="/sockets")
 
-    async def on_temperature(self, sid):
-        temperature =  self.hw.getTemperature()
-        await self.sio.emit('temperature', temperature, namespace="/sockets")
 
     async def on_shutdown(self, sid):
-        subprocess.run(['poweroff'])
+        self.system.shutdown()
 
 
 class WSserver():

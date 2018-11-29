@@ -1,7 +1,7 @@
-import { h } from 'hyperapp'
+import { h } from 'hyperapp';
 
 
-export const SplashScreen = ({state})  => 
+export const SplashScreen = ({ state }) =>
     <section id="splashscreen" class={splashScreenClass(state)}>
         <div class="splashscreen__logo">
             <svg class="splashscreen__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 439 138">
@@ -10,13 +10,12 @@ export const SplashScreen = ({state})  =>
                 </g>
             </svg>
         </div>
-    </section>
+    </section>;
 
 const splashScreenClass = (state) => {
-    if (state === true) {      
+    if (state === true) {
         return 'splashscreen';
     } else {
-        return 'splashscreen splashscreen-hide';
+        return 'splashscreen splashscreen--hide';
     }
-}
-
+};

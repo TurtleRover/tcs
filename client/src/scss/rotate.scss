@@ -1,0 +1,37 @@
+@import "helpers/vars";
+
+.rotate {
+    background: linear-gradient(113.05297105520958deg, rgba(127, 255, 160,1) 13.895833333333332%,rgba(74, 155, 96,1) 55.91840277777778%,rgba(33, 77, 46,1) 89.71527777777777%);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    z-index: 11;
+
+    &__inducement {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+    }
+
+    &__svg {
+        height: 128px;
+        width: 128px;
+        padding: 35px;
+    }
+
+    &__text {
+        text-align: center;
+        font-size: $font-size;
+    }
+
+    &--hide {
+        visibility: hidden;
+    }
+}

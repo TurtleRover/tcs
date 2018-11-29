@@ -1,10 +1,8 @@
-export const System = function(sockets) { 
+export const System = function System(sockets) {
     this.sockets = sockets;
-    console.log('SYSTEM');
-    
 };
 
-System.prototype.shutdown = function () {
+System.prototype.shutdown = function shutdown() {
     if (this.sockets.io.connected) {
         this.sockets.io.emit('shutdown');
     }

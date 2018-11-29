@@ -1,44 +1,51 @@
-import { h } from 'hyperapp'
+import { h } from 'hyperapp';
 
-export const InputNumber = ({label, value, step, inc, dec})  => 
+export const InputNumber = ({ label, value, step, inc, dec, onmousedown }) =>
     <div class="input-number">
-        <label class="input-number__label" for="height">{label}</label>
-        <input 
+        <span class="input-number__label" for="height">{label}</span>
+        <input
             class="input-number__input"
-            type="number" 
+            type="number"
             placeholder={value}
+            value={value}
             step={step}
             min="0"
-            max="999"
-            />
+            max="9990"
+        />
 
-        <button 
-            onmousedown={(event) => continiuity(dec, step)}
+        <button
+            type="button"
+            onmousedown={(event) => continiuity(onmousedown, dec)}
             onmouseup={(event) => clearTimers()}
             onmouseleave={(event) => clearTimers()}
             class="input-number__dec">
             -{step}
         </button>
 
-        <button 
-            onmousedown={(event) => continiuity(inc, step)}
+        <button
+            type="button"
+            onmousedown={(event) => continiuity(onmousedown, inc)}
             onmouseup={(event) => clearTimers()}
             onmouseleave={(event) => clearTimers()}
             class="input-number__inc">
             +{step}
         </button>
 
-    </div>
+    </div>;
 
-var timeout;
-var interval;
+let timeout;
+let interval;
 
-const continiuity = (cb, step) => {
-    cb(step);
-    timeout = setTimeout(() => interval = setInterval(() => cb(step), 50), 300);
-}
+const continiuity = (cb, operator) => {
+    operator(cb);
+    timeout = setTimeout(() => {
+        interval = setInterval(() => {
+            operator(cb);
+        }, 100);
+    }, 300);
+};
 
-const clearTimers = () => {   
+const clearTimers = () => {
     clearTimeout(timeout);
     clearInterval(interval);
-}
+};

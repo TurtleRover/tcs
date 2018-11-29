@@ -1,10 +1,10 @@
 {
   "name": "tcs",
-  "version": "0.13.5",
+  "version": "0.14.0",
   "description": "Turtle Control Software",
   "main": "index.js",
   "scripts": {
-    "start": "parcel watch ./client/src/index.html --out-dir ./client/dist --public-url ./ --no-hmr",
+    "watch": "parcel watch ./client/src/index.html --out-dir ./client/dist --public-url ./ --no-hmr",
     "build": "parcel build ./client/src/index.html --out-dir ./client/dist --public-url ./",
     "lint": "eslint --ext .js client/src/"
   },
@@ -13,6 +13,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
     "eslint": "^5.6.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-airbnb-base": "^13.1.0",

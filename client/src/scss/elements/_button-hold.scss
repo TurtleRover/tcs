@@ -5,6 +5,8 @@
     color: $green;
     font-weight: bold;
     position: relative;
+    cursor: pointer;
+    text-transform: uppercase;
 
     &:active {
         background-color: $green;
@@ -31,12 +33,4 @@
         }
     }
 
-}
-
-button {
-    outline-style: none;
-
-    &:-moz-focusring {
-        outline: none;
-    }
 }

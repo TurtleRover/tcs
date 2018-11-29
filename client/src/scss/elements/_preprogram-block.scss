@@ -1,0 +1,68 @@
+.preprogram_content {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.preprogram-block {
+    background-color: $background-color;
+    border: $green 2px solid;
+    padding: 15px;
+    color: $green;
+    font-weight: bold;
+    position: relative;
+    text-transform: uppercase;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+
+
+    &--active {
+        background-color: $green;
+        color: $background-color;
+    }
+
+    &--disabled {
+        border: $green_dark 2px solid;
+        color: $green_dark;
+    }
+
+    &__direction {
+        padding: 10px 20px 10px 0px;
+    }
+
+    &__parameters {
+        display: flex;
+        flex-flow: column;
+    }
+
+    &__speed {
+
+    }
+
+    &__time {
+        
+    }
+
+    &__number {
+        position: absolute;
+        font-size: 7px;
+        top: -2px;
+        padding: 2px 6px;
+        line-height: 1.9;
+        left: 0;
+        background-color: #22b14c;
+        color: #000000;
+        font-weight: bold;
+    }
+
+    &__remove {
+        position: absolute;
+        right: -46px;
+        top: -2px;
+    }
+}
