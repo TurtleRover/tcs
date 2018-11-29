@@ -61,24 +61,23 @@ const ActionFullscreen = () =>
         class="topbar_actions_action"
         id="button-fullscreen"
         src={require('../../../img/ui/nav-bar-fullscreen.svg')}
-        onmouseup={(el) => toggleFullscreen(el.target)}
+        onmouseup={(event) => toggleFullscreen(event)}
     />;
 
 
-const toggleFullscreen = () => {
-    const main = document.documentElement;
-    if (!document.fullscreenElement) {
-        if (main.mozRequestFullScreen) {
-            main.mozRequestFullScreen();
-        } else {
-            main.webkitRequestFullScreen();
-        }
-    } else {
-        document.exitFullscreen();
-        if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-        } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-        }
+// https://gist.github.com/demonixis/5188326
+const toggleFullscreen = (event) => {
+    console.log(event);
+
+    let element = document.body;
+    if (event instanceof window.HTMLElement) {
+        element = event;
     }
+
+    const isFullscreen = document.webkitIsFullScreen || document.mozFullScreen || false;
+
+    element.requestFullScreen = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || function () { return false; };
+    document.cancelFullScreen = document.cancelFullScreen || document.webkitCancelFullScreen || document.mozCancelFullScreen || function () { return false; };
+
+    isFullscreen ? document.cancelFullScreen() : element.requestFullScreen();
 };
