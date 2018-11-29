@@ -53,7 +53,8 @@
         "no-else-return": "off",
         "jsx-a11y/no-noninteractive-element-interactions": "warn",
         "jsx-a11y/media-has-caption": "off",
-        "object-curly-newline": "off"
+        "object-curly-newline": "off",
+        "no-unused-expressions": [ "error", {"allowTernary": true}]
     }
 
 }
