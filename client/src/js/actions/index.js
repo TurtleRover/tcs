@@ -115,15 +115,8 @@ const actions = {
 
             run();
         },
-        add: () => state => ({
-            next: {
-                direction: 'fw',
-                speed: 0,
-                time: 0,
-                step: 1,
-            },
-            blocks: state.blocks.concat(state.next),
-        }),
+        add: () => state => ({ blocks: state.blocks.concat(state.next) }),
+
         remove: (index) => state => ({ blocks: state.blocks.filter(block => state.blocks.indexOf(block) !== index) }),
         next: {
             setDirection: dir => state => ({ direction: dir }),
