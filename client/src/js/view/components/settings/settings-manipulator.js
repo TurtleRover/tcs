@@ -4,6 +4,9 @@ import { Button } from '../elements/button';
 
 export const SettingsManipulator = ({ state, actions }) =>
     <div class="settings_content">
+        <p>
+            Please refer to docs.turtlerover.com to find proper range values for your addon.
+        </p>
         <InputNumber
             label='Axis 1 max value'
             value={state.manipulator.axis1.max}
