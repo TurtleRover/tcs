@@ -43,8 +43,6 @@ const stopMotors = function stopMotors(state, actions) {
 };
 
 const StartStopButton = ({ state, actions }) => {
-    console.log('ssb', state.preprogram.running );
-
     if (state.preprogram.running) {
         return <Button text='Stop' onclick={() => stopMotors(state, actions)} />;
     } else {
