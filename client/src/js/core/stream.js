@@ -1,4 +1,4 @@
-export const Stream = function() {
+export const Stream = function () {
     this.protocol = location.protocol === "https:" ? "wss:" : "ws:";
     this.hostname = document.location.hostname;
     this.port = 8090;
