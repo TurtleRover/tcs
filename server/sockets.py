@@ -51,7 +51,10 @@ class WSnamespace(socketio.AsyncNamespace):
 
 
     async def on_shutdown(self, sid):
-        self.system.shutdown()
+        self.system.shutdown()    
+        
+    async def on_reboot(self, sid):
+        self.system.reboot()
 
 
 class WSserver():
