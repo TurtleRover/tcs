@@ -1,6 +1,5 @@
 import { h } from 'hyperapp';
 import { ButtonHold } from '../elements/button-hold';
-import { Button } from '../elements/button';
 
 export const SettingsGeneral = ({ actions }) =>
     <div class="settings_content">
