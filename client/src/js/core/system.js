@@ -7,3 +7,9 @@ System.prototype.shutdown = function shutdown() {
         this.sockets.io.emit('shutdown');
     }
 };
+
+System.prototype.reboot = function reboot() {
+    if (this.sockets.io.connected) {
+        this.sockets.io.emit('reboot');
+    }
+};

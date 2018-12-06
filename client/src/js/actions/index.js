@@ -74,12 +74,12 @@ const actions = {
     log: (value) => console.log(value),
 
     system: null,
-
     preprogram: {
-        start: function start({ blocks, motors }) {
-            console.log(motors);
-
-            const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
+        start1: ({ blocks, motors, preprogram }) => (state) => {
+            const waitFor = (ms) => new Promise(r => {
+                state.sid = setTimeout(r, ms);
+                return state.sid;
+            });
             const asyncForEach = async (array, callback) => {
                 for (let index = 0; index < array.length; index++) {
                     // eslint-disable-next-line no-await-in-loop
@@ -102,28 +102,30 @@ const actions = {
             };
             const run = async () => {
                 await asyncForEach(blocks, async (block) => {
-                    const iid = setInterval(() => {
+                    state.iid = setInterval(() => {
                         console.log('[pre-program]:', block.speed, motors);
                         motors.set(block.speed, convertToArrOfDirections(block.direction));
                     }, 100);
                     await waitFor(block.time * 1000);
-                    clearInterval(iid);
+                    clearInterval(state.iid);
                 });
-                motors.stop();
+                preprogram.stop({ motors });
                 console.log('[pre-program]: Done');
             };
-
-            run();
+            console.log(run());
+            // return { running: !state.running };
         },
-        add: () => state => ({
-            next: {
-                direction: 'fw',
-                speed: 0,
-                time: 0,
-                step: 1,
-            },
-            blocks: state.blocks.concat(state.next),
-        }),
+
+        stop: ({ motors }) => state => {
+            motors.stop();
+            clearInterval(state.iid);
+            clearTimeout(state.sid);
+            return { running: !state.running };
+        },
+        setRunningFlag: () => state => ({ running: !state.running }),
+
+        add: () => state => ({ blocks: state.blocks.concat(state.next) }),
+
         remove: (index) => state => ({ blocks: state.blocks.filter(block => state.blocks.indexOf(block) !== index) }),
         next: {
             setDirection: dir => state => ({ direction: dir }),

@@ -7,8 +7,7 @@ export const SettingsPreprogram = ({ actions, state }) =>
     <div class="settings_content">
         <div class="preprogram_content">
             <div>
-                {/* <Button text='Start' setValue={() => console.log(actions.motors)} /> */}
-                <Button text='Start' onclick={() => startMotors(state, actions)} />
+                <StartStopButton state={state} actions={actions} />
             </div>
             <div class="preprogram_content__blocks">
                 {
@@ -33,5 +32,20 @@ export const SettingsPreprogram = ({ actions, state }) =>
 const startMotors = function startMotors(state, actions) {
     const blocks = state.preprogram.blocks;
     const motors = actions.motors;
-    actions.preprogram.start({ blocks, motors });
+    const preprogram = actions.preprogram;
+    actions.preprogram.setRunningFlag();
+    actions.preprogram.start1({ blocks, motors, preprogram });
+};
+
+const stopMotors = function stopMotors(state, actions) {
+    const motors = actions.motors;
+    actions.preprogram.stop({ motors });
+};
+
+const StartStopButton = ({ state, actions }) => {
+    if (state.preprogram.running) {
+        return <Button text='Stop' onclick={() => stopMotors(state, actions)} />;
+    } else {
+        return <Button text='Start' onclick={() => startMotors(state, actions)} />;
+    }
 };

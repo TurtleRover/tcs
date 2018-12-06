@@ -45,3 +45,6 @@ class System():
 
     def shutdown(self):
         subprocess.run(['poweroff'])
+
+    def reboot(self):
+        subprocess.run(['reboot'])

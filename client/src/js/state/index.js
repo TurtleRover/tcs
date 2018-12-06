@@ -41,15 +41,13 @@ const state = {
 
     default: {},
     preprogram: {
+        running: false,
+        iid: 0,
+        sid: 0,
         blocks: [{
             direction: 'fw',
-            speed: 70,
-            time: 3,
-        },
-        {
-            direction: 'l',
-            speed: 20,
-            time: 15,
+            speed: 1,
+            time: 1,
         }],
         next: {
             direction: 'fw',
