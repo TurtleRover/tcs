@@ -48,7 +48,7 @@ Prerequisites: Install [Yarn](https://yarnpkg.com/lang/en/docs/install/) package
 * Create folder e.g. `pi` in home directory
 * Run `ssh pi@10.0.0.1` to enter TurtleOS shell
 * Run `sudo chmod 777 /opt/turtlerover/ && sudo rm -R /opt/turtlerover/tcs` to delete productional TCS
-* In another terminal window type `sshfs pi@10.0.0.1:/ pi`. This will mount whole TurtleOS filesystem in `pi` directory
+* On Your local machine type: `sshfs pi@10.0.0.1:/ pi`. This will mount whole TurtleOS filesystem in `pi` directory
 * Run `cd pi/opt/turtlerover` and clone this repo 
 * Now You can open TCS project in Your favorite editor
 
