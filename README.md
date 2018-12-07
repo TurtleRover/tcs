@@ -42,7 +42,7 @@
 ## How to setup Development Environment
 _To replicate our development workflow you will need a Linux-based distro or MacOS_
 
-Prerequisites: [Yarn](https://yarnpkg.com/lang/en/docs/install/) package manager.
+Prerequisites: Install [Yarn](https://yarnpkg.com/lang/en/docs/install/) package manager on Your local machine.
 
 * Connect Raspberry Pi with Your machine
 * Create folder e.g. `pi` in home directory
