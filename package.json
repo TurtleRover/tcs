@@ -8,27 +8,27 @@
     "build": "parcel build ./client/src/index.html --out-dir ./client/dist --public-url ./",
     "lint": "eslint --ext .js client/src/"
   },
-  "repository": "git+https://github.com/TurtleRover/Turtle-Rover-Mission-Control.git",
+  "repository": "git+https://github.com/TurtleRover/tcs.git",
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
     "babel-plugin-transform-runtime": "^6.23.0",
-    "eslint": "^5.6.0",
+    "eslint": "^5.10.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
-    "node-sass": "^4.8.3",
-    "parcel-bundler": "^1.9.7"
+    "node-sass": "^4.10.0",
+    "parcel-bundler": "1.9.7"
   },
   "dependencies": {
     "@hyperapp/logger": "^0.5.0",
-    "hyperapp": "^1.2.8",
-    "keyboardjs": "^2.4.1",
-    "lodash": "^4.17.10",
+    "hyperapp": "^1.2.9",
+    "keyboardjs": "^2.5.1",
+    "lodash": "^4.17.11",
     "nipplejs": "^0.7.1",
-    "socket.io-client": "^2.1.1"
+    "socket.io-client": "^2.2.0"
   }
 }
