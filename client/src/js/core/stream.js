@@ -4,6 +4,7 @@ export const Stream = function Stream() {
     this.port = 8090;
 
     this.url = this.protocol + '//' + this.hostname + ':' + this.port + '/stream/webrtc';
+    this.url_mjpeg = 'http://' + this.hostname + ':' + this.port + '/stream/video.mjpeg';
 
     this.websocket = null;
     this.peerConnection = null;
@@ -197,8 +198,6 @@ Stream.prototype.error = function error(event) {
 
 Stream.prototype.stop = function stop() {
     // stop_record();
-    document.getElementById('stream').src = '';
-
     this.close();
     if (this.websocket) {
         this.websocket.close();

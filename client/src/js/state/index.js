@@ -6,6 +6,10 @@ const state = {
         video_devices: [],
     },
 
+    stream: {
+        isFallback: false,
+    },
+
     showSplashScreen: true,
     mode: 'drive',
     manipulator: {
