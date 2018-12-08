@@ -9,13 +9,17 @@
         "history": true,
         "location": true,
         "addEventListener": true,
-        "localStorage": true
+        "localStorage": true,
+        "WebSocket": true,
+        "RTCIceCandidate": true
     },
     "rules": {
         "no-undef": "error",
-        "no-unused-vars": [2, {
+        "no-plusplus": "off",
+        "no-unused-vars": ["warn", {
             "varsIgnorePattern": "h"
         }],
+        "no-underscore-dangle": "off",
         "linebreak-style": "off",
         "prefer-template": "off",
         "indent": ["error", 4, { "SwitchCase": 1 }],
