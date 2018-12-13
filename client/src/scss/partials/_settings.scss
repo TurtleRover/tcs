@@ -1,64 +1,58 @@
 .settings {
-	background-color: $background-color;
-	position: absolute;
-	z-index: 2;
-	right: 0;
-	top: 0;
-	display: flex;
-	color: $grey_0;
-    &_categories {
-        list-style: none;
+    background-color: $background-color;
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    top: 0;
+    display: flex;
+    color: $grey_0;
+    &__sidebar {
         margin: 0;
-		padding: 0;
-		width: auto;
+        padding: 0;
+        // width: auto;
 		border-right: 1px solid $grey_4;
-		&_category {
-			text-transform: uppercase;
-			font-size: 24px;
-			padding: 25px;
-
-			@include small {
-				font-size: 18px;
-			}
-
-			&-selected {
-				background-color: $grey_4;
-			}
-		}
-	}
-
-	&_content {
-		padding: 25px 37px 25px 25px;
-		width: 100%;
 		overflow-y: scroll;
-		margin-right: -15px;
-		display: flex;
-		flex-flow: column;
-		align-items: flex-end;
-		
-		@include small {
-			padding: 25px;
-		}
-	}
-	
+    }
+    &__settingButton {
+        text-transform: uppercase;
+        font-size: 24px;
+        padding: 25px;
+		user-select: none;
+		cursor: pointer;
+        @include small {
+            font-size: 18px;
+        }
+        &--selected {
+            background-color: $grey_4;
+        }
+    }
+    &_content {
+        padding: 25px 37px 25px 25px;
+        width: 60%;
+        overflow-y: scroll;
+        margin-right: -15px;
+        display: flex;
+        flex-flow: column;
+        align-items: flex-end;
+        @include small {
+            padding: 25px;
+        }
+    }
     @include small {
-		padding-top: $topbar-height-small;
-		width: 100vw;
-		height: 100vh;
-	}
-	
+        padding-top: $topbar-height-small;
+        width: 100vw;
+        height: 100vh;
+    }
     @include medium {
-		padding-top: $topbar-height-medium;
-		width: 75vw;
-		height: calc(100vh - #{$topbar-height-medium});
-	}
-
-	@include big {
-		width: 60vw;
-		height: calc(100vh - #{$topbar-height-medium});
-	}
-	
-	&-hide {
-		display: none;
-	}
+        padding-top: $topbar-height-medium;
+        width: 75vw;
+        height: calc(100vh - #{$topbar-height-medium});
+    }
+    @include big {
+        width: 60vw;
+        height: calc(100vh - #{$topbar-height-medium});
+    }
+    &-hide {
+        display: none;
+    }
 }
