@@ -31,7 +31,6 @@
 ## Requirements
  * uv4l to send video stream
  * Working UART
- * Python requirements
 
 ## How to install
  * [Download latest package](https://github.com/TurtleRover/tcs/releases)
@@ -40,9 +39,27 @@
 ## How to run
  * Open in browser http://10.0.0.1/ (for more detailed network configuration look at [Turtle OS repo](https://github.com/TurtleRover/turtleos))
 
+## How to setup Development Environment
+_To replicate our development workflow you will need a Linux-based distro or MacOS_
+
+Prerequisites: Install [Yarn](https://yarnpkg.com/lang/en/docs/install/) package manager on Your local machine.
+
+* Connect Raspberry Pi with Your machine
+* Create folder e.g. `pi` in home directory
+* Run `ssh pi@10.0.0.1` to enter TurtleOS shell
+* Run `sudo chmod 777 /opt/turtlerover/ && sudo rm -R /opt/turtlerover/tcs` to delete productional TCS
+* On Your local machine type: `sshfs pi@10.0.0.1:/ pi`. This will mount whole TurtleOS filesystem in `pi` directory
+* Run `cd pi/opt/turtlerover` and clone this repo 
+* Now You can open TCS project in Your favorite editor
+
 ## How to build
  * Run `yarn install`
  * Run `yarn build` to build productional files. There is also `yarn watch` command, it will watch for any changes in files and rebuild project
+ * Install Python dependencies `sudo pip3 install -r requirements.txt`
  * Run `utils/make_deb.sh`
 
+## How streaming works
+Streaming is done with [UV4L](https://www.linux-projects.org/uv4l/) drivers and [WebRTC streaming server](https://www.linux-projects.org/uv4l/webrtc-extension/). UV4L comes preinstalled with [TurtleOS](https://github.com/TurtleRover/TurtleOS).
+### Stream troubleshooting
+There are still some problems with streaming and we are working to fix them. If stream doesn't work on your device, you may try to experiment with `/etc/uv4l/uv4l-uvc.conf`, especially with `webrtc-enable-hw-codec` option and [`force_hw_vcodec`](https://github.com/TurtleRover/tcs/blob/984120b8469f603650f3c6f979bfc96e2dcbbbde/client/src/js/core/stream.js#L72) in `core/stream.js`. If you find any solution to your problem with streaming - please let us know or create a pull request.
 
