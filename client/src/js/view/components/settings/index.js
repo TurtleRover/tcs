@@ -62,5 +62,7 @@ export const Settings = ({ state, actions }) =>
             <SettingButton state={state} actions={actions} name='clupi' />
             <SettingButton state={state} actions={actions} name='about' />
         </div>
-        <SettingContent state={state} actions={actions} />
+        <div class='settings__container'>
+            <SettingContent state={state} actions={actions} />
+        </div>
     </div>;

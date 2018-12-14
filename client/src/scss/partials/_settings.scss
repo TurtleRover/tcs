@@ -5,19 +5,21 @@
     right: 0;
     top: 0;
     display: flex;
-    color: $grey_0;
+    color: $grey_1;
     &__sidebar {
         margin: 0;
         padding: 0;
-        // width: auto;
 		border-right: 1px solid $grey_4;
+		border-left: 1px solid $grey_4;
         overflow-y: auto;
+        width: 300px;
     }
     &__settingButton {
         text-transform: uppercase;
         font-size: 24px;
         padding: 25px;
-		user-select: none;
+        user-select: none;
+        color: $grey_1;
 		cursor: pointer;
         @include small {
             font-size: 18px;
@@ -26,18 +28,44 @@
             background-color: $grey_4;
         }
     }
-    &_content {
-        padding: 25px 37px 25px 25px;
-        width: 60%;
+    &__container {
         overflow-y: scroll;
         margin-right: -15px;
-        display: flex;
-        flex-flow: column;
-        align-items: flex-end;
         flex-grow: 1;
-        @include small {
-            padding: 25px;
+        @include small { }
+    }
+
+    &__block {
+       margin: 25px;
+       display: flex;
+       flex-flow: column nowrap;
+    }
+
+    &__section {
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    &__subtitle {
+        margin: 25px 0 10px 0;
+        text-align: left;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: $grey_2;
+        font-size: 14px;
+        position: relative;
+        &:first-child {
+            margin-top: 0;
         }
+        // &::before {
+        //     content: '';
+        //     border-bottom: solid 1px $grey_3;
+        //     position: absolute;
+        //     bottom: 5px;
+        //     left: 0;
+        //     height: 1px;
+        //     width: 100%;
+        // }
     }
     @include small {
         padding-top: $topbar-height-small;
