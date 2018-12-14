@@ -11,7 +11,7 @@
         padding: 0;
         // width: auto;
 		border-right: 1px solid $grey_4;
-		overflow-y: scroll;
+        overflow-y: auto;
     }
     &__settingButton {
         text-transform: uppercase;
@@ -34,6 +34,7 @@
         display: flex;
         flex-flow: column;
         align-items: flex-end;
+        flex-grow: 1;
         @include small {
             padding: 25px;
         }
@@ -41,7 +42,7 @@
     @include small {
         padding-top: $topbar-height-small;
         width: 100vw;
-        height: 100vh;
+        height: calc(100vh - #{$topbar-height-small})
     }
     @include medium {
         padding-top: $topbar-height-medium;
