@@ -5,6 +5,8 @@
     width: 100%;
     background-color: $background-color;
     z-index: 9;
+    border-bottom: 1px solid $grey_4;
+
     @include small {
         height: $topbar-height-small;
     }
