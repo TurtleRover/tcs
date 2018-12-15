@@ -6,6 +6,7 @@
     top: 0;
     display: flex;
     color: $grey_1;
+    font-family: 'Lato';
     &__sidebar {
         margin: 0;
         padding: 0;
@@ -13,6 +14,7 @@
 		border-left: 1px solid $grey_4;
         overflow-y: auto;
         width: 300px;
+        font-family: 'Lato';
     }
     &__settingButton {
         text-transform: uppercase;
@@ -45,6 +47,8 @@
     &__section {
         display: flex;
         flex-flow: row wrap;
+        color: $grey_2;
+        letter-spacing: 0;
     }
 
     &__subtitle {
@@ -52,9 +56,10 @@
         text-align: left;
         font-weight: bold;
         text-transform: uppercase;
-        color: $grey_2;
+        color: $grey_1;
         font-size: 14px;
         position: relative;
+        font-family: 'Lato';
         &:first-child {
             margin-top: 0;
         }
