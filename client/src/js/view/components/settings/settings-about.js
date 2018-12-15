@@ -11,8 +11,8 @@ export const SettingsAbout = ({ state }) =>
             }
         </div>
         <p>
-             Please refer to docs.turtlerover.com to know more about the control options and the Rover maintenance.</p><p>
-            We're constantly improving the UI with new versions and we'd love to have you participate in the project.
+            Please refer to docs.turtlerover.com to know more about the control options and the Rover maintenance.</p><p>
+            We're constantly improving the UI and we'd love to have you participate in the project.
             Feel free to contact us if you have any issue. In the meantime, have fun!
         </p>
         <span>Turtle Team</span>
