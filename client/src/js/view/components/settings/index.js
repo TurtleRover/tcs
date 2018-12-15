@@ -34,7 +34,7 @@ const SettingContent = ({ state, actions }) => {
             return <SettingsDebug />;
         case 'preprogram':
             return <SettingsPreprogram state={state} actions={actions} />;
-        case 'clupi':
+        case 'experimental':
             return <SettingsClupi state={state} actions={actions} />;
         case 'about':
             return <SettingsAbout state={state} />;
@@ -59,7 +59,7 @@ export const Settings = ({ state, actions }) =>
             <SettingButton state={state} actions={actions} name='general' />
             <SettingButton state={state} actions={actions} name='manipulator' />
             <SettingButton state={state} actions={actions} name='preprogram' />
-            <SettingButton state={state} actions={actions} name='clupi' />
+            <SettingButton state={state} actions={actions} name='experimental' />
             <SettingButton state={state} actions={actions} name='about' />
         </div>
         <div class='settings__container'>
