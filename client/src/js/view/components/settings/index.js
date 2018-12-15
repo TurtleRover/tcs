@@ -12,7 +12,7 @@ export const Settings = ({ state, actions }) =>
         <div class="settings_categories">
             <div role='button' class={categoryClass(state.settings.category, 'general')} onmousedown={() => actions.settings.setVisibleCategory('general')}>General</div>
             {/* <li class={categoryClass(state.settings.category, 'network')} onmousedown={() => actions.settings.setVisibleCategory('network')}>Network</li> */}
-            <div role='button' class={categoryClass(state.settings.category, 'manipulator')} onmousedown={() => actions.settings.setVisibleCategory('manipulator')}>Manipulator</div>
+            <div role='button' class={categoryClass(state.settings.category, 'manipulator')} onmousedown={() => actions.settings.setVisibleCategory('manipulator')}>Addons</div>
             <div role='button' class={categoryClass(state.settings.category, 'preprogram')} onmousedown={() => actions.settings.setVisibleCategory('preprogram')}>Pre-program</div>
             {/* <li class={categoryClass(state.settings.category, 'debug')} onmousedown={() => actions.settings.setVisibleCategory('debug')}>Debug</li> */}
             <div role='button' class={categoryClass(state.settings.category, 'clupi')} onmousedown={() => actions.settings.setVisibleCategory('clupi')}>Experimental</div>
