@@ -32,6 +32,7 @@
         overflow-y: scroll;
         margin-right: -15px;
         flex-grow: 1;
+        width: 100%;
         @include small { }
     }
 
