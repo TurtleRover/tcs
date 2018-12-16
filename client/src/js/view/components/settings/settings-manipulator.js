@@ -2,7 +2,6 @@ import { h } from 'hyperapp';
 import { InputNumber } from '../elements/input-number';
 import { Button } from '../elements/button';
 import { Link } from '../elements/link';
-import { Gripper } from '../gripper';
 
 export const SettingsManipulator = ({ state, actions }) =>
     <div class="settings__content">
@@ -50,7 +49,7 @@ export const SettingsManipulator = ({ state, actions }) =>
                     value={state.manipulator.gripper.max}
                     step={state.manipulator.gripper.step}
                     inc={actions.manipulator.gripper.incMax}
-                    dec={actions.manipulator.gripper.decMax} />            
+                    dec={actions.manipulator.gripper.decMax} />
             </div>
             <div class="settings__section">
                 <InputNumber
@@ -64,6 +63,4 @@ export const SettingsManipulator = ({ state, actions }) =>
                 <Button text='Reset' value={state.default.manipulator} onclick={actions.manipulator.reset} />
             </div>
         </div>
-
-
     </div>;
