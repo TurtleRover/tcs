@@ -95,7 +95,7 @@
         height: calc(100vh - #{$topbar-height-medium});
     }
     @include big {
-        width: 60vw;
+        width: 50vw;
         height: calc(100vh - #{$topbar-height-medium});
     }
     &-hide {
