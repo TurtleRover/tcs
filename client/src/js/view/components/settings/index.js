@@ -4,7 +4,7 @@ import { SettingsNetwork } from './settings-network';
 import { SettingsManipulator } from './settings-manipulator';
 import { SettingsDebug } from './settings-debug';
 import { SettingsPreprogram } from './settings-preprogram';
-import { SettingsClupi } from './settings-clupi';
+import { SettingsExperimental } from './settings-experimental';
 import { SettingsAbout } from './settings-about';
 
 // export const Settings = ({ state, actions }) =>
@@ -35,7 +35,7 @@ const SettingContent = ({ state, actions }) => {
         case 'preprogram':
             return <SettingsPreprogram state={state} actions={actions} />;
         case 'experimental':
-            return <SettingsClupi state={state} actions={actions} />;
+            return <SettingsExperimental state={state} actions={actions} />;
         case 'about':
             return <SettingsAbout state={state} />;
         default:
