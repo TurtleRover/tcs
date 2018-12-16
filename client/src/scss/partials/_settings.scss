@@ -38,11 +38,22 @@
         @include small { }
     }
 
-    &__block {
-       margin: 25px;
-       display: flex;
-       flex-flow: column nowrap;
-    }
+    &__content {
+        display: flex;
+        flex-flow: column nowrap;
+        margin: 25px;
+     }
+     
+     &__block {
+        display: flex;
+        flex-flow: column nowrap;
+        margin-bottom: 10px;
+        border-bottom: 1px solid $grey_5;
+        padding-bottom: 10px;
+        &:last-child {
+            border-bottom: 0;
+        }
+     }
 
     &__section {
         display: flex;
