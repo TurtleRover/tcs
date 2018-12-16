@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "watch": "parcel watch ./client/src/index.html --out-dir ./client/dist --public-url ./ --no-hmr",
+    "serve": "parcel serve ./client/src/index.html --out-dir ./client/dist --public-url / -p 3000",
     "build": "parcel build ./client/src/index.html --out-dir ./client/dist --public-url ./",
     "lint": "eslint --ext .js client/src/"
   },
@@ -14,6 +15,7 @@
   "license": "MIT",
   "devDependencies": {
     "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-template": "^6.26.0",
     "eslint": "^5.10.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-airbnb-base": "^13.1.0",
