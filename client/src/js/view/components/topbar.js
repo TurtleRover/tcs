@@ -1,4 +1,7 @@
 import { h } from 'hyperapp';
+import FullscreenIcon from '../../../img/ui/nav-bar-fullscreen.svg';
+
+const ActionFullscreen = () => <FullscreenIcon class="topbar_actions_action" onmouseup={(event) => toggleFullscreen(event)} />;
 
 export const TopBar = ({ state, switchSettings }) =>
     <section id="topbar" class="topbar">
@@ -54,16 +57,6 @@ const signalLevelIcon = (signalLevel) => {
         return require('../../../img/ui/signal-0.svg');
     }
 };
-
-const ActionFullscreen = () =>
-    <img
-        alt=""
-        class="topbar_actions_action"
-        id="button-fullscreen"
-        src={require('../../../img/ui/nav-bar-fullscreen.svg')}
-        onmouseup={(event) => toggleFullscreen(event)}
-    />;
-
 
 // https://gist.github.com/demonixis/5188326
 const toggleFullscreen = (event) => {
