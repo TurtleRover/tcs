@@ -1,19 +1,20 @@
 {
     "plugins": [
-        ["transform-react-jsx", {
+        ["@babel/transform-react-jsx", {
             "pragma": "h"
         }],
-        ["transform-runtime", {
-            "polyfill": false,
+        ["@babel/transform-runtime", {
             "regenerator": true
-        }]
+        }],
+        ["inline-react-svg"],
     ],
     "presets": [
         [
-            "env",
+            "@babel/preset-env",
             {
                 "targets": {
-                    "browsers": ["last 2 versions"]
+                    "browsers": ["last 2 versions"],
+                    // "modules": "commonjs"
                 }
             }
         ]
