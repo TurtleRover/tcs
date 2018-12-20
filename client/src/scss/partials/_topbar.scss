@@ -10,15 +10,17 @@
     @include small {
         height: $topbar-height-small;
     }
+
     @include medium {
         height: $topbar-height-medium;
     }
 
-    &_logo {
+    &__logo {
         position: absolute;
         left: 10px;
         width: auto;
         @include vertical-align();
+
         @include small {
             height: 18px;
         }
@@ -28,125 +30,53 @@
         }
     }
 
-    &_indicators {
+    &__indicators {
         position: absolute;
         width: 50%;
         height: 100%;
         display: flex;
         flex-flow: row;
         justify-content: center;
+    }
 
-        &_indicator {
-            @include vertical-align();
-            position: relative;
-            width: auto;
-            @include small {
-                height: 10px;
-                margin: 0 10px;
-            }
-            @include medium {
-                height: 20px;
-                margin: 0 15px;
-            }
+    &__indicator {
+        @include vertical-align();
+        position: relative;
+        width: auto;
+
+        @include small {
+            height: 10px;
+            margin: 0 10px;
+        }
+
+        @include medium {
+            height: 20px;
+            margin: 0 15px;
         }
     }
 
-    &_actions {
+    &__actions {
         position: absolute;
         width: 100%;
         height: 100%;
         display: flex;
         flex-flow: row;
         justify-content: center;
-
-        &_action {
-            @include vertical-align();
-            position: relative;
-            width: auto;
-            @include small {
-                height: 10px;
-                margin: 0 10px;
-            }
-
-            @include medium {
-                height: 20px;
-                margin: 0 15px;
-            }
-        }
     }
 
-    &_menu {
-        @include user-select;
-        cursor: pointer;
-        height: 100%;
-        right: 10px;
-        position: absolute;
-        top: 0;
-        width: $menubar-width;
-        z-index: $z-nav-toggle;
+    &__action {
+        @include vertical-align();
+        position: relative;
+        width: auto;
 
-        &:hover {
-            opacity: 0.8;
+        @include small {
+            height: 10px;
+            margin: 0 10px;
         }
 
-        .menubar,
-        .menubar::after,
-        .menubar::before {
-            @include vertical-align();
-            position: absolute;
-            @include transition(all 0.5s ease);
-            background: $menubar-color;
-            content: '';
-            height: $menubar-height;
-            width: 100%;
-        }
-
-        &_bar {
-            margin-top: 0;
-            @include vertical-align();
-            position: absolute;
-            @include transition(all 0.5s ease);
-            background: $menubar-color;
-            content: '';
-            height: $menubar-height;
-            width: 100%;
-
-            &:after {
-                @include vertical-align();
-                position: absolute;
-                @include transition(all 0.5s ease);
-                background: $menubar-color;
-                content: '';
-                height: $menubar-height;
-                width: 100%;
-                margin-top: 4 * $menubar-height;
-            }
-            &:before {
-                margin-top: -4 * $menubar-height;
-                @include vertical-align();
-                position: absolute;
-                @include transition(all 0.5s ease);
-                background: $menubar-color;
-                content: '';
-                height: $menubar-height;
-                width: 100%;
-            }
-
-            &-expanded {
-                background: transparent;
-
-                &:after {
-                    background: $nav-color;
-                    margin-top: 0;
-                    @include transform(rotate(45deg));
-                }
-
-                &:before {
-                    background: $nav-color;
-                    margin-top: 0;
-                    @include transform(rotate(-45deg));
-                }
-            }
+        @include medium {
+            height: 20px;
+            margin: 0 15px;
         }
     }
 }
