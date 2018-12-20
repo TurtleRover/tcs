@@ -67,16 +67,35 @@
     &__action {
         @include vertical-align();
         position: relative;
-        width: auto;
+        fill: $grey_2;
+        cursor: pointer;
+
+        &:hover {
+            fill: $grey_1;
+        }
 
         @include small {
-            height: 10px;
+            path {
+                transform: scale(0.25)
+            }
+            height: 12px;
+            width: 12px;
             margin: 0 10px;
         }
 
         @include medium {
-            height: 20px;
+            path {
+                transform: scale(0.5)
+            }
+            height: 24px;
+            width: 24px;
             margin: 0 15px;
         }
+    }
+
+    &__settings {
+        @include vertical-align();
+        position: absolute;
+        right: 20px;
     }
 }

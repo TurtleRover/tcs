@@ -1,12 +1,12 @@
 import { h } from 'hyperapp';
 import SettingsIcon from 'material-design-icons-svg-only/dist/action/settings.svg';
-import FullscreenIcon from '../../../img/ui/nav-bar-fullscreen.svg';
+import FullscreenIcon from 'material-design-icons-svg-only/dist/navigation/fullscreen.svg';
 
 const ActionFullscreen = ({ action }) =>
     <FullscreenIcon class="topbar__action" onmouseup={(event) => action(event)} />;
 
 const ActionSettings = ({ action }) =>
-    <SettingsIcon class="topbar__action" onmousedown={() => action()} />;
+    <SettingsIcon class="topbar__action topbar__settings" onmousedown={() => action()} />;
 
 export const TopBar = ({ state, switchSettings }) =>
     <section id="topbar" class="topbar">
