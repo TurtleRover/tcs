@@ -17,7 +17,7 @@ export const SettingsAbout = ({ state }) =>
             </div>
         </div>
         <div class='settings__block'>
-            <div class='settings__subtitle'>A word from a team</div>
+            <div class='settings__subtitle'>A word from the team</div>
             <div class="settings__section">
                 Feel free to contact us if you have any issue. We're constantly improving the UI, but it's still a long way to go.<br />
                 We'd love to have you participate in the project and get any feedback!
