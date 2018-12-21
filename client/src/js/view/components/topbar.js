@@ -1,30 +1,36 @@
 import { h } from 'hyperapp';
+import SettingsIcon from 'material-design-icons-svg-only/dist/action/settings.svg';
+import FullscreenIcon from 'material-design-icons-svg-only/dist/navigation/fullscreen.svg';
+
+const ActionFullscreen = ({ action }) =>
+    <FullscreenIcon class="topbar__action" onmouseup={(event) => action(event)} />;
+
+const ActionSettings = ({ action }) =>
+    <SettingsIcon class="topbar__action topbar__settings" onmousedown={() => action()} />;
 
 export const TopBar = ({ state, switchSettings }) =>
     <section id="topbar" class="topbar">
-        <img alt="" class="topbar_logo" src={require('../../../img/ui/turtle-logo.svg')} />
-        <div class="topbar_indicators">
+        <img alt="" class="topbar__logo" src={require('../../../img/ui/turtle-logo.svg')} />
+        <div class="topbar__indicators">
             <IndicatorBattery batteryLevel={state.batteryLevel} />
             <IndicatorSignal signalLevel={state.signalLevel} />
         </div>
-        <div id="topbar_actions" class="topbar_actions">
+        <div id="topbar__actions" class="topbar__actions">
             {/* <img class="topbar_actions_action" id="button-screenrecord" src={require("../../../img/ui/nav-bar-rec.svg")}/> */}
             {/* <a id="snap-download-a">  */}
             {/* <img class="topbar_actions_action" id="button-screenshot" src={require("../../../img/ui/nav-bar-snap.svg")}/> */}
             {/* </a>  */}
-            <ActionFullscreen />
+            <ActionFullscreen action={toggleFullscreen} />
+            <ActionSettings action={switchSettings} />
         </div>
 
-        <div role="button" class="topbar_menu" onmousedown={() => switchSettings()}>
-            <div class="topbar_menu_bar" />
-        </div>
     </section>;
 
 const IndicatorBattery = ({ batteryLevel }) =>
-    <img alt="" id="indicator-battery" class="topbar_indicators_indicator" src={batteryLevelIcon(batteryLevel)} />;
+    <img alt="" id="indicator-battery" class="topbar__indicator" src={batteryLevelIcon(batteryLevel)} />;
 
 const IndicatorSignal = ({ signalLevel }) =>
-    <img alt="" id="indicator-signal" class="topbar_indicators_indicator" src={signalLevelIcon(signalLevel)} />;
+    <img alt="" id="indicator-signal" class="topbar__indicator" src={signalLevelIcon(signalLevel)} />;
 
 
 const batteryLevelIcon = (batteryLevel) => {
@@ -54,16 +60,6 @@ const signalLevelIcon = (signalLevel) => {
         return require('../../../img/ui/signal-0.svg');
     }
 };
-
-const ActionFullscreen = () =>
-    <img
-        alt=""
-        class="topbar_actions_action"
-        id="button-fullscreen"
-        src={require('../../../img/ui/nav-bar-fullscreen.svg')}
-        onmouseup={(event) => toggleFullscreen(event)}
-    />;
-
 
 // https://gist.github.com/demonixis/5188326
 const toggleFullscreen = (event) => {

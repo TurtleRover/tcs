@@ -1,0 +1,11 @@
+.link {
+    color: $grey_1;
+    // display: contents;
+    text-decoration: none;
+    box-sizing: border-box;
+    position: relative;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

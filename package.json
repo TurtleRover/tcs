@@ -1,10 +1,11 @@
 {
   "name": "tcs",
-  "version": "0.14.1",
+  "version": "0.14.2",
   "description": "Turtle Control Software",
   "main": "index.js",
   "scripts": {
     "watch": "parcel watch ./client/src/index.html --out-dir ./client/dist --public-url ./ --no-hmr",
+    "serve": "parcel serve ./client/src/index.html --out-dir ./client/dist --public-url / -p 3000",
     "build": "parcel build ./client/src/index.html --out-dir ./client/dist --public-url ./",
     "lint": "eslint --ext .js client/src/"
   },
@@ -13,22 +14,29 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "babel-plugin-transform-runtime": "^6.23.0",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-transform-react-jsx": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/template": "^7.2.2",
+    "babel-plugin-inline-react-svg": "^1.0.1",
     "eslint": "^5.10.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
-    "node-sass": "^4.10.0",
-    "parcel-bundler": "1.9.7"
+    "material-design-icons-svg-only": "^3.0.1",
+    "node-sass": "^4.11.0",
+    "parcel-bundler": "1.11.0"
   },
   "dependencies": {
     "@hyperapp/logger": "^0.5.0",
     "hyperapp": "^1.2.9",
     "keyboardjs": "^2.5.1",
     "lodash": "^4.17.11",
-    "nipplejs": "^0.7.1",
+    "nipplejs": "^0.7.3",
+    "react": "^16.7.0",
     "socket.io-client": "^2.2.0"
   }
 }
