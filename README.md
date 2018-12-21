@@ -38,7 +38,8 @@
 
 ## How to run
  * Open in browser http://10.0.0.1/ (for more detailed network configuration look at [Turtle OS repo](https://github.com/TurtleRover/turtleos))
-
+ * In TurtleOS server starts on startup, but if You want to start it manually type `tcs`. 
+ 
 ## How to setup Development Environment
 _To replicate our development workflow you will need a Linux-based distro or MacOS_
 
@@ -53,13 +54,23 @@ Prerequisites: Install [Yarn](https://yarnpkg.com/lang/en/docs/install/) package
 * Now You can open TCS project in Your favorite editor
 
 ## How to build
- * Run `yarn install`
+ * Run `yarn install` to download JavaScript dependencies
  * Run `yarn build` to build productional files. There is also `yarn watch` command, it will watch for any changes in files and rebuild project
  * Install Python dependencies `sudo pip3 install -r requirements.txt`
- * Run `utils/make_deb.sh`
+ * Run `utils/make_deb.sh` to make Debian package
+
+ In addition:
+ * Run `yarn watch`, to watch for any changes in files and rebuild project
+ * Run `yarn serve`, to watch for any changes in files and rebuild project and serve static files. WebSockets or stream will not work in this case
 
 ## How streaming works
 Streaming is done with [UV4L](https://www.linux-projects.org/uv4l/) drivers and [WebRTC streaming server](https://www.linux-projects.org/uv4l/webrtc-extension/). UV4L comes preinstalled with [TurtleOS](https://github.com/TurtleRover/TurtleOS).
-### Stream troubleshooting
+
+### Troubleshooting
+
+## Server
+For debug and development purpose you may want to kill daemon `sudo systemctl stop turtlerover-tcs` and run server manually with `tcs` command.
+
+## Steam
 There are still some problems with streaming and we are working to fix them. If stream doesn't work on your device, you may try to experiment with `/etc/uv4l/uv4l-uvc.conf`, especially with `webrtc-enable-hw-codec` option and [`force_hw_vcodec`](https://github.com/TurtleRover/tcs/blob/984120b8469f603650f3c6f979bfc96e2dcbbbde/client/src/js/core/stream.js#L72) in `core/stream.js`. If you find any solution to your problem with streaming - please let us know or create a pull request.
 
