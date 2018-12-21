@@ -74,15 +74,6 @@
         &:first-child {
             margin-top: 0;
         }
-        // &::before {
-        //     content: '';
-        //     border-bottom: solid 1px $grey_3;
-        //     position: absolute;
-        //     bottom: 5px;
-        //     left: 0;
-        //     height: 1px;
-        //     width: 100%;
-        // }
     }
     @include small {
         padding-top: $topbar-height-small;

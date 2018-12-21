@@ -1,4 +1,11 @@
 .link {
     color: $grey_1;
-    // padding: 0 5px 0 5px;
+    // display: contents;
+    text-decoration: none;
+    box-sizing: border-box;
+    position: relative;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
