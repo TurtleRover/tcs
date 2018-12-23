@@ -47,13 +47,21 @@
 
         @include small {
             height: 12px;
+            width: 12px;
             margin: 0 12px;
+
+            path {
+                transform: scale(0.5)
+            }
         }
 
         @include medium {
             height: 24px;
             width: 24px;
             margin: 0 15px;
+            path {
+                transform: scale(1)
+            }
         }
     }
 
@@ -80,6 +88,7 @@
             path {
                 transform: scale(0.25)
             }
+
             height: 12px;
             width: 12px;
             margin: 0 10px;
@@ -89,6 +98,7 @@
             path {
                 transform: scale(0.5)
             }
+
             height: 24px;
             width: 24px;
             margin: 0 15px;
@@ -98,6 +108,13 @@
     &__settings {
         @include vertical-align();
         position: absolute;
-        right: 20px;
+
+        @include small {
+            right: 10px;
+        }
+
+        @include medium {
+            right: 20px;
+        }
     }
 }
