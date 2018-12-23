@@ -10,7 +10,7 @@
             "svgo": {
                 "plugins": [
                   {
-                    "removeAttrs": { "attrs": "(fill)" }
+                    "removeAttrs": { "attrs": "(fill|style)" }
                   }
                 ]
       
