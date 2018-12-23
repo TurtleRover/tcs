@@ -1,6 +1,10 @@
 import { h } from 'hyperapp';
 import SettingsIcon from 'material-design-icons-svg-only/dist/action/settings.svg';
 import FullscreenIcon from 'material-design-icons-svg-only/dist/navigation/fullscreen.svg';
+import LogotypeIcon from '../../../img/ui/turtle-logo.svg';
+
+const Logotype = () =>
+    <LogotypeIcon class='topbar__logo' />
 
 const ActionFullscreen = ({ action }) =>
     <FullscreenIcon class="topbar__action" onmouseup={(event) => action(event)} />;
@@ -10,7 +14,7 @@ const ActionSettings = ({ action }) =>
 
 export const TopBar = ({ state, switchSettings }) =>
     <section id="topbar" class="topbar">
-        <img alt="" class="topbar__logo" src={require('../../../img/ui/turtle-logo.svg')} />
+        <Logotype />
         <div class="topbar__indicators">
             <IndicatorBattery batteryLevel={state.batteryLevel} />
             <IndicatorSignal signalLevel={state.signalLevel} />

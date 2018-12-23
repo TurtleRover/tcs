@@ -20,13 +20,14 @@
         left: 10px;
         width: auto;
         @include vertical-align();
+        fill: $grey_1;
 
         @include small {
-            height: 18px;
+            height: 12px;
         }
 
         @include medium {
-            height: 36px;
+            height: 24px;
         }
     }
 
