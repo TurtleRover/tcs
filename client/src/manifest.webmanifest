@@ -3,17 +3,17 @@
   "name": "Turtle Control Software",
   "icons": [
     {
-      "src": "img/icon/launcher-1x.png",
+      "src": "img/launcher/launcher-1x.png",
       "type": "image/png",
       "sizes": "48x48"
     },
     {
-      "src": "img/icon/launcher-2x.png",
+      "src": "img/launcher/launcher-2x.png",
       "type": "image/png",
       "sizes": "96x96"
     },
     {
-      "src": "img/icon/launcher-4x.png",
+      "src": "img/launcher/launcher-4x.png",
       "type": "image/png",
       "sizes": "192x192"
     }
