@@ -43,15 +43,16 @@
     &__indicator {
         @include vertical-align();
         position: relative;
-        width: auto;
+        fill: $grey_2;
 
         @include small {
-            height: 10px;
-            margin: 0 10px;
+            height: 12px;
+            margin: 0 12px;
         }
 
         @include medium {
-            height: 20px;
+            height: 24px;
+            width: 24px;
             margin: 0 15px;
         }
     }
