@@ -7,8 +7,11 @@ import { telemetry } from './telemetry';
 import { Stream } from './stream';
 import { System } from './system';
 import { Clupi } from './clupi';
+import { logs } from './logs';
+
 
 const core = (actions) => {
+    actions.logs = logs;
     const sockets = new Sockets(actions);
     actions.motors = new Motors(sockets);
 

@@ -1,0 +1,20 @@
+.logs{
+    height: calc(100% - #{$topbar-height-small});
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: $topbar-height-medium;
+    bottom: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    padding-left: 5px;
+    padding-top: 5px;
+    overflow-y: scroll;
+    margin-right: -15px;
+    &__row {
+        font-family: monospace; 
+        font-size: 12px;
+        padding: 2px;
+        line-height: 1.2;
+    }
+}

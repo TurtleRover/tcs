@@ -38,6 +38,7 @@ const actions = {
     joystick: null,
     stream: null,
     sockets: null,
+    logs: null,
     manipulator: {
         m: null,
         axis1: {

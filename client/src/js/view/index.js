@@ -10,6 +10,7 @@ import { Joystick } from './components/joystick';
 import { Gripper } from './components/gripper';
 import { ModeChooser } from './components/modechooser';
 import { Clupi } from './components/clupi';
+import { Logs } from './components/logs';
 
 const view = (state, actions) => (
     <main>
@@ -17,6 +18,7 @@ const view = (state, actions) => (
         <SplashScreen state={state.showSplashScreen} />
         <div id="wrapper" class="wrapper">
             <TopBar state={state.telemetry} switchSettings={actions.settings.setVisibility} />
+            <Logs actions={actions} />
             <Settings state={state} actions={actions} />
             <div class="controls-box-right">
                 <Manipulator mode={state.mode} state={state.manipulator} action={actions.manipulator} />
