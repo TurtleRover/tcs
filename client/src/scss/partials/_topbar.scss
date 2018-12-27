@@ -20,13 +20,14 @@
         left: 10px;
         width: auto;
         @include vertical-align();
+        fill: $grey_1;
 
         @include small {
-            height: 18px;
+            height: 12px;
         }
 
         @include medium {
-            height: 36px;
+            height: 24px;
         }
     }
 
@@ -42,26 +43,36 @@
     &__indicator {
         @include vertical-align();
         position: relative;
-        width: auto;
+        fill: $grey_2;
 
         @include small {
-            height: 10px;
-            margin: 0 10px;
+            height: 12px;
+            width: 12px;
+            margin: 0 12px;
+
+            path {
+                transform: scale(0.5)
+            }
         }
 
         @include medium {
-            height: 20px;
+            height: 24px;
+            width: 24px;
             margin: 0 15px;
+            path {
+                transform: scale(1)
+            }
         }
     }
 
     &__actions {
         position: absolute;
-        width: 100%;
+        width: 50%;
         height: 100%;
+        right: 0;
         display: flex;
         flex-flow: row;
-        justify-content: center;
+        justify-content: flex-end;
     }
 
     &__action {
@@ -78,6 +89,7 @@
             path {
                 transform: scale(0.25)
             }
+
             height: 12px;
             width: 12px;
             margin: 0 10px;
@@ -87,6 +99,7 @@
             path {
                 transform: scale(0.5)
             }
+
             height: 24px;
             width: 24px;
             margin: 0 15px;
@@ -95,7 +108,16 @@
 
     &__settings {
         @include vertical-align();
-        position: absolute;
-        right: 20px;
+        // position: absolute;
+        padding-left: 10px;
+        border-left: $grey_4 1px solid;
+
+        @include small {
+            right: 10px;
+        }
+
+        @include medium {
+            right: 20px;
+        }
     }
 }

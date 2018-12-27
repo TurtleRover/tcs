@@ -6,7 +6,16 @@
         ["@babel/transform-runtime", {
             "regenerator": true
         }],
-        ["inline-react-svg"],
+        ["inline-react-svg", {
+            "svgo": {
+                "plugins": [
+                  {
+                    "removeAttrs": { "attrs": "(fill|style)" }
+                  }
+                ]
+      
+              }
+        }],
     ],
     "presets": [
         [
