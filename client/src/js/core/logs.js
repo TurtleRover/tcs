@@ -3,7 +3,6 @@
 
 
 export const logs = function initConsoleLogDiv(logTo) {
-
     if (console.log.toDiv) {
         return;
     }
@@ -18,8 +17,8 @@ export const logs = function initConsoleLogDiv(logTo) {
     let table = console.table ? console.table.bind(console) : null;
     let consoleId = 'console-log-div';
 
-    function printToDiv() {
-        let msg = Array.prototype.slice.call(arguments, 0)
+    function printToDiv(...args) {
+        let msg = Array.prototype.slice.call(args, 0)
             .map(toString)
             .join(' ');
         let item = document.createElement('div');
@@ -28,26 +27,26 @@ export const logs = function initConsoleLogDiv(logTo) {
         logTo.appendChild(item);
     }
 
-    function logWithCopy() {
-        log(...arguments);
-        printToDiv(...arguments);
+    function logWithCopy(...args) {
+        log(args);
+        printToDiv(args);
     }
 
     console.log = logWithCopy;
     console.log.toDiv = true;
 
-    console.error = function errorWithCopy() {
-        error(...arguments);
-        let args = Array.prototype.slice.call(arguments, 0);
+    console.error = function errorWithCopy(...args) {
+        error(args);
+        // let args = Array.prototype.slice.call(arguments, 0);
         args.unshift('ERROR:');
         printToDiv(...args);
     };
 
-    console.warn = function logWarning() {
-        warn(...arguments);
-        let args = Array.prototype.slice.call(arguments, 0);
+    console.warn = function logWarning(...args) {
+        warn(args);
+        // let args = Array.prototype.slice.call(args, 0);
         args.unshift('WARNING:');
-        printToDiv(...args);
+        printToDiv(args);
     };
 
     function printTable(objArr, keys) {
@@ -85,12 +84,12 @@ export const logs = function initConsoleLogDiv(logTo) {
         div.appendChild($table);
     }
 
-    console.table = function logTable() {
+    console.table = function logTable(...args) {
         if (typeof table === 'function') {
-            table(...arguments);
+            table(args);
         }
 
-        let objArr = arguments[0];
+        let objArr = args[0];
         let keys;
 
         if (typeof objArr[0] !== 'undefined') {
