@@ -67,11 +67,12 @@
 
     &__actions {
         position: absolute;
-        width: 100%;
+        width: 50%;
         height: 100%;
+        right: 0;
         display: flex;
         flex-flow: row;
-        justify-content: center;
+        justify-content: flex-end;
     }
 
     &__action {
@@ -107,7 +108,9 @@
 
     &__settings {
         @include vertical-align();
-        position: absolute;
+        // position: absolute;
+        padding-left: 10px;
+        border-left: $grey_4 1px solid;
 
         @include small {
             right: 10px;
