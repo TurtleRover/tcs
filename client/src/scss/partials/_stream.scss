@@ -21,4 +21,8 @@
     &--grab-mode {
         bottom: 0;
     }
+
+    :active {
+        outline: none;
+    }
 }
