@@ -18,8 +18,6 @@ const view = (state, actions) => (
         <div id="wrapper" class="wrapper">
             <TopBar state={state.telemetry} switchSettings={actions.settings.setVisibility} />
             <Settings state={state} actions={actions} />
-            <div class="crosshair" />
-            <div class="dots" />
             <div class="controls-box-right">
                 <Manipulator mode={state.mode} state={state.manipulator} action={actions.manipulator} />
                 <Joystick mode={state.mode} joystick={actions.joystick} motors={actions.motors} />
