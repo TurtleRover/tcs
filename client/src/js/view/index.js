@@ -28,7 +28,7 @@ const view = (state, actions) => (
                 <Gripper mode={state.mode} state={state.manipulator.gripper} action={actions.manipulator} />
                 <ModeChooser mode={state.mode} setMode={actions.setMode} />
             </div>
-            <Stream stream={actions.stream} mode={state.mode} />
+            <Stream actions={actions} state={state} />
         </div>
     </main>
 );
