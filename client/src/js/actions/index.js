@@ -13,9 +13,9 @@ const actions = {
         props.forEach((prop) => {
             const zipped = zipObjectDeep([prop], [JSON.parse(localStorage[prop])]);
             merge(state, zipped);
-            console.log('Restore', prop, zipped);
+            console.info('Restore', prop, zipped);
         });
-        console.log('State after restore', state);
+        // console.log('State after restore', state);
     },
 
     setSystemInfo: value => state => ({ system_info: value }),

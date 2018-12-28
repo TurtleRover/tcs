@@ -192,7 +192,7 @@ Stream.prototype.close = function close(event) {
 };
 
 Stream.prototype.error = function error(event) {
-    console.error('[stream] websocket error. State:', event.currentTarget.readyState);
+    console.error('[stream] websocket error. State', event.currentTarget.readyState);
     this.websocket.close();
 }
 
