@@ -13,6 +13,23 @@ export const Sockets = function Sockets(actions) {
     this.io.on('response', (msg) => {
         console.info('[sockets] Response:', msg);
     });
+    this.io.on('error', (error) => {
+        console.error('[socketio]', error);
+    });
+    this.io.on('connect_error', (error) => {
+        console.error('[socketio] connect error');
+    });
+    this.io.on('connect_timeout', (error) => {
+        console.error('[socketio] connect timeout');
+    });
+    this.io.on('reconnect_error', (error) => {
+        console.error('[socketio] reconnect error');
+    });
+    this.io.on('reconnect_failed', (error) => {
+        console.error('[socketio] reconnect failed');
+    });
+      
+      
 };
 
 Sockets.prototype.sendMotors = function sendMotors(data) {
