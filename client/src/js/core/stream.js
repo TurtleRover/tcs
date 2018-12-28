@@ -15,7 +15,7 @@ export const Stream = function Stream() {
 };
 
 Stream.prototype.start = function start() {
-    console.log('[stream] Starting on:', this.url);
+    console.info('[stream] Starting on:', this.url);
 
     this.websocket = new WebSocket(this.url);
 
@@ -192,7 +192,7 @@ Stream.prototype.close = function close(event) {
 };
 
 Stream.prototype.error = function error(event) {
-    console.error('[stream] error', event);
+    console.error('[stream] websocket error. State:', event.currentTarget.readyState);
     this.websocket.close();
 }
 
